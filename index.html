@@ -531,8 +531,17 @@ ul.clean li{margin:4px 0}
     </div>
   </div>
 
-  <div class="note" style="margin-top:16px">
-    新機 TEC 數據來源包含美國能源之星官方認證與各品牌台灣官網規格書（如 Epson EM-C8101、WF-C878R）。<b>舊機 TEC 是可調整的基準假設值</b>，亦可使用上方 A/B 卡片或參數滑桿直接調整。欲深入了解耗電計算與 TEC 解讀，可參考 <a href="https://www.eosasc.com.tw/mfp-power-consumption-energy-saving" target="_blank" rel="noopener" style="color:var(--blue);font-weight:600;text-decoration:underline">互盛官方專題・影印機耗電多少？TEC 怎麼看 ↗</a>。
+    <div class="note" style="margin-top:16px;line-height:1.75;background:var(--paper);border:1px solid var(--line)">
+    <div style="font-weight:700;margin-bottom:6px;color:var(--ink);display:flex;align-items:center;gap:6px">
+      <span>📌</span> 數據來源依據與推測計算免責聲明
+    </div>
+    <ul class="clean small" style="margin:0;padding-left:18px;color:var(--ink-2)">
+      <li><b>新機數據來源</b>：依據美國環境保護署（EPA）<b>ENERGY STAR® 國際能源之星</b>官方認證登錄資料庫，以及各大品牌台灣官方產品型錄技術手冊（標記為「🏢 官網規格」）。</li>
+      <li><b>舊機基準與機齡推估</b>：依據台灣辦公設備租賃市場近 3～7 年主力雷射機種之歷史耗能基準與標準化假設，使用者亦可透過上方 A/B 卡片或參數滑桿自訂微調。</li>
+      <li><b>推測計算僅供參考</b>：TEC（典型用電量，kWh/週）為模擬 168 小時工作與睡眠模式之標準化實驗室測算值。實際年耗電度數與節省金額會因<b>企業實際印量多寡、設備休眠設定、電價計費級距與操作習慣</b>而有所不同。</li>
+      <li><b>決策參考聲明</b>：本網站所有試算數值、節電率、金額與減碳成效<b>均為數據模型推估之模擬結果，僅供設備選型、節能規劃與 ESG 提案初步評估參考</b>，非作為設備保證效能承諾、電費合約保證或財務審計之唯一依據。</li>
+      <li><b>延伸法規與專業分析</b>：欲深入了解測試流程與節能標章標準，可前往 03 頁或參考 <a href="https://www.eosasc.com.tw/mfp-power-consumption-energy-saving" target="_blank" rel="noopener" style="color:var(--blue);font-weight:600;text-decoration:underline">互盛官方專題・影印機耗電多少？TEC 怎麼看 ↗</a>。</li>
+    </ul>
   </div>
 </section>
 
@@ -739,7 +748,12 @@ ul.clean li{margin:4px 0}
 </div>
 </main>
 
-<footer><div class="bar"><span>事務機 節能計算器 · 所有數值由同一組狀態即時計算</span><span>TEC 資料：ENERGY STAR · 測試程序：經濟部能源署</span></div></footer>
+<footer>
+  <div class="bar" style="line-height:1.6;font-size:11.5px">
+    <span><b>事務機 節能計算器</b> · 數據來源：ENERGY STAR 官方認證資料庫、各品牌台灣原廠型錄技術手冊、經濟部能源署公告標準</span>
+    <span>【免責聲明】本工具所有推算數據均為理論模型模擬結果，僅供節能選型與 ESG 初步評估參考，實際費用與效能請以原廠合約及台電電費單為準。</span>
+  </div>
+</footer>
 
 <!-- 審計抽屜 -->
 <div class="drawer-mask" id="mask"></div>
@@ -756,8 +770,36 @@ ul.clean li{margin:4px 0}
 /* --- SNAPSHOT START --- */
 const SNAPSHOT_DATE = '2026-10-27';
 const SNAP = [
-  // ---------- Ricoh ----------
-  ['Ricoh','IM C2010','C',20,'EP',0.20,'Ricoh 官網 / 能源之星認證'],
+    // ---------- Ricoh (台灣理光官方銷售現役機種) ----------
+  ['Ricoh','IM C2010','C',20,'EP',0.20,'Ricoh 台灣官網現役 / 能源之星'],
+  ['Ricoh','IM C2510','C',25,'EP',0.25,'Ricoh 台灣官網現役 / 能源之星'],
+  ['Ricoh','IM C3010','C',30,'EP',0.30,'Ricoh 台灣官網現役 / 能源之星'],
+  ['Ricoh','IM C3510','C',35,'EP',0.35,'Ricoh 台灣官網現役 / 能源之星'],
+  ['Ricoh','IM C4510','C',45,'EP',0.45,'Ricoh 台灣官網現役 / 能源之星'],
+  ['Ricoh','IM C6010','C',60,'EP',0.69,'Ricoh 台灣官網現役 / 能源之星'],
+  ['Ricoh','IM C2000','C',20,'EP',0.55,'Ricoh 台灣官網 / 能源之星'],
+  ['Ricoh','IM C2500','C',25,'EP',0.29,'Ricoh 台灣官網 / 能源之星'],
+  ['Ricoh','IM C3000','C',30,'EP',0.35,'Ricoh 台灣官網 / 能源之星'],
+  ['Ricoh','IM C3500','C',35,'EP',0.39,'Ricoh 台灣官網 / 能源之星'],
+  ['Ricoh','IM C4500','C',45,'EP',0.51,'Ricoh 台灣官網 / 能源之星'],
+  ['Ricoh','IM C6000','C',60,'EP',0.76,'Ricoh 台灣官網 / 能源之星'],
+  ['Ricoh','IM 2500','M',25,'EP',0.29,'Ricoh 台灣官網現役 / 能源之星'],
+  ['Ricoh','IM 3000','M',30,'EP',0.35,'Ricoh 台灣官網現役 / 能源之星'],
+  ['Ricoh','IM 3500','M',35,'EP',0.41,'Ricoh 台灣官網現役 / 能源之星'],
+  ['Ricoh','IM 4000','M',40,'EP',0.45,'Ricoh 台灣官網現役 / 能源之星'],
+  ['Ricoh','IM 5000','M',50,'EP',0.61,'Ricoh 台灣官網現役 / 能源之星'],
+  ['Ricoh','IM 6000','M',60,'EP',0.72,'Ricoh 台灣官網現役 / 能源之星'],
+  ['Ricoh','IM 7000','M',70,'EP',1.21,'Ricoh 台灣官網現役 / 能源之星'],
+  ['Ricoh','IM 8000','M',80,'EP',1.53,'Ricoh 台灣官網現役 / 能源之星'],
+  ['Ricoh','IM 9000','M',90,'EP',1.83,'Ricoh 台灣官網現役 / 能源之星'],
+  ['Ricoh','IM C300F','C',31,'EP',0.37,'Ricoh 台灣官網現役 / 能源之星'],
+  ['Ricoh','IM C320F','C',32,'EP',0.29,'Ricoh 台灣官網現役 / 能源之星'],
+  ['Ricoh','IM C400F','C',45,'EP',0.54,'Ricoh 台灣官網現役 / 能源之星'],
+  ['Ricoh','M C251FW','C',26,'EP',0.32,'Ricoh 台灣官網現役 / 能源之星'],
+  ['Ricoh','M C320FW','C',32,'EP',0.32,'Ricoh 台灣官網現役 / 能源之星'],
+  ['Ricoh','IM 370F','M',37,'EP',0.40,'Ricoh 台灣官網現役 / 能源之星'],
+  ['Ricoh','IM 460F','M',46,'EP',0.46,'Ricoh 台灣官網現役 / 能源之星'],
+  ['Ricoh','M 320F','M',34,'EP',0.43,'Ricoh 台灣官網現役 / 能源之星'],
   // ---------- Epson ----------
   ['Epson','EM-C8101','C',25,'HPIJ',0.23,'Epson 台灣官網規格手冊（能源之星未收錄時撈取）'],
   ['Epson','AM-C4000','C',40,'HPIJ',0.21,'Epson 官網 / ENERGY STAR 認證'],
@@ -777,97 +819,6 @@ const SNAP = [
   ['Epson','WF-M20590F','M',100,'HPIJ',0.40,'ENERGY STAR 認證'],
   ['Epson','WF-C17590','M',75,'EP',0.40,'ENERGY STAR 官方認證'],
   ['Epson','WF-C21000','C',100,'HPIJ',0.41,'ENERGY STAR 認證'],
-  // ---------- Ricoh ----------
-  ['Ricoh','IM C2010G','M',20,'EP',0.20,'ENERGY STAR 官方認證'],
-  ['Ricoh','IM 2510','M',25,'EP',0.24,'Ricoh 官網 / 能源之星認證'],
-  ['Ricoh','IM C2510','C',25,'EP',0.25,'Ricoh 官網 / 能源之星認證'],
-  ['Ricoh','IM C2510G','M',25,'EP',0.25,'ENERGY STAR 官方認證'],
-  ['Ricoh','IM C2500G','C',25,'EP',0.29,'Ricoh 官網 / 能源之星認證'],
-  ['Ricoh','IM C320F','C',32,'EP',0.29,'Ricoh 官網 / 能源之星認證'],
-  ['Ricoh','IM 2500A','M',25,'EP',0.29,'Ricoh 官網 / 能源之星認證'],
-  ['Ricoh','IM 2500G','M',25,'EP',0.29,'ENERGY STAR 官方認證'],
-  ['Ricoh','IM C3010','C',30,'EP',0.30,'Ricoh 官網 / 能源之星認證'],
-  ['Ricoh','IM C3010G','M',30,'EP',0.30,'ENERGY STAR 官方認證'],
-  ['Ricoh','M C320FW','M',32,'EP',0.32,'ENERGY STAR 官方認證'],
-  ['Ricoh','C125 MF','M',26,'EP',0.32,'ENERGY STAR 官方認證'],
-  ['Ricoh','M C251FW','M',26,'EP',0.32,'ENERGY STAR 官方認證'],
-  ['Ricoh','M C240FW','M',26,'EP',0.33,'ENERGY STAR 官方認證'],
-  ['Ricoh','GreenLine IM 2500A','M',25,'EP',0.33,'ENERGY STAR 官方認證'],
-  ['Ricoh','IM 3510','M',35,'EP',0.34,'Ricoh 官網 / 能源之星認證'],
-  ['Ricoh','IM C3000G','C',30,'EP',0.35,'Ricoh 官網 / 能源之星認證'],
-  ['Ricoh','IM C3510','C',35,'EP',0.35,'Ricoh 官網 / 能源之星認證'],
-  ['Ricoh','IM 3000','M',30,'EP',0.35,'Ricoh 官網 / 能源之星認證'],
-  ['Ricoh','IM C3510G','M',35,'EP',0.35,'ENERGY STAR 官方認證'],
-  ['Ricoh','IM 3000A','M',30,'EP',0.35,'ENERGY STAR 官方認證'],
-  ['Ricoh','IM 3000G','M',30,'EP',0.35,'ENERGY STAR 官方認證'],
-  ['Ricoh','IM C3510SD','M',35,'EP',0.36,'ENERGY STAR 官方認證'],
-  ['Ricoh','IM C300F','C',31,'EP',0.37,'Ricoh 官網 / 能源之星認證'],
-  ['Ricoh','Greenline MP 2555SP','M',25,'EP',0.37,'ENERGY STAR 官方認證'],
-  ['Ricoh','IM C3500G','C',35,'EP',0.39,'Ricoh 官網 / 能源之星認證'],
-  ['Ricoh','IM 370F','M',37,'EP',0.40,'Ricoh 官網 / 能源之星認證'],
-  ['Ricoh','IM 3500','M',35,'EP',0.41,'Ricoh 官網 / 能源之星認證'],
-  ['Ricoh','IM 3500G','M',35,'EP',0.41,'ENERGY STAR 官方認證'],
-  ['Ricoh','GreenLine IM C3000','C',30,'EP',0.43,'Ricoh 官網 / 能源之星認證'],
-  ['Ricoh','GreenLine IM C3000G','M',30,'EP',0.43,'ENERGY STAR 官方認證'],
-  ['Ricoh','132 MF','M',34,'EP',0.43,'ENERGY STAR 官方認證'],
-  ['Ricoh','Greenline MP 3055SP','M',30,'EP',0.43,'ENERGY STAR 官方認證'],
-  ['Ricoh','M 320F','M',34,'EP',0.43,'ENERGY STAR 官方認證'],
-  ['Ricoh','IM 4510','M',45,'EP',0.44,'Ricoh 官網 / 能源之星認證'],
-  ['Ricoh','GreenLine IM 3500A','M',35,'EP',0.44,'ENERGY STAR 官方認證'],
-  ['Ricoh','GreenLine IM C3500','C',35,'EP',0.45,'Ricoh 官網 / 能源之星認證'],
-  ['Ricoh','IM C4510','C',45,'EP',0.45,'Ricoh 官網 / 能源之星認證'],
-  ['Ricoh','IM 4000','M',40,'EP',0.45,'Ricoh 官網 / 能源之星認證'],
-  ['Ricoh','IM C4510SD','M',45,'EP',0.45,'ENERGY STAR 官方認證'],
-  ['Ricoh','IM 4000G','M',40,'EP',0.45,'ENERGY STAR 官方認證'],
-  ['Ricoh','IM C4510G','M',45,'EP',0.45,'ENERGY STAR 官方認證'],
-  ['Ricoh','IM 350','M',37,'EP',0.46,'Ricoh 官網 / 能源之星認證'],
-  ['Ricoh','IM 460F','M',46,'EP',0.46,'Ricoh 官網 / 能源之星認證'],
-  ['Ricoh','IM 460FTL','M',46,'EP',0.46,'ENERGY STAR 官方認證'],
-  ['Ricoh','IM 350FSE','M',37,'EP',0.46,'ENERGY STAR 官方認證'],
-  ['Ricoh','IM C401F','C',45,'EP',0.50,'Ricoh 官網 / 能源之星認證'],
-  ['Ricoh','GreenLine IM 4000','M',40,'EP',0.50,'ENERGY STAR 官方認證'],
-  ['Ricoh','IM C4500G','C',45,'EP',0.51,'Ricoh 官網 / 能源之星認證'],
-  ['Ricoh','IM C401SRF','M',45,'EP',0.52,'ENERGY STAR 官方認證'],
-  ['Ricoh','IM C400F','C',45,'EP',0.54,'Ricoh 官網 / 能源之星認證'],
-  ['Ricoh','IM C400SRF','M',45,'EP',0.56,'ENERGY STAR 官方認證'],
-  ['Ricoh','IM C400SRFG','M',45,'EP',0.56,'ENERGY STAR 官方認證'],
-  ['Ricoh','IM 430FSE','M',45,'EP',0.57,'ENERGY STAR 官方認證'],
-  ['Ricoh','GreenLine IM C4500','M',45,'EP',0.59,'ENERGY STAR 官方認證'],
-  ['Ricoh','Greenline MP 4055SP','M',40,'EP',0.59,'ENERGY STAR 官方認證'],
-  ['Ricoh','IM 5000','M',50,'EP',0.61,'ENERGY STAR 官方認證'],
-  ['Ricoh','IM 5000G','M',50,'EP',0.61,'ENERGY STAR 官方認證'],
-  ['Ricoh','IM 5510','M',55,'EP',0.63,'ENERGY STAR 官方認證'],
-  ['Ricoh','IM C6010SD','M',60,'EP',0.67,'ENERGY STAR 官方認證'],
-  ['Ricoh','IM 6010','M',60,'EP',0.67,'ENERGY STAR 官方認證'],
-  ['Ricoh','IM C6010','M',60,'EP',0.69,'ENERGY STAR 官方認證'],
-  ['Ricoh','IM C6010G','M',60,'EP',0.69,'ENERGY STAR 官方認證'],
-  ['Ricoh','GreenLine IM 5000','M',50,'EP',0.71,'ENERGY STAR 官方認證'],
-  ['Ricoh','IM 6000','M',60,'EP',0.72,'ENERGY STAR 官方認證'],
-  ['Ricoh','IM 6000G','M',60,'EP',0.72,'ENERGY STAR 官方認證'],
-  ['Ricoh','IM C6000G','M',60,'EP',0.76,'ENERGY STAR 官方認證'],
-  ['Ricoh','IM C6000LT','M',60,'EP',0.76,'ENERGY STAR 官方認證'],
-  ['Ricoh','Greenline MP 5055SP','M',50,'EP',0.77,'ENERGY STAR 官方認證'],
-  ['Ricoh','IM C530FB','M',55,'EP',0.77,'ENERGY STAR 官方認證'],
-  ['Ricoh','GreenLine IM 6000','M',60,'EP',0.80,'ENERGY STAR 官方認證'],
-  ['Ricoh','IM C7010G','M',70,'EP',0.81,'ENERGY STAR 官方認證'],
-  ['Ricoh','IM C7010','M',70,'EP',0.81,'ENERGY STAR 官方認證'],
-  ['Ricoh','IM 550F','M',57,'EP',0.81,'ENERGY STAR 官方認證'],
-  ['Ricoh','IM 7010','M',70,'EP',0.84,'ENERGY STAR 官方認證'],
-  ['Ricoh','IM 600SRF','M',62,'EP',0.87,'ENERGY STAR 官方認證'],
-  ['Ricoh','IM 600SRFG','M',62,'EP',0.87,'ENERGY STAR 官方認證'],
-  ['Ricoh','GreenLine IM C6000','M',60,'EP',0.89,'ENERGY STAR 官方認證'],
-  ['Ricoh','Greenline MP 6055SP','M',60,'EP',0.93,'ENERGY STAR 官方認證'],
-  ['Ricoh','IM 7000','M',70,'EP',1.21,'ENERGY STAR 官方認證'],
-  ['Ricoh','IM C6500','M',65,'EP',1.22,'ENERGY STAR 官方認證'],
-  ['Ricoh','GreenLine MP 7503SP','M',75,'EP',1.42,'ENERGY STAR 官方認證'],
-  ['Ricoh','GreenLine IM 8000','M',80,'EP',1.53,'ENERGY STAR 官方認證'],
-  ['Ricoh','IM C8000','M',80,'EP',1.68,'ENERGY STAR 官方認證'],
-  ['Ricoh','IM 9000','M',90,'EP',1.83,'ENERGY STAR 官方認證'],
-  ['Ricoh','Pro C5300S','M',65,'EP',5.80,'ENERGY STAR 官方認證'],
-  ['Ricoh','Pro C5310S','M',80,'EP',7.30,'ENERGY STAR 官方認證'],
-  ['Ricoh','Pro 8300S','M',96,'EP',12.10,'ENERGY STAR 官方認證'],
-  ['Ricoh','Pro C7210SX','M',95,'EP',12.50,'ENERGY STAR 官方認證'],
-  ['Ricoh','Pro 8310S','M',111,'EP',14.20,'ENERGY STAR 官方認證'],
   // ---------- FUJIFILM ----------
   ['FUJIFILM','Apeos C2060 (Model-CPS-B)','C',20,'EP',0.21,'FUJIFILM 官網 / 能源之星'],
   ['FUJIFILM','Apeos C2560 (Model-CPS-B)','C',25,'EP',0.26,'FUJIFILM 官網 / 能源之星'],
@@ -2262,7 +2213,11 @@ function openAudit(type){
     <div class="src" style="margin-bottom:12px">推薦延伸閱讀：<a href="https://www.eosasc.com.tw/mfp-power-consumption-energy-saving" target="_blank" rel="noopener" style="color:var(--blue);font-weight:600;text-decoration:underline">互盛官方專題・影印機耗電多少？TEC 怎麼看 ↗</a></div>
     <button class="btn sm" onclick="closeAudit();go(3)">前往 03 頁 TEC 測試與標章基準 →</button>`;
   const map = {kwh:A+K, cost:A+K+C, total:A+K+C+T, co2:A+K+O, tec:A+E};
-  document.getElementById('dBody').innerHTML = map[type] || A+K+C+T+O;
+  const auditDisclaimer = `<div class="note" style="margin-top:14px;background:#FFF9F5;border-color:#F0DDD2;font-size:12px;line-height:1.6">
+    <b>⚖️ 試算與數據免責聲明：</b><br>
+    本工具之耗電度數、電費金額與碳排放減量推算均基於標準化 TEC 測試程序（TEC × 52 週）與公開參數，主要用於機型間之相對效益評估。實際運作能耗因企業印量、睡眠設定、電價級距等有所差異，試算結果不構成任何效能保證、合約承諾或審計憑證。
+  </div>`;
+  document.getElementById('dBody').innerHTML = (map[type] || A+K+C+T+O) + auditDisclaimer;
   document.getElementById('drawer').classList.add('on');
   document.getElementById('drawer').setAttribute('aria-hidden','false');
   document.getElementById('mask').classList.add('on');

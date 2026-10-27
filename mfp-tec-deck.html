@@ -50,7 +50,8 @@ a{color:var(--blue)}
 /* ---------- 頁首與分頁 ---------- */
 header{position:sticky;top:0;z-index:30;background:rgba(246,243,238,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 .bar{max-width:1240px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:16px}
-.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.brand{display:flex;align-items:center;gap:10px;min-width:0;cursor:pointer;text-decoration:none;color:inherit;user-select:none;transition:opacity .15s}
+.brand:hover{opacity:.85}
 .logo{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex:none;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.15)}
 .logo svg{width:100%;height:100%;display:block}
 .brand b{font-family:var(--serif);font-size:16px;white-space:nowrap}
@@ -287,7 +288,7 @@ ul.clean li{margin:4px 0}
 
 <header>
   <div class="bar">
-    <div class="brand">
+    <a href="#s1" class="brand" id="brandHome" title="點擊回到首頁（第 01 頁換機效益試算）">
       <div class="logo" title="事物機 節能計算器">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="36" height="36" aria-label="Logo">
           <defs>
@@ -317,7 +318,7 @@ ul.clean li{margin:4px 0}
         </svg>
       </div>
       <div><b>事物機 節能計算器</b><span>典型用電量圖解 · 能源之星機型比較 · 換機試算</span></div>
-    </div>
+    </a>
     <nav class="tabs" id="tabs" aria-label="簡報頁面">
       <button class="tab on" data-go="1"><i>01</i>換機效益試算</button>
       <button class="tab" data-go="2"><i>02</i>全機型查詢比較</button>
@@ -680,7 +681,6 @@ ul.clean li{margin:4px 0}
         <div class="row between small"><span class="muted">一週用電組成</span><span>TEC = <b class="num c-blue" id="lTec" style="font-size:18px">0</b> kWh/週</span></div>
         <div class="stack" id="lStack"></div>
         <div class="legend" id="lLegend"></div>
-        <div class="note" style="margin-top:12px" id="lYear"></div>
       </div>
     </div>
   </div>
@@ -1924,11 +1924,6 @@ function renderLab(L){
   const tot = L.tec || 1;
   document.getElementById('lStack').innerHTML = parts.map(p=>`<div title="${p[0]}" style="width:${p[1]/tot*100}%;background:${p[2]}"></div>`).join('');
   document.getElementById('lLegend').innerHTML = parts.map(p=>`<span><span class="dot" style="background:${p[2]}"></span>${p[0]} ${fmt(p[1]/tot*100,0)}%</span>`).join('');
-  const yr = L.tec*52;
-  document.getElementById('lYear').innerHTML =
-    `這台 ${S.s} ppm 的事物機：一年約 <b class="num">${fmt(yr,1)}</b> 度電，以每度 NT$${fmt(S.price,1)} 計算約 <b class="num">NT$${fmt(yr*S.price)}</b>/年。` +
-    ` 對照真實認證機型：Ricoh IM C2010（20 ppm）的 TEC 為 <b class="num">0.20</b>，Epson EM-C8101（25 ipm 免加熱）為 <b class="num">0.23</b>。` +
-    ` <button class="btn sm" id="useLab" style="margin-left:4px">把這個 TEC 帶入「舊機」試算</button>`;
 
   // 一天時間軸
   const wake = 2 * 0.1;
@@ -2280,21 +2275,6 @@ function closeAudit(){
 document.addEventListener('click', e => {
   const a = e.target.closest('[data-audit]'); if (a) openAudit(a.dataset.audit);
   const p = e.target.closest('[data-preset]'); if (p){ Object.assign(S, LAB_PRESETS[p.dataset.preset]); S.s = 20; render(); }
-  if (e.target.id === 'useLab'){
-    S.baseTec = Math.min(4, Math.max(0.2, +calcLab(S).tec.toFixed(2)));
-    S.baseName = `TEC 圖解試算機（${S.s} ppm）`;
-    const baseBrandSel = document.getElementById('abBaseBrandSel');
-    const baseModelSel = document.getElementById('abBaseModelSel');
-    const customRow = document.getElementById('abBaseCustomRow');
-    if (baseBrandSel) baseBrandSel.value = 'CUSTOM';
-    if (customRow) customRow.classList.remove('hide');
-    if (baseModelSel) baseModelSel.innerHTML = `<option value="lab" selected>${esc(S.baseName)} (TEC ${fmt(S.baseTec,2)})</option>`;
-    const badge = document.getElementById('abBaseSourceBadge');
-    if (badge) {
-      badge.innerHTML = `<span class="pill" style="background:#FFF1EE;color:#9E4A3B;border-color:#E8C5BD;font-weight:600">🔬 由 TEC 圖解實驗室匯入</span> <div class="muted small" style="margin-top:2px">${esc(S.baseName)} · 實測試算 TEC ${fmt(S.baseTec,2)} kWh/週</div>`;
-    }
-    syncABPickerUI(); render(); go(1);
-  }
 });
 document.getElementById('mask').addEventListener('click', closeAudit);
 document.getElementById('dClose').addEventListener('click', closeAudit);
@@ -2345,6 +2325,8 @@ function go(n){
   const t = document.querySelector(`.tab[data-go="${page}"]`); t && t.scrollIntoView({inline:'center', block:'nearest'});
   window.scrollTo({top:0, behavior:'smooth'});
 }
+const brandEl = document.getElementById('brandHome') || document.querySelector('.brand');
+if (brandEl) brandEl.addEventListener('click', e => { e.preventDefault(); closeAudit(); go(1); });
 document.getElementById('tabs').addEventListener('click', e => { const t = e.target.closest('[data-go]'); if (t) go(+t.dataset.go); });
 document.getElementById('prev').addEventListener('click', () => go(page-1));
 document.getElementById('next').addEventListener('click', () => go(page+1));

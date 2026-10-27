@@ -1,0 +1,41 @@
+name: 每月自動巡查事物機新機種並更新網站
+
+on:
+  schedule:
+    # 每月 1 號 UTC 00:00（台灣時間上午 08:00）自動執行巡查
+    - cron: '0 0 1 * *'
+  # 支援在 GitHub Actions 頁面手動點選「Run workflow」隨時觸發
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync-models:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 檢出專案代碼 (Checkout)
+        uses: actions/checkout@v4
+
+      - name: 設定 Python 環境
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 執行巡查與快照更新 (Sync MFP Models)
+        run: |
+          python scripts/sync_mfp_models.py
+
+      - name: 檢查是否有新機種加入並提交變更
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "偵測到新機種加入或規格更新，準備提交並推送到 GitHub..."
+            git config --global user.name "github-actions[bot]"
+            git config --global user.email "github-actions[bot]@users.noreply.github.com"
+            git add index.html mfp-tec-deck.html
+            git commit -m "chore(data): 每月自動巡查各廠牌新認證事物機機種 [skip ci]"
+            git push
+            echo "✅ 網站機種資料庫已成功自動更新！"
+          else
+            echo "☕ 各廠牌機種皆為最新，無須更新網站。"
+          fi

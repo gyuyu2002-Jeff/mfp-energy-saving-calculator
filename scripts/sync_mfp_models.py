@@ -33,14 +33,15 @@ TARGET_BRANDS = [
     "HP", "KONICA MINOLTA", "SHARP", "KYOCERA", "TOSHIBA", "BROTHER"
 ]
 
-# 台灣理光官方銷售現役機種白名單（排除海外特規、翻新機與超重型數位印刷機）
+# 台灣理光官方銷售現役 A3 機種白名單（嚴格排除 A4 機種、海外特規、翻新機與超重型數位印刷機）
 TAIWAN_RICOH_MODELS = {
+    # A3 彩色多功能事務機（新一代 IM C10 系列）
     "IM C2010", "IM C2510", "IM C3010", "IM C3510", "IM C4510", "IM C6010",
+    # A3 彩色多功能事務機（主流第 00 系列）
     "IM C2000", "IM C2500", "IM C3000", "IM C3500", "IM C4500", "IM C6000",
+    # A3 黑白多功能事務機（IM 系列）
     "IM 2500", "IM 3000", "IM 3500", "IM 4000", "IM 5000", "IM 6000",
-    "IM 7000", "IM 8000", "IM 9000",
-    "IM C300F", "IM C320F", "IM C400F", "M C251FW", "M C320FW",
-    "IM 370F", "IM 460F", "M 320F"
+    "IM 7000", "IM 8000", "IM 9000"
 }
 
 def standardize_brand(raw_brand: str) -> str:
@@ -114,11 +115,10 @@ def build_new_snap_list(existing_models, api_data):
         brand = standardize_brand(raw_b)
         if brand.upper() not in TARGET_BRANDS:
             continue
-        if brand == "Ricoh" and model not in TAIWAN_RICOH_MODELS:
-            continue
-            
         model = (row.get("model_name") or row.get("model_number") or "").strip()
         if not model:
+            continue
+        if brand == "Ricoh" and model not in TAIWAN_RICOH_MODELS:
             continue
             
         try:

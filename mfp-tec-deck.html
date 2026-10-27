@@ -733,7 +733,7 @@ ul.clean li{margin:4px 0}
 </section>
 
 <div class="pager">
-  <button class="btn" id="prev">← 上一頁</button>
+  <button class="btn" id="prev" style="visibility:hidden" disabled>← 上一頁</button>
   <span class="hint">可用鍵盤 ← → 翻頁 · <span class="num" id="pageNo">1</span> / 4</span>
   <button class="btn primary" id="next">下一頁 →</button>
 </div>
@@ -753,6 +753,7 @@ ul.clean li{margin:4px 0}
    1. 機型資料庫（官方 API + 各品牌台灣官網撈取補全）
       欄位：品牌 b、型號 m、色彩 c(C/M)、速度 s(ipm)、技術 t、TEC kWh/週、來源說明 src
    ========================================================= */
+/* --- SNAPSHOT START --- */
 const SNAPSHOT_DATE = '2026-10-27';
 const SNAP = [
   // ---------- Ricoh ----------
@@ -1397,8 +1398,27 @@ const SNAP = [
   ['Brother','MFC-L6915DW','M',52,'EP',0.65,'ENERGY STAR 官方認證'],
   ['Brother','MFC-L5915DW','M',50,'EP',0.65,'ENERGY STAR 官方認證'],
   ['Brother','MFC-L9670CDN','M',42,'EP',0.69,'ENERGY STAR 官方認證'],
-];          // 比較清單（最多 4）
+];
+/* --- SNAPSHOT END --- */
+
+/* =========================================================
+   2. 狀態與計算核心（SSOT）
+   ========================================================= */
+const TECH_LABEL = { EP: '雷射', HPIJ: '微噴（免加熱）', IJ: '噴墨' };
+const API = 'https://data.energystar.gov/resource/t2v6-g4nf.json';
+const MFD = "product_type = 'Multifunction Devices (MFD)'";
+
+const DEFAULTS = {
+  units: 2, price: 4.0, years: 5, cf: 0.474, esc: 0, goal: 30,
+  baseTec: 1.60, baseName: '5 年傳統雷射事物機',
+  targetTec: 0.20, targetName: 'Ricoh IM C2010',
+  // TEC 圖解用
+  s: 20, ej1: 4.0, ej: 1.2, ef: 1.0, ps: 0.5
+};
+const S = Object.assign({}, DEFAULTS);
+let compare = [];          // 比較清單（最多 4）
 let primaryKey = null;     // 主方案
+let results = [];          // 查詢結果
 let shown = 60;
 let online = false;
 
@@ -1407,7 +1427,14 @@ const brandRank = b => { const u = (b||'').toUpperCase(); return u==='RICOH'?0 :
 
 // 核心母資料庫（MASTER_MAP）：完整儲存快照、官網撈取與 API 查詢之所有機型，永不遺失
 const MASTER_MAP = new Map();
-function upsertModel(m){
+function rowToModel(r){
+  if (Array.isArray(r)){
+    return { brand: r[0], model: r[1], color: r[2], speed: +r[3], tech: r[4], tec: +r[5], src: r[6] };
+  }
+  return r;
+}
+function upsertModel(item){
+  const m = rowToModel(item);
   if (!m || !m.brand || !m.model) return;
   const k = keyOf(m);
   if (!MASTER_MAP.has(k)) MASTER_MAP.set(k, m);
@@ -2039,9 +2066,6 @@ function setBaseline(m){
 /* =========================================================
    7. 能源之星 API 查詢 + 官網撈取資料融合
    ========================================================= */
-const API = 'https://data.energystar.gov/resource/t2v6-g4nf.json';
-const MFD = "product_type = 'Multifunction Devices (MFD)'";
-
 function setStatus(cls, text){
   const el = document.getElementById('apiStatus');
   el.className = 'status ' + cls;
@@ -2310,8 +2334,16 @@ function go(n){
   document.querySelectorAll('.slide').forEach((s,i) => s.classList.toggle('on', i+1 === page));
   document.querySelectorAll('.tab').forEach(t => t.classList.toggle('on', +t.dataset.go === page));
   document.getElementById('pageNo').textContent = page;
-  document.getElementById('prev').disabled = page === 1;
-  document.getElementById('next').disabled = page === 4;
+  const prevBtn = document.getElementById('prev');
+  const nextBtn = document.getElementById('next');
+  if (prevBtn){
+    prevBtn.disabled = page === 1;
+    prevBtn.style.visibility = page === 1 ? 'hidden' : 'visible';
+  }
+  if (nextBtn){
+    nextBtn.disabled = page === 4;
+    nextBtn.style.visibility = page === 4 ? 'hidden' : 'visible';
+  }
   const t = document.querySelector(`.tab[data-go="${page}"]`); t && t.scrollIntoView({inline:'center', block:'nearest'});
   window.scrollTo({top:0, behavior:'smooth'});
 }

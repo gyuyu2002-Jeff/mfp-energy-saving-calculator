@@ -166,6 +166,7 @@ def build_new_snap_list(existing_models, api_data):
 def generate_snap_js_block(snap_list):
     today_str = datetime.now().strftime("%Y-%m-%d")
     lines = [
+        "/* --- SNAPSHOT START --- */",
         f"const SNAPSHOT_DATE = '{today_str}';",
         "const SNAP = ["
     ]
@@ -180,6 +181,7 @@ def generate_snap_js_block(snap_list):
         lines.append(item_str)
         
     lines.append("];")
+    lines.append("/* --- SNAPSHOT END --- */")
     return "\n".join(lines)
 
 def update_file(filepath, new_block):
@@ -190,10 +192,9 @@ def update_file(filepath, new_block):
     with open(filepath, 'r', encoding='utf-8') as f:
         content = f.read()
 
-    pattern = re.compile(r"const\s+SNAPSHOT_DATE\s*=\s*'[^']+';\s*\nconst\s+SNAP\s*=\s*\[.*?\];", re.DOTALL)
+    pattern = re.compile(r"/\*\s*---\s*SNAPSHOT START\s*---\s*\*/.*?/\*\s*---\s*SNAPSHOT END\s*---\s*\*/", re.DOTALL)
     if not pattern.search(content):
-        # 嘗試只搜尋 const SNAP = [...]
-        pattern = re.compile(r"const\s+SNAP\s*=\s*\[.*?\];", re.DOTALL)
+        pattern = re.compile(r"const\s+SNAPSHOT_DATE\s*=\s*'[^']+';\s*\nconst\s+SNAP\s*=\s*\[.*?\n\];", re.DOTALL)
         if not pattern.search(content):
             print(f"⚠️ 在 {filepath} 中找不到 SNAP 宣告區塊！")
             return False

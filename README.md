@@ -1,4 +1,4 @@
-# 事物機 節能計算器 (MFP Energy Saving Calculator)
+# 事務機 節能計算器 (MFP Energy Saving Calculator)
 
 🌱 **企業多功能事務機（MFP）節能減碳、電費換算與 ESG 效益分析專業工具**
 
@@ -23,7 +23,7 @@
 
 4. **🤖 每月自動巡查排程 (GitHub Actions CI/CD)**
    - 透過 `.github/workflows/monthly-mfp-sync.yml` 排程工作流，於**每月 1 號自動連線美國能源之星 (ENERGY STAR) SODA API**。
-   - 自動巡檢各大廠牌最新通過能源之星認證之多功能事物機。
+   - 自動巡檢各大廠牌最新通過能源之星認證之多功能事務機。
    - 若有新機型推出，自動融合寫入 `index.html` 與 `mfp-tec-deck.html` 快照資料庫並提交更新，使網站永遠保持最新狀態！
 
 ---
@@ -37,7 +37,7 @@ MFP換機TEC值計算網頁/
 │       └── monthly-mfp-sync.yml    # 每月 1 號自動巡查新機種之 GitHub Actions 排程
 ├── scripts/
 │   └── sync_mfp_models.py          # 能源之星 API 自動抓取、比對與快照注入腳本
-├── index.html                      # 事物機 節能計算器 主入口網頁（支援 RWD & 簡報展示）
+├── index.html                      # 事務機 節能計算器 主入口網頁（支援 RWD & 簡報展示）
 ├── mfp-tec-deck.html               # 簡報式全螢幕互動看板
 ├── .gitignore                      # Git 忽略配置
 └── README.md                       # 專案說明文件

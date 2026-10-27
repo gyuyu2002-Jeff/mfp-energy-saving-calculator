@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-事物機新機型每月自動巡查與快照更新腳本 (Monthly MFP Models Sync)
-1. 從美國能源之星 (ENERGY STAR) SODA API 抓取各品牌最新認證多功能事物機 (MFD)
+事務機新機型每月自動巡查與快照更新腳本 (Monthly MFP Models Sync)
+1. 從美國能源之星 (ENERGY STAR) SODA API 抓取各品牌最新認證多功能事務機 (MFD)
 2. 比對現有資料庫，保留台灣各原廠官網規格（如 Epson EM-C8101、AM-C4000 等）
 3. 若發現新機型或 TEC 更新，自動同步寫入 index.html 與 mfp-tec-deck.html
 """

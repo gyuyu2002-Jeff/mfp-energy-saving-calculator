@@ -507,7 +507,7 @@ ul.clean li{margin:4px 0}
             <h4 style="margin:0"><span data-o="years">5</span> 年累計省下電費</h4>
             <b class="num c-sage" style="font-size:22px">NT$ <span data-o="totalCost">0</span></b>
           </div>
-          <p class="small muted" style="margin:4px 0 12px">計入電價年漲幅 <span class="num" data-o="esc">0</span>% · 累計少用 <span class="num" data-o="kwhTotal">0</span> 度 · 減碳 <span class="num" data-o="co2Total">0</span> kg</p>
+          <p class="small muted" style="margin:4px 0 12px">累計少用 <span class="num" data-o="kwhTotal">0</span> 度 · 減碳 <span class="num" data-o="co2Total">0</span> kg</p>
           <div class="cols" id="cumCols"></div>
           <div class="cols-x" id="cumX"></div>
         </div>
@@ -1409,7 +1409,7 @@ const API = 'https://data.energystar.gov/resource/t2v6-g4nf.json';
 const MFD = "product_type = 'Multifunction Devices (MFD)'";
 
 const DEFAULTS = {
-  units: 2, price: 4.0, years: 5, cf: 0.474, esc: 0, goal: 30,
+  units: 2, price: 4.0, years: 5, cf: 0.474, goal: 30,
   baseTec: 1.60, baseName: '5 年傳統雷射事物機',
   targetTec: 0.20, targetName: 'Ricoh IM C2010',
   // TEC 圖解用
@@ -1453,9 +1453,8 @@ function calc(st){
   const kwhYr = baseKwh - targetKwh;
   const rate = baseKwh > 0 ? kwhYr / baseKwh * 100 : 0;
   const costYr = kwhYr * st.price;
-  const g = st.esc / 100;
   const cum = []; let acc = 0;
-  for (let y = 0; y < st.years; y++){ acc += costYr * Math.pow(1+g, y); cum.push(acc); }
+  for (let y = 0; y < st.years; y++){ acc += costYr; cum.push(acc); }
   return {
     baseKwh, targetKwh, kwhYr, rate,
     baseCost: baseKwh * st.price, targetCost: targetKwh * st.price,
@@ -1496,7 +1495,6 @@ const SIM_SLIDERS = [
   {k:'baseTec', label:'舊機 TEC', unit:'kWh/週', min:0.2, max:4, step:0.01, d:2, c:'var(--rose)', ticks:['0.2','1.0','2.0','3.0','4.0']},
   {k:'targetTec', label:'新機 TEC', unit:'kWh/週', min:0.05, max:2, step:0.01, d:2, c:'var(--blue)', ticks:['0.05','0.5','1.0','1.5','2.0']},
   {k:'price', label:'每度電價', unit:'NT$/度', min:2, max:8, step:0.1, d:1, c:'var(--sand)', ticks:['2','4','6','8']},
-  {k:'esc', label:'電價年漲幅', unit:'%', min:0, max:10, step:0.5, d:1, c:'var(--sand)', ticks:['0%','5%','10%']},
   {k:'years', label:'評估年限（租期）', unit:'年', min:1, max:10, step:1, d:0, c:'var(--ink)', ticks:['1','5','10']},
   {k:'cf', label:'電力排碳係數', unit:'kg/度', min:0.3, max:0.6, step:0.001, d:3, c:'var(--teal)', ticks:['0.300','0.474','0.600']}
 ];
@@ -1863,7 +1861,7 @@ function render(skip){
 
   // 輸出欄位
   const out = {
-    units: fmt(S.units), years: fmt(S.years), price: fmt(S.price,1), cf: fmt(S.cf,3), esc: fmt(S.esc,1), goal: fmt(S.goal),
+    units: fmt(S.units), years: fmt(S.years), price: fmt(S.price,1), cf: fmt(S.cf,3), goal: fmt(S.goal),
     rate: fmt(m.rate,1)+'%', remainRate: fmt(100-m.rate,1)+'%',
     totalCost: fmt(m.totalCost), costYr: fmt(m.costYr), costUnit: fmt(m.costUnit),
     kwhYr: fmt(m.kwhYr), kwhUnit: fmt(m.kwhUnit), kwhTotal: fmt(m.kwhTotal),
@@ -2261,8 +2259,8 @@ function openAudit(type){
     <div class="src">TEC 單位是 kWh/週，一年以 52 週計算。來源：ENERGY STAR 認證資料與各家原廠規格書。</div>`;
   const C = `<h4>每年省下電費</h4><div class="formula">${fmt(m.kwhYr,1)} 度 × NT$${fmt(S.price,1)} = <span class="hl">NT$${fmt(m.costYr)}</span><br>每台 = NT$${fmt(m.costUnit)}</div>
     <div class="src">電價是假設值，請依貴公司電費單平均單價（總電費 ÷ 總度數）調整。</div>`;
-  const T = `<h4>${S.years} 年累計</h4><div class="formula">${m.cum.map((v,i)=>`第${i+1}年 NT$${fmt(m.costYr*Math.pow(1+S.esc/100,i))}　累計 NT$${fmt(v)}`).join('<br>')}<br>合計 = <span class="hl">NT$${fmt(m.totalCost)}</span></div>
-    <div class="src">電價年漲幅 ${fmt(S.esc,1)}%：第 n 年電費 = 第 1 年 × (1 + 漲幅)^(n−1)。</div>`;
+  const T = `<h4>${S.years} 年累計</h4><div class="formula">${m.cum.map((v,i)=>`第${i+1}年 NT$${fmt(m.costYr)}　累計 NT$${fmt(v)}`).join('<br>')}<br>合計 = <span class="hl">NT$${fmt(m.totalCost)}</span></div>
+    <div class="src">依目前每度電價 NT$ ${fmt(S.price,1)} 逐年累計計算。</div>`;
   const O = `<h4>每年減少碳排</h4><div class="formula">${fmt(m.kwhYr,1)} 度 × ${fmt(S.cf,3)} kg CO₂e/度 = <span class="hl">${fmt(m.co2Yr,1)} kg CO₂e</span><br>${S.years} 年累計 = ${fmt(m.co2Total,1)} kg</div>
     <div class="src">經濟部能源署公告 113 年度電力排碳係數 0.474 kg CO₂e/度，屬範疇二（Scope 2）間接排放。</div>`;
   const E = `<h4>TEC 是什麼與耗電量換算</h4><p class="small">TEC（典型用電量）模擬一週 5 個上班日加 2 天週末的總用電，單位 kWh/週。數值越低越省電。年耗電度數估算公式為 <code>TEC × 52 週</code>。</p>
@@ -2301,7 +2299,7 @@ document.addEventListener('click', e => {
 document.getElementById('mask').addEventListener('click', closeAudit);
 document.getElementById('dClose').addEventListener('click', closeAudit);
 document.getElementById('btnReset').addEventListener('click', () => {
-  ['units','price','years','cf','esc','baseTec','baseName'].forEach(k => S[k] = DEFAULTS[k]);
+  ['units','price','years','cf','baseTec','baseName'].forEach(k => S[k] = DEFAULTS[k]);
   const p = compare.find(x => keyOf(x) === primaryKey);
   if (p){ S.targetTec = p.tec; S.targetName = `${p.brand} ${p.model}`; } else { S.targetTec = DEFAULTS.targetTec; S.targetName = DEFAULTS.targetName; }
   

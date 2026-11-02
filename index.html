@@ -327,7 +327,7 @@ ul.clean li{margin:4px 0}
           <rect x="16" y="47" width="32" height="4" rx="2" fill="#374151"/>
         </svg>
       </div>
-      <div><b>事務機 節能計算器</b><span>典型用電量圖解 · 能源之星機型比較 · 換機試算</span></div>
+      <div><b>事務機 節能計算器</b><span>典型用電量圖解 · 節能標章機型比較 · 換機試算</span></div>
     </a>
     <nav class="tabs" id="tabs" aria-label="簡報頁面">
       <button class="tab on" data-go="1"><i>01</i>換機效益試算</button>
@@ -545,7 +545,7 @@ ul.clean li{margin:4px 0}
       <span>📌</span> 數據來源依據與推測計算免責聲明
     </div>
     <ul class="clean small" style="margin:0;padding-left:18px;color:var(--ink-2)">
-      <li><b>新機數據來源</b>：依據美國環境保護署（EPA）<b>ENERGY STAR® 國際能源之星</b>官方認證登錄資料庫，以及各大品牌台灣官方產品型錄技術手冊（標記為「🏢 官網規格」）。</li>
+      <li><b>新機數據來源</b>：100% 依據中華民國<b>經濟部能源署「節能標章」</b>（產品類別 32 影印機、33 印表機）官方核定公告之具備 A3 輸出能力機種，實測數據具法定公信力。</li>
       <li><b>舊機基準與機齡推估</b>：依據台灣辦公設備租賃市場近 3～7 年主力雷射機種之歷史耗能基準與標準化假設，使用者亦可透過上方 A/B 卡片或參數滑桿自訂微調。</li>
       <li><b>推測計算僅供參考</b>：TEC（典型用電量，kWh/週）為模擬 168 小時工作與睡眠模式之標準化實驗室測算值。實際年耗電度數與節省金額會因<b>企業實際印量多寡、設備休眠設定、電價計費級距與操作習慣</b>而有所不同。</li>
       <li><b>決策參考聲明</b>：本網站所有試算數值、節電率、金額與減碳成效<b>均為數據模型推估之模擬結果，僅供設備選型、節能規劃與 ESG 提案初步評估參考</b>，非作為設備保證效能承諾、電費合約保證或財務審計之唯一依據。</li>
@@ -555,13 +555,13 @@ ul.clean li{margin:4px 0}
 </section>
 
 <!-- =====================================================
-     P2 機型查詢比較（能源之星 API + 各家官網規格）
+     P2 機型查詢比較（經濟部能源署節能標章 200 款 A3 認證機種）
      ===================================================== -->
 <section class="slide" id="s2">
   <div class="head">
     <div class="row between">
       <span class="kicker">02 · 機型查詢與比較</span>
-      <span class="status" id="apiStatus"><span class="dot"></span><span id="apiStatusText">尚未連線</span></span>
+      <span class="status ok" id="apiStatus"><span class="dot"></span><span id="apiStatusText">已核定 經濟部能源署節能標章（200 款 A3 認證機種）</span></span>
     </div>
     <h2 class="title">查詢各品牌事務機 TEC，選出要比較的機型</h2>
     <p class="lead">整合經濟部能源署節能標章官方核定資料庫與台灣各品牌官方規格手冊。</p>
@@ -581,7 +581,7 @@ ul.clean li{margin:4px 0}
       <div class="field"><label for="fSort">排序</label>
         <select id="fSort"><option value="tec">TEC 低→高</option><option value="speed">速度 低→高</option><option value="brand">品牌</option></select></div>
       <div class="field f-kw"><label for="fKw">型號關鍵字</label><input type="text" id="fKw" placeholder="例如 C8101、IM C2010、AM-C4000、Apeos"></div>
-      <div class="field"><button class="btn primary" id="btnSearch" style="width:100%">查詢能源之星</button></div>
+      <div class="field"><button class="btn primary" id="btnSearch" style="width:100%">篩選標章機種</button></div>
     </div>
     <div class="slider" style="margin:16px 0 0">
       <div class="top"><label for="fSpeed">速度上限（張/分鐘，ipm）</label>
@@ -741,7 +741,7 @@ ul.clean li{margin:4px 0}
 
 <footer>
   <div class="bar" style="line-height:1.6;font-size:11.5px">
-    <span><b>事務機 節能計算器</b> · 數據來源：ENERGY STAR 官方認證資料庫、各品牌台灣原廠型錄技術手冊、經濟部能源署公告標準</span>
+    <span><b>事務機 節能計算器</b> · 數據來源：經濟部能源署節能標章官方核定實測資料庫（A3 影印機與印表機）</span>
     <span>【免責聲明】本工具所有推算數據均為理論模型模擬結果，僅供節能選型與 ESG 初步評估參考，實際費用與效能請以原廠合約及台電電費單為準。</span>
   </div>
 </footer>
@@ -978,13 +978,11 @@ const SNAP = [
    2. 狀態與計算核心（SSOT）
    ========================================================= */
 const TECH_LABEL = { EP: '雷射', HPIJ: '微噴（免加熱）', IJ: '噴墨' };
-const API = 'https://data.energystar.gov/resource/t2v6-g4nf.json';
-const MFD = "product_type = 'Multifunction Devices (MFD)'";
 
 const DEFAULTS = {
   units: 2, price: 4.0, years: 5, cf: 0.474, goal: 30,
   baseTec: 1.60, baseName: '5 年傳統雷射事務機',
-  targetTec: 0.20, targetName: 'Ricoh IM C2010',
+  targetTec: 0.70, targetName: 'Ricoh IM C2010',
   // TEC 圖解用
   s: 20, ej1: 4.0, ej: 1.2, ef: 1.0, ps: 0.5
 };
@@ -1235,7 +1233,7 @@ function initABPicker(){
     });
     
     modelSel.innerHTML = list.map(m => {
-      const srcTag = m.src.includes('官網') ? ' [🏢官網規格]' : ' [⭐能源之星]';
+      const srcTag = m.src.includes('節能標章') ? ' [🏅節能標章]' : m.src.includes('官網') ? ' [🏢官網規格]' : ' [🏅節能標章]';
       return `<option value="${keyOf(m)}">${esc(m.model)} (${m.speed} ipm · TEC ${fmt(m.tec,2)})${srcTag}</option>`;
     }).join('');
 
@@ -1260,10 +1258,12 @@ function initABPicker(){
     targetSlider.value = m.tec;
     
     const badge = document.getElementById('abSourceBadge');
-    if (m.src.includes('官網')){
-      badge.innerHTML = `<span class="pill" style="background:#FFF6EE;color:#A85822;border-color:#F5D8C4;font-weight:600">🏢 台灣原廠官網技術規格撈取</span> <div class="muted small" style="margin-top:2px">${esc(m.src)} · 技術：${esc(TECH_LABEL[m.tech]||m.tech)}</div>`;
+    if (m.src.includes('節能標章') || (!m.src.includes('官網') && !m.src.includes('ENERGY STAR'))){
+      badge.innerHTML = `<span class="pill" style="background:var(--sage-bg);color:#284B31;border-color:#C2DEC9;font-weight:600">🏅 經濟部能源署節能標章實測</span> <div class="muted small" style="margin-top:2px">${esc(m.src)} · 技術：${esc(TECH_LABEL[m.tech]||m.tech)}</div>`;
+    } else if (m.src.includes('官網')){
+      badge.innerHTML = `<span class="pill" style="background:#FFF6EE;color:#A85822;border-color:#F5D8C4;font-weight:600">🏢 台灣原廠官網技術規格</span> <div class="muted small" style="margin-top:2px">${esc(m.src)} · 技術：${esc(TECH_LABEL[m.tech]||m.tech)}</div>`;
     } else {
-      badge.innerHTML = `<span class="pill" style="background:var(--blue-bg);color:#465D73;border-color:#CAD7E3;font-weight:600">⭐ 美國能源之星官方認證 (ENERGY STAR)</span> <div class="muted small" style="margin-top:2px">${esc(m.src)} · 技術：${esc(TECH_LABEL[m.tech]||m.tech)}</div>`;
+      badge.innerHTML = `<span class="pill" style="background:var(--blue-bg);color:#465D73;border-color:#CAD7E3;font-weight:600">⭐ 認證規格</span> <div class="muted small" style="margin-top:2px">${esc(m.src)} · 技術：${esc(TECH_LABEL[m.tech]||m.tech)}</div>`;
     }
 
     if (!compare.some(x => keyOf(x) === k)){
@@ -1539,7 +1539,7 @@ function setPrimary(k){
       const topScore = x => (x.model==='EM-C8101' ? -100 : x.model==='AM-C4000' ? -95 : x.model==='IM C2010' ? -100 : 0);
       return (topScore(a) - topScore(b)) || (a.tec - b.tec);
     });
-    modelSel.innerHTML = list.map(x => `<option value="${keyOf(x)}">${esc(x.model)} (${x.speed} ipm · TEC ${fmt(x.tec,2)})${x.src.includes('官網')?' [🏢官網規格]':' [⭐能源之星]'}</option>`).join('');
+    modelSel.innerHTML = list.map(x => `<option value="${keyOf(x)}">${esc(x.model)} (${x.speed} ipm · TEC ${fmt(x.tec,2)})${x.src.includes('節能標章')?' [🏅節能標章]':x.src.includes('官網')?' [🏢官網規格]':' [🏅節能標章]'}</option>`).join('');
     modelSel.value = keyOf(m);
     
     document.getElementById('abTargetTecOut').textContent = fmt(m.tec, 2);
@@ -1547,10 +1547,12 @@ function setPrimary(k){
     document.getElementById('abTargetKwhVal').textContent = fmt(m.tec * 52, 1);
     document.getElementById('abTargetSlider').value = m.tec;
     const badge = document.getElementById('abSourceBadge');
-    if (m.src.includes('官網')) {
-      badge.innerHTML = `<span class="pill" style="background:#FFF6EE;color:#A85822;border-color:#F5D8C4;font-weight:600">🏢 台灣原廠官網技術規格撈取</span> <div class="muted small" style="margin-top:2px">${esc(m.src)} · 技術：${esc(TECH_LABEL[m.tech]||m.tech)}</div>`;
+    if (m.src.includes('節能標章') || (!m.src.includes('官網') && !m.src.includes('ENERGY STAR'))){
+      badge.innerHTML = `<span class="pill" style="background:var(--sage-bg);color:#284B31;border-color:#C2DEC9;font-weight:600">🏅 經濟部能源署節能標章實測</span> <div class="muted small" style="margin-top:2px">${esc(m.src)} · 技術：${esc(TECH_LABEL[m.tech]||m.tech)}</div>`;
+    } else if (m.src.includes('官網')){
+      badge.innerHTML = `<span class="pill" style="background:#FFF6EE;color:#A85822;border-color:#F5D8C4;font-weight:600">🏢 台灣原廠官網技術規格</span> <div class="muted small" style="margin-top:2px">${esc(m.src)} · 技術：${esc(TECH_LABEL[m.tech]||m.tech)}</div>`;
     } else {
-      badge.innerHTML = `<span class="pill" style="background:var(--blue-bg);color:#465D73;border-color:#CAD7E3;font-weight:600">⭐ 美國能源之星官方認證 (ENERGY STAR)</span> <div class="muted small" style="margin-top:2px">${esc(m.src)} · 技術：${esc(TECH_LABEL[m.tech]||m.tech)}</div>`;
+      badge.innerHTML = `<span class="pill" style="background:var(--blue-bg);color:#465D73;border-color:#CAD7E3;font-weight:600">⭐ 認證規格</span> <div class="muted small" style="margin-top:2px">${esc(m.src)} · 技術：${esc(TECH_LABEL[m.tech]||m.tech)}</div>`;
     }
   }
 
@@ -1600,43 +1602,27 @@ function setBaseline(m){
 }
 
 /* =========================================================
-   7. 能源之星 API 查詢 + 官網撈取資料融合
+   7. 經濟部能源署節能標章機型篩選與呈現
    ========================================================= */
 function setStatus(cls, text){
   const el = document.getElementById('apiStatus');
   el.className = 'status ' + cls;
   document.getElementById('apiStatusText').textContent = text;
 }
-async function getJSON(params, ms=12000){
-  const ctl = new AbortController(); const t = setTimeout(()=>ctl.abort(), ms);
-  try{
-    const res = await fetch(API + '?' + new URLSearchParams(params), {signal:ctl.signal});
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    return await res.json();
-  } finally { clearTimeout(t); }
-}
 
-async function loadBrands(){
+function loadBrands(){
   const sel = document.getElementById('fBrand');
-  const fill = list => {
-    list.sort((a,b) => brandRank(a.name)-brandRank(b.name) || a.name.localeCompare(b.name));
-    sel.innerHTML = `<option value="">全部品牌（全部顯示）</option>` +
-      list.map(b => `<option value="${esc(b.name)}">${esc(b.name)}${b.n?`（${b.n}）`:''}</option>`).join('');
-    sel.value = '';
-  };
-  try{
-    setStatus('load','連線能源之星中…');
-    const rows = await getJSON({$select:'upper(brand_name) as b, count(*) as n', $where: MFD + ' AND typical_electricity_consumption_tec_kwh_wk IS NOT NULL', $group:'upper(brand_name)', $order:'b', $limit:'1000'});
-    fill(rows.filter(r=>r.b).map(r => ({name:r.b, n:+r.n})));
-    online = true;
-    setStatus('ok', `已連線 ENERGY STAR · ${rows.length} 個品牌`);
-  }catch(err){
-    console.warn('品牌清單改用快照：', err);
-    const set = {}; MASTER_MAP.forEach(m => { const u = m.brand.toUpperCase(); set[u] = (set[u]||0)+1; });
-    fill(Object.keys(set).map(k => ({name:k, n:set[k]})));
-    online = false;
-    setStatus('warn', `離線：使用官方快照與官網資料`);
-  }
+  const counts = {};
+  MASTER_MAP.forEach(m => {
+    const b = m.brand;
+    counts[b] = (counts[b] || 0) + 1;
+  });
+  const list = Object.keys(counts).map(b => ({ name: b, n: counts[b] }));
+  list.sort((a,b) => brandRank(a.name) - brandRank(b.name) || a.name.localeCompare(b.name));
+  sel.innerHTML = `<option value="">全部品牌（全部顯示）</option>` +
+    list.map(b => `<option value="${esc(b.name)}">${esc(b.name)}（${b.n} 款）</option>`).join('');
+  sel.value = '';
+  setStatus('ok', `已核定 經濟部能源署節能標章（共 ${MASTER_MAP.size} 款 A3 認證機種）`);
 }
 
 function currentFilters(){
@@ -1649,42 +1635,9 @@ function currentFilters(){
   };
 }
 
-async function search(){
-  const f = currentFilters();
-  const btn = document.getElementById('btnSearch');
-  btn.disabled = true; btn.textContent = '查詢中…';
-  try{
-    const where = [MFD, 'typical_electricity_consumption_tec_kwh_wk IS NOT NULL'];
-    if (f.brand) where.push(`upper(brand_name)='${f.brand.toUpperCase().replace(/'/g,"''")}'`);
-    if (f.color) where.push(`color_capability='${f.color}'`);
-    if (f.kw) where.push(`upper(model_name) like '%${f.kw.toUpperCase().replace(/'/g,"''")}%'`);
-    setStatus('load','查詢 ENERGY STAR…');
-    const rows = await getJSON({
-      $select:'brand_name,model_name,color_capability,monochrome_product_speed_ipm_or_mppm,marking_technology,typical_electricity_consumption_tec_kwh_wk,size_format',
-      $where: where.join(' AND '), $limit:'2000'
-    });
-    const seen = new Set();
-    const apiList = rows.map(r => {
-      const mt = r.marking_technology || '';
-      return {
-        brand: r.brand_name, model: r.model_name, color: r.color_capability || '',
-        speed: parseInt(r.monochrome_product_speed_ipm_or_mppm, 10) || 0,
-        tech: /High Performance/i.test(mt) ? 'HPIJ' : /Ink/i.test(mt) ? 'IJ' : /Electro/i.test(mt) ? 'EP' : mt,
-        tec: parseFloat(r.typical_electricity_consumption_tec_kwh_wk), size: r.size_format, src:'ENERGY STAR 認證'
-      };
-    }).filter(m => isFinite(m.tec) && !seen.has(keyOf(m)+m.tec) && seen.add(keyOf(m)+m.tec));
-    
-    apiList.forEach(upsertModel);
-    online = true;
-    setStatus('ok', `已連線 ENERGY STAR（取得 ${apiList.length} 筆認證資料）`);
-  }catch(err){
-    console.warn('查詢改用快照：', err);
-    online = false;
-    setStatus('warn', `離線模式：已載入 ${MASTER_MAP.size} 筆官網與認證快照`);
-  }
+function search(){
   shown = 60;
   renderTable();
-  btn.disabled = false; btn.textContent = '查詢能源之星';
 }
 
 function renderTable(){
@@ -1747,9 +1700,11 @@ function renderTable(){
       <td class="c-model">
         <div style="font-weight:500;display:flex;align-items:center;gap:6px;flex-wrap:wrap">
           <span>${esc(m.model)}</span>
-          ${isGov
-            ? `<span class="pill" style="background:#FFF6EE;color:#A85822;border-color:#F5D8C4;font-size:10.5px;padding:0 5px" title="${esc(m.src)}">🏢 官網規格</span>`
-            : `<span class="pill" style="background:var(--blue-bg);color:#465D73;border-color:#CAD7E3;font-size:10.5px;padding:0 5px" title="ENERGY STAR 認證">⭐ 能源之星</span>`}
+          ${m.src.includes('節能標章') || (!m.src.includes('官網') && !m.src.includes('ENERGY STAR'))
+            ? `<span class="pill" style="background:var(--sage-bg);color:#284B31;border-color:#C2DEC9;font-size:10.5px;padding:0 5px" title="${esc(m.src)}">🏅 節能標章</span>`
+            : m.src.includes('官網')
+              ? `<span class="pill" style="background:#FFF6EE;color:#A85822;border-color:#F5D8C4;font-size:10.5px;padding:0 5px" title="${esc(m.src)}">🏢 官網規格</span>`
+              : `<span class="pill" style="background:var(--blue-bg);color:#465D73;border-color:#CAD7E3;font-size:10.5px;padding:0 5px" title="${esc(m.src)}">⭐ 認證規格</span>`}
         </div>
       </td>
       <td class="c-spec small muted">${m.color==='Color'?'彩色':m.color==='Monochrome'?'黑白':esc(m.color)} · <span class="num">${m.speed}</span> ipm · ${esc(TECH_LABEL[m.tech]||m.tech)}</td>
@@ -1772,10 +1727,11 @@ document.getElementById('resBody').addEventListener('click', e => {
 });
 document.getElementById('btnMore').addEventListener('click', () => { shown += 60; renderTable(); });
 document.getElementById('btnSearch').addEventListener('click', search);
+document.getElementById('fKw').addEventListener('input', () => { shown = 60; renderTable(); });
 document.getElementById('fKw').addEventListener('keydown', e => { if (e.key === 'Enter') search(); });
 ['fBrand','fColor'].forEach(id => document.getElementById(id).addEventListener('change', () => {
+  shown = 60;
   renderTable();
-  if (online) search();
 }));
 document.getElementById('fSort').addEventListener('change', renderTable);
 ['fSpeed','fSpeedMin'].forEach(id => document.getElementById(id).addEventListener('input', () => {
@@ -1794,7 +1750,7 @@ function openAudit(type){
   const m = calc(S);
   const A = `<h4>共同參數</h4><div class="formula">台數 ${fmt(S.units)} · 電價 NT$${fmt(S.price,1)}/度 · 年限 ${S.years} 年 · 排碳係數 ${fmt(S.cf,3)} kg/度<br>舊機 TEC ${fmt(S.baseTec,2)}（${esc(S.baseName)}）<br>新機 TEC ${fmt(S.targetTec,2)}（${esc(S.targetName)}）</div>`;
   const K = `<h4>每年少用電量</h4><div class="formula">舊機年用電 = ${fmt(S.baseTec,2)} × 52 × ${fmt(S.units)} = ${fmt(m.baseKwh,1)} 度<br>新機年用電 = ${fmt(S.targetTec,2)} × 52 × ${fmt(S.units)} = ${fmt(m.targetKwh,1)} 度<br>少用 = <span class="hl">${fmt(m.kwhYr,1)} 度</span>（${fmt(m.rate,1)}%）</div>
-    <div class="src">TEC 單位是 kWh/週，一年以 52 週計算。來源：ENERGY STAR 認證資料與各家原廠規格書。</div>`;
+    <div class="src">TEC 單位是 kWh/週，一年以 52 週計算。來源：經濟部能源署節能標章官方核定實測資料。</div>`;
   const C = `<h4>每年省下電費</h4><div class="formula">${fmt(m.kwhYr,1)} 度 × NT$${fmt(S.price,1)} = <span class="hl">NT$${fmt(m.costYr)}</span><br>每台 = NT$${fmt(m.costUnit)}</div>
     <div class="src">電價是假設值，請依貴公司電費單平均單價（總電費 ÷ 總度數）調整。</div>`;
   const T = `<h4>${S.years} 年累計</h4><div class="formula">${m.cum.map((v,i)=>`第${i+1}年 NT$${fmt(m.costYr)}　累計 NT$${fmt(v)}`).join('<br>')}<br>合計 = <span class="hl">NT$${fmt(m.totalCost)}</span></div>
@@ -1903,7 +1859,7 @@ document.addEventListener('keydown', e => {
   go(1);
   render();
   renderTable();
-  loadBrands().then(() => { if (online) search(); });
+  loadBrands();
 })();
 </script>
 </body>

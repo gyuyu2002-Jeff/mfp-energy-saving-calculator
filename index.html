@@ -349,16 +349,27 @@ ul.clean li{margin:4px 0}
     <p class="lead">以典型用電量（TEC，kWh/週）為基準換算全年用電、電費與碳排。點任一數字可以看到完整算式。</p>
   </div>
 
-  <!-- 🌟 方案 A：雙欄「A/B 左右直覺選拔卡」 🌟 -->
+  <!-- 🌟 案件切換：單機試算 vs 多台試算 🌟 -->
   <div class="ab-picker">
-    <div class="row between" style="margin-bottom:12px;border-bottom:1px solid var(--line-2);padding-bottom:10px">
-      <div class="row" style="gap:8px">
-        <span class="pill primary"><span class="dot" style="background:var(--blue)"></span>換機用電度數比較</span>
-        <span class="small muted">直接在下拉選單或微調，即時完成方案比較</span>
+    <div class="row between" style="margin-bottom:12px;border-bottom:1px solid var(--line-2);padding-bottom:10px;flex-wrap:wrap;gap:10px;align-items:center">
+      <div class="row" style="gap:10px;align-items:center;flex-wrap:wrap">
+        <!-- 案件切換：單機試算 vs 多台試算 -->
+        <div class="mode-switcher" style="display:inline-flex;background:var(--paper-2);padding:3px;border-radius:10px;border:1px solid var(--line);gap:2px">
+          <button type="button" class="mode-btn on" id="btnModeSingle" style="padding:6px 14px;border-radius:7px;border:none;font-weight:600;font-size:13px;cursor:pointer;background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.08);transition:all .2s">⚡ 單機試算</button>
+          <button type="button" class="mode-btn" id="btnModeFleet" style="padding:6px 14px;border-radius:7px;border:none;font-weight:600;font-size:13px;cursor:pointer;background:transparent;color:var(--ink-2);transition:all .2s">🗂️ 多台試算</button>
+        </div>
+        <span class="small muted" id="modeDesc">單一機型 1 對 1 即時快速對比</span>
+      </div>
+      <div class="row" style="gap:8px;margin-left:auto">
+        <button type="button" class="btn sm" id="btnExportSummary" style="background:#fff;border:1px solid var(--line);color:var(--ink);font-weight:600;display:inline-flex;align-items:center;gap:6px">
+          <span>📋</span> 匯出試算摘要
+        </button>
       </div>
     </div>
 
-    <div class="grid g-2" style="gap:16px">
+    <!-- 單機試算面板 (原 A/B 直覺選拔卡) -->
+    <div id="panelSingleMode">
+      <div class="grid g-2" style="gap:16px">
       <!-- 左欄：現況舊機 (基準 A) -->
       <div class="ab-box base">
         <div>
@@ -444,13 +455,49 @@ ul.clean li{margin:4px 0}
         <div style="margin-top:10px;padding-top:10px;border-top:1px dashed #C4D2DE">
           <div class="row between small muted" style="margin-bottom:4px">
             <span>TEC 微調滑桿</span>
-            <span class="num"><b id="abTargetTecVal">0.20</b> kWh/週（年耗電 <span id="abTargetKwhVal">10.4</span> 度/台）</span>
+            <span class="num"><b id="abTargetTecVal">0.70</b> kWh/週（年耗電 <span id="abTargetKwhVal">36.4</span> 度/台）</span>
           </div>
-          <input type="range" id="abTargetSlider" min="0.05" max="2.0" step="0.01" value="0.20" style="--c:var(--blue)" aria-label="新機 TEC 滑桿">
+          <input type="range" id="abTargetSlider" min="0.05" max="2.0" step="0.01" value="0.70" style="--c:var(--blue)" aria-label="新機 TEC 滑桿">
         </div>
       </div>
     </div>
-  </div>
+    </div><!-- /#panelSingleMode -->
+
+    <!-- 多台試算面板 (多機種設備清單編輯器) -->
+    <div id="panelFleetMode" class="hide">
+      <div class="grid g-2" style="gap:16px">
+        <!-- 左欄：現況舊機設備清單（基準 A） -->
+        <div class="ab-box base" style="display:flex;flex-direction:column;justify-content:space-between">
+          <div>
+            <div class="row between" style="margin-bottom:10px;padding-bottom:8px;border-bottom:1px dashed #D5C2BC">
+              <span class="pill" style="background:#fff;color:var(--rose);border-color:var(--rose);font-weight:600">基準 A · 現況舊機設備清單</span>
+              <span class="small num c-rose" style="font-weight:700">舊機合計：<span id="fleetOldTotalUnits">0</span> 台 · <span id="fleetOldTotalKwh">0</span> 度/年</span>
+            </div>
+            <div id="fleetOldRows" style="display:flex;flex-direction:column;gap:8px;margin-bottom:10px"></div>
+          </div>
+          <div style="margin-top:10px;padding-top:10px;border-top:1px dashed #D5C2BC" class="row between">
+            <button type="button" class="btn sm" id="btnAddFleetOld" style="background:#fff;border:1px dashed var(--rose);color:var(--rose);font-weight:600">＋ 新增舊機種</button>
+            <span class="small muted">年耗電 ＝ TEC × 52 週 × 台數</span>
+          </div>
+        </div>
+
+        <!-- 右欄：擬換新機設備清單（方案 B） -->
+        <div class="ab-box target" style="display:flex;flex-direction:column;justify-content:space-between">
+          <div>
+            <div class="row between" style="margin-bottom:10px;padding-bottom:8px;border-bottom:1px dashed #C4D2DE">
+              <span class="pill primary" style="font-weight:600">方案 B · 擬換新機設備清單</span>
+              <span class="small num c-blue" style="font-weight:700">新機合計：<span id="fleetNewTotalUnits">0</span> 台 · <span id="fleetNewTotalKwh">0</span> 度/年</span>
+            </div>
+            <div id="fleetNewRows" style="display:flex;flex-direction:column;gap:8px;margin-bottom:10px"></div>
+          </div>
+          <div style="margin-top:10px;padding-top:10px;border-top:1px dashed #C4D2DE" class="row between">
+            <button type="button" class="btn sm primary" id="btnAddFleetNew" style="font-weight:600">＋ 新增新機種</button>
+            <span class="small muted">由 200 款節能標章 A3 機種自由搭配</span>
+          </div>
+        </div>
+      </div>
+    </div><!-- /#panelFleetMode -->
+  </div><!-- /.ab-picker -->
 
   <div class="grid g-hero">
     <div class="card hero">
@@ -746,6 +793,34 @@ ul.clean li{margin:4px 0}
   </div>
 </footer>
 
+<!-- 匯出摘要彈窗 -->
+<div id="exportModal" class="modal-mask hide" style="position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.55);z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px">
+  <div style="background:#fff;border-radius:12px;width:100%;max-width:620px;box-shadow:0 12px 36px rgba(0,0,0,.25);display:flex;flex-direction:column;max-height:85vh;overflow:hidden">
+    <div style="padding:14px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;background:var(--paper-2)">
+      <div style="display:flex;align-items:center;gap:8px">
+        <span style="font-size:18px">📋</span>
+        <b style="font-size:15px;color:var(--ink)">節能效益試算摘要</b>
+        <span id="exportCopiedTip" class="pill" style="font-size:11px;background:var(--sage-bg);color:#284B31;border-color:#C2DEC9;font-weight:600">✓ 已自動複製至剪貼簿</span>
+      </div>
+      <button type="button" id="btnCloseExport" class="btn sm" style="border:none;background:transparent;font-size:18px;cursor:pointer;line-height:1">✕</button>
+    </div>
+    <div style="padding:16px;overflow-y:auto;flex:1">
+      <div class="note" style="margin-bottom:12px;background:#F0F7F2;border-color:#C9E3D2;color:#284B31;font-size:12.5px;padding:8px 12px">
+        💡 摘要文字已自動複製至您的剪貼簿！可直接切換至 LINE、Email 或簡報按「貼上（Ctrl+V）」。
+      </div>
+      <textarea id="exportText" readonly style="width:100%;height:300px;font-family:Consolas, Monaco, monospace;font-size:12px;line-height:1.6;border:1px solid var(--line);border-radius:8px;padding:10px;background:#FDFDFD;color:var(--ink);resize:vertical"></textarea>
+    </div>
+    <div style="padding:12px 18px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;background:var(--paper);flex-wrap:wrap;gap:8px">
+      <span class="small muted">依經濟部能源署節能標章與 114 年度排碳係數推估</span>
+      <div class="row" style="gap:8px">
+        <button type="button" id="btnCopyAgain" class="btn sm primary">再次複製</button>
+        <button type="button" id="btnDownloadTxt" class="btn sm">下載文字檔 (.txt)</button>
+        <button type="button" id="btnCloseExport2" class="btn sm">關閉</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- 審計抽屜 -->
 <div class="drawer-mask" id="mask"></div>
 <aside class="drawer" id="drawer" aria-hidden="true">
@@ -992,6 +1067,18 @@ let primaryKey = null;     // 主方案
 let results = [];          // 查詢結果
 let shown = 60;
 let online = false;
+let calcMode = 'single'; // 'single' | 'fleet'
+
+// 多台試算（多機種艦隊）預設資料
+let fleetOld = [
+  { brand: 'Ricoh', model: 'MP C2504ex', speed: 25, tec: 1.10, units: 2, era: '約 6~7 年前（2017~2018）', src: '原廠歷史規格 / 歷史實測' },
+  { brand: 'FUJIFILM', model: 'DocuCentre-V C2263', speed: 20, tec: 1.15, units: 1, era: '約 5~7 年前（租賃普及機）', src: 'Fuji Xerox 官方規格' }
+];
+
+let fleetNew = [
+  { brand: 'Ricoh', model: 'IM C2010', speed: 20, tec: 0.70, units: 2, src: '經濟部能源署節能標章實測（印表機・證書1150300）' },
+  { brand: 'Epson', model: 'EM-C8101', speed: 26, tec: 0.23, units: 1, src: '經濟部能源署節能標章（印表機・證書1140644）' }
+];
 
 const keyOf = m => `${m.brand}|${m.model}|${m.speed}`;
 const brandRank = b => { const u = (b||'').toUpperCase(); return u==='RICOH'?0 : u==='EPSON'?1 : 2; };
@@ -1016,12 +1103,12 @@ function upsertModel(item){
 }
 SNAP.forEach(upsertModel);
 
-/* 純函數：換機效益 */
+/* 純函數：單機換機效益 */
 function calc(st){
   const W = 52;
   const baseKwh = st.baseTec * W * st.units;
   const targetKwh = st.targetTec * W * st.units;
-  const kwhYr = baseKwh - targetKwh;
+  const kwhYr = Math.max(0, baseKwh - targetKwh);
   const rate = baseKwh > 0 ? kwhYr / baseKwh * 100 : 0;
   const costYr = kwhYr * st.price;
   const cum = []; let acc = 0;
@@ -1029,10 +1116,51 @@ function calc(st){
   return {
     baseKwh, targetKwh, kwhYr, rate,
     baseCost: baseKwh * st.price, targetCost: targetKwh * st.price,
-    costYr, costUnit: costYr / st.units, kwhUnit: kwhYr / st.units,
+    costYr, costUnit: costYr / (st.units || 1), kwhUnit: kwhYr / (st.units || 1),
     totalCost: acc, cum, kwhTotal: kwhYr * st.years,
     co2Yr: kwhYr * st.cf, co2Total: kwhYr * st.cf * st.years,
-    ratio: st.baseTec > 0 ? st.targetTec / st.baseTec : 0
+    ratio: st.baseTec > 0 ? st.targetTec / st.baseTec : 0,
+    totalUnitsOld: st.units, totalUnitsNew: st.units,
+    avgBaseTec: st.baseTec, avgTargetTec: st.targetTec
+  };
+}
+
+/* 純函數：多台換機（艦隊組合）效益 */
+function calcFleet(st){
+  const W = 52;
+  let baseKwh = 0, totalUnitsOld = 0;
+  fleetOld.forEach(x => {
+    const u = parseInt(x.units, 10) || 1;
+    baseKwh += (x.tec || 0) * W * u;
+    totalUnitsOld += u;
+  });
+
+  let targetKwh = 0, totalUnitsNew = 0;
+  fleetNew.forEach(x => {
+    const u = parseInt(x.units, 10) || 1;
+    targetKwh += (x.tec || 0) * W * u;
+    totalUnitsNew += u;
+  });
+
+  const kwhYr = Math.max(0, baseKwh - targetKwh);
+  const rate = baseKwh > 0 ? (kwhYr / baseKwh) * 100 : 0;
+  const costYr = kwhYr * st.price;
+  const cum = []; let acc = 0;
+  for (let y = 0; y < st.years; y++){ acc += costYr; cum.push(acc); }
+
+  const totalUnits = Math.max(totalUnitsOld, totalUnitsNew) || 1;
+  const avgBaseTec = totalUnitsOld > 0 ? (baseKwh / (W * totalUnitsOld)) : 0;
+  const avgTargetTec = totalUnitsNew > 0 ? (targetKwh / (W * totalUnitsNew)) : 0;
+
+  return {
+    baseKwh, targetKwh, kwhYr, rate,
+    baseCost: baseKwh * st.price, targetCost: targetKwh * st.price,
+    costYr, costUnit: costYr / totalUnits, kwhUnit: kwhYr / totalUnits,
+    totalCost: acc, cum, kwhTotal: kwhYr * st.years,
+    co2Yr: kwhYr * st.cf, co2Total: kwhYr * st.cf * st.years,
+    ratio: baseKwh > 0 ? targetKwh / baseKwh : 0,
+    totalUnitsOld, totalUnitsNew,
+    avgBaseTec, avgTargetTec
   };
 }
 
@@ -1417,7 +1545,8 @@ function syncABPickerUI(){
    6. 渲染
    ========================================================= */
 function render(skip){
-  const m = calc(S);
+  const isFleet = calcMode === 'fleet';
+  const m = isFleet ? calcFleet(S) : calc(S);
   const L = calcLab(S);
 
   // 同步所有輸入元件
@@ -1433,14 +1562,18 @@ function render(skip){
 
   // 輸出欄位
   const out = {
-    units: fmt(S.units), years: fmt(S.years), price: fmt(S.price,1), cf: fmt(S.cf,3), goal: fmt(S.goal),
-    rate: fmt(m.rate,1)+'%', remainRate: fmt(100-m.rate,1)+'%',
+    units: fmt(isFleet ? m.totalUnitsOld : S.units),
+    years: fmt(S.years), price: fmt(S.price,1), cf: fmt(S.cf,3), goal: fmt(S.goal),
+    rate: fmt(m.rate,1)+'%', remainRate: fmt(Math.max(0, 100-m.rate),1)+'%',
     totalCost: fmt(m.totalCost), costYr: fmt(m.costYr), costUnit: fmt(m.costUnit),
     kwhYr: fmt(m.kwhYr), kwhUnit: fmt(m.kwhUnit), kwhTotal: fmt(m.kwhTotal),
     co2Yr: fmt(m.co2Yr), co2Total: fmt(m.co2Total),
     baseKwh: fmt(m.baseKwh), targetKwh: fmt(m.targetKwh), baseCost: fmt(m.baseCost), targetCost: fmt(m.targetCost),
-    baseTec: fmt(S.baseTec,2), targetTec: fmt(S.targetTec,2), ratio: fmt(m.ratio,2),
-    baseName: S.baseName, targetName: S.targetName
+    baseTec: isFleet ? fmt(m.avgBaseTec,2) : fmt(S.baseTec,2),
+    targetTec: isFleet ? fmt(m.avgTargetTec,2) : fmt(S.targetTec,2),
+    ratio: fmt(m.ratio,2),
+    baseName: isFleet ? (fleetOld.length === 1 ? `${fleetOld[0].brand} ${fleetOld[0].model}` : `舊機組合（共 ${m.totalUnitsOld} 台）`) : S.baseName,
+    targetName: isFleet ? (fleetNew.length === 1 ? `${fleetNew[0].brand} ${fleetNew[0].model}` : `新機組合（共 ${m.totalUnitsNew} 台）`) : S.targetName
   };
   document.querySelectorAll('[data-o]').forEach(el => { const v = out[el.dataset.o]; if (v !== undefined) el.textContent = v; });
 
@@ -1744,6 +1877,457 @@ document.getElementById('fSort').addEventListener('change', renderTable);
 }));
 
 /* =========================================================
+   7B. 多台試算（艦隊模式）與摘要匯出
+   ========================================================= */
+function switchCalcMode(mode){
+  calcMode = mode;
+  const btnSingle = document.getElementById('btnModeSingle');
+  const btnFleet = document.getElementById('btnModeFleet');
+  const pSingle = document.getElementById('panelSingleMode');
+  const pFleet = document.getElementById('panelFleetMode');
+  const desc = document.getElementById('modeDesc');
+
+  if (mode === 'single'){
+    btnSingle.classList.add('on');
+    btnSingle.style.background = '#fff';
+    btnSingle.style.color = 'var(--ink)';
+    btnSingle.style.boxShadow = '0 1px 3px rgba(0,0,0,.08)';
+
+    btnFleet.classList.remove('on');
+    btnFleet.style.background = 'transparent';
+    btnFleet.style.color = 'var(--ink-2)';
+    btnFleet.style.boxShadow = 'none';
+
+    pSingle.classList.remove('hide');
+    pFleet.classList.add('hide');
+    if (desc) desc.textContent = '單一機型 1 對 1 即時快速對比';
+  } else {
+    btnFleet.classList.add('on');
+    btnFleet.style.background = '#fff';
+    btnFleet.style.color = 'var(--ink)';
+    btnFleet.style.boxShadow = '0 1px 3px rgba(0,0,0,.08)';
+
+    btnSingle.classList.remove('on');
+    btnSingle.style.background = 'transparent';
+    btnSingle.style.color = 'var(--ink-2)';
+    btnSingle.style.boxShadow = 'none';
+
+    pSingle.classList.add('hide');
+    pFleet.classList.remove('hide');
+    if (desc) desc.textContent = '舊機多款 ➔ 新機多款（多台組合艦隊精算）';
+    renderFleetUI();
+  }
+  render();
+}
+
+function renderFleetUI(){
+  renderFleetOldRows();
+  renderFleetNewRows();
+}
+
+function renderFleetOldRows(){
+  const container = document.getElementById('fleetOldRows');
+  if (!container) return;
+  const W = 52;
+  let totalUnits = 0, totalKwh = 0;
+
+  container.innerHTML = fleetOld.map((row, idx) => {
+    const u = parseInt(row.units, 10) || 1;
+    const kwh = (row.tec || 0) * W * u;
+    totalUnits += u;
+    totalKwh += kwh;
+
+    const brandOptions = Object.keys(LEGACY_MODELS).map(b =>
+      `<option value="${b}" ${b===row.brand?'selected':''}>${b==='PRESET'?'★ 通用機齡假設':b}</option>`
+    ).join('') + `<option value="CUSTOM" ${row.brand==='CUSTOM'?'selected':''}>✎ 自訂舊機型號…</option>`;
+
+    let modelOptions = '';
+    if (row.brand === 'CUSTOM'){
+      modelOptions = `<option value="${esc(row.model)}" selected>${esc(row.model)}</option>`;
+    } else {
+      const list = LEGACY_MODELS[row.brand] || [];
+      modelOptions = list.map(m =>
+        `<option value="${esc(m.model)}" data-tec="${m.tec}" ${m.model===row.model?'selected':''}>${esc(m.model)} (TEC ${fmt(m.tec,2)})</option>`
+      ).join('');
+    }
+
+    return `<div class="fleet-row" style="background:#fff;border:1px solid #E6D7D2;border-radius:8px;padding:8px 10px;display:flex;flex-direction:column;gap:6px">
+      <div class="row between" style="gap:6px">
+        <div style="display:flex;gap:6px;flex:1;flex-wrap:wrap">
+          <select class="fleet-old-brand" data-idx="${idx}" style="border:1px solid var(--line);border-radius:6px;padding:3px 6px;font-size:12px;background:#FAFAFA">
+            ${brandOptions}
+          </select>
+          <select class="fleet-old-model" data-idx="${idx}" style="border:1px solid var(--line);border-radius:6px;padding:3px 6px;font-size:12px;background:#FAFAFA;flex:1;min-width:140px">
+            ${modelOptions}
+          </select>
+        </div>
+        <button type="button" class="btn-del-old" data-idx="${idx}" style="background:none;border:none;color:#A85822;font-size:15px;cursor:pointer;padding:0 4px" title="刪除此列" ${fleetOld.length<=1?'disabled style="opacity:.3;cursor:not-allowed"':''}>✕</button>
+      </div>
+      <div class="row between" style="font-size:12px;gap:6px;flex-wrap:wrap">
+        <div class="row" style="gap:5px;align-items:center">
+          <span class="muted">單機 TEC:</span>
+          <input type="number" step="0.01" min="0.05" max="10" class="fleet-old-tec" data-idx="${idx}" value="${fmt(row.tec,2)}" style="width:58px;border:1px solid var(--line);border-radius:5px;padding:2px 4px;font-size:12px;font-weight:600;color:var(--rose)">
+          <span class="muted">kWh/週</span>
+        </div>
+        <div class="row" style="gap:6px;align-items:center">
+          <span class="muted">台數:</span>
+          <div style="display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:5px;overflow:hidden">
+            <button type="button" class="fleet-unit-btn" data-old-step="-1" data-idx="${idx}" style="border:none;background:#f0f0f0;padding:2px 6px;cursor:pointer;font-weight:bold">-</button>
+            <input type="number" min="1" max="99" class="fleet-old-units" data-idx="${idx}" value="${u}" style="width:34px;border:none;text-align:center;font-size:12px;font-weight:600">
+            <button type="button" class="fleet-unit-btn" data-old-step="1" data-idx="${idx}" style="border:none;background:#f0f0f0;padding:2px 6px;cursor:pointer;font-weight:bold">+</button>
+          </div>
+          <span class="muted">台</span>
+          <span class="num c-rose" style="margin-left:4px;font-weight:600">${fmt(kwh,1)} 度/年</span>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('fleetOldTotalUnits').textContent = fmt(totalUnits);
+  document.getElementById('fleetOldTotalKwh').textContent = fmt(totalKwh, 1);
+}
+
+function renderFleetNewRows(){
+  const container = document.getElementById('fleetNewRows');
+  if (!container) return;
+  const W = 52;
+  let totalUnits = 0, totalKwh = 0;
+
+  const allModels = Array.from(MASTER_MAP.values());
+  const brands = Array.from(new Set(allModels.map(m => m.brand))).sort((a,b) => brandRank(a)-brandRank(b) || a.localeCompare(b));
+
+  container.innerHTML = fleetNew.map((row, idx) => {
+    const u = parseInt(row.units, 10) || 1;
+    const kwh = (row.tec || 0) * W * u;
+    totalUnits += u;
+    totalKwh += kwh;
+
+    const brandOptions = brands.map(b =>
+      `<option value="${esc(b)}" ${b.toUpperCase()===row.brand.toUpperCase()?'selected':''}>${b==='Ricoh'?'★ Ricoh 理光':b==='Epson'?'★ Epson 愛普生':b}</option>`
+    ).join('');
+
+    const modelsInBrand = allModels.filter(m => m.brand.toUpperCase() === row.brand.toUpperCase());
+    modelsInBrand.sort((a,b) => (a.model==='EM-C8101'?-100:a.model==='AM-C4000'?-95:a.model==='IM C2010'?-100:0) - (b.model==='EM-C8101'?-100:b.model==='AM-C4000'?-95:b.model==='IM C2010'?-100:0) || (a.tec - b.tec));
+
+    const modelOptions = modelsInBrand.map(m =>
+      `<option value="${keyOf(m)}" data-tec="${m.tec}" ${m.model===row.model?'selected':''}>${esc(m.model)} (${m.speed} ipm · TEC ${fmt(m.tec,2)})</option>`
+    ).join('');
+
+    return `<div class="fleet-row" style="background:#fff;border:1px solid #D5DFE8;border-radius:8px;padding:8px 10px;display:flex;flex-direction:column;gap:6px">
+      <div class="row between" style="gap:6px">
+        <div style="display:flex;gap:6px;flex:1;flex-wrap:wrap">
+          <select class="fleet-new-brand" data-idx="${idx}" style="border:1px solid var(--line);border-radius:6px;padding:3px 6px;font-size:12px;background:#FAFAFA">
+            ${brandOptions}
+          </select>
+          <select class="fleet-new-model" data-idx="${idx}" style="border:1px solid var(--line);border-radius:6px;padding:3px 6px;font-size:12px;background:#FAFAFA;flex:1;min-width:140px">
+            ${modelOptions}
+          </select>
+        </div>
+        <button type="button" class="btn-del-new" data-idx="${idx}" style="background:none;border:none;color:#465D73;font-size:15px;cursor:pointer;padding:0 4px" title="刪除此列" ${fleetNew.length<=1?'disabled style="opacity:.3;cursor:not-allowed"':''}>✕</button>
+      </div>
+      <div class="row between" style="font-size:12px;gap:6px;flex-wrap:wrap">
+        <div class="row" style="gap:5px;align-items:center">
+          <span class="pill" style="background:var(--sage-bg);color:#284B31;border-color:#C2DEC9;font-size:10px;padding:1px 5px">🏅 節能標章</span>
+          <span class="muted">單機 TEC:</span>
+          <span class="num c-blue" style="font-weight:700">${fmt(row.tec,2)}</span>
+          <span class="muted">kWh/週</span>
+        </div>
+        <div class="row" style="gap:6px;align-items:center">
+          <span class="muted">台數:</span>
+          <div style="display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:5px;overflow:hidden">
+            <button type="button" class="fleet-unit-btn" data-new-step="-1" data-idx="${idx}" style="border:none;background:#f0f0f0;padding:2px 6px;cursor:pointer;font-weight:bold">-</button>
+            <input type="number" min="1" max="99" class="fleet-new-units" data-idx="${idx}" value="${u}" style="width:34px;border:none;text-align:center;font-size:12px;font-weight:600">
+            <button type="button" class="fleet-unit-btn" data-new-step="1" data-idx="${idx}" style="border:none;background:#f0f0f0;padding:2px 6px;cursor:pointer;font-weight:bold">+</button>
+          </div>
+          <span class="muted">台</span>
+          <span class="num c-blue" style="margin-left:4px;font-weight:600">${fmt(kwh,1)} 度/年</span>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('fleetNewTotalUnits').textContent = fmt(totalUnits);
+  document.getElementById('fleetNewTotalKwh').textContent = fmt(totalKwh, 1);
+}
+
+// 產生節能試算摘要文字（非報價，純客觀節能效益）
+function generateSummaryText(){
+  const isFleet = calcMode === 'fleet';
+  const m = isFleet ? calcFleet(S) : calc(S);
+  const W = 52;
+  const now = new Date();
+  const dateStr = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
+
+  let text = `======================================================
+【事務機 節能效益試算摘要】
+======================================================
+■ 產生日期：${dateStr}
+■ 試算模式：${isFleet ? '多台試算（多機種汰換組合）' : '單機試算（1 對 1 方案比較）'}
+■ 評估年限：${S.years} 年（租期）
+■ 每度電價：NT$ ${fmt(S.price,1)} / 度
+■ 電力排碳係數：${fmt(S.cf,3)} kg CO₂e / 度（經濟部能源署 114 年度最新產業公告值）
+
+------------------------------------------------------
+【現況舊機設備清單（基準 A）】
+------------------------------------------------------\n`;
+
+  if (isFleet){
+    fleetOld.forEach((x, i) => {
+      text += `${i+1}. ${x.brand} ${x.model} × ${x.units} 台 ｜ 單機 TEC: ${fmt(x.tec,2)} kWh/週 ｜ 年用電: ${fmt(x.tec*W*x.units,1)} 度\n`;
+    });
+    text += `------------------------------------------------------
+舊機合計：${m.totalUnitsOld} 台 ｜ 總年用電：${fmt(m.baseKwh,1)} 度 ｜ 每年電費約：NT$ ${fmt(m.baseCost)}\n\n`;
+  } else {
+    text += `• 機型名稱：${S.baseName}
+• 評估台數：${S.units} 台
+• 單機 TEC：${fmt(S.baseTec,2)} kWh/週
+• 全年用電：${fmt(m.baseKwh,1)} 度 / 年
+• 每年電費約：NT$ ${fmt(m.baseCost)}\n\n`;
+  }
+
+  text += `------------------------------------------------------
+【擬換新機設備清單（方案 B）】
+------------------------------------------------------\n`;
+
+  if (isFleet){
+    fleetNew.forEach((x, i) => {
+      text += `${i+1}. ${x.brand} ${x.model} × ${x.units} 台 ｜ 單機 TEC: ${fmt(x.tec,2)} kWh/週 ｜ 年用電: ${fmt(x.tec*W*x.units,1)} 度 (🏅 節能標章)\n`;
+    });
+    text += `------------------------------------------------------
+新機合計：${m.totalUnitsNew} 台 ｜ 總年用電：${fmt(m.targetKwh,1)} 度 ｜ 每年電費約：NT$ ${fmt(m.targetCost)}\n\n`;
+  } else {
+    text += `• 機型名稱：${S.targetName}（🏅 節能標章）
+• 評估台數：${S.units} 台
+• 單機 TEC：${fmt(S.targetTec,2)} kWh/週
+• 全年用電：${fmt(m.targetKwh,1)} 度 / 年
+• 每年電費約：NT$ ${fmt(m.targetCost)}\n\n`;
+  }
+
+  text += `======================================================
+【綜合節能與減碳成效評估】
+======================================================
+★ 全年少用電量：${fmt(m.kwhYr,1)} 度 / 年（節電率 ${fmt(m.rate,1)}%）
+★ 每年節省電費：NT$ ${fmt(m.costYr)} / 年
+★ ${S.years} 年累計節省電費：NT$ ${fmt(m.totalCost)}
+★ 每年減少碳排放：${fmt(m.co2Yr,1)} kg CO₂e / 年
+★ ${S.years} 年累計減碳量：${fmt(m.co2Total,1)} kg CO₂e
+======================================================
+※ 數據來源依據：
+1. 經濟部能源署「節能標章」官方核定之 A3 多功能複合機實測資料庫。
+2. 經濟部能源署 114 年度公用售電業產業電力排碳係數（0.466 kg CO₂e/度）。
+※ 免責聲明：
+本試算結果為依據標準 TEC 作業程序（168 小時週期）之理論推估數據，
+僅供節能選型、辦公設備整合與企業 ESG 永續提案初步評估參考，
+實際節電度數與費用請以原廠合約及台電電費單為準。
+======================================================`;
+
+  return text;
+}
+
+function openExportSummary(){
+  const txt = generateSummaryText();
+  const area = document.getElementById('exportText');
+  if (area) area.value = txt;
+
+  const tip = document.getElementById('exportCopiedTip');
+  if (navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(txt).then(() => {
+      if (tip) tip.style.display = 'inline-block';
+    }).catch(() => {
+      if (tip) tip.style.display = 'none';
+    });
+  } else {
+    if (tip) tip.style.display = 'none';
+  }
+
+  const modal = document.getElementById('exportModal');
+  if (modal) modal.classList.remove('hide');
+}
+
+function closeExportSummary(){
+  const modal = document.getElementById('exportModal');
+  if (modal) modal.classList.add('hide');
+}
+
+// 綁定多台試算事件
+function bindFleetEvents(){
+  document.getElementById('btnModeSingle').addEventListener('click', () => switchCalcMode('single'));
+  document.getElementById('btnModeFleet').addEventListener('click', () => switchCalcMode('fleet'));
+
+  document.getElementById('btnExportSummary').addEventListener('click', openExportSummary);
+  document.getElementById('btnCloseExport').addEventListener('click', closeExportSummary);
+  document.getElementById('btnCloseExport2').addEventListener('click', closeExportSummary);
+
+  document.getElementById('btnCopyAgain').addEventListener('click', () => {
+    const area = document.getElementById('exportText');
+    if (area){
+      area.select();
+      navigator.clipboard.writeText(area.value);
+      const tip = document.getElementById('exportCopiedTip');
+      if (tip) {
+        tip.textContent = '✓ 已再次複製！';
+        tip.style.display = 'inline-block';
+      }
+    }
+  });
+
+  document.getElementById('btnDownloadTxt').addEventListener('click', () => {
+    const text = document.getElementById('exportText').value;
+    const blob = new Blob([text], {type:'text/plain;charset=utf-8'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `事務機節能效益試算摘要_${new Date().toISOString().slice(0,10)}.txt`;
+    a.click();
+    URL.revokeObjectURL(a.href);
+  });
+
+  // 新增舊機列
+  document.getElementById('btnAddFleetOld').addEventListener('click', () => {
+    fleetOld.push({
+      brand: 'Ricoh',
+      model: 'MP C2504ex',
+      speed: 25,
+      tec: 1.10,
+      units: 1,
+      era: '約 6~7 年前',
+      src: '原廠歷史規格'
+    });
+    renderFleetOldRows();
+    render();
+  });
+
+  // 新增新機列
+  document.getElementById('btnAddFleetNew').addEventListener('click', () => {
+    fleetNew.push({
+      brand: 'Ricoh',
+      model: 'IM C2010',
+      speed: 20,
+      tec: 0.70,
+      units: 1,
+      src: '經濟部能源署節能標章實測'
+    });
+    renderFleetNewRows();
+    render();
+  });
+
+  // 舊機列互動（品牌更換、型號更換、台數調整、刪除）
+  const oldContainer = document.getElementById('fleetOldRows');
+  oldContainer.addEventListener('change', e => {
+    const bSel = e.target.closest('.fleet-old-brand');
+    const mSel = e.target.closest('.fleet-old-model');
+    const tecInput = e.target.closest('.fleet-old-tec');
+    const uInput = e.target.closest('.fleet-old-units');
+
+    if (bSel){
+      const idx = +bSel.dataset.idx;
+      const b = bSel.value;
+      fleetOld[idx].brand = b;
+      if (b === 'CUSTOM'){
+        fleetOld[idx].model = '自訂舊機';
+      } else {
+        const list = LEGACY_MODELS[b] || [];
+        if (list.length > 0){
+          fleetOld[idx].model = list[0].model;
+          fleetOld[idx].tec = list[0].tec;
+        }
+      }
+      renderFleetOldRows();
+      render();
+    } else if (mSel){
+      const idx = +mSel.dataset.idx;
+      fleetOld[idx].model = mSel.value;
+      const opt = mSel.selectedOptions[0];
+      if (opt && opt.dataset.tec) {
+        fleetOld[idx].tec = parseFloat(opt.dataset.tec);
+      }
+      renderFleetOldRows();
+      render();
+    } else if (tecInput){
+      const idx = +tecInput.dataset.idx;
+      fleetOld[idx].tec = Math.max(0.01, parseFloat(tecInput.value) || 0.1);
+      renderFleetOldRows();
+      render();
+    } else if (uInput){
+      const idx = +uInput.dataset.idx;
+      fleetOld[idx].units = Math.max(1, parseInt(uInput.value, 10) || 1);
+      renderFleetOldRows();
+      render();
+    }
+  });
+
+  oldContainer.addEventListener('click', e => {
+    const delBtn = e.target.closest('.btn-del-old');
+    const stepBtn = e.target.closest('[data-old-step]');
+    if (delBtn && fleetOld.length > 1){
+      const idx = +delBtn.dataset.idx;
+      fleetOld.splice(idx, 1);
+      renderFleetOldRows();
+      render();
+    } else if (stepBtn){
+      const idx = +stepBtn.dataset.idx;
+      const step = +stepBtn.dataset.oldStep;
+      fleetOld[idx].units = Math.max(1, (parseInt(fleetOld[idx].units, 10) || 1) + step);
+      renderFleetOldRows();
+      render();
+    }
+  });
+
+  // 新機列互動（品牌更換、型號更換、台數調整、刪除）
+  const newContainer = document.getElementById('fleetNewRows');
+  newContainer.addEventListener('change', e => {
+    const bSel = e.target.closest('.fleet-new-brand');
+    const mSel = e.target.closest('.fleet-new-model');
+    const uInput = e.target.closest('.fleet-new-units');
+
+    if (bSel){
+      const idx = +bSel.dataset.idx;
+      const b = bSel.value;
+      fleetNew[idx].brand = b;
+      const allModels = Array.from(MASTER_MAP.values());
+      const inBrand = allModels.filter(m => m.brand.toUpperCase() === b.toUpperCase());
+      if (inBrand.length > 0){
+        fleetNew[idx].model = inBrand[0].model;
+        fleetNew[idx].tec = inBrand[0].tec;
+      }
+      renderFleetNewRows();
+      render();
+    } else if (mSel){
+      const idx = +mSel.dataset.idx;
+      const m = MASTER_MAP.get(mSel.value);
+      if (m){
+        fleetNew[idx].model = m.model;
+        fleetNew[idx].tec = m.tec;
+        fleetNew[idx].brand = m.brand;
+      }
+      renderFleetNewRows();
+      render();
+    } else if (uInput){
+      const idx = +uInput.dataset.idx;
+      fleetNew[idx].units = Math.max(1, parseInt(uInput.value, 10) || 1);
+      renderFleetNewRows();
+      render();
+    }
+  });
+
+  newContainer.addEventListener('click', e => {
+    const delBtn = e.target.closest('.btn-del-new');
+    const stepBtn = e.target.closest('[data-new-step]');
+    if (delBtn && fleetNew.length > 1){
+      const idx = +delBtn.dataset.idx;
+      fleetNew.splice(idx, 1);
+      renderFleetNewRows();
+      render();
+    } else if (stepBtn){
+      const idx = +stepBtn.dataset.idx;
+      const step = +stepBtn.dataset.newStep;
+      fleetNew[idx].units = Math.max(1, (parseInt(fleetNew[idx].units, 10) || 1) + step);
+      renderFleetNewRows();
+      render();
+    }
+  });
+}
+
+/* =========================================================
    8. 審計抽屜
    ========================================================= */
 function openAudit(type){
@@ -1856,6 +2440,7 @@ document.addEventListener('keydown', e => {
   
   ['fSpeed','fSpeedMin'].forEach(id => { const el = document.getElementById(id); el.style.setProperty('--fill',(el.value-el.min)/(el.max-el.min)*100+'%'); });
   initABPicker();
+  bindFleetEvents();
   go(1);
   render();
   renderTable();

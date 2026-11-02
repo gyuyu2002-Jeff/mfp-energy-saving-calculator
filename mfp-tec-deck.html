@@ -838,8 +838,7 @@ ul.clean li{margin:4px 0}
       <div style="display:flex;align-items:center;gap:10px">
         <span style="font-size:20px">📄</span>
         <div>
-          <b style="font-size:16px;color:#0F172A">企業節能效益評估報告書</b>
-          <div style="font-size:11.5px;color:#64748B">依據經濟部能源署節能標章官方核定實測標準產生</div>
+          <b style="font-size:16px;color:#0F172A">節能效益評估報告</b>
         </div>
       </div>
       <div class="pdf-modal-actions" style="display:flex;align-items:center;gap:8px">
@@ -868,22 +867,27 @@ ul.clean li{margin:4px 0}
         
         <!-- Report Header -->
         <div class="pdf-header">
-          <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px">
+          <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px">
             <div>
-              <div style="font-size:11px;font-weight:700;color:#2563EB;letter-spacing:1px;text-transform:uppercase;margin-bottom:3px">
-                ENERGY EFFICIENCY & ESG EVALUATION REPORT
-              </div>
-              <h1 style="font-size:22px;margin:0 0 4px;color:#0F172A;font-weight:800">事務機 節能效益與減碳評估報告書</h1>
-              <div style="font-size:12.5px;color:#64748B">
-                中華民國經濟部能源署節能標章 A3 多功能複合機實測數據推估
-              </div>
+              <h1 style="font-size:21px;margin:0;color:#0F172A;font-weight:800;letter-spacing:0.5px">事務機 節能效益與減碳評估報告書</h1>
             </div>
             <div style="text-align:right">
-              <span class="pill" style="background:#EBF5EE;color:#284B31;border:1px solid #C2DEC9;font-weight:700;padding:4px 10px;font-size:12px;display:inline-block">
-                🏅 節能標章官方核定標準
+              <span class="pill" style="background:#EBF5EE;color:#284B31;border:1px solid #C2DEC9;font-weight:700;padding:3px 9px;font-size:11.5px;display:inline-block">
+                經濟部能源署節能標章標準
               </span>
-              <div style="font-size:11.5px;color:#64748B;margin-top:6px" id="pdfReportDate">報告日期：2026-11-02</div>
+              <div style="font-size:11.5px;color:#64748B;margin-top:5px" id="pdfReportDate">報告日期：2026-11-02</div>
             </div>
+          </div>
+        </div>
+
+        <!-- 商業提案專案欄（可直接點擊修改受文客戶名稱） -->
+        <div style="display:flex;justify-content:space-between;align-items:center;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:8px 14px;font-size:12.5px;color:#334155;margin-bottom:14px;flex-wrap:wrap;gap:10px">
+          <div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">
+            <span>受文對象：<span id="pdfClientName" contenteditable="true" style="border-bottom:1.5px solid #2563EB;padding:0 4px;font-weight:700;color:#0F172A;outline:none" title="點擊可直接修改客戶名稱">貴公司</span></span>
+            <span>專案項目：<span id="pdfProjectName" contenteditable="true" style="border-bottom:1.5px solid #2563EB;padding:0 4px;font-weight:700;color:#0F172A;outline:none" title="點擊可直接修改專案名稱">辦公室事務機換機節能規劃</span></span>
+          </div>
+          <div style="font-size:11.5px;color:#64748B;font-family:var(--mono)">
+            文件編號：<span id="pdfDocNo">RPT-20261102</span>
           </div>
         </div>
 
@@ -920,7 +924,7 @@ ul.clean li{margin:4px 0}
         </div>
 
         <!-- 設備規格與耗電對照表 -->
-        <div class="pdf-section-title">📊 設備規格與用電明細對比表</div>
+        <div class="pdf-section-title">一、設備規格與用電明細對照</div>
         <table class="pdf-table">
           <thead>
             <tr>
@@ -937,21 +941,21 @@ ul.clean li{margin:4px 0}
         </table>
 
         <!-- 圖表分析區 -->
-        <div class="pdf-section-title">📈 節能量化圖表分析</div>
+        <div class="pdf-section-title">二、多年期累計效益圖表分析</div>
         <div class="pdf-charts-grid">
           <div class="pdf-chart-card">
-            <div class="pdf-chart-title">💰 <span id="pdfChartYears">5</span> 年期累計節省電費趨勢 (NT$)</div>
+            <div class="pdf-chart-title"><span id="pdfChartYears">5</span> 年累計節省電費趨勢（NT$）</div>
             <div id="pdfChartCumSvg"></div>
           </div>
           <div class="pdf-chart-card">
-            <div class="pdf-chart-title">⚡ 全年總用電度數與節電佔比結構</div>
+            <div class="pdf-chart-title">全年用電度數結構佔比</div>
             <div id="pdfChartHbarSvg" style="padding-top:10px"></div>
           </div>
         </div>
 
         <!-- 法規與免責宣告 -->
         <div class="pdf-footer-note">
-          <div style="font-weight:700;color:#374151;margin-bottom:4px">⚖️ 官方數據來源與評估依據宣告：</div>
+          <div style="font-weight:700;color:#374151;margin-bottom:4px">三、評估基準與數據來源說明：</div>
           <div>1. <b>新機實測數據</b>：100% 依據中華民國經濟部能源署節能標章公告之 A3 複合機標準化 168 小時週期測試實測取得，具備法定公信力。</div>
           <div>2. <b>碳排放計算係數</b>：依據經濟部能源署最新公布之 114 年度產業電力排碳係數 <b>0.466 kg CO₂e/度</b>（範疇二外購電力適用）。</div>
           <div>3. <b>決策評估聲明</b>：本試算結果為標準化實驗室測試值推估之節能效益，實際費用依企業印量、睡眠設定及電費單計價級距為準。</div>
@@ -2310,7 +2314,7 @@ function generateReportSvgCharts(m){
     </div>
     <div>
       <div style="display:flex;justify-content:space-between;font-size:11.5px;margin-bottom:4px">
-        <span style="font-weight:700;color:#047857">● 擬換新機年用電 (省電 ${fmt(m.rate,1)}%)</span>
+        <span style="font-weight:700;color:#047857">● 擬換新機年用電（節電率 ${fmt(m.rate,1)}%）</span>
         <span style="font-family:var(--mono);font-weight:700">${fmt(targetKwh,1)} 度 (NT$ ${fmt(m.targetCost)})</span>
       </div>
       <div style="background:#DCFCE7;border-radius:6px;height:14px;overflow:hidden">
@@ -2372,7 +2376,7 @@ function updatePdfReportDOM(){
       const kwh = (x.tec || 0) * W * u;
       tbodyHtml += `<tr>
         ${i===0 ? `<td rowspan="${fleetNew.length}" style="background:#F0FDF4;color:#047857;font-weight:700;text-align:center">擬換新機<br>（方案 B）</td>` : ''}
-        <td><b>${esc(x.brand)} ${esc(x.model)}</b> <span class="pill" style="background:#DCFCE7;color:#166534;font-size:10px;padding:1px 5px">🏅 節能標章</span><div style="font-size:11px;color:#64748B">${esc(x.src||'')}</div></td>
+        <td><b>${esc(x.brand)} ${esc(x.model)}</b> <span class="pill" style="background:#EBF5EE;color:#284B31;border:1px solid #C2DEC9;font-size:10px;padding:1px 5px;font-weight:600">節能標章認證</span><div style="font-size:11px;color:#64748B">${esc(x.src||'')}</div></td>
         <td style="text-align:right;font-family:var(--mono);font-weight:700;color:#059669">${fmt(x.tec,2)}</td>
         <td style="text-align:center;font-weight:700">${u} 台</td>
         <td style="text-align:right;font-family:var(--mono);font-weight:700">${fmt(kwh,1)} 度</td>
@@ -2393,7 +2397,7 @@ function updatePdfReportDOM(){
     </tr>
     <tr>
       <td style="background:#F0FDF4;color:#047857;font-weight:700;text-align:center">擬換新機<br>（方案 B）</td>
-      <td><b>${esc(S.targetName)}</b> <span class="pill" style="background:#DCFCE7;color:#166534;font-size:10px;padding:1px 5px">🏅 節能標章</span></td>
+      <td><b>${esc(S.targetName)}</b> <span class="pill" style="background:#EBF5EE;color:#284B31;border:1px solid #C2DEC9;font-size:10px;padding:1px 5px;font-weight:600">節能標章認證</span></td>
       <td style="text-align:right;font-family:var(--mono);font-weight:700;color:#059669">${fmt(S.targetTec,2)}</td>
       <td style="text-align:center;font-weight:700">${S.units} 台</td>
       <td style="text-align:right;font-family:var(--mono);font-weight:700">${fmt(m.targetKwh,1)} 度</td>

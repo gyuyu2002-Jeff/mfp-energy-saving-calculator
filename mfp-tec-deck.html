@@ -725,7 +725,7 @@ ul.clean li{margin:4px 0}
       <li><b>官方認證資料庫</b>：全站數據 100% 來自中華民國經濟部能源署（類別 32 影印機、類別 33 印表機），依據「影印機及多功能資訊複合機節能標章能源效率基準與標示方法」經 TAF 認可實驗室在台灣 110V/60Hz 環境實測。</li>
       <li><b>同一度量衡原則</b>：不同品牌機型相減比較時，皆統一採用台灣節能標章標準，杜絕因美國能源之星不同世代版本（v2.0 vs v3.2）計算公式差異而產生的比較斷層。</li>
       <li><b>耗電與費用換算式</b>：依業界能源評估實務標準換算：年用電度數 ＝ TEC（度/週）× 52 週 × 設備台數；年電費 ＝ 年用電度數 × 平均電價（預設 NT$4.0/度，可依貴公司電費單調校）。</li>
-      <li><b>碳排放計算係數</b>：採用經濟部能源署最新公告之電力排碳係數 0.474 kg CO₂e/度。</li>
+      <li><b>碳排放計算係數</b>：採用經濟部能源署最新公告之 114 年度產業電力排碳係數 0.466 kg CO₂e/度（公用售電業整體平均為 0.467，範疇二 Scope 2 外購電力適用）。</li>
       <li><b>實際使用注意事項</b>：TEC 為標準化作業流程之測試值，實際辦公室用電會受實際印量、雙面列印率、休眠時間設定等使用情境影響，本工具適合提供企業作為換機節能效益評估與預算編列之客觀依據。</li>
     </ul>
   </div>
@@ -980,7 +980,7 @@ const SNAP = [
 const TECH_LABEL = { EP: '雷射', HPIJ: '微噴（免加熱）', IJ: '噴墨' };
 
 const DEFAULTS = {
-  units: 2, price: 4.0, years: 5, cf: 0.474, goal: 30,
+  units: 2, price: 4.0, years: 5, cf: 0.466, goal: 30,
   baseTec: 1.60, baseName: '5 年傳統雷射事務機',
   targetTec: 0.70, targetName: 'Ricoh IM C2010',
   // TEC 圖解用
@@ -1067,7 +1067,7 @@ const SIM_SLIDERS = [
   {k:'targetTec', label:'新機 TEC', unit:'kWh/週', min:0.05, max:2, step:0.01, d:2, c:'var(--blue)', ticks:['0.05','0.5','1.0','1.5','2.0']},
   {k:'price', label:'每度電價', unit:'NT$/度', min:2, max:8, step:0.1, d:1, c:'var(--sand)', ticks:['2','4','6','8']},
   {k:'years', label:'評估年限（租期）', unit:'年', min:1, max:10, step:1, d:0, c:'var(--ink)', ticks:['1','5','10']},
-  {k:'cf', label:'電力排碳係數', unit:'kg/度', min:0.3, max:0.6, step:0.001, d:3, c:'var(--teal)', ticks:['0.300','0.474','0.600']}
+  {k:'cf', label:'電力排碳係數', unit:'kg/度', min:0.3, max:0.6, step:0.001, d:3, c:'var(--teal)', ticks:['0.300','0.466','0.600']}
 ];
 const LAB_SLIDERS = [
   {k:'s', label:'列印速度 s', unit:'ipm', min:5, max:60, step:1, d:0, c:'var(--ink)', ticks:['5','20','32','60']},
@@ -1756,7 +1756,7 @@ function openAudit(type){
   const T = `<h4>${S.years} 年累計</h4><div class="formula">${m.cum.map((v,i)=>`第${i+1}年 NT$${fmt(m.costYr)}　累計 NT$${fmt(v)}`).join('<br>')}<br>合計 = <span class="hl">NT$${fmt(m.totalCost)}</span></div>
     <div class="src">依目前每度電價 NT$ ${fmt(S.price,1)} 逐年累計計算。</div>`;
   const O = `<h4>每年減少碳排</h4><div class="formula">${fmt(m.kwhYr,1)} 度 × ${fmt(S.cf,3)} kg CO₂e/度 = <span class="hl">${fmt(m.co2Yr,1)} kg CO₂e</span><br>${S.years} 年累計 = ${fmt(m.co2Total,1)} kg</div>
-    <div class="src">經濟部能源署公告 113 年度電力排碳係數 0.474 kg CO₂e/度，屬範疇二（Scope 2）間接排放。</div>`;
+    <div class="src">經濟部能源署公告 114 年度產業電力排碳係數 0.466 kg CO₂e/度（公用售電業平均 0.467），屬範疇二（Scope 2）間接排放。</div>`;
   const E = `<h4>TEC 是什麼與耗電量換算</h4><p class="small">TEC（典型用電量）模擬一週 5 個上班日加 2 天週末的總用電，單位 kWh/週。數值越低越省電。年耗電度數估算公式為 <code>TEC × 52 週</code>。</p>
     <div class="src" style="margin-bottom:12px">推薦延伸閱讀：<a href="https://www.eosasc.com.tw/mfp-power-consumption-energy-saving" target="_blank" rel="noopener" style="color:var(--blue);font-weight:600;text-decoration:underline">互盛官方專題・影印機耗電多少？TEC 怎麼看 ↗</a></div>
     <button class="btn sm" onclick="closeAudit();go(3)">前往 03 頁 TEC 測試與標章基準 →</button>`;

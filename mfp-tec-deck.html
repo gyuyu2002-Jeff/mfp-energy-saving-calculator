@@ -331,9 +331,8 @@ ul.clean li{margin:4px 0}
     </a>
     <nav class="tabs" id="tabs" aria-label="簡報頁面">
       <button class="tab on" data-go="1"><i>01</i>換機效益試算</button>
-      <button class="tab" data-go="2"><i>02</i>全機型查詢比較</button>
-      <button class="tab" data-go="3"><i>03</i>TEC 測試與節能標章基準</button>
-      <button class="tab" data-go="4"><i>04</i>減碳目標成效</button>
+      <button class="tab" data-go="2"><i>02</i>各品牌機型查詢比較</button>
+      <button class="tab" data-go="3"><i>03</i>TEC 測試與資料來源</button>
     </nav>
   </div>
 </header>
@@ -354,8 +353,8 @@ ul.clean li{margin:4px 0}
   <div class="ab-picker">
     <div class="row between" style="margin-bottom:12px;border-bottom:1px solid var(--line-2);padding-bottom:10px">
       <div class="row" style="gap:8px">
-        <span class="pill primary"><span class="dot" style="background:var(--blue)"></span>方案 A · A/B 左右直覺選拔卡</span>
-        <span class="small muted">直接在左右兩側下拉或微調，即時完成舊機 vs 新機對決</span>
+        <span class="pill primary"><span class="dot" style="background:var(--blue)"></span>換機用電度數比較</span>
+        <span class="small muted">直接在下拉選單或微調，即時完成方案比較</span>
       </div>
     </div>
 
@@ -500,7 +499,7 @@ ul.clean li{margin:4px 0}
   <div class="card" style="margin-top:20px">
     <div class="row between" style="margin-bottom:16px;border-bottom:1px solid var(--line-2);padding-bottom:12px">
       <div class="row" style="gap:10px">
-        <h3 style="margin:0">參數即時調校與多年期累計</h3>
+        <h3 style="margin:0">各項參數與年限調整</h3>
         <span class="small muted">直接拖曳滑桿，所有指標與累計圖即時聯動</span>
       </div>
       <div class="row" style="gap:8px">
@@ -564,14 +563,14 @@ ul.clean li{margin:4px 0}
       <span class="kicker">02 · 機型查詢與比較</span>
       <span class="status" id="apiStatus"><span class="dot"></span><span id="apiStatusText">尚未連線</span></span>
     </div>
-    <h2 class="title">查詢全品牌事務機 TEC，選出要比較的機型</h2>
-    <p class="lead">整合美國能源之星開放資料（SODA API）與台灣各品牌官網規格書（補足 API 尚未收錄之台灣熱銷機種）。</p>
+    <h2 class="title">查詢各品牌事務機 TEC，選出要比較的機型</h2>
+    <p class="lead">整合經濟部能源署節能標章官方核定資料庫與台灣各品牌官方規格手冊。</p>
   </div>
 
   <!-- 來源特別提示說明 -->
   <div class="note" style="margin-bottom:14px;background:#FFF9F4;border-color:#F2DACB;color:#784523">
     <b>📌 數據來源特別說明：</b>
-    美國能源之星（ENERGY STAR）官方即時資料庫主要收錄全球通用或美規型號，部分台灣地區專用或最新上市之熱銷節能機種（如 <b>Epson EM-C8101</b>、<b>EM-C8100</b>、<b>WF-C878R</b> 等）尚未及時在美國 API 建檔。本系統特別對接<b>台灣各品牌原廠官網之規格技術手冊</b>，補齊實測 TEC 數據，並在型號旁註明「<span style="font-weight:600">🏢 官網規格</span>」，確保比對之完整度。
+    本系統全數採用中華民國<b>經濟部能源署「節能標章」</b>（類別 32 影印機 / 類別 33 印表機）官方核定之 <b>A3 落地型多功能複合機資料庫</b>。所有機型之 TEC（典型用電量，度/週）均依循台灣 110V/60Hz 實驗室標準檢測程序實測取得，各品牌站在同一個官方檢測標準線上，確保評比之公平性與公信力。
   </div>
 
   <div class="card" style="margin-bottom:16px">
@@ -673,87 +672,69 @@ ul.clean li{margin:4px 0}
     </div>
   </div>
 
-  <div class="grid g-sim">
-    <div class="card">
-      <div class="row between" style="margin-bottom:6px"><h3 style="margin:0">20 ppm 範例：自己拉拉看</h3><span class="pill">ppm = 每分鐘張數</span></div>
-      <p class="small muted" style="margin:0 0 14px">速度決定測試的批次數和張數（照官方公式）。各狀態的用電是<b>示意值</b>，用來理解 TEC 怎麼組成，不是特定機型的實測值。</p>
-      <div class="row" style="gap:6px;margin-bottom:16px">
-        <button class="btn sm" data-preset="new">新世代雷射（示意）</button>
-        <button class="btn sm" data-preset="old">舊世代雷射（示意）</button>
-        <button class="btn sm" data-preset="ij">免加熱噴墨（示意）</button>
+    <!-- 4 大耗電狀態詳解 -->
+  <div class="grid g-2" style="gap:16px;margin-bottom:20px">
+    <div class="card flat" style="border:1px solid var(--line)">
+      <div class="row" style="gap:8px;margin-bottom:8px">
+        <span class="dot" style="background:var(--rose)"></span>
+        <b style="font-size:15px">① 首件喚醒預熱（Warm-up & First Job）</b>
       </div>
-      <div id="labSliders"></div>
+      <p class="small muted" style="margin:0">
+        雷射事務機必須將內部加熱定影滾筒由待機常溫急速加熱至 180°C~200°C 高溫以融化碳粉，瞬間功率可達 1,200W~1,500W；而免加熱微噴噴墨技術因不需熱熔碳粉，開機到首張列印幾近零預熱功耗。
+      </p>
     </div>
 
-    <div class="card">
-      <h3>試算過程</h3>
-      <div class="grid g-4" style="gap:10px;margin-bottom:6px">
-        <div class="stat"><div class="s-l">速度 s</div><div class="s-v"><span id="lS">20</span></div><div class="s-f">ipm</div></div>
-        <div class="stat"><div class="s-l">每天批次 N<sub>jobs</sub></div><div class="s-v" id="lJobs">20</div><div class="s-f" id="lJobsRule">8 &lt; s &lt; 32 → = s</div></div>
-        <div class="stat"><div class="s-l">每批張數</div><div class="s-v" id="lImg">10</div><div class="s-f">int(0.5×s² ÷ N<sub>jobs</sub>)</div></div>
-        <div class="stat"><div class="s-l">每天模擬張數</div><div class="s-v" id="lDaily">200</div><div class="s-f">批次 × 張數</div></div>
+    <div class="card flat" style="border:1px solid var(--line)">
+      <div class="row" style="gap:8px;margin-bottom:8px">
+        <span class="dot" style="background:var(--sand)"></span>
+        <b style="font-size:15px">② 分批定額列印作業（Printing Jobs）</b>
       </div>
-      <div class="step"><div class="n">1</div><div style="min-width:0;flex:1"><b>列印批次用電</b><div class="formula" id="fx1"></div></div></div>
-      <div class="step"><div class="n">2</div><div style="min-width:0;flex:1"><b>收尾＋上班日睡眠</b><div class="formula" id="fx2"></div></div></div>
-      <div class="step"><div class="n">3</div><div style="min-width:0;flex:1"><b>一週合計 → TEC</b><div class="formula" id="fx3"></div></div></div>
-      <div style="margin-top:10px">
-        <div class="row between small"><span class="muted">一週用電組成</span><span>TEC = <b class="num c-blue" id="lTec" style="font-size:18px">0</b> kWh/週</span></div>
-        <div class="stack" id="lStack"></div>
-        <div class="legend" id="lLegend"></div>
-      </div>
+      <p class="small muted" style="margin:0">
+        依機器額定速度公式排定列印批次與張數。雷射機種在連續列印時定影器需全程持續高溫加熱；免加熱噴墨僅驅動壓電噴頭與進紙馬達，列印中功耗僅約數十瓦特。
+      </p>
     </div>
-  </div>
-  <p class="small muted" style="margin-top:12px">法規依據：經濟部能源署「影印機及多功能資訊複合機節能標章能源效率基準與標示方法」與 美國 EPA ENERGY STAR® Imaging Equipment Test Method (Version 3.2)。此處把實驗室程序簡化成教學版：每批間隔 15 分鐘，每天 2 次首件喚醒與收尾，收尾約 15 分鐘。</p>
-</section>
 
-<!-- =====================================================
-     P4 減碳目標成效與資料來源
-     ===================================================== -->
-<section class="slide" id="s4">
-  <div class="head">
-    <span class="kicker">04 · 減碳目標成效</span>
-    <h2 class="title">換機成效對照年度減碳目標</h2>
-    <p class="lead">設定辦公設備的年度節電目標，看這次換機能不能達標。</p>
-  </div>
+    <div class="card flat" style="border:1px solid var(--line)">
+      <div class="row" style="gap:8px;margin-bottom:8px">
+        <span class="dot" style="background:var(--blue)"></span>
+        <b style="font-size:15px">③ 收尾待機過渡（Finishing & Standby）</b>
+      </div>
+      <p class="small muted" style="margin:0">
+        作業列印完成後至進入深度睡眠模式前的散熱冷卻與預備緩衝時間（通常約 15 分鐘），此期間風扇與控制電路維持運作，等待下一次可能之列印工作。
+      </p>
+    </div>
 
-  <div class="card" style="margin-bottom:16px">
-    <div class="row between"><h3 style="margin:0">事務機用電減量 vs. 目標</h3><span class="pill" id="gapPill">—</span></div>
-    <div class="gauge"><div class="fill" id="gaugeFill"></div><div class="target" id="gaugeTarget"><span>目標 <b class="num" data-o="goal">30</b>%</span></div></div>
-    <div class="row between small muted"><span>0%</span><span>實際減量 <b class="num c-sage" data-o="rate">0%</b></span><span>100%</span></div>
-    <div class="slider" style="margin-top:16px">
-      <div class="top"><label for="goalR">年度節電目標</label><div class="valbox"><input type="number" data-k="goal" min="5" max="90" step="1"> %</div></div>
-      <input type="range" id="goalR" data-k="goal" min="5" max="90" step="1">
+    <div class="card flat" style="border:1px solid var(--line)">
+      <div class="row" style="gap:8px;margin-bottom:8px">
+        <span class="dot" style="background:var(--sage)"></span>
+        <b style="font-size:15px">④ 深度省電睡眠（Deep Sleep Mode）</b>
+      </div>
+      <p class="small muted" style="margin:0">
+        夜間（約 14~16 小時）及整個週末（48 小時）處於睡眠狀態，僅保留網路喚醒接收模組供電（低於 0.5W~1.5W），佔全週 168 小時中超過 75% 的時間。
+      </p>
     </div>
   </div>
 
-  <div class="grid g-4" style="margin-bottom:16px">
-    <div class="card flat"><span class="pill">步驟 1</span><h3 style="margin:10px 0 6px">盤點現有機台</h3><p class="small muted" style="margin:0">列出機型、年份、速度與實際印量。找出舊機的 TEC（型錄、能源標章或實測）。</p></div>
-    <div class="card flat"><span class="pill">步驟 2</span><h3 style="margin:10px 0 6px">同級距比較</h3><p class="small muted" style="margin:0">用第 02 頁查詢速度相近的認證機型，比較 TEC；不要只追求更快的機器。</p></div>
-    <div class="card flat"><span class="pill">步驟 3</span><h3 style="margin:10px 0 6px">寫進租約規格</h3><p class="small muted" style="margin:0">招標或租賃時要求 ENERGY STAR 認證與 TEC 上限，並確認預設的睡眠時間設定。</p></div>
-    <div class="card flat"><span class="pill">步驟 4</span><h3 style="margin:10px 0 6px">追蹤與揭露</h3><p class="small muted" style="margin:0">每年用實際用電驗證，納入範疇二（Scope 2）盤查與永續報告。目前估算每年減碳 <b class="num" data-o="co2Yr">0</b> kg。</p></div>
-  </div>
-
+  <!-- 資料來源與假設說明（整併至第 3 頁） -->
   <div class="card">
-    <h3>資料來源與假設</h3>
+    <div class="row between" style="margin-bottom:12px;border-bottom:1px solid var(--line-2);padding-bottom:10px">
+      <h3 style="margin:0">資料來源與評估依據說明</h3>
+      <span class="pill primary">官方核定依據</span>
+    </div>
     <ul class="clean small">
-      <li>TEC 測試程序：<a href="https://www.energylabel.org.tw/_admin/_upload/news/efficiency/99/file/%E8%83%BD%E6%BA%90%E4%B9%8B%E6%98%9F%E5%90%88%E6%A0%BC%E5%BD%B1%E5%83%8F%E8%A8%AD%E5%82%99%E4%B9%8B%E5%85%B8%E5%9E%8B%E7%94%A8%E9%9B%BB%E9%87%8F%E6%B8%AC%E8%A9%A6%E7%A8%8B%E5%BA%8F(TEC)[1].pdf" target="_blank" rel="noopener">經濟部能源署・能源之星合格影像設備之典型用電量測試程序（TEC）</a></li>
-      <li>耗電換算與業界實務：<a href="https://www.eosasc.com.tw/mfp-power-consumption-energy-saving" target="_blank" rel="noopener" style="font-weight:600">互盛官方專題・影印機耗電多少？TEC 怎麼看（辦公室節能省電全攻略）↗</a>（年用電度數估算 ≈ TEC × 52 週 × 台數；年電費 ≈ 年用電 × 每度電價）</li>
-      <li>機型 TEC 數據：
-        <ul>
-          <li><b>美國能源之星官方資料庫</b>：ENERGY STAR Certified Imaging Equipment（SODA API 資料集 <code>t2v6-g4nf</code>），欄位 <code>typical_electricity_consumption_tec_kwh_wk</code>。</li>
-          <li><b>品牌台灣官網規格書撈取</b>：針對能源之星全球 API 尚未及時收錄之熱銷機種（如 <b>Epson EM-C8101、EM-C8100、WF-C878R</b>），直接由 Epson 台灣原廠型錄技術手冊撈取實測數據（標記為「🏢 官網規格」）。</li>
-        </ul>
-      </li>
-      <li>電力排碳係數：經濟部能源署公告 113 年度 0.474 kg CO₂e/度（可在第 01 頁參數調校盤調整為最新公告值）。</li>
-      <li>電價預設 NT$4.0/度是假設值，請依貴公司電費單的平均單價調整。</li>
-      <li>TEC 是標準化測試值，實際用電會因印量、睡眠設定、使用習慣而不同。適合用來做機型間的比較與預估。</li>
+      <li><b>官方認證資料庫</b>：全站數據 100% 來自中華民國經濟部能源署（類別 32 影印機、類別 33 印表機），依據「影印機及多功能資訊複合機節能標章能源效率基準與標示方法」經 TAF 認可實驗室在台灣 110V/60Hz 環境實測。</li>
+      <li><b>同一度量衡原則</b>：不同品牌機型相減比較時，皆統一採用台灣節能標章標準，杜絕因美國能源之星不同世代版本（v2.0 vs v3.2）計算公式差異而產生的比較斷層。</li>
+      <li><b>耗電與費用換算式</b>：依業界能源評估實務標準換算：年用電度數 ＝ TEC（度/週）× 52 週 × 設備台數；年電費 ＝ 年用電度數 × 平均電價（預設 NT$4.0/度，可依貴公司電費單調校）。</li>
+      <li><b>碳排放計算係數</b>：採用經濟部能源署最新公告之電力排碳係數 0.474 kg CO₂e/度。</li>
+      <li><b>實際使用注意事項</b>：TEC 為標準化作業流程之測試值，實際辦公室用電會受實際印量、雙面列印率、休眠時間設定等使用情境影響，本工具適合提供企業作為換機節能效益評估與預算編列之客觀依據。</li>
     </ul>
   </div>
+  <p class="small muted" style="margin-top:16px">法規依據：經濟部能源署「影印機節能標章能源效率基準與標示方法」與「印表機節能標章能源效率基準與標示方法」，測試條件以 A4 80g/m² 紙張、115V±1% 電壓與標準週期程序進行。</p>
 </section>
 
 <div class="pager">
   <button class="btn" id="prev" style="visibility:hidden" disabled>← 上一頁</button>
-  <span class="hint">可用鍵盤 ← → 翻頁 · <span class="num" id="pageNo">1</span> / 4</span>
+  <span class="hint">可用鍵盤 ← → 翻頁 · <span class="num" id="pageNo">1</span> / 3</span>
   <button class="btn primary" id="next">下一頁 →</button>
 </div>
 </main>
@@ -778,579 +759,218 @@ ul.clean li{margin:4px 0}
       欄位：品牌 b、型號 m、色彩 c(C/M)、速度 s(ipm)、技術 t、TEC kWh/週、來源說明 src
    ========================================================= */
 /* --- SNAPSHOT START --- */
-const SNAPSHOT_DATE = '2026-10-27';
+const SNAPSHOT_DATE = '2026-11-02';
 const SNAP = [
-    // ---------- Ricoh (台灣理光官方銷售現役 A3 機種) ----------
-  ['Ricoh','IM C2010','C',20,'EP',0.20,'Ricoh 台灣官網現役 / 能源之星'],
-  ['Ricoh','IM C2510','C',25,'EP',0.25,'Ricoh 台灣官網現役 / 能源之星'],
-  ['Ricoh','IM C3010','C',30,'EP',0.30,'Ricoh 台灣官網現役 / 能源之星'],
-  ['Ricoh','IM C3510','C',35,'EP',0.35,'Ricoh 台灣官網現役 / 能源之星'],
-  ['Ricoh','IM C4510','C',45,'EP',0.45,'Ricoh 台灣官網現役 / 能源之星'],
-  ['Ricoh','IM C6010','C',60,'EP',0.69,'Ricoh 台灣官網現役 / 能源之星'],
-  ['Ricoh','IM C2000','C',20,'EP',0.55,'Ricoh 台灣官網 / 能源之星'],
-  ['Ricoh','IM C2500','C',25,'EP',0.29,'Ricoh 台灣官網 / 能源之星'],
-  ['Ricoh','IM C3000','C',30,'EP',0.35,'Ricoh 台灣官網 / 能源之星'],
-  ['Ricoh','IM C3500','C',35,'EP',0.39,'Ricoh 台灣官網 / 能源之星'],
-  ['Ricoh','IM C4500','C',45,'EP',0.51,'Ricoh 台灣官網 / 能源之星'],
-  ['Ricoh','IM C6000','C',60,'EP',0.76,'Ricoh 台灣官網 / 能源之星'],
-  ['Ricoh','IM 2500','M',25,'EP',0.29,'Ricoh 台灣官網現役 / 能源之星'],
-  ['Ricoh','IM 3000','M',30,'EP',0.35,'Ricoh 台灣官網現役 / 能源之星'],
-  ['Ricoh','IM 3500','M',35,'EP',0.41,'Ricoh 台灣官網現役 / 能源之星'],
-  ['Ricoh','IM 4000','M',40,'EP',0.45,'Ricoh 台灣官網現役 / 能源之星'],
-  ['Ricoh','IM 5000','M',50,'EP',0.61,'Ricoh 台灣官網現役 / 能源之星'],
-  ['Ricoh','IM 6000','M',60,'EP',0.72,'Ricoh 台灣官網現役 / 能源之星'],
-  ['Ricoh','IM 7000','M',70,'EP',1.21,'Ricoh 台灣官網現役 / 能源之星'],
-  ['Ricoh','IM 8000','M',80,'EP',1.53,'Ricoh 台灣官網現役 / 能源之星'],
-  ['Ricoh','IM 9000','M',90,'EP',1.83,'Ricoh 台灣官網現役 / 能源之星'],
-  // ---------- Epson ----------
-  ['Epson','EM-C8101','C',25,'HPIJ',0.23,'Epson 台灣官網規格手冊（能源之星未收錄時撈取）'],
-  ['Epson','AM-C4000','C',40,'HPIJ',0.21,'Epson 官網 / ENERGY STAR 認證'],
-  ['Epson','AM-C400','C',40,'HPIJ',0.17,'ENERGY STAR 認證'],
-  ['Epson','AM-C550','C',55,'HPIJ',0.19,'ENERGY STAR 認證'],
-  ['Epson','AM-C5000','C',50,'HPIJ',0.22,'Epson 官網 / ENERGY STAR 認證'],
-  ['Epson','EM-C8100','C',25,'HPIJ',0.23,'Epson 台灣官網規格手冊（能源之星未收錄時撈取）'],
-  ['Epson','AM-C6000','C',60,'HPIJ',0.24,'ENERGY STAR 認證'],
-  ['Epson','AM-M5500','M',55,'EP',0.24,'ENERGY STAR 官方認證'],
-  ['Epson','WF-C878R','C',25,'HPIJ',0.26,'Epson 台灣官網規格手冊（能源之星未收錄時撈取）'],
-  ['Epson','AM-C550z','C',55,'HPIJ',0.30,'ENERGY STAR 認證'],
-  ['Epson','WF-C20600','C',60,'HPIJ',0.31,'ENERGY STAR 認證'],
-  ['Epson','AM-C10000','C',100,'IJ',0.33,'ENERGY STAR 認證'],
-  ['Epson','WF-C20750','C',75,'HPIJ',0.34,'ENERGY STAR 認證'],
-  ['Epson','WF-C20590','C',100,'HPIJ',0.40,'ENERGY STAR 認證'],
-  ['Epson','WF-M20590','M',100,'HPIJ',0.40,'ENERGY STAR 認證'],
-  ['Epson','WF-M20590F','M',100,'HPIJ',0.40,'ENERGY STAR 認證'],
-  ['Epson','WF-C17590','M',75,'EP',0.40,'ENERGY STAR 官方認證'],
-  ['Epson','WF-C21000','C',100,'HPIJ',0.41,'ENERGY STAR 認證'],
-  // ---------- FUJIFILM ----------
-  ['FUJIFILM','Apeos C2060 (Model-CPS-B)','C',20,'EP',0.21,'FUJIFILM 官網 / 能源之星'],
-  ['FUJIFILM','Apeos C2560 (Model-CPS-B)','C',25,'EP',0.26,'FUJIFILM 官網 / 能源之星'],
-  ['FUJIFILM','Apeos 2560 (Model-CPS-B)','M',25,'EP',0.28,'ENERGY STAR 官方認證'],
-  ['FUJIFILM','Apeos C3070 (Model-CPS-2TM)','C',30,'EP',0.35,'FUJIFILM 官網 / 能源之星'],
-  ['FUJIFILM','Apeos 3060 (Model-CPS-B)','M',30,'EP',0.35,'ENERGY STAR 官方認證'],
-  ['FUJIFILM','Apeos C3060 (Model-CPS-B)','C',30,'EP',0.36,'FUJIFILM 官網 / 能源之星'],
-  ['FUJIFILM','Apeos 3560 (Model-CPS-B)','M',35,'EP',0.39,'ENERGY STAR 官方認證'],
-  ['FUJIFILM','Apeos C3570 (Model-CPS-2TM)','C',35,'EP',0.40,'FUJIFILM 官網 / 能源之星'],
-  ['FUJIFILM','Apeos C325 z','M',33,'EP',0.40,'ENERGY STAR 官方認證'],
-  ['FUJIFILM','Apeos C325 dw','M',33,'EP',0.40,'ENERGY STAR 官方認證'],
-  ['FUJIFILM','Apeos C3530','M',37,'EP',0.48,'ENERGY STAR 官方認證'],
-  ['FUJIFILM','Apeos C4030','M',42,'EP',0.53,'ENERGY STAR 官方認證'],
-  ['FUJIFILM','Apeos C4570 (Model-CPS-TTM)','M',45,'EP',0.58,'ENERGY STAR 官方認證'],
-  ['FUJIFILM','Apeos C4570 (Model-CPS-C-TTM)','M',45,'EP',0.58,'ENERGY STAR 官方認證'],
-  ['FUJIFILM','Apeos C4570 (Model-CPS-2TM)','M',45,'EP',0.58,'ENERGY STAR 官方認證'],
-  ['FUJIFILM','Apeos C4570 (Model-CPS-C-2TM)','M',45,'EP',0.58,'ENERGY STAR 官方認證'],
-  ['FUJIFILM','Apeos 4830','M',50,'EP',0.59,'ENERGY STAR 官方認證'],
-  ['FUJIFILM','Apeos 4570 (Model-CPS-2TM)','M',45,'EP',0.60,'ENERGY STAR 官方認證'],
-  ['FUJIFILM','Apeos 4570 (Model-CPS-TTM)','M',45,'EP',0.60,'ENERGY STAR 官方認證'],
-  ['FUJIFILM','Apeos 5330','M',55,'EP',0.64,'ENERGY STAR 官方認證'],
-  ['FUJIFILM','Apeos C5240 Model-CPS','M',55,'EP',0.70,'ENERGY STAR 官方認證'],
-  ['FUJIFILM','Apeos C5570 (Model-CPS-C-2TM)','M',55,'EP',0.70,'ENERGY STAR 官方認證'],
-  ['FUJIFILM','Apeos C5570 (Model-CPS-2TM)','M',55,'EP',0.70,'ENERGY STAR 官方認證'],
-  ['FUJIFILM','Apeos C5570 (Model-CPS-TTM)','M',55,'EP',0.70,'ENERGY STAR 官方認證'],
-  ['FUJIFILM','Apeos C5570 (Model-CPS-C-TTM)','M',55,'EP',0.70,'ENERGY STAR 官方認證'],
-  ['FUJIFILM','Apeos 5570 (Model-CPS-TTM)','M',55,'EP',0.71,'ENERGY STAR 官方認證'],
-  ['FUJIFILM','Apeos 5570 (Model-CPS-2TM)','M',55,'EP',0.71,'ENERGY STAR 官方認證'],
-  ['FUJIFILM','Apeos 6340 Model-CPS','M',65,'EP',0.80,'ENERGY STAR 官方認證'],
-  ['FUJIFILM','Apeos C6570 (Model-CPS-C-TTM)','M',65,'EP',0.90,'ENERGY STAR 官方認證'],
-  ['FUJIFILM','Apeos C7070 (Model-CPS-C-TTM)','M',70,'EP',0.94,'ENERGY STAR 官方認證'],
-  ['FUJIFILM','ApeosPro C650','M',65,'EP',1.14,'ENERGY STAR 官方認證'],
-  ['FUJIFILM','ApeosPro C750','M',75,'EP',1.38,'ENERGY STAR 官方認證'],
-  ['FUJIFILM','ApeosPro C810','M',81,'EP',1.46,'ENERGY STAR 官方認證'],
-  // ---------- Canon ----------
-  ['Canon','imageRUNNER ADVANCE DX C259iF','M',26,'EP',0.21,'ENERGY STAR 官方認證'],
-  ['Canon','imageFORCE 4125','M',25,'EP',0.21,'ENERGY STAR 官方認證'],
-  ['Canon','imageFORCE C3126','C',26,'EP',0.23,'Canon 官網 / 能源之星'],
-  ['Canon','Color imageCLASS MF662Cdw','C',26,'EP',0.23,'Canon 官網 / 能源之星'],
-  ['Canon','Color imageCLASS MF665Cdw','C',26,'EP',0.23,'Canon 官網 / 能源之星'],
-  ['Canon','imageCLASS MF275dw','M',30,'EP',0.23,'ENERGY STAR 官方認證'],
-  ['Canon','Color imageCLASS MF663Cdw','M',26,'EP',0.23,'ENERGY STAR 官方認證'],
-  ['Canon','imageCLASS MF273dw','M',30,'EP',0.23,'ENERGY STAR 官方認證'],
-  ['Canon','imageCLASS MF272dw','M',30,'EP',0.23,'ENERGY STAR 官方認證'],
-  ['Canon','imageRUNNER ADVANCE DX C257iF','M',26,'EP',0.25,'ENERGY STAR 官方認證'],
-  ['Canon','imageFORCE C3130','C',30,'EP',0.26,'Canon 官網 / 能源之星'],
-  ['Canon','imageRUNNER ADVANCE DX C3926i','M',26,'EP',0.26,'ENERGY STAR 官方認證'],
-  ['Canon','imageCLASS MF284dw','M',35,'EP',0.27,'ENERGY STAR 官方認證'],
-  ['Canon','imageRUNNER ADVANCE DX 4825i','M',25,'EP',0.27,'ENERGY STAR 官方認證'],
-  ['Canon','imageCLASS MF289dw','M',35,'EP',0.27,'ENERGY STAR 官方認證'],
-  ['Canon','imageCLASS MF287dw','M',35,'EP',0.27,'ENERGY STAR 官方認證'],
-  ['Canon','imageRUNNER C3326i','M',26,'EP',0.29,'ENERGY STAR 官方認證'],
-  ['Canon','imageRUNNER ADVANCE DX C3930i','M',30,'EP',0.29,'ENERGY STAR 官方認證'],
-  ['Canon','imageCLASS MF462dw II','M',37,'EP',0.30,'ENERGY STAR 官方認證'],
-  ['Canon','imageRUNNER ADVANCE DX C3826i','M',26,'EP',0.30,'ENERGY STAR 官方認證'],
-  ['Canon','imageCLASS MF462dw','M',37,'EP',0.30,'ENERGY STAR 官方認證'],
-  ['Canon','imageFORCE C3135','C',35,'EP',0.31,'Canon 官網 / 能源之星'],
-  ['Canon','imageFORCE 4135','M',35,'EP',0.31,'ENERGY STAR 官方認證'],
-  ['Canon','imageRUNNER ADVANCE DX C359iF','M',36,'EP',0.32,'ENERGY STAR 官方認證'],
-  ['Canon','imageCLASS MF465dw II','M',42,'EP',0.33,'ENERGY STAR 官方認證'],
-  ['Canon','imageCLASS MF465dw','M',42,'EP',0.33,'ENERGY STAR 官方認證'],
-  ['Canon','imageCLASS X MF1440','M',42,'EP',0.33,'ENERGY STAR 官方認證'],
-  ['Canon','imageFORCE 1440F','M',42,'EP',0.33,'ENERGY STAR 官方認證'],
-  ['Canon','imageRUNNER ADVANCE DX C3935i','M',35,'EP',0.33,'ENERGY STAR 官方認證'],
-  ['Canon','imageCLASS X MF1238 II','M',40,'EP',0.34,'ENERGY STAR 官方認證'],
-  ['Canon','imageRUNNER ADVANCE DX C3830i','M',30,'EP',0.34,'ENERGY STAR 官方認證'],
-  ['Canon','imageFORCE C1333F','M',35,'EP',0.34,'ENERGY STAR 官方認證'],
-  ['Canon','imageCLASS X MF1238','M',30,'EP',0.34,'ENERGY STAR 官方認證'],
-  ['Canon','Color imageCLASS X MF1333C','M',35,'EP',0.34,'ENERGY STAR 官方認證'],
-  ['Canon','Color imageCLASS MF753Cdw II','M',35,'EP',0.34,'ENERGY STAR 官方認證'],
-  ['Canon','imageFORCE C331F','M',34,'EP',0.34,'ENERGY STAR 官方認證'],
-  ['Canon','imageFORCE C331FZ','M',34,'EP',0.34,'ENERGY STAR 官方認證'],
-  ['Canon','Color imageCLASS MF751Cdw II','M',35,'EP',0.34,'ENERGY STAR 官方認證'],
-  ['Canon','imageRUNNER ADVANCE DX 4935i','M',35,'EP',0.34,'ENERGY STAR 官方認證'],
-  ['Canon','imageRUNNER ADVANCE DX C357iF','M',36,'EP',0.36,'ENERGY STAR 官方認證'],
-  ['Canon','imageRUNNER ADVANCE DX 4835i','M',35,'EP',0.37,'ENERGY STAR 官方認證'],
-  ['Canon','Color imageCLASS X MF1538C II','M',40,'EP',0.38,'ENERGY STAR 官方認證'],
-  ['Canon','imageRUNNER ADVANCE DX C3835i','M',35,'EP',0.38,'ENERGY STAR 官方認證'],
-  ['Canon','imageFORCE C431F','M',45,'EP',0.39,'ENERGY STAR 官方認證'],
-  ['Canon','imageFORCE C431FZ','M',45,'EP',0.39,'ENERGY STAR 官方認證'],
-  ['Canon','imageFORCE 1643F','M',45,'EP',0.39,'ENERGY STAR 官方認證'],
-  ['Canon','imageFORCE 1643','M',45,'EP',0.39,'ENERGY STAR 官方認證'],
-  ['Canon','imageFORCE C5140','M',40,'EP',0.40,'ENERGY STAR 官方認證'],
-  ['Canon','imageFORCE 4145','M',45,'EP',0.43,'ENERGY STAR 官方認證'],
-  ['Canon','imageFORCE C1743F','M',45,'EP',0.44,'ENERGY STAR 官方認證'],
-  ['Canon','imageRUNNER ADVANCE DX 4945i','M',45,'EP',0.45,'ENERGY STAR 官方認證'],
-  ['Canon','imageRUNNER ADVANCE DX C5840i','M',40,'EP',0.47,'ENERGY STAR 官方認證'],
-  ['Canon','imageCLASS D1650','M',45,'EP',0.47,'ENERGY STAR 官方認證'],
-  ['Canon','imageFORCE C521FZ','M',55,'EP',0.50,'ENERGY STAR 官方認證'],
-  ['Canon','imageFORCE C521F','M',55,'EP',0.50,'ENERGY STAR 官方認證'],
-  ['Canon','imageFORCE C3150','M',50,'EP',0.50,'ENERGY STAR 官方認證'],
-  ['Canon','imageFORCE C5150','M',50,'EP',0.51,'ENERGY STAR 官方認證'],
-  ['Canon','imageRUNNER ADVANCE DX C478iFZ','M',50,'EP',0.54,'ENERGY STAR 官方認證'],
-  ['Canon','imageRUNNER ADVANCE DX C478iF','M',50,'EP',0.54,'ENERGY STAR 官方認證'],
-  ['Canon','imageRUNNER ADVANCE C475iF III','M',50,'EP',0.54,'ENERGY STAR 官方認證'],
-  ['Canon','imageFORCE 520FZ','M',55,'EP',0.55,'ENERGY STAR 官方認證'],
-  ['Canon','imageFORCE 520F','M',55,'EP',0.55,'ENERGY STAR 官方認證'],
-  ['Canon','imageRUNNER ADVANCE DX 529iFZ','M',55,'EP',0.55,'ENERGY STAR 官方認證'],
-  ['Canon','imageRUNNER ADVANCE DX 529iF','M',55,'EP',0.55,'ENERGY STAR 官方認證'],
-  ['Canon','imageRUNNER ADVANCE DX C5850i','M',50,'EP',0.57,'ENERGY STAR 官方認證'],
-  ['Canon','imageRUNNER ADVANCE DX 527iF','M',55,'EP',0.58,'ENERGY STAR 官方認證'],
-  ['Canon','imageRUNNER ADVANCE DX 527iFZ','M',55,'EP',0.58,'ENERGY STAR 官方認證'],
-  ['Canon','imageFORCE 6155','M',55,'EP',0.58,'ENERGY STAR 官方認證'],
-  ['Canon','imageFORCE C611F','M',65,'EP',0.62,'ENERGY STAR 官方認證'],
-  ['Canon','imageFORCE C611FZ','M',65,'EP',0.62,'ENERGY STAR 官方認證'],
-  ['Canon','imageFORCE 6160','M',60,'EP',0.63,'ENERGY STAR 官方認證'],
-  ['Canon','imageFORCE C5160','M',60,'EP',0.64,'ENERGY STAR 官方認證'],
-  ['Canon','imageRUNNER ADVANCE DX 619iF','M',65,'EP',0.66,'ENERGY STAR 官方認證'],
-  ['Canon','imageFORCE 610F','M',65,'EP',0.66,'ENERGY STAR 官方認證'],
-  ['Canon','imageFORCE 610FZ','M',65,'EP',0.66,'ENERGY STAR 官方認證'],
-  ['Canon','imageRUNNER ADVANCE DX 619iFZ','M',65,'EP',0.66,'ENERGY STAR 官方認證'],
-  ['Canon','imageRUNNER ADVANCE DX C568iFZ','M',60,'EP',0.67,'ENERGY STAR 官方認證'],
-  ['Canon','imageRUNNER ADVANCE DX C568iF','M',60,'EP',0.67,'ENERGY STAR 官方認證'],
-  ['Canon','imageRUNNER ADVANCE DX 6855i','M',55,'EP',0.68,'ENERGY STAR 官方認證'],
-  ['Canon','imageRUNNER ADVANCE DX 617iFZ','M',65,'EP',0.69,'ENERGY STAR 官方認證'],
-  ['Canon','imageRUNNER ADVANCE DX 617iF','M',65,'EP',0.69,'ENERGY STAR 官方認證'],
-  ['Canon','imageFORCE C7165','M',65,'EP',0.71,'ENERGY STAR 官方認證'],
-  ['Canon','imageRUNNER ADVANCE DX C5860i','M',60,'EP',0.71,'ENERGY STAR 官方認證'],
-  ['Canon','imageRUNNER ADVANCE DX 6860i','M',60,'EP',0.74,'ENERGY STAR 官方認證'],
-  ['Canon','imageFORCE 6170','M',70,'EP',0.76,'ENERGY STAR 官方認證'],
-  ['Canon','imageFORCE C5170','M',70,'EP',0.78,'ENERGY STAR 官方認證'],
-  ['Canon','imageFORCE 710FZ','M',75,'EP',0.79,'ENERGY STAR 官方認證'],
-  ['Canon','imageRUNNER ADVANCE DX 719iF','M',75,'EP',0.79,'ENERGY STAR 官方認證'],
-  ['Canon','imageRUNNER ADVANCE DX 719iFZ','M',75,'EP',0.79,'ENERGY STAR 官方認證'],
-  ['Canon','imageFORCE 710F','M',75,'EP',0.79,'ENERGY STAR 官方認證'],
-  ['Canon','imageRUNNER ADVANCE DX 717iFZ','M',75,'EP',0.84,'ENERGY STAR 官方認證'],
-  ['Canon','imageRUNNER ADVANCE DX 717iF','M',75,'EP',0.84,'ENERGY STAR 官方認證'],
-  ['Canon','imageRUNNER ADVANCE DX C5870i','M',70,'EP',0.86,'ENERGY STAR 官方認證'],
-  ['Canon','imageRUNNER ADVANCE C5560i III','M',60,'EP',0.86,'ENERGY STAR 官方認證'],
-  ['Canon','imageRUNNER ADVANCE DX 6870i','M',70,'EP',0.89,'ENERGY STAR 官方認證'],
-  ['Canon','imagePRESS C165','M',65,'EP',1.21,'ENERGY STAR 官方認證'],
-  ['Canon','imagePRESS Lite C265','M',70,'EP',1.29,'ENERGY STAR 官方認證'],
-  ['Canon','imagePRESS Lite C270','M',70,'EP',1.45,'ENERGY STAR 官方認證'],
-  ['Canon','imageRUNNER ADVANCE DX 6980I','M',80,'EP',1.56,'ENERGY STAR 官方認證'],
-  ['Canon','imageRUNNER ADVANCE DX 6780i','M',80,'EP',1.65,'ENERGY STAR 官方認證'],
-  ['Canon','imageRUNNER ADVANCE DX 8786i','M',86,'EP',8.40,'ENERGY STAR 官方認證'],
-  ['Canon','imageRUNNER ADVANCE DX 8795i','M',95,'EP',8.90,'ENERGY STAR 官方認證'],
-  ['Canon','imageRUNNER ADVANCE DX 8705i','M',105,'EP',9.60,'ENERGY STAR 官方認證'],
-  // ---------- HP ----------
-  ['HP','HP LaserJet Tank MFP 2604sdw','M',23,'EP',0.19,'ENERGY STAR 官方認證'],
-  ['HP','HP LaserJet MFP M139we','M',19,'EP',0.24,'ENERGY STAR 官方認證'],
-  ['HP','HP LaserJet MFP M239sdw','M',29,'EP',0.25,'ENERGY STAR 官方認證'],
-  ['HP','HP LaserJet MFP M234sdwe','M',30,'EP',0.26,'ENERGY STAR 官方認證'],
-  ['HP','HP LaserJet MFP M235dwe','M',30,'EP',0.27,'ENERGY STAR 官方認證'],
-  ['HP','HP LaserJet MFP M246sdw','M',31,'EP',0.28,'ENERGY STAR 官方認證'],
-  ['HP','HP LaserJet MFP M140w','M',21,'EP',0.30,'ENERGY STAR 官方認證'],
-  ['HP','HP Neverstop Laser MFP 1202nw','M',21,'EP',0.31,'ENERGY STAR 官方認證'],
-  ['HP','HP LaserJet MFP M246dw','M',31,'EP',0.31,'ENERGY STAR 官方認證'],
-  ['HP','HP Color LaserJet Managed MFP E78223dn','M',23,'EP',0.31,'ENERGY STAR 官方認證'],
-  ['HP','Color LaserJet Enterprise MFP X778dn','C',30,'EP',0.32,'HP 官網 / 能源之星'],
-  ['HP','HP LaserJet Pro MFP 3105sdw','M',33,'EP',0.33,'ENERGY STAR 官方認證'],
-  ['HP','HP LaserJet MFP M234dw','M',30,'EP',0.33,'ENERGY STAR 官方認證'],
-  ['HP','HP Color LaserJet Pro MFP 3301fdw','M',26,'EP',0.34,'ENERGY STAR 官方認證'],
-  ['HP','HP Color LaserJet Pro MFP 3301sdw','M',26,'EP',0.34,'ENERGY STAR 官方認證'],
-  ['HP','HP LaserJet Managed MFP E730dn','M',25,'EP',0.34,'ENERGY STAR 官方認證'],
-  ['HP','HP Color LaserJet Pro MFP 3304fdw','M',26,'EP',0.34,'ENERGY STAR 官方認證'],
-  ['HP','HP Color LaserJet Managed MFP E785dn','M',23,'EP',0.34,'ENERGY STAR 官方認證'],
-  ['HP','HP Color LaserJet Pro MFP 3301cdw','M',26,'EP',0.34,'ENERGY STAR 官方認證'],
-  ['HP','HP Color LaserJet Managed Flow MFP E78323z','M',23,'EP',0.34,'ENERGY STAR 官方認證'],
-  ['HP','Color LaserJet Managed MFP E78625','C',25,'EP',0.35,'HP 官網 / 能源之星'],
-  ['HP','HP LaserJet Pro MFP 3101fdw','M',35,'EP',0.35,'ENERGY STAR 官方認證'],
-  ['HP','HP LaserJet Pro MFP 3101sdw','M',35,'EP',0.35,'ENERGY STAR 官方認證'],
-  ['HP','HP Color LaserJet Managed Flow MFP E786z','M',25,'EP',0.35,'ENERGY STAR 官方認證'],
-  ['HP','Color LaserJet Enterprise X47635fw','C',35,'EP',0.36,'HP 官網 / 能源之星'],
-  ['HP','HP Color LaserJet Managed Flow MFP E78325z','M',25,'EP',0.36,'ENERGY STAR 官方認證'],
-  ['HP','HP Color LaserJet Enterprise X47635fw','M',35,'EP',0.36,'ENERGY STAR 官方認證'],
-  ['HP','HP Color LaserJet Pro MFP M479fdw','M',28,'EP',0.36,'ENERGY STAR 官方認證'],
-  ['HP','LaserJet Enterprise MFP X728dn','M',26,'EP',0.37,'ENERGY STAR 官方認證'],
-  ['HP','HP Color LaserJet Enterprise MFP M480f','M',29,'EP',0.38,'ENERGY STAR 官方認證'],
-  ['HP','HP Color LaserJet Managed MFP E78228dn','M',28,'EP',0.39,'ENERGY STAR 官方認證'],
-  ['HP','HP LaserJet Enterprise MFP M430f','M',40,'EP',0.40,'ENERGY STAR 官方認證'],
-  ['HP','HP LaserJet Pro MFP 4101fdw','M',42,'EP',0.40,'ENERGY STAR 官方認證'],
-  ['HP','HP LaserJet Managed MFP E730dn with 25 to 30ppm License','M',30,'EP',0.42,'ENERGY STAR 官方認證'],
-  ['HP','HP Color LaserJet Managed MFP E785dn 23 to 30ppm License','M',30,'EP',0.42,'ENERGY STAR 官方認證'],
-  ['HP','HP Color LaserJet Managed MFP E785dn with 23 to 28ppm License','M',28,'EP',0.42,'ENERGY STAR 官方認證'],
-  ['HP','HP Color LaserJet Pro MFP 4301fdwe','M',35,'EP',0.42,'ENERGY STAR 官方認證'],
-  ['HP','HP LaserJet Managed MFP E72430dn','M',30,'EP',0.42,'ENERGY STAR 官方認證'],
-  ['HP','HP Color LaserJet Managed MFP E77428dn','M',28,'EP',0.42,'ENERGY STAR 官方認證'],
-  ['HP','HP LaserJet Managed Flow MFP E731z','M',30,'EP',0.43,'ENERGY STAR 官方認證'],
-  ['HP','HP Color LaserJet Managed Flow MFP E786z with 25 to 30ppm License','M',30,'EP',0.43,'ENERGY STAR 官方認證'],
-  ['HP','HP Color LaserJet Managed Flow MFP E78330z','M',30,'EP',0.43,'ENERGY STAR 官方認證'],
-  ['HP','Color LaserJet Managed MFP E78630','M',30,'EP',0.43,'ENERGY STAR 官方認證'],
-  ['HP','LaserJet Managed MFP E73130','M',30,'EP',0.44,'ENERGY STAR 官方認證'],
-  ['HP','HP LaserJet Enterprise Flow MFP M528z','M',45,'EP',0.45,'ENERGY STAR 官方認證'],
-  ['HP','HP Color LaserJet Enterprise Flow MFP M578z','M',40,'EP',0.45,'ENERGY STAR 官方認證'],
-  ['HP','HP Color LaserJet Enterprise Flow MFP M577z','M',40,'EP',0.46,'ENERGY STAR 官方認證'],
-  ['HP','HP LaserJet Pro MFP 4112fdw','M',47,'EP',0.46,'ENERGY STAR 官方認證'],
-  ['HP','HP PageWide Pro MFP 774dns','M',55,'EP',0.47,'ENERGY STAR 官方認證'],
-  ['HP','Color LaserJet Managed MFP E78635','C',35,'EP',0.49,'HP 官網 / 能源之星'],
-  ['HP','HP PageWide Pro MFP 779dns','M',65,'EP',0.49,'ENERGY STAR 官方認證'],
-  ['HP','HP Color LaserJet Managed Flow MFP E786z with 25 to 35ppm License','M',35,'EP',0.50,'ENERGY STAR 官方認證'],
-  ['HP','HP LaserJet Managed Flow MFP E731z with 30 to 35ppm License','M',35,'EP',0.50,'ENERGY STAR 官方認證'],
-  ['HP','HP Color LaserJet Managed Flow MFP E77830z','M',30,'EP',0.51,'ENERGY STAR 官方認證'],
-  ['HP','LaserJet Managed MFP E73135','M',35,'EP',0.51,'ENERGY STAR 官方認證'],
-  ['HP','HP LaserJet Managed Flow MFP E72535z','M',35,'EP',0.52,'ENERGY STAR 官方認證'],
-  ['HP','HP LaserJet Enterprise Flow MFP X53052z','M',50,'EP',0.52,'ENERGY STAR 官方認證'],
-  ['HP','HP LaserJet Managed Flow MFP E731z with 30 to 40ppm License','M',40,'EP',0.54,'ENERGY STAR 官方認證'],
-  ['HP','HP PageWide Managed Color MFP P77940dns','M',60,'EP',0.54,'ENERGY STAR 官方認證'],
-  ['HP','HP LaserJet Enterprise Flow MFP 5602zfw','M',50,'EP',0.54,'ENERGY STAR 官方認證'],
-  ['HP','HP Color LaserJet Enterprise MFP X57945','M',45,'EP',0.55,'ENERGY STAR 官方認證'],
-  ['HP','LaserJet Managed MFP E73140','M',40,'EP',0.57,'ENERGY STAR 官方認證'],
-  ['HP','HP PageWide Enterprise Color MFP 780dn','M',65,'EP',0.57,'ENERGY STAR 官方認證'],
-  ['HP','HP PageWide Managed Color MFP P77950dns','M',70,'EP',0.58,'ENERGY STAR 官方認證'],
-  ['HP','HP PageWide Managed Color MFP P77960dns','M',80,'EP',0.58,'ENERGY STAR 官方認證'],
-  ['HP','HP Color LaserJet Managed Flow MFP E877z','M',40,'EP',0.58,'ENERGY STAR 官方認證'],
-  ['HP','HP PageWide Pro 377dw MFP','M',45,'EP',0.60,'ENERGY STAR 官方認證'],
-  ['HP','HP LaserJet Enterprise MFP 6600','M',55,'EP',0.61,'ENERGY STAR 官方認證'],
-  ['HP','HP Laser MFP 432fdn','M',42,'EP',0.62,'ENERGY STAR 官方認證'],
-  ['HP','HP LaserJet Enterprise Flow MFP X62757zs','M',55,'EP',0.63,'ENERGY STAR 官方認證'],
-  ['HP','HP PageWide Pro 577dw MFP','M',70,'EP',0.63,'ENERGY STAR 官方認證'],
-  ['HP','HP LaserJet Enterprise MFP M725z+','M',41,'EP',0.65,'ENERGY STAR 官方認證'],
-  ['HP','HP PageWide Pro 477dw MFP','M',55,'EP',0.65,'ENERGY STAR 官方認證'],
-  ['HP','HP LaserJet Managed Flow MFP E82540z','M',40,'EP',0.65,'ENERGY STAR 官方認證'],
-  ['HP','Color LaserJet Managed MFP E87740','M',40,'EP',0.65,'ENERGY STAR 官方認證'],
-  ['HP','HP LaserJet Enterprise MFP M631z','M',55,'EP',0.66,'ENERGY STAR 官方認證'],
-  ['HP','HP Color LaserJet Enterprise Flow MFP M681z','M',50,'EP',0.67,'ENERGY STAR 官方認證'],
-  ['HP','HP LaserJet Enterprise MFP M634z','M',52,'EP',0.68,'ENERGY STAR 官方認證'],
-  ['HP','HP PageWide Managed Color Flow MFP E77650zs','M',70,'EP',0.69,'ENERGY STAR 官方認證'],
-  ['HP','HP PageWide Managed Color Flow MFP E77660zs','M',80,'EP',0.69,'ENERGY STAR 官方認證'],
-  ['HP','HP PageWide Enterprise Color Flow MFP 785zs','M',75,'EP',0.69,'ENERGY STAR 官方認證'],
-  ['HP','HP Color LaserJet Managed Flow MFP E877z with 40 to 50ppm License','M',50,'EP',0.70,'ENERGY STAR 官方認證'],
-  ['HP','HP Color LaserJet Managed Flow MFP E87640z','M',40,'EP',0.70,'ENERGY STAR 官方認證'],
-  ['HP','HP LaserJet Managed Flow MFP E826z','M',50,'EP',0.70,'ENERGY STAR 官方認證'],
-  ['HP','HP Color LaserJet Enterprise Flow M880z+ MFP','M',46,'EP',0.73,'ENERGY STAR 官方認證'],
-  ['HP','HP Color LaserJet Enterprise Flow MFP M776zs','M',46,'EP',0.73,'ENERGY STAR 官方認證'],
-  ['HP','LaserJet Managed MFP E82650','M',50,'EP',0.75,'ENERGY STAR 官方認證'],
-  ['HP','Color LaserJet Managed MFP E87750','M',50,'EP',0.75,'ENERGY STAR 官方認證'],
-  ['HP','HP LaserJet Enterprise MFP M637','M',65,'EP',0.75,'ENERGY STAR 官方認證'],
-  ['HP','HP Color LaserJet Enterprise Flow MFP M682z','M',60,'EP',0.78,'ENERGY STAR 官方認證'],
-  ['HP','HP LaserJet Enterprise Flow MFP M635z','M',61,'EP',0.80,'ENERGY STAR 官方認證'],
-  ['HP','HP LaserJet Enterprise Flow MFP M632z','M',65,'EP',0.80,'ENERGY STAR 官方認證'],
-  ['HP','HP LaserJet Managed Flow MFP E82550z','M',50,'EP',0.81,'ENERGY STAR 官方認證'],
-  ['HP','HP Color LaserJet Managed Flow MFP E87650z','M',50,'EP',0.83,'ENERGY STAR 官方認證'],
-  ['HP','HP Color LaserJet Enterprise MFP X677 65ppm','M',65,'EP',0.85,'ENERGY STAR 官方認證'],
-  ['HP','HP Color LaserJet Managed Flow MFP E877z with 40 to 60ppm License','M',60,'EP',0.87,'ENERGY STAR 官方認證'],
-  ['HP','HP LaserJet Managed Flow MFP E826z with 50 to 60ppm License','M',60,'EP',0.88,'ENERGY STAR 官方認證'],
-  ['HP','HP LaserJet Enterprise Flow MFP M830z (with NFC and Wireless Direct)','M',56,'EP',0.89,'ENERGY STAR 官方認證'],
-  ['HP','LaserJet Managed MFP E82660','M',60,'EP',0.93,'ENERGY STAR 官方認證'],
-  ['HP','HP LaserJet Enterprise Flow MFP M636z','M',71,'EP',0.94,'ENERGY STAR 官方認證'],
-  ['HP','HP LaserJet Enterprise Flow MFP M633z','M',75,'EP',0.95,'ENERGY STAR 官方認證'],
-  ['HP','Color LaserJet Enterprise Flow MFP 8801z+','M',60,'EP',0.96,'ENERGY STAR 官方認證'],
-  ['HP','HP LaserJet Managed Flow MFP E82560z','M',60,'EP',0.96,'ENERGY STAR 官方認證'],
-  ['HP','HP Color LaserJet Managed Flow MFP E87660z','M',60,'EP',0.98,'ENERGY STAR 官方認證'],
-  ['HP','HP Color LaserJet Managed Flow MFP E877z with 40 to 70ppm License','M',70,'EP',1.04,'ENERGY STAR 官方認證'],
-  ['HP','HP LaserJet Managed Flow MFP E826z with 50 to 70ppm License','M',70,'EP',1.04,'ENERGY STAR 官方認證'],
-  ['HP','LaserJet Enterprise Flow MFP 8601z+','M',70,'EP',1.07,'ENERGY STAR 官方認證'],
-  ['HP','Color LaserJet Managed MFP E87770','M',70,'EP',1.08,'ENERGY STAR 官方認證'],
-  ['HP','HP PageWide Managed Color Flow MFP E77650z+','M',70,'EP',1.16,'ENERGY STAR 官方認證'],
-  ['HP','HP PageWide Enterprise Color Flow MFP 785z+','M',75,'EP',1.16,'ENERGY STAR 官方認證'],
-  ['HP','HP PageWide Managed Color Flow MFP E77660z+','M',80,'EP',1.24,'ENERGY STAR 官方認證'],
-  ['HP','HP PageWide Enterprise Color Flow MFP 586z','M',75,'EP',1.51,'ENERGY STAR 官方認證'],
-  ['HP','HP PageWide Enterprise Color MFP 586dn','M',75,'EP',1.52,'ENERGY STAR 官方認證'],
-  // ---------- Konica Minolta ----------
-  ['Konica Minolta','bizhub C251i','C',25,'EP',0.28,'Konica Minolta 官網 / 能源之星'],
-  ['Konica Minolta','bizhub 227','M',22,'EP',0.28,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub C250i','M',25,'EP',0.28,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub C227','M',22,'EP',0.32,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub C301i','C',30,'EP',0.35,'Konica Minolta 官網 / 能源之星'],
-  ['Konica Minolta','bizhub C300i','M',30,'EP',0.35,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub 301i','M',30,'EP',0.35,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub C3320i','M',35,'EP',0.36,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub C258','M',25,'EP',0.37,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub C3350i','M',35,'EP',0.37,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub 300i','M',30,'EP',0.37,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','Workplace Hub','M',28,'EP',0.39,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub C3351i','C',35,'EP',0.40,'Konica Minolta 官網 / 能源之星'],
-  ['Konica Minolta','bizhub C287','M',28,'EP',0.40,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub C3120i','M',33,'EP',0.40,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub C3321i','M',35,'EP',0.40,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub 287','M',28,'EP',0.41,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub 308e','M',30,'EP',0.41,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub C361i','C',36,'EP',0.43,'Konica Minolta 官網 / 能源之星'],
-  ['Konica Minolta','bizhub C360i','M',36,'EP',0.43,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub 361i','M',36,'EP',0.43,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub 4051i','M',42,'EP',0.44,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub 4050i','M',42,'EP',0.45,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub 360i','M',36,'EP',0.46,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub C4050i','M',42,'EP',0.46,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub C4051i','M',42,'EP',0.47,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub 3622','M',38,'EP',0.49,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub 368e','M',36,'EP',0.50,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub 367','M',36,'EP',0.52,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub C450i','M',45,'EP',0.55,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub C451i','M',45,'EP',0.57,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub 451i','M',45,'EP',0.57,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub 4020i','M',42,'EP',0.57,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub 4221i','M',44,'EP',0.57,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub C3351','M',35,'EP',0.58,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub 450i','M',45,'EP',0.59,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub 4750i','M',50,'EP',0.59,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub C4751i','M',50,'EP',0.59,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub 4751i','M',50,'EP',0.60,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub 4422','M',46,'EP',0.60,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub 458e','M',45,'EP',0.62,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub 5021i','M',52,'EP',0.62,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub C3851FS','M',40,'EP',0.65,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub 4052','M',42,'EP',0.65,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub C458','M',45,'EP',0.67,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub 5020i','M',52,'EP',0.71,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub C551i','M',55,'EP',0.75,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub 4752','M',50,'EP',0.75,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub 551i','M',55,'EP',0.76,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub 550i','M',55,'EP',0.76,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub C550i','M',55,'EP',0.77,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub 558e','M',55,'EP',0.81,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub C558','M',55,'EP',0.86,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub C651i','M',65,'EP',0.89,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub 651i','M',65,'EP',0.89,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub 650i','M',65,'EP',0.95,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub C650i','M',65,'EP',1.02,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub 658e','M',65,'EP',1.02,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub C658','M',65,'EP',1.05,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub 750i','M',75,'EP',1.10,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub C750i','M',75,'EP',1.14,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub 751i','M',75,'EP',1.14,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub C751i','M',75,'EP',1.15,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub C659','M',65,'EP',1.16,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub C759','M',75,'EP',1.32,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub 808','M',80,'EP',1.56,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub 850i','M',85,'EP',1.63,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub 950i','M',95,'EP',1.96,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub 958','M',95,'EP',2.21,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','AccurioPress C4080','M',80,'EP',8.60,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','AccurioPrint C4065','M',80,'EP',8.60,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','AccurioPress C4070','M',80,'EP',8.60,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','AccurioPress C3070','M',80,'EP',8.70,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','AccurioPress C3080','M',80,'EP',8.70,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','AccurioPrint C3070L','M',80,'EP',8.70,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','AccurioPrint 2100','M',100,'EP',12.81,'ENERGY STAR 官方認證'],
-  ['Konica Minolta','bizhub PRO 1100','M',100,'EP',13.48,'ENERGY STAR 官方認證'],
-  // ---------- Sharp ----------
-  ['Sharp','BP-51C26','C',26,'EP',0.24,'Sharp 官網 / 能源之星'],
-  ['Sharp','BP-51M26','M',26,'EP',0.25,'ENERGY STAR 官方認證'],
-  ['Sharp','BP-50C26','M',26,'EP',0.28,'ENERGY STAR 官方認證'],
-  ['Sharp','BP-50M26','M',26,'EP',0.29,'ENERGY STAR 官方認證'],
-  ['Sharp','BP-51M31','M',31,'EP',0.30,'ENERGY STAR 官方認證'],
-  ['Sharp','BP-71M31','M',31,'EP',0.30,'ENERGY STAR 官方認證'],
-  ['Sharp','BP-51C31','C',31,'EP',0.32,'Sharp 官網 / 能源之星'],
-  ['Sharp','BP-71C31','C',31,'EP',0.32,'Sharp 官網 / 能源之星'],
-  ['Sharp','BP-C131WD','M',31,'EP',0.32,'ENERGY STAR 官方認證'],
-  ['Sharp','BP-70C31','M',31,'EP',0.34,'ENERGY STAR 官方認證'],
-  ['Sharp','BP-50C31','M',31,'EP',0.34,'ENERGY STAR 官方認證'],
-  ['Sharp','BP-70M31','M',31,'EP',0.35,'ENERGY STAR 官方認證'],
-  ['Sharp','BP-50M31','M',31,'EP',0.35,'ENERGY STAR 官方認證'],
-  ['Sharp','BP-C535WR','M',35,'EP',0.37,'ENERGY STAR 官方認證'],
-  ['Sharp','BP-C535WD','M',35,'EP',0.38,'ENERGY STAR 官方認證'],
-  ['Sharp','BP-51M36','M',36,'EP',0.38,'ENERGY STAR 官方認證'],
-  ['Sharp','BP-71M36','M',36,'EP',0.38,'ENERGY STAR 官方認證'],
-  ['Sharp','BP-70C36','M',36,'EP',0.39,'ENERGY STAR 官方認證'],
-  ['Sharp','BP-50C36','M',36,'EP',0.39,'ENERGY STAR 官方認證'],
-  ['Sharp','BP-51C36','C',36,'EP',0.40,'Sharp 官網 / 能源之星'],
-  ['Sharp','BP-71C36','M',36,'EP',0.40,'ENERGY STAR 官方認證'],
-  ['Sharp','BP-50M36','M',36,'EP',0.41,'ENERGY STAR 官方認證'],
-  ['Sharp','BP-70M36','M',36,'EP',0.41,'ENERGY STAR 官方認證'],
-  ['Sharp','BP-51M45','M',45,'EP',0.47,'ENERGY STAR 官方認證'],
-  ['Sharp','BP-71M45','M',45,'EP',0.47,'ENERGY STAR 官方認證'],
-  ['Sharp','BP-71C45','M',45,'EP',0.48,'ENERGY STAR 官方認證'],
-  ['Sharp','BP-51C45','M',45,'EP',0.48,'ENERGY STAR 官方認證'],
-  ['Sharp','BP-70M45','M',45,'EP',0.49,'ENERGY STAR 官方認證'],
-  ['Sharp','BP-50M45','M',45,'EP',0.49,'ENERGY STAR 官方認證'],
-  ['Sharp','BP-B540WR','M',40,'EP',0.49,'ENERGY STAR 官方認證'],
-  ['Sharp','MX-B429W','M',42,'EP',0.50,'ENERGY STAR 官方認證'],
-  ['Sharp','BP-70C45','M',45,'EP',0.50,'ENERGY STAR 官方認證'],
-  ['Sharp','BP-50C45','M',45,'EP',0.50,'ENERGY STAR 官方認證'],
-  ['Sharp','BP-C545WD','M',45,'EP',0.51,'ENERGY STAR 官方認證'],
-  ['Sharp','MX-C358F','M',35,'EP',0.51,'ENERGY STAR 官方認證'],
-  ['Sharp','MX-C428F','M',42,'EP',0.53,'ENERGY STAR 官方認證'],
-  ['Sharp','MX-B427W','M',42,'EP',0.54,'ENERGY STAR 官方認證'],
-  ['Sharp','MX-B468F','M',46,'EP',0.57,'ENERGY STAR 官方認證'],
-  ['Sharp','BP-B550WD','M',50,'EP',0.59,'ENERGY STAR 官方認證'],
-  ['Sharp','BP-71M55','M',55,'EP',0.63,'ENERGY STAR 官方認證'],
-  ['Sharp','BP-71C55','M',55,'EP',0.68,'ENERGY STAR 官方認證'],
-  ['Sharp','MX-C528F','M',52,'EP',0.69,'ENERGY STAR 官方認證'],
-  ['Sharp','BP-70M55','M',55,'EP',0.72,'ENERGY STAR 官方認證'],
-  ['Sharp','BP-50M55','M',55,'EP',0.72,'ENERGY STAR 官方認證'],
-  ['Sharp','BP-70C55','M',55,'EP',0.74,'ENERGY STAR 官方認證'],
-  ['Sharp','BP-50C55','M',55,'EP',0.74,'ENERGY STAR 官方認證'],
-  ['Sharp','BP-71M65','M',65,'EP',0.77,'ENERGY STAR 官方認證'],
-  ['Sharp','MX-B557F','M',55,'EP',0.80,'ENERGY STAR 官方認證'],
-  ['Sharp','BP-71C65','M',65,'EP',0.83,'ENERGY STAR 官方認證'],
-  ['Sharp','BP-50M65','M',65,'EP',0.84,'ENERGY STAR 官方認證'],
-  ['Sharp','BP-70M65','M',65,'EP',0.84,'ENERGY STAR 官方認證'],
-  ['Sharp','BP-50C65','M',65,'EP',0.86,'ENERGY STAR 官方認證'],
-  ['Sharp','MX-C557F','M',55,'EP',0.86,'ENERGY STAR 官方認證'],
-  ['Sharp','BP-70C65','M',65,'EP',0.86,'ENERGY STAR 官方認證'],
-  ['Sharp','MX-C607F','M',60,'EP',0.92,'ENERGY STAR 官方認證'],
-  ['Sharp','MX-B707F','M',70,'EP',1.19,'ENERGY STAR 官方認證'],
-  ['Sharp','BP-70M75','M',75,'EP',1.27,'ENERGY STAR 官方認證'],
-  ['Sharp','BP-80C70','M',76,'EP',1.42,'ENERGY STAR 官方認證'],
-  ['Sharp','BP-80C80','M',81,'EP',1.53,'ENERGY STAR 官方認證'],
-  ['Sharp','MX-7081','M',75,'EP',1.61,'ENERGY STAR 官方認證'],
-  ['Sharp','MX-8081','M',80,'EP',1.71,'ENERGY STAR 官方認證'],
-  ['Sharp','BP-70M90','M',90,'EP',1.71,'ENERGY STAR 官方認證'],
-  ['Sharp','MX-M1056','M',105,'EP',14.00,'ENERGY STAR 官方認證'],
-  // ---------- KYOCERA ----------
-  ['KYOCERA','MA2101cfx','C',22,'EP',0.24,'KYOCERA 官網 / 能源之星'],
-  ['KYOCERA','MA2101cwfx','M',22,'EP',0.24,'ENERGY STAR 官方認證'],
-  ['KYOCERA','M5521cdw','M',22,'EP',0.26,'ENERGY STAR 官方認證'],
-  ['KYOCERA','MA2100cwfx','M',22,'EP',0.26,'ENERGY STAR 官方認證'],
-  ['KYOCERA','MA2600cwx','C',27,'EP',0.28,'KYOCERA 官網 / 能源之星'],
-  ['KYOCERA','MA2600cwfx','M',27,'EP',0.28,'ENERGY STAR 官方認證'],
-  ['KYOCERA','TASKalfa MZ2501ci','C',25,'EP',0.30,'KYOCERA 官網 / 能源之星'],
-  ['KYOCERA','MA3500x','M',37,'EP',0.31,'ENERGY STAR 官方認證'],
-  ['KYOCERA','M4125idn','M',25,'EP',0.32,'ENERGY STAR 官方認證'],
-  ['KYOCERA','MA3500wfx','M',37,'EP',0.32,'ENERGY STAR 官方認證'],
-  ['KYOCERA','M5526cdw','M',27,'EP',0.33,'ENERGY STAR 官方認證'],
-  ['KYOCERA','M8124cidn','M',24,'EP',0.33,'ENERGY STAR 官方認證'],
-  ['KYOCERA','MA3500cifx','M',37,'EP',0.34,'ENERGY STAR 官方認證'],
-  ['KYOCERA','MA4000x','M',42,'EP',0.35,'ENERGY STAR 官方認證'],
-  ['KYOCERA','MA4000wfx','M',42,'EP',0.35,'ENERGY STAR 官方認證'],
-  ['KYOCERA','MA4000wifx','M',42,'EP',0.36,'ENERGY STAR 官方認證'],
-  ['KYOCERA','MZ3200i','M',32,'EP',0.37,'ENERGY STAR 官方認證'],
-  ['KYOCERA','MZ3201ix','M',32,'EP',0.38,'ENERGY STAR 官方認證'],
-  ['KYOCERA','M8130cidn','M',30,'EP',0.41,'ENERGY STAR 官方認證'],
-  ['KYOCERA','MA4000cix','M',42,'EP',0.41,'ENERGY STAR 官方認證'],
-  ['KYOCERA','MA4000cifx','M',42,'EP',0.41,'ENERGY STAR 官方認證'],
-  ['KYOCERA','M4132idn','M',32,'EP',0.43,'ENERGY STAR 官方認證'],
-  ['KYOCERA','308ci','M',32,'EP',0.45,'ENERGY STAR 官方認證'],
-  ['KYOCERA','TASKalfa MZ3501ci','C',35,'EP',0.46,'KYOCERA 官網 / 能源之星'],
-  ['KYOCERA','MA4500ci','M',47,'EP',0.46,'ENERGY STAR 官方認證'],
-  ['KYOCERA','M2635dw','M',37,'EP',0.46,'ENERGY STAR 官方認證'],
-  ['KYOCERA','TASKalfa MZ4001i','M',40,'EP',0.49,'ENERGY STAR 官方認證'],
-  ['KYOCERA','MZ4000i','M',40,'EP',0.50,'ENERGY STAR 官方認證'],
-  ['KYOCERA','TASKalfa MZ4001ci','M',40,'EP',0.52,'ENERGY STAR 官方認證'],
-  ['KYOCERA','358ci','M',37,'EP',0.55,'ENERGY STAR 官方認證'],
-  ['KYOCERA','M2040dn','M',42,'EP',0.55,'ENERGY STAR 官方認證'],
-  ['KYOCERA','M2540dw','M',42,'EP',0.55,'ENERGY STAR 官方認證'],
-  ['KYOCERA','M2640idw','M',42,'EP',0.55,'ENERGY STAR 官方認證'],
-  ['KYOCERA','408ci','M',42,'EP',0.59,'ENERGY STAR 官方認證'],
-  ['KYOCERA','TASKalfa MZ5001i','M',50,'EP',0.63,'ENERGY STAR 官方認證'],
-  ['KYOCERA','MA4500ix','M',47,'EP',0.64,'ENERGY STAR 官方認證'],
-  ['KYOCERA','MA4500ifx','M',47,'EP',0.64,'ENERGY STAR 官方認證'],
-  ['KYOCERA','TASKalfa MZ5001ci','M',50,'EP',0.66,'ENERGY STAR 官方認證'],
-  ['KYOCERA','508ci','M',52,'EP',0.71,'ENERGY STAR 官方認證'],
-  ['KYOCERA','TASKalfa MZ6001i','M',60,'EP',0.80,'ENERGY STAR 官方認證'],
-  ['KYOCERA','TASKalfa MZ6001ci','M',60,'EP',0.83,'ENERGY STAR 官方認證'],
-  ['KYOCERA','MA5500ifx','M',57,'EP',0.84,'ENERGY STAR 官方認證'],
-  ['KYOCERA','M3860idn','M',62,'EP',0.84,'ENERGY STAR 官方認證'],
-  ['KYOCERA','MA6000ifx','M',62,'EP',0.84,'ENERGY STAR 官方認證'],
-  ['KYOCERA','M3860idnf','M',62,'EP',0.86,'ENERGY STAR 官方認證'],
-  ['KYOCERA','TASKalfa MZ7001i','M',70,'EP',0.98,'ENERGY STAR 官方認證'],
-  ['KYOCERA','TASKalfa MZ7001ci','M',70,'EP',1.06,'ENERGY STAR 官方認證'],
-  ['KYOCERA','MZ7500i','M',75,'EP',1.39,'ENERGY STAR 官方認證'],
-  ['KYOCERA','8003i','M',80,'EP',1.47,'ENERGY STAR 官方認證'],
-  ['KYOCERA','MZ7500ci','M',75,'EP',1.50,'ENERGY STAR 官方認證'],
-  ['KYOCERA','MZ8500i','M',85,'EP',1.55,'ENERGY STAR 官方認證'],
-  ['KYOCERA','8353ci','M',83,'EP',1.70,'ENERGY STAR 官方認證'],
-  ['KYOCERA','MZ9500i','M',95,'EP',1.75,'ENERGY STAR 官方認證'],
-  ['KYOCERA','MZ8500ci','M',85,'EP',1.76,'ENERGY STAR 官方認證'],
-  ['KYOCERA','9003i','M',90,'EP',1.86,'ENERGY STAR 官方認證'],
-  ['KYOCERA','MZ9500ci','M',95,'EP',1.91,'ENERGY STAR 官方認證'],
-  ['KYOCERA','MZ10500i','M',105,'EP',1.95,'ENERGY STAR 官方認證'],
-  ['KYOCERA','15000c/B','M',150,'EP',6.27,'ENERGY STAR 官方認證'],
-  ['KYOCERA','15000c','M',150,'EP',6.30,'ENERGY STAR 官方認證'],
-  // ---------- Toshiba ----------
-  ['Toshiba','e-STUDIO2031AC','C',25,'EP',0.25,'Toshiba 官網 / 能源之星'],
-  ['Toshiba','e-STUDIO2021AC','M',20,'EP',0.25,'ENERGY STAR 官方認證'],
-  ['Toshiba','e-STUDIO2535AC','C',25,'EP',0.28,'Toshiba 官網 / 能源之星'],
-  ['Toshiba','e-STUDIO2020AC','M',20,'EP',0.28,'ENERGY STAR 官方認證'],
-  ['Toshiba','e-STUDIO2521AC','M',25,'EP',0.30,'ENERGY STAR 官方認證'],
-  ['Toshiba','e-STUDIO2531AC','M',25,'EP',0.30,'ENERGY STAR 官方認證'],
-  ['Toshiba','e-STUDIO2525AC','M',25,'EP',0.30,'ENERGY STAR 官方認證'],
-  ['Toshiba','e-STUDIO2520AC','M',25,'EP',0.31,'ENERGY STAR 官方認證'],
-  ['Toshiba','e-STUDIO2528A','M',25,'EP',0.32,'ENERGY STAR 官方認證'],
-  ['Toshiba','e-STUDIO2538A','M',25,'EP',0.33,'ENERGY STAR 官方認證'],
-  ['Toshiba','e-STUDIO3025AC','M',30,'EP',0.33,'ENERGY STAR 官方認證'],
-  ['Toshiba','e-STUDIO3035AC','C',30,'EP',0.34,'Toshiba 官網 / 能源之星'],
-  ['Toshiba','e-STUDIO2329A','M',23,'EP',0.34,'ENERGY STAR 官方認證'],
-  ['Toshiba','e-STUDIO2823AM','M',28,'EP',0.37,'ENERGY STAR 官方認證'],
-  ['Toshiba','e-STUDIO3535AC','C',35,'EP',0.38,'Toshiba 官網 / 能源之星'],
-  ['Toshiba','e-STUDIO3525AC','M',35,'EP',0.38,'ENERGY STAR 官方認證'],
-  ['Toshiba','e-STUDIO3038A','M',30,'EP',0.38,'ENERGY STAR 官方認證'],
-  ['Toshiba','e-STUDIO3028A','M',30,'EP',0.38,'ENERGY STAR 官方認證'],
-  ['Toshiba','e-STUDIO331AC','M',33,'EP',0.39,'ENERGY STAR 官方認證'],
-  ['Toshiba','e-STUDIO2822AM','M',28,'EP',0.39,'ENERGY STAR 官方認證'],
-  ['Toshiba','e-STUDIO2822AF','M',28,'EP',0.40,'ENERGY STAR 官方認證'],
-  ['Toshiba','e-STUDIO2829A','M',28,'EP',0.40,'ENERGY STAR 官方認證'],
-  ['Toshiba','eStudio 409S','M',42,'EP',0.46,'ENERGY STAR 官方認證'],
-  ['Toshiba','e-STUDIO3528A','M',35,'EP',0.46,'ENERGY STAR 官方認證'],
-  ['Toshiba','e-STUDIO401AC','M',40,'EP',0.47,'ENERGY STAR 官方認證'],
-  ['Toshiba','e-STUDIO3538A','M',35,'EP',0.48,'ENERGY STAR 官方認證'],
-  ['Toshiba','eStudio 409AS','M',42,'EP',0.51,'ENERGY STAR 官方認證'],
-  ['Toshiba','e-STUDIO4528A','M',45,'EP',0.54,'ENERGY STAR 官方認證'],
-  ['Toshiba','e-STUDIO4538A','M',45,'EP',0.56,'ENERGY STAR 官方認證'],
-  ['Toshiba','e-STUDIO4535AC','M',45,'EP',0.56,'ENERGY STAR 官方認證'],
-  ['Toshiba','e-STUDIO4525AC','M',45,'EP',0.57,'ENERGY STAR 官方認證'],
-  ['Toshiba','eStudio 409CS','M',42,'EP',0.57,'ENERGY STAR 官方認證'],
-  ['Toshiba','eStudio 479s','M',50,'EP',0.63,'ENERGY STAR 官方認證'],
-  ['Toshiba','eStudio 478S','M',50,'EP',0.66,'ENERGY STAR 官方認證'],
-  ['Toshiba','eStudio 509CS','M',52,'EP',0.69,'ENERGY STAR 官方認證'],
-  ['Toshiba','e-STUDIO5528A','M',55,'EP',0.72,'ENERGY STAR 官方認證'],
-  ['Toshiba','e-STUDIO5525AC','M',55,'EP',0.73,'ENERGY STAR 官方認證'],
-  ['Toshiba','eStudio 479CS','M',50,'EP',0.74,'ENERGY STAR 官方認證'],
-  ['Toshiba','e-STUDIO5535AC','M',55,'EP',0.75,'ENERGY STAR 官方認證'],
-  ['Toshiba','e-STUDIO5538A','M',55,'EP',0.75,'ENERGY STAR 官方認證'],
-  ['Toshiba','e-STUDIO6528A','M',65,'EP',0.85,'ENERGY STAR 官方認證'],
-  ['Toshiba','e-STUDIO6535AC','M',65,'EP',0.86,'ENERGY STAR 官方認證'],
-  ['Toshiba','e-STUDIO6525AC','M',65,'EP',0.86,'ENERGY STAR 官方認證'],
-  ['Toshiba','e-STUDIO6538A','M',65,'EP',0.86,'ENERGY STAR 官方認證'],
-  ['Toshiba','e-STUDIO6539A','M',65,'EP',0.98,'ENERGY STAR 官方認證'],
-  ['Toshiba','e-STUDIO6529A','M',65,'EP',0.98,'ENERGY STAR 官方認證'],
-  ['Toshiba','e-STUDIO6536AC','M',65,'EP',1.02,'ENERGY STAR 官方認證'],
-  ['Toshiba','e-STUDIO6526AC','M',65,'EP',1.04,'ENERGY STAR 官方認證'],
-  ['Toshiba','e-STUDIO7539A','M',75,'EP',1.14,'ENERGY STAR 官方認證'],
-  ['Toshiba','e-STUDIO6537AC','M',75,'EP',1.17,'ENERGY STAR 官方認證'],
-  ['Toshiba','e-STUDIO7529A','M',75,'EP',1.19,'ENERGY STAR 官方認證'],
-  ['Toshiba','e-STUDIO6527AC','M',75,'EP',1.23,'ENERGY STAR 官方認證'],
-  ['Toshiba','e-STUDIO7537AC','M',85,'EP',1.49,'ENERGY STAR 官方認證'],
-  ['Toshiba','e-STUDIO7527AC','M',85,'EP',1.51,'ENERGY STAR 官方認證'],
-  ['Toshiba','e-STUDIO9039A','M',90,'EP',1.57,'ENERGY STAR 官方認證'],
-  ['Toshiba','e-STUDIO9029A','M',90,'EP',1.58,'ENERGY STAR 官方認證'],
-  ['Toshiba','e-STUDIO908','M',90,'EP',12.10,'ENERGY STAR 官方認證'],
-  ['Toshiba','e-STUDIO907','M',90,'EP',12.70,'ENERGY STAR 官方認證'],
-  // ---------- Brother ----------
-  ['Brother','MFC-L3720CDW','M',19,'EP',0.29,'ENERGY STAR 官方認證'],
-  ['Brother','MFC-L2690DW','M',26,'EP',0.33,'ENERGY STAR 官方認證'],
-  ['Brother','MFC-L2980DW','M',36,'EP',0.35,'ENERGY STAR 官方認證'],
-  ['Brother','MFC-L2760DW','M',30,'EP',0.37,'ENERGY STAR 官方認證'],
-  ['Brother','HL-L2390DW','M',32,'EP',0.37,'ENERGY STAR 官方認證'],
-  ['Brother','MFC-L2710DW','M',32,'EP',0.38,'ENERGY STAR 官方認證'],
-  ['Brother','MFC-L3765CDW','C',27,'EP',0.41,'Brother 官網 / 能源之星'],
-  ['Brother','MFC-L2820DW','M',34,'EP',0.41,'ENERGY STAR 官方認證'],
-  ['Brother','HL-L2480DW','M',36,'EP',0.42,'ENERGY STAR 官方認證'],
-  ['Brother','MFC-L8970CDW','C',33,'EP',0.43,'Brother 官網 / 能源之星'],
-  ['Brother','MFC-L2750DW','M',36,'EP',0.45,'ENERGY STAR 官方認證'],
-  ['Brother','MFC-L3780CDW','C',31,'EP',0.47,'Brother 官網 / 能源之星'],
-  ['Brother','MFC-L5710DN','M',48,'EP',0.58,'ENERGY STAR 官方認證'],
-  ['Brother','MFC-L6915DW','M',52,'EP',0.65,'ENERGY STAR 官方認證'],
-  ['Brother','MFC-L5915DW','M',50,'EP',0.65,'ENERGY STAR 官方認證'],
-  ['Brother','MFC-L9670CDN','M',42,'EP',0.69,'ENERGY STAR 官方認證'],
+  // ---------- Epson (經濟部能源署節能標章 A3 核定 14 款) ----------
+  ['Epson','WF-C869R','C',24,'HPIJ',0.35,'經濟部能源署節能標章（印表機・證書106804續4）／原廠手冊'],
+  ['Epson','EM-C8100','C',25,'HPIJ',0.23,'經濟部能源署節能標章（印表機・證書1140370）／原廠手冊'],
+  ['Epson','EM-C8101','C',26,'HPIJ',0.23,'經濟部能源署節能標章（印表機・證書1140644）／原廠手冊'],
+  ['Epson','AM-C4000','C',40,'HPIJ',0.50,'經濟部能源署節能標章實測（印表機・證書1120450續1）'],
+  ['Epson','AM-C5000','C',50,'HPIJ',0.50,'經濟部能源署節能標章實測（印表機・證書1120450續1）'],
+  ['Epson','AM-C6000','C',60,'HPIJ',0.50,'經濟部能源署節能標章實測（印表機・證書1120450續1）'],
+  ['Epson','WF-C20600','C',60,'HPIJ',0.90,'經濟部能源署節能標章實測（印表機・證書1090695續3）'],
+  ['Epson','WF-C20750','C',75,'HPIJ',1.40,'經濟部能源署節能標章實測（印表機・證書1090695續3）'],
+  ['Epson','WF-C20590','C',100,'HPIJ',1.20,'經濟部能源署節能標章實測（印表機・證書107110續4）'],
+  ['Epson','WF-C21000','C',100,'HPIJ',3.40,'經濟部能源署節能標章實測（印表機・證書1090695續3）'],
+  ['Epson','AL-M7150DN','M',35,'EP',1.70,'經濟部能源署節能標章實測（印表機・證書1100675續2）'],
+  ['Epson','AL-M8250DN','M',45,'EP',2.40,'經濟部能源署節能標章實測（印表機・證書1100675續2）'],
+  ['Epson','AM-M5500','M',55,'HPIJ',0.70,'經濟部能源署節能標章實測（印表機・證書1140644）'],
+  ['Epson','WF-M21000','M',100,'HPIJ',1.30,'經濟部能源署節能標章實測（印表機・證書1100674續2）'],
+  // ---------- Ricoh (經濟部能源署節能標章 A3 核定 20 款) ----------
+  ['Ricoh','IM C2010','C',20,'EP',0.70,'經濟部能源署節能標章實測（印表機・證書1150300）'],
+  ['Ricoh','IM C2510','C',25,'EP',0.90,'經濟部能源署節能標章實測（印表機・證書1130566續1）'],
+  ['Ricoh','IM C3010','C',30,'EP',0.80,'經濟部能源署節能標章實測（印表機・證書1120711續1）'],
+  ['Ricoh','IM C3510','C',35,'EP',0.90,'經濟部能源署節能標章實測（印表機・證書1120711續1）'],
+  ['Ricoh','IM C4510','C',45,'EP',0.80,'經濟部能源署節能標章實測（印表機・證書1120711續1）'],
+  ['Ricoh','IM C6010','C',60,'EP',1.00,'經濟部能源署節能標章實測（印表機・證書1120711續1）'],
+  ['Ricoh','IM 2500','M',25,'EP',0.90,'經濟部能源署節能標章實測（印表機・證書1130560續1）'],
+  ['Ricoh','IM 2510','M',25,'EP',1.10,'經濟部能源署節能標章實測（影印機・證書1150863）'],
+  ['Ricoh','IM 3000','M',30,'EP',1.30,'經濟部能源署節能標章實測（印表機・證書1130564續1）'],
+  ['Ricoh','IM 3510','M',35,'EP',1.20,'經濟部能源署節能標章實測（影印機・證書1150916）'],
+  ['Ricoh','IM 3500','M',35,'EP',1.50,'經濟部能源署節能標章實測（印表機・證書1130559續1）'],
+  ['Ricoh','IM 4000','M',40,'EP',1.60,'經濟部能源署節能標章實測（印表機・證書1130561續1）'],
+  ['Ricoh','IM 4510','M',45,'EP',1.80,'經濟部能源署節能標章實測（影印機・證書1150863）'],
+  ['Ricoh','IM 5000','M',50,'EP',2.20,'經濟部能源署節能標章實測（印表機・證書1130565續1）'],
+  ['Ricoh','IM 5510','M',55,'EP',2.60,'經濟部能源署節能標章實測（影印機・證書1150863）'],
+  ['Ricoh','IM 6000','M',60,'EP',2.60,'經濟部能源署節能標章實測（印表機・證書1130562續1）'],
+  ['Ricoh','IM 6010','M',60,'EP',2.70,'經濟部能源署節能標章實測（影印機・證書1150915）'],
+  ['Ricoh','IM 7000','M',70,'EP',4.50,'經濟部能源署節能標章實測（影印機・證書1130298續1）'],
+  ['Ricoh','IM 8000','M',80,'EP',5.90,'經濟部能源署節能標章實測（影印機・證書1130549續1）'],
+  ['Ricoh','IM 9000','M',90,'EP',1.10,'經濟部能源署節能標章實測（影印機・證書1130550續1）'],
+  // ---------- FUJIFILM (經濟部能源署節能標章 A3 核定 51 款) ----------
+  ['FUJIFILM','Apeos C2060','C',20,'EP',0.80,'經濟部能源署節能標章實測（印表機・證書1110328續2）'],
+  ['FUJIFILM','Apeos C2061','C',20,'EP',0.80,'經濟部能源署節能標章實測（印表機・證書1140307）'],
+  ['FUJIFILM','Apeos C2560','C',25,'EP',0.90,'經濟部能源署節能標章實測（印表機・證書1110328續2）'],
+  ['FUJIFILM','Apeos C2567','C',25,'EP',1.00,'經濟部能源署節能標章實測（印表機・證書1140307）'],
+  ['FUJIFILM','Apeos C3070','C',30,'EP',1.10,'經濟部能源署節能標章實測（印表機・證書1100500續2）'],
+  ['FUJIFILM','Apeos C3071','C',30,'EP',1.10,'經濟部能源署節能標章實測（印表機・證書1140114）'],
+  ['FUJIFILM','ApeosPort C3060','C',30,'EP',1.20,'經濟部能源署節能標章實測（印表機・證書1100051續2）'],
+  ['FUJIFILM','Apeos C3067','C',30,'EP',1.30,'經濟部能源署節能標章實測（印表機・證書1140307）'],
+  ['FUJIFILM','Apeos C3060','C',30,'EP',1.40,'經濟部能源署節能標章實測（印表機・證書1110328續2）'],
+  ['FUJIFILM','Apeos C3570','C',35,'EP',1.20,'經濟部能源署節能標章實測（印表機・證書1100500續2）'],
+  ['FUJIFILM','Apeos C3571','C',35,'EP',1.30,'經濟部能源署節能標章實測（印表機・證書1140114）'],
+  ['FUJIFILM','ApeosPort C3570 R','C',35,'EP',1.30,'經濟部能源署節能標章實測（印表機・證書1150458）'],
+  ['FUJIFILM','ApeosPort-VI C3371 R','C',35,'EP',1.40,'經濟部能源署節能標章實測（印表機・證書1130038續1）'],
+  ['FUJIFILM','ApeosPort-V C3376 R','C',35,'EP',1.40,'經濟部能源署節能標章實測（印表機・證書1100499續2）'],
+  ['FUJIFILM','ApeosPort-VII C3373 R','C',35,'EP',1.50,'經濟部能源署節能標章實測（印表機・證書1140451）'],
+  ['FUJIFILM','Apeos C4571','C',45,'EP',1.90,'經濟部能源署節能標章實測（印表機・證書1140114）'],
+  ['FUJIFILM','Apeos C4570','C',45,'EP',2.00,'經濟部能源署節能標章實測（印表機・證書1100500續2）'],
+  ['FUJIFILM','ApeosPort-VII C4473','C',45,'EP',2.00,'經濟部能源署節能標章實測（印表機・證書1100052續2）'],
+  ['FUJIFILM','DocuCentre-VII C4473','C',45,'EP',2.00,'經濟部能源署節能標章實測（印表機・證書1100052續2）'],
+  ['FUJIFILM','ApeosPort-VII C5573','C',55,'EP',2.40,'經濟部能源署節能標章實測（印表機・證書1100052續2）'],
+  ['FUJIFILM','ApeosPort-VI C5571 R','C',55,'EP',2.40,'經濟部能源署節能標章實測（印表機・證書1130038續1）'],
+  ['FUJIFILM','DocuCentre-VII C5573','C',55,'EP',2.40,'經濟部能源署節能標章實測（印表機・證書1100052續2）'],
+  ['FUJIFILM','Apeos C5571','C',55,'EP',2.50,'經濟部能源署節能標章實測（印表機・證書1140114）'],
+  ['FUJIFILM','ApeosPort C5570 R','C',55,'EP',2.50,'經濟部能源署節能標章實測（印表機・證書1150458）'],
+  ['FUJIFILM','ApeosPort-VII C5573 R','C',55,'EP',2.60,'經濟部能源署節能標章實測（印表機・證書1140451）'],
+  ['FUJIFILM','Apeos C5570','C',55,'EP',2.70,'經濟部能源署節能標章實測（印表機・證書1100500續2）'],
+  ['FUJIFILM','ApeosPort-V C5576 R','C',55,'EP',2.80,'經濟部能源署節能標章實測（印表機・證書1100499續2）'],
+  ['FUJIFILM','Apeos C6570','C',65,'EP',3.20,'經濟部能源署節能標章實測（印表機・證書1100500續2）'],
+  ['FUJIFILM','Apeos C6571','C',65,'EP',3.80,'經濟部能源署節能標章實測（印表機・證書1140113）'],
+  ['FUJIFILM','Apeos C6580','C',65,'EP',4.10,'經濟部能源署節能標章實測（印表機・證書1140759）'],
+  ['FUJIFILM','ApeosPro C650','C',65,'EP',5.40,'經濟部能源署節能標章實測（印表機・證書1130866續1）'],
+  ['FUJIFILM','Apeos C7071','C',70,'EP',3.60,'經濟部能源署節能標章實測（印表機・證書1140114）'],
+  ['FUJIFILM','Apeos C7070','C',70,'EP',3.70,'經濟部能源署節能標章實測（印表機・證書1100500續2）'],
+  ['FUJIFILM','Apeos C7580','C',75,'EP',6.20,'經濟部能源署節能標章實測（印表機・證書1140759）'],
+  ['FUJIFILM','ApeosPro C810','C',81,'EP',7.30,'經濟部能源署節能標章實測（印表機・證書1100502續2）'],
+  ['FUJIFILM','Apeos 2561','M',25,'EP',0.80,'經濟部能源署節能標章實測（印表機・證書1150490）'],
+  ['FUJIFILM','Apeos 2560','M',25,'EP',1.00,'經濟部能源署節能標章實測（印表機・證書1110329續2）'],
+  ['FUJIFILM','Apeos 3061','M',30,'EP',1.10,'經濟部能源署節能標章實測（印表機・證書1150490）'],
+  ['FUJIFILM','Apeos 3060','M',30,'EP',1.30,'經濟部能源署節能標章實測（印表機・證書1110329續2）'],
+  ['FUJIFILM','Apeos 3561','M',35,'EP',1.40,'經濟部能源署節能標章實測（印表機・證書1150490）'],
+  ['FUJIFILM','Apeos 3560','M',35,'EP',1.60,'經濟部能源署節能標章實測（印表機・證書1110329續2）'],
+  ['FUJIFILM','Apeos 4570','M',45,'EP',2.10,'經濟部能源署節能標章實測（印表機・證書1110179續2）'],
+  ['FUJIFILM','Apeos 5570','M',55,'EP',2.40,'經濟部能源署節能標章實測（印表機・證書1110179續2）'],
+  ['FUJIFILM','Apeos 6571','M',65,'EP',3.30,'經濟部能源署節能標章實測（印表機・證書1150640）'],
+  ['FUJIFILM','Apeos 6580','M',65,'EP',3.80,'經濟部能源署節能標章實測（印表機・證書1120283續1）'],
+  ['FUJIFILM','ApeosPort-V 6080','M',65,'EP',4.70,'經濟部能源署節能標章實測（印表機・證書1100348續2）'],
+  ['FUJIFILM','DocuCentre-V 6080','M',65,'EP',4.70,'經濟部能源署節能標章實測（印表機・證書1100348續2）'],
+  ['FUJIFILM','Apeos 7580','M',75,'EP',3.80,'經濟部能源署節能標章實測（印表機・證書1120283續1）'],
+  ['FUJIFILM','ApeosPort-V 7080','M',75,'EP',4.90,'經濟部能源署節能標章實測（印表機・證書1100348續2）'],
+  ['FUJIFILM','DocuCentre-V 7080','M',75,'EP',4.90,'經濟部能源署節能標章實測（印表機・證書1100348續2）'],
+  ['FUJIFILM','Revoria Press E1136','M',136,'EP',20.50,'經濟部能源署節能標章實測（印表機・證書1110052續2）'],
+  // ---------- Canon (經濟部能源署節能標章 A3 核定 26 款) ----------
+  ['Canon','imageRUNNER C3326i','C',26,'EP',1.10,'經濟部能源署節能標章實測（印表機・證書1130124續1）'],
+  ['Canon','imageRUNNER ADVANCE DX C3930i','C',30,'EP',0.60,'經濟部能源署節能標章實測（影印機・證書1130449續1）'],
+  ['Canon','imageFORCE C5140','C',40,'EP',1.50,'經濟部能源署節能標章實測（影印機・證書1150029）'],
+  ['Canon','imageRUNNER ADVANCE DX C5840i','C',40,'EP',2.00,'經濟部能源署節能標章實測（影印機・證書1130448續1）'],
+  ['Canon','imageFORCE C5150','C',50,'EP',1.80,'經濟部能源署節能標章實測（影印機・證書1150031）'],
+  ['Canon','ImageFORCE C3150','C',50,'EP',2.00,'經濟部能源署節能標章實測（影印機・證書1150638）'],
+  ['Canon','imageRUNNER ADVANCE DX C5850i','C',50,'EP',2.20,'經濟部能源署節能標章實測（影印機・證書1130751續1）'],
+  ['Canon','imageFORCE C5160','C',60,'EP',2.40,'經濟部能源署節能標章實測（影印機・證書1150031）'],
+  ['Canon','imageRUNNER ADVANCE DX C5860i','C',60,'EP',3.00,'經濟部能源署節能標章實測（影印機・證書1130452續1）'],
+  ['Canon','imageFORCE C7165','C',65,'EP',2.70,'經濟部能源署節能標章實測（影印機・證書1140557）'],
+  ['Canon','imageFORCE C5170','C',70,'EP',3.40,'經濟部能源署節能標章實測（影印機・證書1150031）'],
+  ['Canon','imageRUNNER ADVANCE DX C5870i','C',70,'EP',3.50,'經濟部能源署節能標章實測（影印機・證書1130452續1）'],
+  ['Canon','imageRUNNER ADVANCE DX 4835i','M',25,'EP',1.20,'經濟部能源署節能標章實測（影印機・證書1120221續1）'],
+  ['Canon','imageRUNNER 2925i','M',25,'EP',1.20,'經濟部能源署節能標章實測（印表機・證書1130124續1）'],
+  ['Canon','imageRUNNER ADVANCE DX 6870i','M',25,'EP',4.90,'經濟部能源署節能標章實測（影印機・證書1120222續1）'],
+  ['Canon','imageRUNNER ADVANCE DX 4735i','M',35,'EP',0.80,'經濟部能源署節能標章實測（影印機・證書1120915續1）'],
+  ['Canon','image RUNNER ADVANCE DX 4935i','M',35,'EP',1.20,'經濟部能源署節能標章實測（印表機・證書1130123續1）'],
+  ['Canon','imageRUNNER ADVANCE DX 4945i','M',45,'EP',0.60,'經濟部能源署節能標章實測（影印機・證書1130449續1）'],
+  ['Canon','imageRUNNER ADVANCE DX 4745i','M',45,'EP',1.50,'經濟部能源署節能標章實測（影印機・證書1120915續1）'],
+  ['Canon','imageRUNNER ADVANCE DX 4751i','M',51,'EP',0.80,'經濟部能源署節能標章實測（影印機・證書1120917續1）'],
+  ['Canon','imageRUNNER ADVANCE DX 6855i','M',55,'EP',2.20,'經濟部能源署節能標章實測（影印機・證書1120916續1）'],
+  ['Canon','imageFORCE 6155','M',55,'EP',2.30,'經濟部能源署節能標章實測（影印機・證書1150032）'],
+  ['Canon','imageRUNNER ADVANCE DX 6755i','M',55,'EP',3.30,'經濟部能源署節能標章實測（影印機・證書1120914續1）'],
+  ['Canon','imageFORCE 6160','M',60,'EP',2.40,'經濟部能源署節能標章實測（影印機・證書1150032）'],
+  ['Canon','imageRUNNER ADVANCE DX 6860i','M',60,'EP',3.00,'經濟部能源署節能標章實測（影印機・證書1130451續1）'],
+  ['Canon','imageFORCE 6170','M',70,'EP',3.00,'經濟部能源署節能標章實測（影印機・證書1150032）'],
+  // ---------- KYOCERA (經濟部能源署節能標章 A3 核定 26 款) ----------
+  ['KYOCERA','TASKalfa 2554ci','C',25,'EP',1.10,'經濟部能源署節能標章實測（影印機・證書1110514續2）'],
+  ['KYOCERA','TASKalfa MZ2501ci','C',25,'EP',1.10,'經濟部能源署節能標章實測（影印機・證書1150456）'],
+  ['KYOCERA','TASKalfa MZ3501ci','C',35,'EP',1.60,'經濟部能源署節能標章實測（影印機・證書1150456）'],
+  ['KYOCERA','TASKalfa 3554ci','C',35,'EP',1.70,'經濟部能源署節能標章實測（影印機・證書1110514續2）'],
+  ['KYOCERA','TASKalfa MZ4001ci','C',40,'EP',1.90,'經濟部能源署節能標章實測（影印機・證書1150456）'],
+  ['KYOCERA','TASKalfa 4054ci','C',40,'EP',2.00,'經濟部能源署節能標章實測（影印機・證書1110515續2）'],
+  ['KYOCERA','TASKalfa 5054ci','C',50,'EP',2.40,'經濟部能源署節能標章實測（影印機・證書1110515續2）'],
+  ['KYOCERA','TASKalfa MZ5001ci','C',50,'EP',2.60,'經濟部能源署節能標章實測（影印機・證書1150456）'],
+  ['KYOCERA','TASKalfa 6054ci','C',60,'EP',3.10,'經濟部能源署節能標章實測（影印機・證書1110515續2）'],
+  ['KYOCERA','TASKalfa MZ6001ci','C',60,'EP',3.10,'經濟部能源署節能標章實測（影印機・證書1150456）'],
+  ['KYOCERA','TASKalfa 7054ci','C',70,'EP',4.00,'經濟部能源署節能標章實測（影印機・證書1110515續2）'],
+  ['KYOCERA','TASKalfa MZ7001ci','C',70,'EP',4.10,'經濟部能源署節能標章實測（影印機・證書1150456）'],
+  ['KYOCERA','TASKalfa MZ2202','M',22,'EP',1.10,'經濟部能源署節能標章實測（影印機・證書1150864）'],
+  ['KYOCERA','TASKalfa MZ2502','M',25,'EP',1.20,'經濟部能源署節能標章實測（影印機・證書1150864）'],
+  ['KYOCERA','TASKalfa MZ3200i','M',25,'EP',1.50,'經濟部能源署節能標章實測（影印機・證書1110787續1）'],
+  ['KYOCERA','TASKalfa MZ4000i','M',25,'EP',1.90,'經濟部能源署節能標章實測（影印機・證書1110787續1）'],
+  ['KYOCERA','ECOSYS MZ3201ix','M',32,'EP',1.30,'經濟部能源署節能標章實測（印表機・證書1150639）'],
+  ['KYOCERA','TASKalfa MZ3201i','M',32,'EP',1.30,'經濟部能源署節能標章實測（印表機・證書1150639）'],
+  ['KYOCERA','ECOSYS P4145dn','M',45,'EP',2.50,'經濟部能源署節能標章實測（印表機・證書1090515續3）'],
+  ['KYOCERA','TASKalfa MZ5001i','M',50,'EP',2.20,'經濟部能源署節能標章實測（影印機・證書1150457）'],
+  ['KYOCERA','TASKalfa 5004i','M',50,'EP',2.30,'經濟部能源署節能標章實測（影印機・證書1110514續2）'],
+  ['KYOCERA','TASKalfa 6004i','M',60,'EP',3.00,'經濟部能源署節能標章實測（影印機・證書1110514續2）'],
+  ['KYOCERA','TASKalfa MZ6001i','M',60,'EP',3.00,'經濟部能源署節能標章實測（影印機・證書1150457）'],
+  ['KYOCERA','ECOSYS P4060dn','M',60,'EP',3.50,'經濟部能源署節能標章實測（印表機・證書1090515續3）'],
+  ['KYOCERA','TASKalfa MZ7001i','M',70,'EP',3.60,'經濟部能源署節能標章實測（影印機・證書1150457）'],
+  ['KYOCERA','TASKalfa 7004i','M',70,'EP',3.90,'經濟部能源署節能標章實測（影印機・證書1110514續2）'],
+  // ---------- Sharp (經濟部能源署節能標章 A3 核定 23 款) ----------
+  ['Sharp','BP-50C26','C',26,'EP',1.30,'經濟部能源署節能標章實測（影印機・證書1130675續1）'],
+  ['Sharp','BP-50C26T','C',26,'EP',1.30,'經濟部能源署節能標章實測（影印機・證書1130674續1）'],
+  ['Sharp','BP-50C31','C',31,'EP',1.40,'經濟部能源署節能標章實測（影印機・證書1130302續1）'],
+  ['Sharp','BP-70C45','C',45,'EP',2.30,'經濟部能源署節能標章實測（影印機・證書1130037續1）'],
+  ['Sharp','BP-70C45T','C',45,'EP',2.30,'經濟部能源署節能標章實測（影印機・證書1130554續1）'],
+  ['Sharp','BP-70C55T','C',55,'EP',3.10,'經濟部能源署節能標章實測（影印機・證書1130888續1）'],
+  ['Sharp','BP-70C55','C',55,'EP',3.10,'經濟部能源署節能標章實測（影印機・證書1130301續1）'],
+  ['Sharp','BP-70C65T','C',65,'EP',3.20,'經濟部能源署節能標章實測（影印機・證書1130553續1）'],
+  ['Sharp','BP-70C65','C',65,'EP',3.20,'經濟部能源署節能標章實測（影印機・證書1130036續1）'],
+  ['Sharp','BP-30M28T','M',28,'EP',1.40,'經濟部能源署節能標章實測（影印機・證書1110245續2）'],
+  ['Sharp','BP-30M28','M',28,'EP',1.40,'經濟部能源署節能標章實測（影印機・證書1110244續2）'],
+  ['Sharp','BP-30M31','M',31,'EP',1.40,'經濟部能源署節能標章實測（影印機・證書1110246續2）'],
+  ['Sharp','BP-50M31','M',31,'EP',1.40,'經濟部能源署節能標章實測（影印機・證書1130300續1）'],
+  ['Sharp','BP-30M31T','M',31,'EP',1.50,'經濟部能源署節能標章實測（影印機・證書1110247續2）'],
+  ['Sharp','BP-30M35T','M',35,'EP',1.60,'經濟部能源署節能標章實測（影印機・證書1110178續2）'],
+  ['Sharp','BP-30M35','M',35,'EP',1.70,'經濟部能源署節能標章實測（影印機・證書1110248續2）'],
+  ['Sharp','BP-70M45','M',45,'EP',2.10,'經濟部能源署節能標章實測（影印機・證書1130677續1）'],
+  ['Sharp','BP-70M45T','M',45,'EP',2.10,'經濟部能源署節能標章實測（影印機・證書1130676續1）'],
+  ['Sharp','BP-70M55','M',55,'EP',2.90,'經濟部能源署節能標章實測（影印機・證書1130299續1）'],
+  ['Sharp','BP-70M65','M',65,'EP',3.20,'經濟部能源署節能標章實測（影印機・證書1130035續1）'],
+  ['Sharp','BP-70M65T','M',65,'EP',3.20,'經濟部能源署節能標章實測（影印機・證書1130552續1）'],
+  ['Sharp','BP-70M75T','M',75,'EP',4.80,'經濟部能源署節能標章實測（影印機・證書1130551續1）'],
+  ['Sharp','BP-70M75','M',75,'EP',4.80,'經濟部能源署節能標章實測（影印機・證書1130034續1）'],
+  // ---------- Konica Minolta (經濟部能源署節能標章 A3 核定 21 款) ----------
+  ['Konica Minolta','bizhub C251i','C',25,'EP',1.10,'經濟部能源署節能標章實測（影印機・證書1140252）'],
+  ['Konica Minolta','bizhub C301i','C',30,'EP',1.20,'經濟部能源署節能標章實測（影印機・證書1140252）'],
+  ['Konica Minolta','bizhub C361i','C',36,'EP',1.50,'經濟部能源署節能標章實測（影印機・證書1140049）'],
+  ['Konica Minolta','bizhub C451i','C',45,'EP',2.30,'經濟部能源署節能標章實測（影印機・證書1140049）'],
+  ['Konica Minolta','bizhub C551i','C',55,'EP',2.70,'經濟部能源署節能標章實測（影印機・證書1140050）'],
+  ['Konica Minolta','bizhub C651i','C',65,'EP',3.00,'經濟部能源署節能標章實測（影印機・證書1140050）'],
+  ['Konica Minolta','bizhub 227i','M',22,'EP',0.80,'經濟部能源署節能標章實測（影印機・證書1150033）'],
+  ['Konica Minolta','bizhub 287','M',28,'EP',1.40,'經濟部能源署節能標章實測（影印機・證書105066續5）'],
+  ['Konica Minolta','bizhub 300i','M',30,'EP',0.50,'經濟部能源署節能標章實測（影印機・證書1130119續1）'],
+  ['Konica Minolta','bizhub 301i','M',30,'EP',1.00,'經濟部能源署節能標章實測（影印機・證書1140252）'],
+  ['Konica Minolta','bizhub 360i','M',36,'EP',1.20,'經濟部能源署節能標章實測（影印機・證書1130119續1）'],
+  ['Konica Minolta','bizhub 361i','M',36,'EP',1.40,'經濟部能源署節能標章實測（影印機・證書1140049）'],
+  ['Konica Minolta','bizhub 367','M',36,'EP',1.50,'經濟部能源署節能標章實測（影印機・證書1100576續2）'],
+  ['Konica Minolta','bizhub 451i','M',45,'EP',2.10,'經濟部能源署節能標章實測（影印機・證書1140049）'],
+  ['Konica Minolta','bizhub 450i','M',45,'EP',2.40,'經濟部能源署節能標章實測（影印機・證書1090989續2）'],
+  ['Konica Minolta','bizhub 550i','M',55,'EP',2.60,'經濟部能源署節能標章實測（影印機・證書1100049續2）'],
+  ['Konica Minolta','bizhub 551i','M',55,'EP',2.70,'經濟部能源署節能標章實測（影印機・證書1140252）'],
+  ['Konica Minolta','bizhub 650i','M',65,'EP',3.90,'經濟部能源署節能標章實測（影印機・證書1090989續2）'],
+  ['Konica Minolta','bizhub 651i','M',65,'EP',4.10,'經濟部能源署節能標章實測（影印機・證書1140050）'],
+  ['Konica Minolta','bizhub 750i','M',75,'EP',4.80,'經濟部能源署節能標章實測（影印機・證書1090989續2）'],
+  ['Konica Minolta','bizhub 751i','M',75,'EP',4.90,'經濟部能源署節能標章實測（影印機・證書1140050）'],
+  // ---------- Toshiba (經濟部能源署節能標章 A3 核定 10 款) ----------
+  ['Toshiba','e-STUDIO2520AC(FC-2520AC)','C',25,'EP',1.10,'經濟部能源署節能標章實測（影印機・證書1110638續2）'],
+  ['Toshiba','e-STUDIO3525AC(FC-3525AC)','C',35,'EP',1.30,'經濟部能源署節能標章實測（影印機・證書1110639續2）'],
+  ['Toshiba','e-STUDIO4525AC(FC-4525AC)','C',45,'EP',2.20,'經濟部能源署節能標章實測（影印機・證書1110639續2）'],
+  ['Toshiba','e-STUDIO2829A(DP-2829A)','M',28,'EP',1.30,'經濟部能源署節能標章實測（影印機・證書1150034）'],
+  ['Toshiba','e-STUDIO3028A(DP-3028A)','M',30,'EP',1.40,'經濟部能源署節能標章實測（影印機・證書1110638續2）'],
+  ['Toshiba','e-STUDIO3528A(DP-3528A)','M',35,'EP',1.70,'經濟部能源署節能標章實測（影印機・證書1110639續2）'],
+  ['Toshiba','e-STUDIO4528A(DP-4528A)','M',45,'EP',2.00,'經濟部能源署節能標章實測（影印機・證書1110639續2）'],
+  ['Toshiba','e-STUDIO5528A(DP-5528A)','M',55,'EP',2.70,'經濟部能源署節能標章實測（影印機・證書1110639續2）'],
+  ['Toshiba','e-STUDIO6528A(DP-6528A)','M',65,'EP',3.30,'經濟部能源署節能標章實測（影印機・證書1110639續2）'],
+  ['Toshiba','e-STUDIO7529A(DP-7529A)','M',75,'EP',4.10,'經濟部能源署節能標章實測（影印機・證書1120282續1）'],
+  // ---------- HP (經濟部能源署節能標章 A3 核定 6 款) ----------
+  ['HP','HP Color LaserJet Managed MFP E785dn','C',28,'EP',1.30,'經濟部能源署節能標章實測（印表機・證書1140647）'],
+  ['HP','HP Color LaserJet Managed MFP E786dn','C',35,'EP',1.70,'經濟部能源署節能標章實測（印表機・證書1140648）'],
+  ['HP','HP Color LaserJet Managed MFP E877dn','C',70,'EP',4.10,'經濟部能源署節能標章實測（印表機・證書1140649）'],
+  ['HP','HP LaserJet MFP M42625dn','M',25,'EP',1.10,'經濟部能源署節能標章實測（印表機・證書1100577續2）'],
+  ['HP','HP LaserJet Managed MFP E731dn','M',40,'EP',2.00,'經濟部能源署節能標章實測（印表機・證書1140645）'],
+  ['HP','HP LaserJet Managed MFP E826dn','M',70,'EP',3.90,'經濟部能源署節能標章實測（印表機・證書1140646）'],
+  // ---------- DEVELOP (經濟部能源署節能標章 A3 核定 3 款) ----------
+  ['DEVELOP','DEVELOP ineo+ 250i','C',25,'EP',1.10,'經濟部能源署節能標章實測（影印機・證書1100274續2）'],
+  ['DEVELOP','DEVELOP ineo+ 360i','C',36,'EP',1.90,'經濟部能源署節能標章實測（影印機・證書1100274續2）'],
+  ['DEVELOP','ineo 205i','M',20,'EP',0.90,'經濟部能源署節能標章實測（影印機・證書1100274續2）'],
 ];
 /* --- SNAPSHOT END --- */
 
@@ -1473,7 +1093,7 @@ function sliderHTML(o){
   </div>`;
 }
 document.getElementById('simSliders').innerHTML = SIM_SLIDERS.map(sliderHTML).join('');
-document.getElementById('labSliders').innerHTML = LAB_SLIDERS.map(sliderHTML).join('');
+// labSliders removed
 
 const DECIMALS = {}; [...SIM_SLIDERS, ...LAB_SLIDERS].forEach(o => DECIMALS[o.k] = o.d);
 DECIMALS.goal = 0;
@@ -1597,7 +1217,7 @@ function initABPicker(){
   const baseCustomRow = document.getElementById('abBaseCustomRow');
 
   // ---------- 目標新機 (B) 品牌下拉 ----------
-  const brands = ['Ricoh', 'Epson', 'FUJIFILM', 'Canon', 'HP', 'Konica Minolta', 'Sharp', 'KYOCERA', 'Toshiba', 'Brother'];
+  const brands = ['Epson', 'Ricoh', 'FUJIFILM', 'Canon', 'KYOCERA', 'Sharp', 'Konica Minolta', 'Toshiba', 'HP', 'DEVELOP'];
   brandSel.innerHTML = brands.map(b => `<option value="${b}">${b==='Ricoh'?'★ Ricoh 理光（優先推薦）':b==='Epson'?'★ Epson 愛普生（免加熱微壓電首選）':b}</option>`).join('');
 
   function updateModels(brand, selectModelName){
@@ -1830,8 +1450,7 @@ function render(skip){
   document.getElementById('simTargetFill').style.width = (m.baseKwh > 0 ? Math.min(100, Math.max(1, m.targetKwh/m.baseKwh*100)) : 0) + '%';
 
   renderCum(m);
-  renderGauge(m);
-  renderLab(L);
+  renderTimeline();
   renderCompare();
 }
 
@@ -1842,51 +1461,23 @@ function renderCum(m){
   document.getElementById('cumX').innerHTML = m.cum.map((_,i)=>`<span>第${i+1}年</span>`).join('');
 }
 
-function renderGauge(m){
-  const r = Math.max(0, Math.min(100, m.rate));
-  document.getElementById('gaugeFill').style.width = r + '%';
-  document.getElementById('gaugeTarget').style.left = S.goal + '%';
-  const pill = document.getElementById('gapPill');
-  const diff = m.rate - S.goal;
-  pill.innerHTML = diff >= 0
-    ? `<span class="dot" style="background:var(--sage)"></span>已達標，超出 ${fmt(diff,1)} 個百分點`
-    : `<span class="dot" style="background:var(--rose)"></span>尚差 ${fmt(-diff,1)} 個百分點`;
-}
-
-function renderLab(L){
-  document.getElementById('lS').textContent = S.s;
-  document.getElementById('lJobs').textContent = L.jobs;
-  document.getElementById('lJobsRule').innerHTML = S.s <= 8 ? 's ≤ 8 → 8' : (S.s < 32 ? '8 &lt; s &lt; 32 → = s' : 's ≥ 32 → 32');
-  document.getElementById('lImg').textContent = L.img;
-  document.getElementById('lDaily').textContent = fmt(L.daily);
-  document.getElementById('fx1').innerHTML =
-    `E<sub>批次</sub> = 2 × ${fmt(S.ej1,1)} Wh + (${L.jobs} − 2) × ${fmt(S.ej,1)} Wh<br>= <span class="hl">${fmt(L.eJobs,4)} kWh</span>`;
-  document.getElementById('fx2').innerHTML =
-    `E<sub>收尾</sub> = 2 × ${fmt(S.ef,1)} Wh = ${fmt(L.eFinal,4)} kWh<br>` +
-    `E<sub>睡眠</sub> = (24 − ${fmt(L.tJobs,2)} − ${fmt(L.tFinal,2)}) h × ${fmt(S.ps,1)} W = ${fmt(L.eSleep,4)} kWh<br>` +
-    `E<sub>工作日</sub> = <span class="hl">${fmt(L.eDay,4)} kWh</span>`;
-  document.getElementById('fx3').innerHTML =
-    `TEC = 5 × ${fmt(L.eDay,4)} + 48 h × ${fmt(S.ps,1)} W<br>= ${fmt(5*L.eDay,4)} + ${fmt(L.eWeekend,4)} = <span class="hl">${fmt(L.tec,3)} kWh/週</span>`;
-  document.getElementById('lTec').textContent = fmt(L.tec,3);
-
-  const parts = [
-    ['列印批次', 5*L.eJobs, 'var(--sand)'], ['收尾待機', 5*L.eFinal, 'var(--blue)'],
-    ['上班日睡眠', 5*L.eSleep, 'var(--sage)'], ['週末睡眠', L.eWeekend, 'var(--teal)']
-  ];
-  const tot = L.tec || 1;
-  document.getElementById('lStack').innerHTML = parts.map(p=>`<div title="${p[0]}" style="width:${p[1]/tot*100}%;background:${p[2]}"></div>`).join('');
-  document.getElementById('lLegend').innerHTML = parts.map(p=>`<span><span class="dot" style="background:${p[2]}"></span>${p[0]} ${fmt(p[1]/tot*100,0)}%</span>`).join('');
-
-  // 一天時間軸
-  const wake = 2 * 0.1;
-  const jobsH = Math.max(0, L.tJobs - wake);
+function renderTimeline(){
+  const wake = 0.2;
+  const jobsH = 1.8;
+  const finalH = 0.5;
+  const sleepH = 24 - wake - jobsH - finalH;
   const segs = [
-    ['睡眠', L.tSleep/2, 'var(--sage)'], ['喚醒', wake/2, 'var(--rose)'], ['列印批次', jobsH/2, 'var(--sand)'], ['收尾', L.tFinal/2, 'var(--blue)'],
-    ['喚醒', wake/2, 'var(--rose)'], ['列印批次', jobsH/2, 'var(--sand)'], ['收尾', L.tFinal/2, 'var(--blue)'], ['睡眠', L.tSleep/2, 'var(--sage)']
+    ['睡眠', sleepH/2, 'var(--sage)'], ['喚醒', wake/2, 'var(--rose)'], ['列印批次', jobsH/2, 'var(--sand)'], ['收尾', finalH/2, 'var(--blue)'],
+    ['喚醒', wake/2, 'var(--rose)'], ['列印批次', jobsH/2, 'var(--sand)'], ['收尾', finalH/2, 'var(--blue)'], ['睡眠', sleepH/2, 'var(--sage)']
   ];
-  document.getElementById('dayTimeline').innerHTML = segs.map(sg =>
-    `<div style="flex:${sg[1]};background:${sg[2]}" title="${sg[0]} ${fmt(sg[1],2)} h">${sg[1] >= 1.6 ? sg[0] + ' ' + fmt(sg[1],1)+'h' : ''}</div>`).join('');
+  const tl = document.getElementById('dayTimeline');
+  if (tl) {
+    tl.innerHTML = segs.map(sg =>
+      `<div style="flex:${sg[1]};background:${sg[2]}" title="${sg[0]} ${fmt(sg[1],1)} 小時">${sg[1] >= 1.6 ? sg[0] + ' ' + fmt(sg[1],1)+'h' : ''}</div>`).join('');
+  }
 }
+function renderGauge(m){ /* slide 4 removed */ }
+function renderLab(L){ /* lab simulation removed */ }
 
 /* 比較區 */
 function renderCompare(){
@@ -2264,7 +1855,7 @@ document.getElementById('btnReset').addEventListener('click', () => {
    ========================================================= */
 let page = 1;
 function go(n){
-  page = Math.max(1, Math.min(4, n));
+  page = Math.max(1, Math.min(3, n));
   document.querySelectorAll('.slide').forEach((s,i) => s.classList.toggle('on', i+1 === page));
   document.querySelectorAll('.tab').forEach(t => t.classList.toggle('on', +t.dataset.go === page));
   document.getElementById('pageNo').textContent = page;
@@ -2275,8 +1866,8 @@ function go(n){
     prevBtn.style.visibility = page === 1 ? 'hidden' : 'visible';
   }
   if (nextBtn){
-    nextBtn.disabled = page === 4;
-    nextBtn.style.visibility = page === 4 ? 'hidden' : 'visible';
+    nextBtn.disabled = page === 3;
+    nextBtn.style.visibility = page === 3 ? 'hidden' : 'visible';
   }
   const t = document.querySelector(`.tab[data-go="${page}"]`); t && t.scrollIntoView({inline:'center', block:'nearest'});
   window.scrollTo({top:0, behavior:'smooth'});

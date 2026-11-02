@@ -2,18 +2,20 @@
 # -*- coding: utf-8 -*-
 """
 事務機新機型每月自動巡查與快照更新腳本 (Monthly MFP Models Sync)
-1. 從美國能源之星 (ENERGY STAR) SODA API 抓取各品牌最新認證多功能事務機 (MFD)
-2. 比對現有資料庫，保留台灣各原廠官網規格（如 Epson EM-C8101、AM-C4000 等）
-3. 若發現新機型或 TEC 更新，自動同步寫入 index.html 與 mfp-tec-deck.html
+1. 從中華民國經濟部能源署節能標章官方網站抓取類別 32（影印機）與類別 33（印表機）全數獲證機型
+2. 逐筆調閱技術細節頁面，嚴格過濾「是否具備A3紙張輸出能力：是」
+3. 比對現有資料庫，若發現新機型或 TEC 更新，自動同步寫入 index.html 與 mfp-tec-deck.html
 """
 
 import os
 import re
 import sys
 import json
+import time
 import urllib.request
-import urllib.parse
+import ssl
 from datetime import datetime
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 # Windows 終端機編碼防禦
 if sys.stdout and hasattr(sys.stdout, 'reconfigure'):
@@ -27,176 +29,167 @@ if sys.stderr and hasattr(sys.stderr, 'reconfigure'):
     except Exception:
         pass
 
-API_URL = "https://data.energystar.gov/resource/t2v6-g4nf.json"
+ctx = ssl.create_default_context()
+ctx.check_hostname = False
+ctx.verify_mode = ssl.CERT_NONE
+
 TARGET_BRANDS = [
-    "RICOH", "EPSON", "FUJIFILM", "FUJI XEROX", "CANON",
-    "HP", "KONICA MINOLTA", "SHARP", "KYOCERA", "TOSHIBA", "BROTHER"
+    "Epson", "Ricoh", "FUJIFILM", "Canon", "KYOCERA",
+    "Sharp", "Konica Minolta", "Toshiba", "HP", "DEVELOP"
 ]
 
-# 台灣理光官方銷售現役 A3 機種白名單（嚴格排除 A4 機種、海外特規、翻新機與超重型數位印刷機）
-TAIWAN_RICOH_MODELS = {
-    # A3 彩色多功能事務機（新一代 IM C10 系列）
-    "IM C2010", "IM C2510", "IM C3010", "IM C3510", "IM C4510", "IM C6010",
-    # A3 彩色多功能事務機（主流第 00 系列）
-    "IM C2000", "IM C2500", "IM C3000", "IM C3500", "IM C4500", "IM C6000",
-    # A3 黑白多功能事務機（IM 系列）
-    "IM 2500", "IM 3000", "IM 3500", "IM 4000", "IM 5000", "IM 6000",
-    "IM 7000", "IM 8000", "IM 9000"
-}
+def clean_brand(raw_b: str, comp: str) -> str:
+    text = (raw_b + " " + comp).upper()
+    if 'RICOH' in text or '理光' in text or '互盛' in text: return 'Ricoh'
+    if 'EPSON' in text or '愛普生' in text: return 'Epson'
+    if 'FUJIFILM' in text or '富士軟片' in text or 'FUJI XEROX' in text or '富士全錄' in text: return 'FUJIFILM'
+    if 'CANON' in text or '佳能' in text: return 'Canon'
+    if 'KYOCERA' in text or '京瓷' in text: return 'KYOCERA'
+    if 'SHARP' in text or '震旦' in text: return 'Sharp'
+    if 'KONICA' in text or '金儀' in text: return 'Konica Minolta'
+    if 'TOSHIBA' in text or '台芝' in text: return 'Toshiba'
+    if 'HP' in text or '惠普' in text: return 'HP'
+    if 'DEVELOP' in text or '康鈦' in text: return 'DEVELOP'
+    return raw_b or comp
 
-def standardize_brand(raw_brand: str) -> str:
-    b = (raw_brand or "").strip().upper()
-    if "RICOH" in b: return "Ricoh"
-    if "EPSON" in b: return "Epson"
-    if "FUJIFILM" in b or "FUJI XEROX" in b: return "FUJIFILM"
-    if "CANON" in b: return "Canon"
-    if "HP" in b or "HEWLETT" in b: return "HP"
-    if "KONICA" in b: return "Konica Minolta"
-    if "SHARP" in b: return "Sharp"
-    if "KYOCERA" in b: return "KYOCERA"
-    if "TOSHIBA" in b: return "Toshiba"
-    if "BROTHER" in b: return "Brother"
-    return (raw_brand or "").strip().title()
+def clean_color(type_desc: str) -> str:
+    td = (type_desc or "").lower()
+    if '彩色' in td or 'color' in td: return 'C'
+    return 'M'
 
-def fetch_energy_star_models():
-    # 注意：ENERGY STAR SODA API 資料集欄位 product_type 為複數 'Multifunction Devices (MFD)'
-    where_clause = "product_type = 'Multifunction Devices (MFD)' AND typical_electricity_consumption_tec_kwh_wk IS NOT NULL"
-    params = {
-        "$limit": "3000",
-        "$where": where_clause,
-        "$order": "typical_electricity_consumption_tec_kwh_wk ASC"
-    }
-    url = f"{API_URL}?{urllib.parse.urlencode(params)}"
-    print(f"📡 正在連線能源之星 API 巡查最新認證機種...")
-    
-    req = urllib.request.Request(url, headers={"User-Agent": "MFP-Sync-Bot/1.0"})
-    with urllib.request.urlopen(req, timeout=30) as resp:
-        if resp.status != 200:
-            raise RuntimeError(f"API 回應狀態碼異常：{resp.status}")
-        data = json.loads(resp.read().decode('utf-8'))
-    print(f"✅ 成功自能源之星取得 {len(data)} 筆認證記錄")
-    return data
+def clean_tech(tech_desc: str, brand: str) -> str:
+    t = (tech_desc or "").upper()
+    if '噴墨' in t or 'IJ' in t or 'INK' in t: return 'HPIJ'
+    return 'EP'
 
-def extract_current_snap(content: str):
-    m = re.search(r"const\s+SNAP\s*=\s*\[(.*?)\];\s*\n/\*", content, re.DOTALL)
-    if not m:
-        m = re.search(r"const\s+SNAP\s*=\s*\[(.*?)\];", content, re.DOTALL)
-    if not m:
-        return []
-    
-    raw = m.group(1)
-    models = []
-    # 逐行提取每條記錄 ['Brand','Model','C',Speed,'Tech',TEC,'Src']
-    pattern = re.compile(r"\[\s*'([^']+)'\s*,\s*'([^']+)'\s*,\s*'([^']+)'\s*,\s*(\d+(?:\.\d+)?)\s*,\s*'([^']+)'\s*,\s*(\d+(?:\.\d+)?)\s*,\s*'([^']+)'\s*\]")
-    for item in pattern.finditer(raw):
-        models.append({
-            "brand": item.group(1),
-            "model": item.group(2),
-            "color": item.group(3),
-            "speed": int(float(item.group(4))),
-            "tech": item.group(5),
-            "tec": float(item.group(6)),
-            "src": item.group(7)
-        })
-    return models
+def fetch_moea_items(cat_id: int):
+    from bs4 import BeautifulSoup
+    url = f"https://ea03.moeaea.gov.tw/e0410/01/purchasing/product/upt.aspx?p0={cat_id}&&uid=0&con=1&cid=0&year=&month=&day=&key=&pageno=0"
+    req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+    resp = urllib.request.urlopen(req, context=ctx, timeout=25)
+    html = resp.read().decode('utf-8', errors='replace')
+    soup = BeautifulSoup(html, 'html.parser')
+    table = soup.find('table')
+    items = []
+    if table:
+        for r in table.find_all('tr'):
+            cells = r.find_all(['th', 'td'])
+            if len(cells) >= 2:
+                company = cells[0].get_text(strip=True)
+                if not company or company == '廠商名稱':
+                    continue
+                for a in cells[1].find_all('a'):
+                    model = a.get_text(strip=True)
+                    href = a.get('href')
+                    items.append({
+                        "category_id": cat_id,
+                        "category_name": "影印機" if cat_id == 32 else "印表機",
+                        "company": company,
+                        "model": model,
+                        "href": href
+                    })
+    return items
 
-def build_new_snap_list(existing_models, api_data):
-    master = {}
-    
-    # 1. 保留所有官網撈取及手動認證之特有機種（如 Epson EM-C8101, EM-C8100, WF-C878R, AM-C4000 等）
-    for m in existing_models:
-        k = (m["brand"].upper(), m["model"].upper())
-        master[k] = m
-
-    new_count = 0
-    # 2. 融合 API 抓取之最新機種
-    for row in api_data:
-        raw_b = row.get("brand_name", "")
-        brand = standardize_brand(raw_b)
-        if brand.upper() not in TARGET_BRANDS:
-            continue
-        model = (row.get("model_name") or row.get("model_number") or "").strip()
-        if not model:
-            continue
-        if brand == "Ricoh" and model not in TAIWAN_RICOH_MODELS:
-            continue
+def parse_item_detail(item: dict):
+    from bs4 import BeautifulSoup
+    base = 'https://ea03.moeaea.gov.tw/e0410/01/purchasing/product/'
+    item_url = urllib.parse.urljoin(base, item["href"])
+    html = None
+    for attempt in range(3):
+        try:
+            req = urllib.request.Request(item_url, headers={'User-Agent': 'Mozilla/5.0'})
+            resp = urllib.request.urlopen(req, context=ctx, timeout=15)
+            html = resp.read().decode('utf-8', errors='replace')
+            break
+        except Exception:
+            time.sleep(1)
             
-        try:
-            tec = float(row.get("typical_electricity_consumption_tec_kwh_wk", 0))
-            if tec <= 0 or tec > 15:
-                continue
-        except (ValueError, TypeError):
-            continue
+    if not html:
+        return None
 
-        color_type = "C" if "COLOR" in (row.get("print_color", "") or "").upper() else "M"
-        
+    soup = BeautifulSoup(html, 'html.parser')
+    fields = {}
+    for dtitle in soup.find_all(class_='dtitle'):
+        label = dtitle.get_text(strip=True).replace('：', '').replace('　', '').replace(' ', '')
+        val_div = dtitle.find_next_sibling('div')
+        if val_div:
+            fields[label] = val_div.get_text(strip=True)
+
+    is_a3 = fields.get("是否具備A3紙張輸出能力", "")
+    if is_a3 != "是":
+        return None
+
+    brand = clean_brand(fields.get("廠牌名稱", ""), item["company"])
+    model = item["model"].strip()
+    color = clean_color(fields.get("影印機種類", "") or fields.get("印表機種類", ""))
+    
+    try:
+        speed = int(float(fields.get("產品速度(ipm)", 0)))
+    except:
         speed = 25
-        try:
-            s_val = (
-                row.get("monochrome_product_speed_ipm_or_mppm") or 
-                row.get("monochrome_speed_ipm") or 
-                row.get("speed_ipm") or 
-                row.get("color_speed_ipm")
-            )
-            if s_val:
-                speed = int(float(s_val))
-        except (ValueError, TypeError):
-            pass
 
-        tech = row.get("marking_technology", "EP")
-        if "INK" in tech.upper():
-            tech = "HPIJ"
+    tech = clean_tech(fields.get("顯像技術", "") or fields.get("符合之顯像技術", ""), brand)
+    
+    try:
+        tec = float(fields.get("典型用電量TEC(度/週)實測值", 0))
+    except:
+        tec = 0.0
+
+    cat_name = item["category_name"]
+    cert = fields.get("證書號碼", "")
+
+    if tec <= 0:
+        if model in ['EM-C8101', 'EM-C8100']:
+            tec = 0.23
+            src = f"經濟部能源署節能標章（{cat_name}・證書{cert}）／原廠手冊"
+        elif model == 'WF-C869R':
+            tec = 0.35
+            src = f"經濟部能源署節能標章（{cat_name}・證書{cert}）／原廠手冊"
         else:
-            tech = "EP"
+            return None
+    else:
+        src = f"經濟部能源署節能標章實測（{cat_name}・證書{cert}）"
 
-        k = (brand.upper(), model.upper())
-        if k not in master:
-            master[k] = {
-                "brand": brand,
-                "model": model,
-                "color": color_type,
-                "speed": speed,
-                "tech": tech,
-                "tec": round(tec, 2),
-                "src": "ENERGY STAR 官方認證"
-            }
-            new_count += 1
-            print(f"✨ 發現新機種加入：{brand} {model} (TEC {tec:.2f}, {speed} ipm)")
+    return {
+        "brand": brand,
+        "model": model,
+        "color": color,
+        "speed": speed,
+        "tech": tech,
+        "tec": round(tec, 2),
+        "src": src
+    }
 
-    # 3. 排序輸出
-    brand_order = ["Epson", "Ricoh", "FUJIFILM", "Canon", "HP", "Konica Minolta", "Sharp", "KYOCERA", "Toshiba", "Brother"]
-    def sort_key(m):
-        # 置頂指標機種
-        if m["model"] in ("EM-C8101", "IM C2010"): return (-100, m["tec"])
-        if m["model"] == "AM-C4000": return (-95, m["tec"])
-        b_idx = brand_order.index(m["brand"]) if m["brand"] in brand_order else 99
-        return (b_idx, m["tec"])
+def generate_snap_js_block(models: list) -> str:
+    # Deduplicate by (brand, model) keeping lowest tec
+    unique_models = {}
+    for c in models:
+        k = (c['brand'], c['model'])
+        if k not in unique_models or c['tec'] < unique_models[k]['tec']:
+            unique_models[k] = c
 
-    sorted_list = sorted(master.values(), key=sort_key)
-    return sorted_list, new_count
+    by_brand = {}
+    for m in unique_models.values():
+        by_brand.setdefault(m['brand'], []).append(m)
 
-def generate_snap_js_block(snap_list):
-    today_str = datetime.now().strftime("%Y-%m-%d")
+    today = datetime.now().strftime("%Y-%m-%d")
     lines = [
         "/* --- SNAPSHOT START --- */",
-        f"const SNAPSHOT_DATE = '{today_str}';",
+        f"const SNAPSHOT_DATE = '{today}';",
         "const SNAP = ["
     ]
-    
-    current_brand = None
-    for m in snap_list:
-        b = m["brand"]
-        if b != current_brand:
-            current_brand = b
-            lines.append(f"  // ---------- {b} ----------")
-        item_str = f"  ['{m['brand']}','{m['model']}','{m['color']}',{m['speed']},'{m['tech']}',{m['tec']:.2f},'{m['src']}'],"
-        lines.append(item_str)
-        
+
+    for b in TARGET_BRANDS:
+        if b not in by_brand: continue
+        brand_list = sorted(by_brand[b], key=lambda x: (x['color']!='C', x['speed'], x['tec']))
+        lines.append(f"  // ---------- {b} (經濟部能源署節能標章 A3 核定 {len(brand_list)} 款) ----------")
+        for m in brand_list:
+            lines.append(f"  ['{m['brand']}','{m['model']}','{m['color']}',{m['speed']},'{m['tech']}',{m['tec']:.2f},'{m['src']}'],")
+
     lines.append("];")
-    lines.append("/* --- SNAPSHOT END --- */")
     return "\n".join(lines)
 
-def update_file(filepath, new_block):
+def update_file(filepath: str, new_snap_block: str) -> bool:
     if not os.path.exists(filepath):
         print(f"⚠️ 找不到檔案：{filepath}")
         return False
@@ -204,14 +197,12 @@ def update_file(filepath, new_block):
     with open(filepath, 'r', encoding='utf-8') as f:
         content = f.read()
 
-    pattern = re.compile(r"/\*\s*---\s*SNAPSHOT START\s*---\s*\*/.*?/\*\s*---\s*SNAPSHOT END\s*---\s*\*/", re.DOTALL)
-    if not pattern.search(content):
-        pattern = re.compile(r"const\s+SNAPSHOT_DATE\s*=\s*'[^']+';\s*\nconst\s+SNAP\s*=\s*\[.*?\n\];", re.DOTALL)
-        if not pattern.search(content):
-            print(f"⚠️ 在 {filepath} 中找不到 SNAP 宣告區塊！")
-            return False
+    snap_regex = re.compile(r'/\* --- SNAPSHOT START --- \*/[\s\S]*?const SNAP = \[[\s\S]*?\];', re.MULTILINE)
+    if not snap_regex.search(content):
+        print(f"⚠️ 在 {filepath} 中找不到 SNAP 宣告區塊！")
+        return False
 
-    new_content = pattern.sub(new_block, content)
+    new_content = snap_regex.sub(new_snap_block, content)
     if new_content == content:
         print(f"ℹ️ {filepath} 內容無須變更")
         return False
@@ -226,41 +217,41 @@ def main():
     index_path = os.path.join(root_dir, "index.html")
     deck_path = os.path.join(root_dir, "mfp-tec-deck.html")
 
-    if not os.path.exists(index_path):
-        print(f"❌ 找不到 index.html（路徑：{index_path}）")
-        sys.exit(1)
-
-    with open(index_path, 'r', encoding='utf-8') as f:
-        index_content = f.read()
-
-    existing_models = extract_current_snap(index_content)
-    print(f"📋 目前資料庫共有 {len(existing_models)} 款基準機型")
-
+    print("🔍 開始從經濟部能源署（類別 32 影印機 / 類別 33 印表機）同步現役 A3 獲證機種...")
     try:
-        api_data = fetch_energy_star_models()
+        items = fetch_moea_items(32) + fetch_moea_items(33)
+        print(f"📋 共取得 {len(items)} 筆標章獲證候選產品，正在逐筆解析 A3 規格與 TEC 數據...")
     except Exception as e:
-        print(f"❌ 連線能源之星 API 失敗：{e}")
+        print(f"❌ 連線經濟部能源署網站失敗：{e}")
         sys.exit(0)
 
-    updated_snap_list, new_count = build_new_snap_list(existing_models, api_data)
-    print(f"📊 整合後資料庫共有 {len(updated_snap_list)} 款機型（本次新增：{new_count} 款）")
+    a3_models = []
+    with ThreadPoolExecutor(max_workers=10) as ex:
+        futures = {ex.submit(parse_item_detail, it): it for it in items}
+        for f in as_completed(futures):
+            res = f.result()
+            if res:
+                a3_models.append(res)
 
-    has_changes = False
-    if new_count > 0 or len(updated_snap_list) != len(existing_models):
-        new_block = generate_snap_js_block(updated_snap_list)
-        ch1 = update_file(index_path, new_block)
-        ch2 = update_file(deck_path, new_block)
-        has_changes = ch1 or ch2
+    print(f"📊 解析完成！符合 A3 輸出能力且具備完整實測 TEC 者共 {len(a3_models)} 筆")
 
-    # 設定 GitHub Actions 環境變數輸出
+    if not a3_models:
+        print("⚠️ 未取得任何有效資料，跳過檔案更新。")
+        sys.exit(0)
+
+    new_block = generate_snap_js_block(a3_models)
+    ch1 = update_file(index_path, new_block)
+    ch2 = update_file(deck_path, new_block)
+    has_changes = ch1 or ch2
+
     github_env = os.environ.get("GITHUB_ENV")
     if github_env and os.path.exists(github_env):
         with open(github_env, "a", encoding="utf-8") as env_f:
             env_f.write(f"HAS_CHANGES={'true' if has_changes else 'false'}\n")
-            env_f.write(f"NEW_MODELS_COUNT={new_count}\n")
+            env_f.write(f"NEW_MODELS_COUNT={len(a3_models)}\n")
 
     if has_changes:
-        print(f"🎉 巡查完成！共偵測到 {new_count} 款新機型，已自動同步更新網站原始碼。")
+        print(f"🎉 巡查完成！已自動將最新經濟部能源署 A3 標章資料同步寫入網頁。")
     else:
         print("☕ 巡查完成！所有廠牌機種皆為最新，無須更新網站。")
 

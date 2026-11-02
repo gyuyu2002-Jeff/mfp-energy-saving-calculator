@@ -1224,7 +1224,7 @@ let shown = 60;
 let online = false;
 let calcMode = 'single'; // 'single' | 'fleet'
 
-// 多台試算（多機種艦隊）預設資料
+// 多台試算（多機種組合）預設資料
 let fleetOld = [
   { brand: 'Ricoh', model: 'MP C2504ex', speed: 25, tec: 1.10, units: 2, era: '約 6~7 年前（2017~2018）', src: '原廠歷史規格 / 歷史實測' },
   { brand: 'FUJIFILM', model: 'DocuCentre-V C2263', speed: 20, tec: 1.15, units: 1, era: '約 5~7 年前（租賃普及機）', src: 'Fuji Xerox 官方規格' }
@@ -1280,7 +1280,7 @@ function calc(st){
   };
 }
 
-/* 純函數：多台換機（艦隊組合）效益 */
+/* 純函數：多台換機（多機種組合）效益 */
 function calcFleet(st){
   const W = 52;
   let baseKwh = 0, totalUnitsOld = 0;
@@ -1428,11 +1428,11 @@ const LEGACY_MODELS = {
     { model: 'Aficio MP C2551', speed: 25, tec: 2.20, era: '早期傳統雷射經典機', src: 'ENERGY STAR 歷史認證' }
   ],
   FUJIFILM: [
-    { model: 'DocuCentre-V C2263', speed: 20, tec: 1.15, era: '約 5~7 年前（台灣最普及租賃神機之一）', src: 'Fuji Xerox 官方規格 / 能源之星' },
+    { model: 'DocuCentre-V C2263', speed: 20, tec: 1.15, era: '約 5~7 年前（市場普遍租賃機種）', src: 'Fuji Xerox 官方規格 / 能源之星' },
     { model: 'DocuCentre-V C2265', speed: 25, tec: 1.25, era: '約 5~7 年前（租賃主力款）', src: 'Fuji Xerox 官方規格 / 能源之星' },
     { model: 'DocuCentre-VI C2271', speed: 25, tec: 1.00, era: '約 5~6 年前（高階機種）', src: 'Fuji Xerox 官方規格 / 能源之星' },
     { model: 'DocuCentre-VI C3371', speed: 35, tec: 1.18, era: '約 5~6 年前（高速彩色）', src: 'Fuji Xerox 官方規格 / 能源之星' },
-    { model: 'ApeosPort-VI C2271', speed: 25, tec: 0.98, era: '約 5~6 年前（旗艦款）', src: 'Fuji Xerox 官方規格 / 能源之星' },
+    { model: 'ApeosPort-VI C2271', speed: 25, tec: 0.98, era: '約 5~6 年前（高階商務機種）', src: 'Fuji Xerox 官方規格 / 能源之星' },
     { model: 'ApeosPort-V C3375', speed: 35, tec: 1.40, era: '約 6~8 年前（主流商用）', src: 'Fuji Xerox 官方規格 / 能源之星' },
     { model: 'DocuCentre-IV C2260', speed: 20, tec: 2.15, era: '約 8~10 年前（老舊高耗電款）', src: 'ENERGY STAR 歷史認證' },
     { model: 'Apeos C2060', speed: 20, tec: 0.75, era: '約 3~4 年前（近代雷射機種）', src: 'FUJIFILM 官方規格 / 能源之星' }
@@ -1440,7 +1440,7 @@ const LEGACY_MODELS = {
   Canon: [
     { model: 'iR-ADV C3520i III', speed: 20, tec: 0.82, era: '約 4~5 年前（三代主力）', src: 'Canon 官方規格 / 能源之星' },
     { model: 'iR-ADV C3525i III', speed: 25, tec: 0.95, era: '約 4~5 年前（三代中速）', src: 'Canon 官方規格 / 能源之星' },
-    { model: 'iR-ADV C3320', speed: 20, tec: 0.85, era: '約 6~7 年前（二代租賃神機）', src: 'Canon 官方規格 / 能源之星' },
+    { model: 'iR-ADV C3320', speed: 20, tec: 0.85, era: '約 6~7 年前（二代常見主力機種）', src: 'Canon 官方規格 / 能源之星' },
     { model: 'iR-ADV C3325', speed: 25, tec: 1.05, era: '約 6~7 年前（二代主力）', src: 'Canon 官方規格 / 能源之星' },
     { model: 'imageRUNNER C3020', speed: 20, tec: 1.20, era: '約 5 年前（經濟入門款）', src: 'Canon 官方規格 / 能源之星' },
     { model: 'iR-ADV C2220', speed: 20, tec: 1.90, era: '約 8~10 年前（舊代高耗能）', src: 'ENERGY STAR 歷史認證' }
@@ -2032,7 +2032,7 @@ document.getElementById('fSort').addEventListener('change', renderTable);
 }));
 
 /* =========================================================
-   7B. 多台試算（艦隊模式）與摘要匯出
+   7B. 多台試算模式與摘要匯出
    ========================================================= */
 function switchCalcMode(mode){
   calcMode = mode;
@@ -2053,7 +2053,7 @@ function switchCalcMode(mode){
     btnSingle.classList.remove('on');
     pSingle.classList.add('hide');
     pFleet.classList.remove('hide');
-    if (desc) desc.textContent = '舊機多款 ➔ 新機多款（多台組合艦隊精算）';
+    if (desc) desc.textContent = '舊機多款 ➔ 新機多款（多台設備整批汰換試算）';
     renderFleetUI();
   }
   render();
@@ -2334,7 +2334,7 @@ function updatePdfReportDOM(){
   const dateStr = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
 
   document.getElementById('pdfReportDate').textContent = `報告日期：${dateStr}`;
-  document.getElementById('pdfParamMode').textContent = isFleet ? '多台試算（多機種艦隊汰換）' : '單機試算（1 對 1 快速對比）';
+  document.getElementById('pdfParamMode').textContent = isFleet ? '多台試算' : '單機試算';
   document.getElementById('pdfParamYears').textContent = S.years;
   document.getElementById('pdfParamPrice').textContent = fmt(S.price, 1);
   document.getElementById('pdfParamCf').textContent = fmt(S.cf, 3);

@@ -292,7 +292,43 @@ ul.clean li{margin:4px 0}
   body{background:#fff}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ---------- 案件切換按鈕（單機試算 vs 多台試算） ---------- */
+.mode-switch-group{display:inline-flex;gap:8px;align-items:center;background:#EFEBE5;padding:4px;border-radius:11px;border:1.5px solid #D8CFC4}
+.mode-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;transition:all .18s ease;user-select:none;border:none;outline:none}
+.mode-btn.on{background:#1E3A5F!important;color:#FFFFFF!important;box-shadow:0 3px 8px rgba(30,58,95,0.35)!important}
+.mode-btn:not(.on){background:#FFFFFF!important;color:#374151!important;border:1.5px solid #CBD5E1!important;box-shadow:0 1px 3px rgba(0,0,0,0.05)!important}
+.mode-btn:not(.on):hover{background:#F8FAFC!important;border-color:#94A3B8!important;color:#0F172A!important;transform:translateY(-1px)}
+
+/* ---------- 專業 PDF 報告預覽與列印樣式 ---------- */
+.pdf-paper{background:#FFFFFF;border:1px solid #E5E7EB;border-radius:12px;padding:32px;box-shadow:0 4px 16px rgba(0,0,0,0.06);color:#1F2937;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.5}
+.pdf-header{border-bottom:2px solid #1E3A5F;padding-bottom:16px;margin-bottom:18px}
+.pdf-params-bar{display:flex;flex-wrap:wrap;gap:16px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:10px 14px;font-size:12.5px;color:#475569;margin-bottom:20px}
+.pdf-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px}
+.pdf-kpi{background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:12px 14px}
+.pdf-kpi.hl{background:#F0FDF4;border-color:#BBF7D0}
+.pdf-kpi .k-title{font-size:11.5px;color:#64748B;font-weight:600;margin-bottom:4px}
+.pdf-kpi .k-num{font-size:19px;font-weight:800;font-family:var(--mono),monospace}
+.pdf-kpi .k-sub{font-size:11px;color:#64748B;margin-top:3px}
+.pdf-section-title{font-size:14px;font-weight:700;color:#1E3A5F;margin:20px 0 10px;display:flex;align-items:center;gap:6px}
+.pdf-table{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:20px}
+.pdf-table th{background:#F1F5F9;color:#334155;font-weight:700;padding:8px 10px;border:1px solid #CBD5E1;text-align:left}
+.pdf-table td{padding:8px 10px;border:1px solid #E2E8F0;vertical-align:middle}
+.pdf-charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+.pdf-chart-card{background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:14px}
+.pdf-chart-title{font-size:12.5px;font-weight:700;color:#334155;margin-bottom:10px;text-align:center}
+.pdf-footer-note{background:#F9FAFB;border:1px solid #E5E7EB;border-radius:8px;padding:10px 12px;font-size:11px;color:#6B7280;line-height:1.6}
+
+@media print {
+  header,.pager,footer,.drawer,.drawer-mask,#panelSingleMode,#panelFleetMode,.card,.head,.tabs,.pager,.bar{display:none!important}
+  body{background:#fff!important;padding:0!important;margin:0!important}
+  #exportModal{position:static!important;background:none!important;padding:0!important;display:block!important;z-index:auto!important}
+  #exportModal > div{max-width:100%!important;max-height:none!important;box-shadow:none!important;border:none!important}
+  .pdf-modal-header,.pdf-modal-actions,.pdf-modal-hint{display:none!important}
+  .pdf-paper{box-shadow:none!important;border:none!important;padding:0!important;border-radius:0!important}
+}
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
 
@@ -354,15 +390,15 @@ ul.clean li{margin:4px 0}
     <div class="row between" style="margin-bottom:12px;border-bottom:1px solid var(--line-2);padding-bottom:10px;flex-wrap:wrap;gap:10px;align-items:center">
       <div class="row" style="gap:10px;align-items:center;flex-wrap:wrap">
         <!-- 案件切換：單機試算 vs 多台試算 -->
-        <div class="mode-switcher" style="display:inline-flex;background:var(--paper-2);padding:3px;border-radius:10px;border:1px solid var(--line);gap:2px">
-          <button type="button" class="mode-btn on" id="btnModeSingle" style="padding:6px 14px;border-radius:7px;border:none;font-weight:600;font-size:13px;cursor:pointer;background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.08);transition:all .2s">⚡ 單機試算</button>
-          <button type="button" class="mode-btn" id="btnModeFleet" style="padding:6px 14px;border-radius:7px;border:none;font-weight:600;font-size:13px;cursor:pointer;background:transparent;color:var(--ink-2);transition:all .2s">🗂️ 多台試算</button>
+        <div class="mode-switch-group">
+          <button type="button" class="mode-btn on" id="btnModeSingle">⚡ 單機試算</button>
+          <button type="button" class="mode-btn" id="btnModeFleet">🗂️ 多台試算</button>
         </div>
         <span class="small muted" id="modeDesc">單一機型 1 對 1 即時快速對比</span>
       </div>
       <div class="row" style="gap:8px;margin-left:auto">
-        <button type="button" class="btn sm" id="btnExportSummary" style="background:#fff;border:1px solid var(--line);color:var(--ink);font-weight:600;display:inline-flex;align-items:center;gap:6px">
-          <span>📋</span> 匯出試算摘要
+        <button type="button" class="btn sm primary" id="btnExportSummary" style="font-weight:700;display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,0.12)">
+          <span>📄</span> 匯出 PDF 報告
         </button>
       </div>
     </div>
@@ -793,31 +829,146 @@ ul.clean li{margin:4px 0}
   </div>
 </footer>
 
-<!-- 匯出摘要彈窗 -->
-<div id="exportModal" class="modal-mask hide" style="position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.55);z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px">
-  <div style="background:#fff;border-radius:12px;width:100%;max-width:620px;box-shadow:0 12px 36px rgba(0,0,0,.25);display:flex;flex-direction:column;max-height:85vh;overflow:hidden">
-    <div style="padding:14px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;background:var(--paper-2)">
-      <div style="display:flex;align-items:center;gap:8px">
-        <span style="font-size:18px">📋</span>
-        <b style="font-size:15px;color:var(--ink)">節能效益試算摘要</b>
-        <span id="exportCopiedTip" class="pill" style="font-size:11px;background:var(--sage-bg);color:#284B31;border-color:#C2DEC9;font-weight:600">✓ 已自動複製至剪貼簿</span>
+<!-- 匯出 PDF 報告與摘要彈窗 -->
+<div id="exportModal" class="modal-mask hide" style="position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(15,23,42,0.65);z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(3px)">
+  <div style="background:#fff;border-radius:14px;width:100%;max-width:820px;box-shadow:0 20px 48px rgba(0,0,0,0.3);display:flex;flex-direction:column;max-height:92vh;overflow:hidden">
+    
+    <!-- 彈窗頂部列 -->
+    <div class="pdf-modal-header" style="padding:14px 20px;border-bottom:1px solid #E2E8F0;display:flex;justify-content:space-between;align-items:center;background:#F8FAFC">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font-size:20px">📄</span>
+        <div>
+          <b style="font-size:16px;color:#0F172A">企業節能效益評估報告書</b>
+          <div style="font-size:11.5px;color:#64748B">依據經濟部能源署節能標章官方核定實測標準產生</div>
+        </div>
       </div>
-      <button type="button" id="btnCloseExport" class="btn sm" style="border:none;background:transparent;font-size:18px;cursor:pointer;line-height:1">✕</button>
-    </div>
-    <div style="padding:16px;overflow-y:auto;flex:1">
-      <div class="note" style="margin-bottom:12px;background:#F0F7F2;border-color:#C9E3D2;color:#284B31;font-size:12.5px;padding:8px 12px">
-        💡 摘要文字已自動複製至您的剪貼簿！可直接切換至 LINE、Email 或簡報按「貼上（Ctrl+V）」。
-      </div>
-      <textarea id="exportText" readonly style="width:100%;height:300px;font-family:Consolas, Monaco, monospace;font-size:12px;line-height:1.6;border:1px solid var(--line);border-radius:8px;padding:10px;background:#FDFDFD;color:var(--ink);resize:vertical"></textarea>
-    </div>
-    <div style="padding:12px 18px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;background:var(--paper);flex-wrap:wrap;gap:8px">
-      <span class="small muted">依經濟部能源署節能標章與 114 年度排碳係數推估</span>
-      <div class="row" style="gap:8px">
-        <button type="button" id="btnCopyAgain" class="btn sm primary">再次複製</button>
-        <button type="button" id="btnDownloadTxt" class="btn sm">下載文字檔 (.txt)</button>
-        <button type="button" id="btnCloseExport2" class="btn sm">關閉</button>
+      <div class="pdf-modal-actions" style="display:flex;align-items:center;gap:8px">
+        <button type="button" id="btnDownloadPdf" class="btn sm primary" style="font-weight:700;display:inline-flex;align-items:center;gap:5px;padding:7px 14px;background:#1E3A5F;border-color:#142842">
+          <span>📥</span> 下載 PDF 報告
+        </button>
+        <button type="button" id="btnPrintPdf" class="btn sm" style="display:inline-flex;align-items:center;gap:5px;padding:7px 12px;background:#fff;border:1.5px solid #CBD5E1;color:#1E293B;font-weight:600">
+          <span>🖨️</span> 列印 / 另存
+        </button>
+        <button type="button" id="btnCopyText" class="btn sm" style="display:inline-flex;align-items:center;gap:5px;padding:7px 12px;background:#fff;border:1.5px solid #CBD5E1;color:#1E293B;font-weight:600">
+          <span>📋</span> 複製文字
+        </button>
+        <button type="button" id="btnCloseExport" class="btn sm" style="border:none;background:transparent;font-size:20px;cursor:pointer;color:#64748B;padding:0 6px;line-height:1">✕</button>
       </div>
     </div>
+
+    <!-- 提示通知 -->
+    <div class="pdf-modal-hint" id="exportNotify" style="background:#F0FDF4;border-bottom:1px solid #BBF7D0;color:#166534;font-size:12px;padding:7px 20px;display:none;align-items:center;justify-content:space-between">
+      <span id="exportNotifyText">✓ 報告摘要已複製至剪貼簿！</span>
+      <span style="font-size:11px;color:#15803D">可直接 Ctrl+V 貼上至 LINE 或 Email</span>
+    </div>
+
+    <!-- 報告預覽卷軸區 -->
+    <div style="padding:20px;overflow-y:auto;flex:1;background:#F1F5F9">
+      <div id="pdfReportPaper" class="pdf-paper">
+        
+        <!-- Report Header -->
+        <div class="pdf-header">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px">
+            <div>
+              <div style="font-size:11px;font-weight:700;color:#2563EB;letter-spacing:1px;text-transform:uppercase;margin-bottom:3px">
+                ENERGY EFFICIENCY & ESG EVALUATION REPORT
+              </div>
+              <h1 style="font-size:22px;margin:0 0 4px;color:#0F172A;font-weight:800">事務機 節能效益與減碳評估報告書</h1>
+              <div style="font-size:12.5px;color:#64748B">
+                中華民國經濟部能源署節能標章 A3 多功能複合機實測數據推估
+              </div>
+            </div>
+            <div style="text-align:right">
+              <span class="pill" style="background:#EBF5EE;color:#284B31;border:1px solid #C2DEC9;font-weight:700;padding:4px 10px;font-size:12px;display:inline-block">
+                🏅 節能標章官方核定標準
+              </span>
+              <div style="font-size:11.5px;color:#64748B;margin-top:6px" id="pdfReportDate">報告日期：2026-11-02</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 試算基準參數條 -->
+        <div class="pdf-params-bar">
+          <div><b>試算案型：</b><span id="pdfParamMode">單機試算</span></div>
+          <div><b>評估年限：</b><span id="pdfParamYears">5</span> 年</div>
+          <div><b>台電平均電價：</b>NT$ <span id="pdfParamPrice">4.0</span> / 度</div>
+          <div><b>電力排碳係數：</b><span id="pdfParamCf">0.466</span> kg CO₂e/度 (114年公告)</div>
+        </div>
+
+        <!-- 核心效益指標卡 (KPIs) -->
+        <div class="pdf-kpis">
+          <div class="pdf-kpi">
+            <div class="k-title">每年少用電量</div>
+            <div class="k-num" style="color:#D97706" id="pdfKpiKwh">0 度</div>
+            <div class="k-sub" id="pdfKpiRate">節電率 0%</div>
+          </div>
+          <div class="pdf-kpi">
+            <div class="k-title">每年省下電費</div>
+            <div class="k-num" style="color:#059669" id="pdfKpiCostYr">NT$ 0</div>
+            <div class="k-sub">平均每台省 NT$ <span id="pdfKpiCostUnit">0</span></div>
+          </div>
+          <div class="pdf-kpi hl">
+            <div class="k-title"><span id="pdfKpiYearsTitle">5</span> 年累計節省電費</div>
+            <div class="k-num" style="color:#047857;font-size:21px" id="pdfKpiTotalCost">NT$ 0</div>
+            <div class="k-sub">累計少用 <span id="pdfKpiKwhTotal">0</span> 度</div>
+          </div>
+          <div class="pdf-kpi">
+            <div class="k-title">每年減少碳排</div>
+            <div class="k-num" style="color:#0D9488" id="pdfKpiCo2">0 kg</div>
+            <div class="k-sub"><span id="pdfKpiYearsCo2">5</span> 年累計 <span id="pdfKpiCo2Total">0</span> kg</div>
+          </div>
+        </div>
+
+        <!-- 設備規格與耗電對照表 -->
+        <div class="pdf-section-title">📊 設備規格與用電明細對比表</div>
+        <table class="pdf-table">
+          <thead>
+            <tr>
+              <th style="width:16%">方案組別</th>
+              <th style="width:40%">機型規格與官方認證</th>
+              <th style="width:14%;text-align:right">單機 TEC</th>
+              <th style="width:12%;text-align:center">台數</th>
+              <th style="width:18%;text-align:right">全年耗電度數</th>
+            </tr>
+          </thead>
+          <tbody id="pdfTableBody">
+            <!-- 動態生成設備列表 -->
+          </tbody>
+        </table>
+
+        <!-- 圖表分析區 -->
+        <div class="pdf-section-title">📈 節能量化圖表分析</div>
+        <div class="pdf-charts-grid">
+          <div class="pdf-chart-card">
+            <div class="pdf-chart-title">💰 <span id="pdfChartYears">5</span> 年期累計節省電費趨勢 (NT$)</div>
+            <div id="pdfChartCumSvg"></div>
+          </div>
+          <div class="pdf-chart-card">
+            <div class="pdf-chart-title">⚡ 全年總用電度數與節電佔比結構</div>
+            <div id="pdfChartHbarSvg" style="padding-top:10px"></div>
+          </div>
+        </div>
+
+        <!-- 法規與免責宣告 -->
+        <div class="pdf-footer-note">
+          <div style="font-weight:700;color:#374151;margin-bottom:4px">⚖️ 官方數據來源與評估依據宣告：</div>
+          <div>1. <b>新機實測數據</b>：100% 依據中華民國經濟部能源署節能標章公告之 A3 複合機標準化 168 小時週期測試實測取得，具備法定公信力。</div>
+          <div>2. <b>碳排放計算係數</b>：依據經濟部能源署最新公布之 114 年度產業電力排碳係數 <b>0.466 kg CO₂e/度</b>（範疇二外購電力適用）。</div>
+          <div>3. <b>決策評估聲明</b>：本試算結果為標準化實驗室測試值推估之節能效益，實際費用依企業印量、睡眠設定及電費單計價級距為準。</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 底部操作列 -->
+    <div style="padding:12px 20px;border-top:1px solid #E2E8F0;display:flex;justify-content:space-between;align-items:center;background:#F8FAFC">
+      <span style="font-size:12px;color:#64748B">A4 正式報告版面 · 支援一鍵產生高解析 PDF 或直接列印</span>
+      <div style="display:flex;gap:8px">
+        <button type="button" id="btnDownloadPdf2" class="btn sm primary" style="background:#1E3A5F;border-color:#142842;font-weight:700">下載 PDF 報告</button>
+        <button type="button" id="btnCloseExport2" class="btn sm">關閉預覽</button>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -1889,29 +2040,13 @@ function switchCalcMode(mode){
 
   if (mode === 'single'){
     btnSingle.classList.add('on');
-    btnSingle.style.background = '#fff';
-    btnSingle.style.color = 'var(--ink)';
-    btnSingle.style.boxShadow = '0 1px 3px rgba(0,0,0,.08)';
-
     btnFleet.classList.remove('on');
-    btnFleet.style.background = 'transparent';
-    btnFleet.style.color = 'var(--ink-2)';
-    btnFleet.style.boxShadow = 'none';
-
     pSingle.classList.remove('hide');
     pFleet.classList.add('hide');
     if (desc) desc.textContent = '單一機型 1 對 1 即時快速對比';
   } else {
     btnFleet.classList.add('on');
-    btnFleet.style.background = '#fff';
-    btnFleet.style.color = 'var(--ink)';
-    btnFleet.style.boxShadow = '0 1px 3px rgba(0,0,0,.08)';
-
     btnSingle.classList.remove('on');
-    btnSingle.style.background = 'transparent';
-    btnSingle.style.color = 'var(--ink-2)';
-    btnSingle.style.boxShadow = 'none';
-
     pSingle.classList.add('hide');
     pFleet.classList.remove('hide');
     if (desc) desc.textContent = '舊機多款 ➔ 新機多款（多台組合艦隊精算）';
@@ -2124,25 +2259,200 @@ function generateSummaryText(){
   return text;
 }
 
-function openExportSummary(){
-  const txt = generateSummaryText();
-  const area = document.getElementById('exportText');
-  if (area) area.value = txt;
+function generateReportSvgCharts(m){
+  // 1. 生成 5 年累計省電費長條柱狀圖 (SVG)
+  const cum = m.cum || [];
+  const max = Math.max(...cum, 1);
+  const width = 340, height = 135, padL = 40, padB = 22, padT = 20, padR = 15;
+  const chartW = width - padL - padR;
+  const chartH = height - padT - padB;
+  const barCount = cum.length || 1;
+  const barW = Math.min(36, (chartW / barCount) * 0.65);
+  const step = chartW / barCount;
 
-  const tip = document.getElementById('exportCopiedTip');
-  if (navigator.clipboard && navigator.clipboard.writeText){
-    navigator.clipboard.writeText(txt).then(() => {
-      if (tip) tip.style.display = 'inline-block';
-    }).catch(() => {
-      if (tip) tip.style.display = 'none';
+  let bars = '';
+  cum.forEach((val, i) => {
+    const barH = Math.max(3, (val / max) * chartH);
+    const x = padL + i * step + (step - barW) / 2;
+    const y = padT + (chartH - barH);
+    const valText = val >= 10000 ? (val/10000).toFixed(1) + '萬' : Math.round(val).toLocaleString();
+
+    bars += `
+      <g>
+        <rect x="${x}" y="${y}" width="${barW}" height="${barH}" rx="4" fill="#059669" />
+        <text x="${x + barW/2}" y="${y - 5}" font-size="10" font-weight="700" fill="#047857" text-anchor="middle">NT$ ${valText}</text>
+        <text x="${x + barW/2}" y="${height - 6}" font-size="10.5" fill="#64748B" text-anchor="middle">第${i+1}年</text>
+      </g>
+    `;
+  });
+
+  const cumSvg = `<svg viewBox="0 0 ${width} ${height}" style="width:100%;height:auto;display:block">
+    <line x1="${padL}" y1="${padT + chartH}" x2="${width - padR}" y2="${padT + chartH}" stroke="#CBD5E1" stroke-width="1.5" />
+    ${bars}
+  </svg>`;
+
+  // 2. 生成新舊方案年用電對照長條圖 (SVG)
+  const baseKwh = m.baseKwh || 0;
+  const targetKwh = m.targetKwh || 0;
+  const maxKwh = Math.max(baseKwh, targetKwh, 1);
+  const baseW = Math.round((baseKwh / maxKwh) * 100);
+  const targetW = Math.max(3, Math.round((targetKwh / maxKwh) * 100));
+
+  const hbarSvg = `<div style="display:flex;flex-direction:column;gap:12px;padding:4px 0">
+    <div>
+      <div style="display:flex;justify-content:space-between;font-size:11.5px;margin-bottom:4px">
+        <span style="font-weight:700;color:#B91C1C">● 現況舊機年用電</span>
+        <span style="font-family:var(--mono);font-weight:700">${fmt(baseKwh,1)} 度 (NT$ ${fmt(m.baseCost)})</span>
+      </div>
+      <div style="background:#FEE2E2;border-radius:6px;height:14px;overflow:hidden">
+        <div style="background:#EF4444;width:${baseW}%;height:100%;border-radius:6px"></div>
+      </div>
+    </div>
+    <div>
+      <div style="display:flex;justify-content:space-between;font-size:11.5px;margin-bottom:4px">
+        <span style="font-weight:700;color:#047857">● 擬換新機年用電 (省電 ${fmt(m.rate,1)}%)</span>
+        <span style="font-family:var(--mono);font-weight:700">${fmt(targetKwh,1)} 度 (NT$ ${fmt(m.targetCost)})</span>
+      </div>
+      <div style="background:#DCFCE7;border-radius:6px;height:14px;overflow:hidden">
+        <div style="background:#10B981;width:${targetW}%;height:100%;border-radius:6px"></div>
+      </div>
+    </div>
+  </div>`;
+
+  return { cumSvg, hbarSvg };
+}
+
+function updatePdfReportDOM(){
+  const isFleet = calcMode === 'fleet';
+  const m = isFleet ? calcFleet(S) : calc(S);
+  const W = 52;
+  const now = new Date();
+  const dateStr = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
+
+  document.getElementById('pdfReportDate').textContent = `報告日期：${dateStr}`;
+  document.getElementById('pdfParamMode').textContent = isFleet ? '多台試算（多機種艦隊汰換）' : '單機試算（1 對 1 快速對比）';
+  document.getElementById('pdfParamYears').textContent = S.years;
+  document.getElementById('pdfParamPrice').textContent = fmt(S.price, 1);
+  document.getElementById('pdfParamCf').textContent = fmt(S.cf, 3);
+
+  // KPIs
+  document.getElementById('pdfKpiKwh').textContent = `${fmt(m.kwhYr,1)} 度`;
+  document.getElementById('pdfKpiRate').textContent = `節電率 ${fmt(m.rate,1)}%`;
+  document.getElementById('pdfKpiCostYr').textContent = `NT$ ${fmt(m.costYr)}`;
+  document.getElementById('pdfKpiCostUnit').textContent = fmt(m.costUnit);
+  document.getElementById('pdfKpiYearsTitle').textContent = S.years;
+  document.getElementById('pdfKpiTotalCost').textContent = `NT$ ${fmt(m.totalCost)}`;
+  document.getElementById('pdfKpiKwhTotal').textContent = fmt(m.kwhTotal, 1);
+  document.getElementById('pdfKpiCo2').textContent = `${fmt(m.co2Yr,1)} kg`;
+  document.getElementById('pdfKpiYearsCo2').textContent = S.years;
+  document.getElementById('pdfKpiCo2Total').textContent = fmt(m.co2Total, 1);
+
+  // Table Body
+  let tbodyHtml = '';
+  if (isFleet){
+    fleetOld.forEach((x, i) => {
+      const u = parseInt(x.units, 10) || 1;
+      const kwh = (x.tec || 0) * W * u;
+      tbodyHtml += `<tr>
+        ${i===0 ? `<td rowspan="${fleetOld.length}" style="background:#FFF5F5;color:#B91C1C;font-weight:700;text-align:center">現況舊機<br>（基準 A）</td>` : ''}
+        <td><b>${esc(x.brand)} ${esc(x.model)}</b><div style="font-size:11px;color:#64748B">${esc(x.era||x.src||'')}</div></td>
+        <td style="text-align:right;font-family:var(--mono);font-weight:700;color:#B91C1C">${fmt(x.tec,2)}</td>
+        <td style="text-align:center;font-weight:700">${u} 台</td>
+        <td style="text-align:right;font-family:var(--mono);font-weight:700">${fmt(kwh,1)} 度</td>
+      </tr>`;
     });
+    tbodyHtml += `<tr style="background:#FFF9F9;font-weight:700">
+      <td colspan="3" style="text-align:right;color:#B91C1C">舊機合計小計：</td>
+      <td style="text-align:center;color:#B91C1C">${m.totalUnitsOld} 台</td>
+      <td style="text-align:right;font-family:var(--mono);color:#B91C1C">${fmt(m.baseKwh,1)} 度/年</td>
+    </tr>`;
+
+    fleetNew.forEach((x, i) => {
+      const u = parseInt(x.units, 10) || 1;
+      const kwh = (x.tec || 0) * W * u;
+      tbodyHtml += `<tr>
+        ${i===0 ? `<td rowspan="${fleetNew.length}" style="background:#F0FDF4;color:#047857;font-weight:700;text-align:center">擬換新機<br>（方案 B）</td>` : ''}
+        <td><b>${esc(x.brand)} ${esc(x.model)}</b> <span class="pill" style="background:#DCFCE7;color:#166534;font-size:10px;padding:1px 5px">🏅 節能標章</span><div style="font-size:11px;color:#64748B">${esc(x.src||'')}</div></td>
+        <td style="text-align:right;font-family:var(--mono);font-weight:700;color:#059669">${fmt(x.tec,2)}</td>
+        <td style="text-align:center;font-weight:700">${u} 台</td>
+        <td style="text-align:right;font-family:var(--mono);font-weight:700">${fmt(kwh,1)} 度</td>
+      </tr>`;
+    });
+    tbodyHtml += `<tr style="background:#F0FDF4;font-weight:700">
+      <td colspan="3" style="text-align:right;color:#047857">新機合計小計：</td>
+      <td style="text-align:center;color:#047857">${m.totalUnitsNew} 台</td>
+      <td style="text-align:right;font-family:var(--mono);color:#047857">${fmt(m.targetKwh,1)} 度/年</td>
+    </tr>`;
   } else {
-    if (tip) tip.style.display = 'none';
+    tbodyHtml += `<tr>
+      <td style="background:#FFF5F5;color:#B91C1C;font-weight:700;text-align:center">現況舊機<br>（基準 A）</td>
+      <td><b>${esc(S.baseName)}</b></td>
+      <td style="text-align:right;font-family:var(--mono);font-weight:700;color:#B91C1C">${fmt(S.baseTec,2)}</td>
+      <td style="text-align:center;font-weight:700">${S.units} 台</td>
+      <td style="text-align:right;font-family:var(--mono);font-weight:700">${fmt(m.baseKwh,1)} 度</td>
+    </tr>
+    <tr>
+      <td style="background:#F0FDF4;color:#047857;font-weight:700;text-align:center">擬換新機<br>（方案 B）</td>
+      <td><b>${esc(S.targetName)}</b> <span class="pill" style="background:#DCFCE7;color:#166534;font-size:10px;padding:1px 5px">🏅 節能標章</span></td>
+      <td style="text-align:right;font-family:var(--mono);font-weight:700;color:#059669">${fmt(S.targetTec,2)}</td>
+      <td style="text-align:center;font-weight:700">${S.units} 台</td>
+      <td style="text-align:right;font-family:var(--mono);font-weight:700">${fmt(m.targetKwh,1)} 度</td>
+    </tr>`;
   }
 
+  document.getElementById('pdfTableBody').innerHTML = tbodyHtml;
+
+  // Charts
+  document.getElementById('pdfChartYears').textContent = S.years;
+  const svgs = generateReportSvgCharts(m);
+  document.getElementById('pdfChartCumSvg').innerHTML = svgs.cumSvg;
+  document.getElementById('pdfChartHbarSvg').innerHTML = svgs.hbarSvg;
+}
+
+function openExportSummary(){
+  updatePdfReportDOM();
   const modal = document.getElementById('exportModal');
   if (modal) modal.classList.remove('hide');
 }
+
+function notifyExport(msg){
+  const el = document.getElementById('exportNotify');
+  const txt = document.getElementById('exportNotifyText');
+  if (el && txt){
+    txt.textContent = msg;
+    el.style.display = 'flex';
+    setTimeout(() => { el.style.display = 'none'; }, 3500);
+  }
+}
+
+function downloadPdfReport(){
+  const element = document.getElementById('pdfReportPaper');
+  const now = new Date();
+  const dateStr = `${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}${String(now.getDate()).padStart(2,'0')}`;
+  const filename = `事務機節能效益評估報告_${dateStr}.pdf`;
+
+  if (window.html2pdf){
+    notifyExport('⏳ 正在為您編譯高解析 PDF 報告，請稍候…');
+    const opt = {
+      margin:       [8, 8, 8, 8],
+      filename:     filename,
+      image:        { type: 'jpeg', quality: 0.98 },
+      html2canvas:  { scale: 2, useCORS: true, logging: false },
+      jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+    html2pdf().set(opt).from(element).save().then(() => {
+      notifyExport('✓ PDF 報告已成功下載！');
+    }).catch(err => {
+      console.warn('html2pdf 失敗，改用原生列印輸出：', err);
+      window.print();
+    });
+  } else {
+    notifyExport('正在開啟列印視窗，請於目的地選擇「另存為 PDF」');
+    setTimeout(() => window.print(), 300);
+  }
+}
+
+
 
 function closeExportSummary(){
   const modal = document.getElementById('exportModal');
@@ -2158,27 +2468,23 @@ function bindFleetEvents(){
   document.getElementById('btnCloseExport').addEventListener('click', closeExportSummary);
   document.getElementById('btnCloseExport2').addEventListener('click', closeExportSummary);
 
-  document.getElementById('btnCopyAgain').addEventListener('click', () => {
-    const area = document.getElementById('exportText');
-    if (area){
-      area.select();
-      navigator.clipboard.writeText(area.value);
-      const tip = document.getElementById('exportCopiedTip');
-      if (tip) {
-        tip.textContent = '✓ 已再次複製！';
-        tip.style.display = 'inline-block';
-      }
-    }
+  // 下載 PDF
+  ['btnDownloadPdf', 'btnDownloadPdf2'].forEach(id => {
+    const btn = document.getElementById(id);
+    if (btn) btn.addEventListener('click', downloadPdfReport);
   });
 
-  document.getElementById('btnDownloadTxt').addEventListener('click', () => {
-    const text = document.getElementById('exportText').value;
-    const blob = new Blob([text], {type:'text/plain;charset=utf-8'});
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = `事務機節能效益試算摘要_${new Date().toISOString().slice(0,10)}.txt`;
-    a.click();
-    URL.revokeObjectURL(a.href);
+  // 原生列印為 PDF
+  const btnPrint = document.getElementById('btnPrintPdf');
+  if (btnPrint) btnPrint.addEventListener('click', () => { window.print(); });
+
+  // 複製純文字摘要
+  const btnCopy = document.getElementById('btnCopyText');
+  if (btnCopy) btnCopy.addEventListener('click', () => {
+    const txt = generateSummaryText();
+    navigator.clipboard.writeText(txt).then(() => {
+      notifyExport('✓ 試算摘要純文字已複製至剪貼簿！');
+    });
   });
 
   // 新增舊機列

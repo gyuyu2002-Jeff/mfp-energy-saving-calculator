@@ -1281,12 +1281,12 @@ const SNAP = [
   ['Konica Minolta','bizhub C551i','C',55,'EP',0.57,'Konica Minolta 官方規格 / ENERGY STAR v3.0 實測'],
   ['Konica Minolta','bizhub C651i','C',65,'EP',0.68,'Konica Minolta 官方規格 / ENERGY STAR v3.0 實測'],
   ['Konica Minolta','bizhub 227i','M',22,'EP',0.25,'Konica Minolta 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Konica Minolta','bizhub 287','M',28,'EP',0.30,'Konica Minolta 官方規格 / 節能標章認證'],
+  ['Konica Minolta','bizhub 287','M',28,'EP',1.15,'經濟部能源署節能標章展期（證書105066續5・ES v2.0 實測）'],
   ['Konica Minolta','bizhub 300i','M',30,'EP',0.31,'Konica Minolta 官方規格 / ENERGY STAR v3.0 實測'],
   ['Konica Minolta','bizhub 301i','M',30,'EP',0.31,'Konica Minolta 官方規格 / ENERGY STAR v3.0 實測'],
   ['Konica Minolta','bizhub 360i','M',36,'EP',0.36,'Konica Minolta 官方規格 / ENERGY STAR v3.0 實測'],
   ['Konica Minolta','bizhub 361i','M',36,'EP',0.36,'Konica Minolta 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Konica Minolta','bizhub 367','M',36,'EP',0.38,'Konica Minolta 官方規格 / 節能標章認證'],
+  ['Konica Minolta','bizhub 367','M',36,'EP',1.45,'經濟部能源署節能標章展期（證書105067續5・ES v2.0 實測）'],
   ['Konica Minolta','bizhub 451i','M',45,'EP',0.46,'Konica Minolta 官方規格 / ENERGY STAR v3.0 實測'],
   ['Konica Minolta','bizhub 450i','M',45,'EP',0.46,'Konica Minolta 官方規格 / ENERGY STAR v3.0 實測'],
   ['Konica Minolta','bizhub 550i','M',55,'EP',0.56,'Konica Minolta 官方規格 / ENERGY STAR v3.0 實測'],
@@ -1516,7 +1516,7 @@ const GOV_CERTS = {
   "RICOH|IM 7000": "互盛 1100272續2 / 理光 1130298續1",
   "RICOH|IM 8000": "理光 1130549續1",
   "RICOH|IM 9000": "理光 1130550續1",
-  "RICOH|IM C2010": "互盛 1120711續1 / 理光 1150300",
+  "RICOH|IM C2010": "互盛 1120711續1 / 理光 1130042",
   "RICOH|IM C2510": "互盛 1120711續1 / 理光 1130566續1",
   "RICOH|IM C3010": "互盛 1120711續1 / 理光 1130567續1",
   "RICOH|IM C3510": "互盛 1120711續1 / 理光 1150299",
@@ -1822,7 +1822,8 @@ const LEGACY_MODELS = {
     { model: 'ApeosPort-VI C2271', speed: 25, tec: 0.98, era: '約 5~6 年前（高階商務機種）', src: 'Fuji Xerox 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
     { model: 'ApeosPort-V C3375', speed: 35, tec: 1.40, era: '約 6~8 年前（主流商用）', src: 'Fuji Xerox 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
     { model: 'DocuCentre-IV C2260', speed: 20, tec: 2.15, era: '約 8~10 年前（早期高耗電款）', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' },
-    { model: 'Apeos C2060', color: 'Color', speed: 20, tec: 0.75, era: '約 3~4 年前（近代雷射機種）', src: 'FUJIFILM 官方規格 / 能源之星 v3.0', std: 'ES v3.0' },
+    { model: 'Apeos C2060', color: 'Color', speed: 20, tec: 0.23, era: '約 3~4 年前（近代雷射現役款）', src: 'FUJIFILM 官方規格 / ENERGY STAR v3.0 實測', std: 'ES v3.0' },
+    { model: 'DocuCentre-SC2020', color: 'Color', speed: 20, tec: 1.20, era: '約 6~8 年前（普及入門彩機）', src: 'Fuji Xerox 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
     { model: 'DocuCentre-IV 2060', color: 'Monochrome', speed: 20, tec: 1.70, era: '早期黑白雷射長青款', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' },
     { model: 'DocuCentre-V 2060', color: 'Monochrome', speed: 25, tec: 1.10, era: '約 6~7 年前（黑白租賃主力）', src: 'Fuji Xerox 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
     { model: 'DocuCentre-V 3060', color: 'Monochrome', speed: 30, tec: 1.30, era: '約 6~7 年前（黑白中速主力）', src: 'Fuji Xerox 官方規格 / 能源之星 v2.0', std: 'ES v2.0' }
@@ -1900,6 +1901,12 @@ for (const b in LEGACY_MODELS){
 /* =========================================================
    選單排序核心邏輯（符合商務直覺：彩機到黑白機、由舊到新）
    ========================================================= */
+function isExtModel(m){
+  const src = (m && m.src) || '';
+  const twCert = (typeof GOV_CERTS !== 'undefined' && m ? (GOV_CERTS[`${(m.brand||'').toUpperCase()}|${m.model}`] || '') : '');
+  return Boolean(src.includes('展期') || /續[345]|10[5-8]\d{3}/.test(src + ' ' + twCert));
+}
+
 function getModelColorScore(m){
   const c = (m.color || '').toUpperCase();
   if (c === 'C' || c === 'COLOR' || c.startsWith('彩')) return 0; // 彩色機種排前面 (0)
@@ -1970,8 +1977,9 @@ function initABPicker(){
     
     modelSel.innerHTML = list.map(m => {
       const srcTag = m.std === '節能標章' || m.src.includes('節能標章') ? ' [🏅節能標章]' : m.std === 'ES v3.0' ? ' [ES v3.0]' : ' [ES v2.0]';
+      const extTag = isExtModel(m) ? ' [展期長青款]' : '';
       const clrTag = getModelColorScore(m) === 0 ? '彩色' : '黑白';
-      return `<option value="${keyOf(m)}">${esc(m.model)} (${clrTag} · ${m.speed} ipm · TEC ${fmt(m.tec,2)})${srcTag}</option>`;
+      return `<option value="${keyOf(m)}">${esc(m.model)} (${clrTag} · ${m.speed} ipm · TEC ${fmt(m.tec,2)})${srcTag}${extTag}</option>`;
     }).join('');
 
     if (selectModelName){
@@ -2299,8 +2307,9 @@ function setPrimary(k){
     list.sort(compareModelsUserConcept);
     modelSel.innerHTML = list.map(x => {
       const srcTag = x.std === '節能標章' || x.src.includes('節能標章') ? ' [🏅節能標章]' : x.std === 'ES v3.0' ? ' [ES v3.0]' : ' [ES v2.0]';
+      const extTag = isExtModel(x) ? ' [展期長青款]' : '';
       const clrTag = getModelColorScore(x) === 0 ? '彩色' : '黑白';
-      return `<option value="${keyOf(x)}">${esc(x.model)} (${clrTag} · ${x.speed} ipm · TEC ${fmt(x.tec,2)})${srcTag}</option>`;
+      return `<option value="${keyOf(x)}">${esc(x.model)} (${clrTag} · ${x.speed} ipm · TEC ${fmt(x.tec,2)})${srcTag}${extTag}</option>`;
     }).join('');
     modelSel.value = keyOf(m);
     
@@ -2475,6 +2484,7 @@ function renderTable(){
             : m.std === 'ES v3.0' || m.src.includes('v3.0')
               ? `<span class="pill" style="background:#EFF6FF;color:#1E40AF;border:1px solid #BFDBFE;font-size:10px;padding:1px 5px;font-weight:700" title="國際能源之星 ENERGY STAR v3.0+ 實測">[ES v3.0]</span>`
               : `<span class="pill" style="background:#F1F5F9;color:#475569;border:1px solid #CBD5E1;font-size:10px;padding:1px 5px;font-weight:700" title="早期國際能源之星 ENERGY STAR v2.0 歷史數據">[ES v2.0]</span>`}
+          ${isExtModel(m) ? `<span class="pill" style="background:#FEF3C7;color:#92400E;border:1px solid #FCD34D;font-size:10px;padding:1px 5px;font-weight:700" title="此機種為早期獲證並經原廠持續展期有效之長青款式">[展期長青款]</span>` : ''}
           <a href="${getModelSourceInfo(m).esUrl}" target="_blank" rel="noopener" class="src-pill-link" title="直達國際能源之星官方資料庫，查驗「${esc(m.brand)} ${esc(m.model)}」實測 TEC 值（另開新分頁）" style="font-size:10.5px;color:#1E40AF;text-decoration:none;display:inline-flex;align-items:center;gap:2px;background:#F0F7FF;border:1px solid #BFDBFE;padding:1px 6px;border-radius:4px;font-weight:700">⭐ 實測 TEC ↗</a>
           ${getModelSourceInfo(m).hasTwLabel ? `<a href="${getModelSourceInfo(m).twUrl}" target="_blank" rel="noopener" class="src-pill-link" title="${getModelSourceInfo(m).twCert ? '經濟部能源署節能標章核定案號：' + esc(getModelSourceInfo(m).twCert) : '前往經濟部能源署節能標章官網查驗'}" style="font-size:10.5px;color:#065F46;text-decoration:none;display:inline-flex;align-items:center;gap:2px;background:#ECFDF5;border:1px solid #A7F3D0;padding:1px 6px;border-radius:4px;font-weight:700">🏅 標章案號 ↗</a>` : ''}
           ${m.isLegacy ? `<span class="pill" style="background:#FFF1EE;color:#9E4A3B;border:1px solid #E8C5BD;font-size:10px;padding:0 4px">舊機參考</span>` : ''}

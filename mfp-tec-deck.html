@@ -1328,25 +1328,6 @@ function upsertModel(item){
 }
 SNAP.forEach(upsertModel);
 
-// 註冊歷史舊機種至母資料庫，供查詢表格檢索與設定基準（標記明確版本標籤）
-for (const b in LEGACY_MODELS){
-  if (b === 'PRESET') continue;
-  LEGACY_MODELS[b].forEach(item => {
-    upsertModel({
-      brand: b,
-      model: item.model,
-      color: 'Color',
-      speed: item.speed,
-      tech: 'EP',
-      tec: item.tec,
-      src: item.src,
-      std: item.std || 'ES v2.0',
-      isLegacy: true,
-      era: item.era
-    });
-  });
-}
-
 /* 純函數：單機換機效益 */
 function calc(st){
   const W = 52;
@@ -1569,6 +1550,25 @@ const LEGACY_MODELS = {
     { model: 'AcuLaser CX37DN', speed: 24, tec: 1.75, era: '早期傳統彩色雷射事務機', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' }
   ]
 };
+
+// 註冊歷史舊機種至母資料庫，供查詢表格檢索與設定基準（標記明確版本標籤）
+for (const b in LEGACY_MODELS){
+  if (b === 'PRESET') continue;
+  LEGACY_MODELS[b].forEach(item => {
+    upsertModel({
+      brand: b,
+      model: item.model,
+      color: 'Color',
+      speed: item.speed,
+      tech: 'EP',
+      tec: item.tec,
+      src: item.src,
+      std: item.std || 'ES v2.0',
+      isLegacy: true,
+      era: item.era
+    });
+  });
+}
 
 /* =========================================================
    5. 方案 A：A/B 直覺選拔卡邏輯

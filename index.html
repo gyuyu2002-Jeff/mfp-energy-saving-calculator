@@ -628,7 +628,8 @@ ul.clean li{margin:4px 0}
       <span>📌</span> 數據來源依據與推測計算免責聲明
     </div>
     <ul class="clean small" style="margin:0;padding-left:18px;color:var(--ink-2)">
-      <li><b>新機數據來源</b>：依據中華民國<b>經濟部能源署「節能標章」</b>（產品類別 32 影印機、33 印表機）官方核定公告之具備 A3 輸出能力機種，以客觀公開之標準化實測數值（TEC，度/週）作為評估基礎。</li>
+      <li><b>新機數據來源</b>：依據中華民國<b>經濟部能源署「節能標章」</b>（產品類別 32 影印機、33 印表機）官方核定公告之具備 A3 輸出能力機種，以客觀公開之標準化 110V/60Hz 實測數值（TEC，度/週）作為同一度量衡之評估基礎。</li>
+      <li><b>跨版本檢測標準演進</b>：現況舊機種多依早期國際能源之星 <b>[ES v2.0]</b> 歷史標準登錄，新機則依現行 <b>[節能標章]</b> 標準（門檻比國際基準加嚴 25%）。兩者在每日作業排程與睡眠權重存在演進差異，本試算提供跨世代換機效益之綜合推估；使用者亦可直接手動輸入貴公司現況實測度數進行客觀精算。</li>
       <li><b>舊機基準與機齡推估</b>：依據台灣辦公設備租賃市場近 3～7 年主力雷射機種之歷史耗能基準與標準化假設，使用者亦可透過上方 A/B 卡片或參數滑桿自訂微調。</li>
       <li><b>推測計算僅供參考</b>：TEC（典型用電量，kWh/週）為模擬 168 小時工作與睡眠模式之標準化實驗室測算值。實際年耗電度數與節省金額會因<b>企業實際印量多寡、設備休眠設定、電價計費級距與操作習慣</b>而有所不同。</li>
       <li><b>免責與法律聲明</b>：本網站所有試算數值、節電率、金額與減碳成效<b>均為數據模型推估之理論模擬參考值，僅供設備選型、節能規劃與 ESG 提案初步評估參考</b>。本工具非屬設備原廠效能保證或電費節省承諾，亦不得作為契約驗收、求償、商業合約擔保或法律訴訟之依據。實際採購規格與費用請以原廠合約及台電電費單為準。</li>
@@ -653,7 +654,7 @@ ul.clean li{margin:4px 0}
   <!-- 來源特別提示說明 -->
   <div class="note" style="margin-bottom:14px;background:#FFF9F4;border-color:#F2DACB;color:#784523">
     <b>📌 數據來源特別說明：</b>
-    本系統全數採用中華民國<b>經濟部能源署「節能標章」</b>（類別 32 影印機 / 類別 33 印表機）官方核定之 <b>A3 落地型多功能複合機資料庫</b>。所有機型之 TEC（典型用電量，度/週）均依循台灣 110V/60Hz 實驗室標準檢測程序實測取得，各品牌站在同一個官方檢測標準線上，提供同一度量衡之客觀選型參考。
+    本系統全數採用中華民國<b>經濟部能源署「節能標章」</b>（類別 32 影印機 / 類別 33 印表機）官方核定之 <b>A3 落地型多功能複合機資料庫</b>。所有新機均依循台灣 110V/60Hz 實驗室標準程序實測取得，標示為 <b>[節能標章]</b>；資料庫同時收錄常見歷史舊機並標示 <b>[ES v2.0]</b> 或 <b>[ES v3.0]</b>，清楚揭露測試標準版本，提供同一度量衡與透明可溯源之客觀選型參考。
   </div>
 
   <div class="card" style="margin-bottom:16px">
@@ -735,6 +736,73 @@ ul.clean li{margin:4px 0}
     <div class="card flat">
       <h3>③ 如何取得「節能標章」？</h3>
       <p class="small muted" style="margin:0">符合能源之星代表市場前 25%；而<b>台灣節能標章要求更加嚴格 25%</b>（實測值 ≤ 75% × 基準線），只有前 15%~20% 頂尖省電機種才能獲證，並取得政府機關綠色採購優勢。</p>
+    </div>
+  </div>
+
+  <!-- 能源之星 2.0 vs 3.0 vs 台灣節能標章 差異對照圖表 -->
+  <div class="card" style="margin-bottom:20px;border-left:4px solid var(--blue)">
+    <div class="row between" style="margin-bottom:12px;border-bottom:1px solid var(--line-2);padding-bottom:10px">
+      <div>
+        <h3 style="margin:0;display:flex;align-items:center;gap:8px">
+          <span>⚖️</span> 測試標準演進對照：能源之星 2.0 vs 3.0 vs 台灣節能標章
+        </h3>
+        <div class="small muted" style="margin-top:4px">不同世代與主管機關之檢驗規範、測試排程及公信門檻深度解析</div>
+      </div>
+      <span class="pill primary">跨版本公平性說明</span>
+    </div>
+
+    <div class="table-wrap" style="overflow-x:auto">
+      <table style="width:100%;font-size:12.5px;border-collapse:collapse;line-height:1.6">
+        <thead>
+          <tr style="background:#F8FAFC;border-bottom:2px solid #CBD5E1;text-align:left">
+            <th style="padding:10px 12px;width:18%">比較維度</th>
+            <th style="padding:10px 12px;width:27%;color:#475569">美國能源之星 2.0 (v2.0)</th>
+            <th style="padding:10px 12px;width:27%;color:#1E40AF">美國能源之星 3.0+ (v3.0/v3.2)</th>
+            <th style="padding:10px 12px;width:28%;color:#065F46;background:#F0FDF4">台灣經濟部能源署「節能標章」</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid #E2E8F0">
+            <td style="padding:10px 12px"><b>實施年份與適用機型</b></td>
+            <td style="padding:10px 12px">2014～2019 年<br>（辦公室 5～8 年主力舊機多屬此類）</td>
+            <td style="padding:10px 12px">2020 年至今現行國際標準<br>（近代過渡與國際新機）</td>
+            <td style="padding:10px 12px;background:#F0FDF4"><b>現行國家標準</b><br>（全站 200 款新機 100% 採用）</td>
+          </tr>
+          <tr style="border-bottom:1px solid #E2E8F0">
+            <td style="padding:10px 12px"><b>工作日列印排程設計</b></td>
+            <td style="padding:10px 12px">每日固定 <b>僅模擬 2 次作業</b>（2 jobs/day），其餘大部分計入睡眠。</td>
+            <td style="padding:10px 12px">依額定速度動態調整分批作業次數，更貼近現代企業短篇多次列印。</td>
+            <td style="padding:10px 12px;background:#F0FDF4">依國際標準化程序執行，並嚴密量測喚醒加熱與待機能耗。</td>
+          </tr>
+          <tr style="border-bottom:1px solid #E2E8F0">
+            <td style="padding:10px 12px"><b>測試電壓與頻率</b></td>
+            <td style="padding:10px 12px">美規 115V / 歐規 230V / 日規 100V（依申報地區而異）</td>
+            <td style="padding:10px 12px">各國送測電壓不一（全球型錄常標註 230V 或 120V）</td>
+            <td style="padding:10px 12px;background:#F0FDF4"><b>唯一限定台灣市電 110V/60Hz</b>（實測 115V±1%），無電壓落差。</td>
+          </tr>
+          <tr style="border-bottom:1px solid #E2E8F0">
+            <td style="padding:10px 12px"><b>節能合格門檻</b></td>
+            <td style="padding:10px 12px">前 25% 效率基準線（TEC ≤ TEC<sub>criteria</sub>）</td>
+            <td style="padding:10px 12px">更新基準公式，加嚴待機與網路模組能耗限值。</td>
+            <td style="padding:10px 12px;background:#F0FDF4"><b style="color:#047857">比能源之星再加嚴 20%~25%</b><br>（實測需 ≤ 75% 基準線，僅前 15%~20% 頂尖機種能獲證）</td>
+          </tr>
+          <tr>
+            <td style="padding:10px 12px"><b>換機比較公平性分析</b></td>
+            <td style="padding:10px 12px">
+              <span style="display:inline-block;padding:2px 6px;border-radius:4px;background:#F1F5F9;color:#475569;font-size:11px;font-weight:700">[ES v2.0] 舊制</span><br>
+              排程假設不同，直接相減存在結構性差異，適合評估跨世代汰換之綜合節能趨勢。
+            </td>
+            <td style="padding:10px 12px">
+              <span style="display:inline-block;padding:2px 6px;border-radius:4px;background:#EFF6FF;color:#1D4ED8;font-size:11px;font-weight:700">[ES v3.0] 國際新制</span><br>
+              反映近代機種測試值，但需注意海外型錄可能混用 230V 歐洲電壓測試數據。
+            </td>
+            <td style="padding:10px 12px;background:#F0FDF4">
+              <span style="display:inline-block;padding:2px 6px;border-radius:4px;background:#DCFCE7;color:#166534;font-size:11px;font-weight:700">[節能標章] 同一度量衡</span><br>
+              <b>全品牌站在同一裁判標準</b>，具備官方證書字號可供查證，台灣採購最客觀公正。
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
@@ -956,9 +1024,10 @@ ul.clean li{margin:4px 0}
         <!-- 法規與免責宣告 -->
         <div class="pdf-footer-note">
           <div style="font-weight:700;color:#374151;margin-bottom:4px">三、評估基準與數據來源說明：</div>
-          <div>1. <b>新機測試數據</b>：依據中華民國經濟部能源署節能標章公告之 A3 複合機標準化 168 小時週期測試（TEC，度/週）推算。</div>
-          <div>2. <b>碳排放計算係數</b>：依據經濟部能源署最新公布之 114 年度產業電力排碳係數 <b>0.466 kg CO₂e/度</b>（範疇二外購電力適用）。</div>
-          <div>3. <b>免責與推估聲明</b>：本試算結果為標準化條件推估之理論模擬參考值，非屬設備效能承諾或電費保證。實際節電效益將受各企業列印量、休眠設定與電價級距影響，請以原廠合約及台電電費單為準。</div>
+          <div>1. <b>新機測試數據</b>：100% 依據中華民國經濟部能源署「節能標章」官方核定之 A3 機種 110V/60Hz 週期實測數值（TEC，度/週），維持全品牌同一度量衡。</div>
+          <div>2. <b>跨版本比較說明</b>：現況舊機多依早期國際能源之星（ENERGY STAR v2.0）歷史規格登錄，新機依現行節能標章標準；因國際測試週期排程演進，跨版本對比旨在提供跨世代設備汰舊換新之綜合節能趨勢推估參考。</div>
+          <div>3. <b>碳排放計算係數</b>：依據經濟部能源署最新公布之 114 年度產業電力排碳係數 <b>0.466 kg CO₂e/度</b>（公用售電業外購電力適用）。</div>
+          <div>4. <b>免責與推估聲明</b>：本試算結果為標準化條件推估之理論模擬參考值，非屬設備效能承諾或電費保證。實際節電效益將受各企業實際印量、休眠設定及電費級距影響，請以原廠合約及台電電費單為準。</div>
         </div>
 
       </div>
@@ -1242,8 +1311,9 @@ const brandRank = b => { const u = (b||'').toUpperCase(); return u==='RICOH'?0 :
 const MASTER_MAP = new Map();
 function rowToModel(r){
   if (Array.isArray(r)){
-    return { brand: r[0], model: r[1], color: r[2], speed: +r[3], tech: r[4], tec: +r[5], src: r[6] };
+    return { brand: r[0], model: r[1], color: r[2], speed: +r[3], tech: r[4], tec: +r[5], src: r[6], std: '節能標章', isLegacy: false };
   }
+  if (r && !r.std) r.std = r.src && r.src.includes('節能標章') ? '節能標章' : (r.src && r.src.includes('v3') ? 'ES v3.0' : 'ES v2.0');
   return r;
 }
 function upsertModel(item){
@@ -1257,6 +1327,25 @@ function upsertModel(item){
   }
 }
 SNAP.forEach(upsertModel);
+
+// 註冊歷史舊機種至母資料庫，供查詢表格檢索與設定基準（標記明確版本標籤）
+for (const b in LEGACY_MODELS){
+  if (b === 'PRESET') continue;
+  LEGACY_MODELS[b].forEach(item => {
+    upsertModel({
+      brand: b,
+      model: item.model,
+      color: 'Color',
+      speed: item.speed,
+      tech: 'EP',
+      tec: item.tec,
+      src: item.src,
+      std: item.std || 'ES v2.0',
+      isLegacy: true,
+      era: item.era
+    });
+  });
+}
 
 /* 純函數：單機換機效益 */
 function calc(st){
@@ -1412,72 +1501,72 @@ function markTargetAdjusted(){
    ========================================================= */
 const LEGACY_MODELS = {
   PRESET: [
-    { model: '5 年傳統雷射事務機', speed: 25, tec: 1.60, era: '約 5 年前（租賃滿期主力）', src: '租賃市場典型傳統雷射事務機耗能基準' },
-    { model: '7 年傳統雷射事務機', speed: 25, tec: 2.20, era: '約 7 年前（老舊長青機型）', src: '早期傳統定影高溫雷射事務機' },
-    { model: '3 年傳統雷射事務機', speed: 25, tec: 0.80, era: '約 3 年前（近期舊約機型）', src: '近年已微幅改善之傳統雷射事務機' }
+    { model: '5 年傳統雷射事務機', speed: 25, tec: 1.60, era: '約 5 年前（租賃滿期主力）', src: '租賃市場傳統雷射基準（對照 ES v2.0）', std: 'ES v2.0' },
+    { model: '7 年傳統雷射事務機', speed: 25, tec: 2.20, era: '約 7 年前（老舊長青機型）', src: '早期定影高溫雷射（對照 ES v2.0）', std: 'ES v2.0' },
+    { model: '3 年傳統雷射事務機', speed: 25, tec: 0.80, era: '約 3 年前（近期舊約機型）', src: '近代雷射事務機（對照 ES v3.0）', std: 'ES v3.0' }
   ],
   Ricoh: [
-    { model: 'IM C2000', speed: 20, tec: 0.55, era: '約 4~5 年前（2019~2020）', src: 'ENERGY STAR 歷史認證' },
-    { model: 'IM C2500', speed: 25, tec: 0.65, era: '約 4~5 年前（2019~2020）', src: 'ENERGY STAR 歷史認證' },
-    { model: 'IM C3000', speed: 30, tec: 0.70, era: '約 4~5 年前（2019~2020）', src: 'ENERGY STAR 歷史認證' },
-    { model: 'MP C2004ex', speed: 20, tec: 0.90, era: '約 6~7 年前（2017~2018）', src: 'ENERGY STAR 歷史認證' },
-    { model: 'MP C2504ex', speed: 25, tec: 1.10, era: '約 6~7 年前（2017~2018）', src: 'ENERGY STAR 歷史認證' },
-    { model: 'MP C3004ex', speed: 30, tec: 1.25, era: '約 6~7 年前（2017~2018）', src: 'ENERGY STAR 歷史認證' },
-    { model: 'MP C3504ex', speed: 35, tec: 1.40, era: '約 6~7 年前（2017~2018）', src: 'ENERGY STAR 歷史認證' },
-    { model: 'MP C2503', speed: 25, tec: 1.60, era: '約 8~10 年前（老舊租賃機）', src: 'ENERGY STAR 歷史認證' },
-    { model: 'Aficio MP C2551', speed: 25, tec: 2.20, era: '早期傳統雷射經典機', src: 'ENERGY STAR 歷史認證' }
+    { model: 'IM C2000', speed: 20, tec: 0.55, era: '約 4~5 年前（2019~2020）', src: 'ENERGY STAR v3.0 歷史認證', std: 'ES v3.0' },
+    { model: 'IM C2500', speed: 25, tec: 0.65, era: '約 4~5 年前（2019~2020）', src: 'ENERGY STAR v3.0 歷史認證', std: 'ES v3.0' },
+    { model: 'IM C3000', speed: 30, tec: 0.70, era: '約 4~5 年前（2019~2020）', src: 'ENERGY STAR v3.0 歷史認證', std: 'ES v3.0' },
+    { model: 'MP C2004ex', speed: 20, tec: 0.90, era: '約 6~7 年前（2017~2018）', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' },
+    { model: 'MP C2504ex', speed: 25, tec: 1.10, era: '約 6~7 年前（2017~2018）', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' },
+    { model: 'MP C3004ex', speed: 30, tec: 1.25, era: '約 6~7 年前（2017~2018）', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' },
+    { model: 'MP C3504ex', speed: 35, tec: 1.40, era: '約 6~7 年前（2017~2018）', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' },
+    { model: 'MP C2503', speed: 25, tec: 1.60, era: '約 8~10 年前（早期租賃機）', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' },
+    { model: 'Aficio MP C2551', speed: 25, tec: 2.20, era: '早期傳統雷射經典機', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' }
   ],
   FUJIFILM: [
-    { model: 'DocuCentre-V C2263', speed: 20, tec: 1.15, era: '約 5~7 年前（市場普遍租賃機種）', src: 'Fuji Xerox 官方規格 / 能源之星' },
-    { model: 'DocuCentre-V C2265', speed: 25, tec: 1.25, era: '約 5~7 年前（租賃主力款）', src: 'Fuji Xerox 官方規格 / 能源之星' },
-    { model: 'DocuCentre-VI C2271', speed: 25, tec: 1.00, era: '約 5~6 年前（高階機種）', src: 'Fuji Xerox 官方規格 / 能源之星' },
-    { model: 'DocuCentre-VI C3371', speed: 35, tec: 1.18, era: '約 5~6 年前（高速彩色）', src: 'Fuji Xerox 官方規格 / 能源之星' },
-    { model: 'ApeosPort-VI C2271', speed: 25, tec: 0.98, era: '約 5~6 年前（高階商務機種）', src: 'Fuji Xerox 官方規格 / 能源之星' },
-    { model: 'ApeosPort-V C3375', speed: 35, tec: 1.40, era: '約 6~8 年前（主流商用）', src: 'Fuji Xerox 官方規格 / 能源之星' },
-    { model: 'DocuCentre-IV C2260', speed: 20, tec: 2.15, era: '約 8~10 年前（老舊高耗電款）', src: 'ENERGY STAR 歷史認證' },
-    { model: 'Apeos C2060', speed: 20, tec: 0.75, era: '約 3~4 年前（近代雷射機種）', src: 'FUJIFILM 官方規格 / 能源之星' }
+    { model: 'DocuCentre-V C2263', speed: 20, tec: 1.15, era: '約 5~7 年前（市場普遍租賃機種）', src: 'Fuji Xerox 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
+    { model: 'DocuCentre-V C2265', speed: 25, tec: 1.25, era: '約 5~7 年前（租賃主力款）', src: 'Fuji Xerox 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
+    { model: 'DocuCentre-VI C2271', speed: 25, tec: 1.00, era: '約 5~6 年前（高階機種）', src: 'Fuji Xerox 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
+    { model: 'DocuCentre-VI C3371', speed: 35, tec: 1.18, era: '約 5~6 年前（高速彩色）', src: 'Fuji Xerox 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
+    { model: 'ApeosPort-VI C2271', speed: 25, tec: 0.98, era: '約 5~6 年前（高階商務機種）', src: 'Fuji Xerox 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
+    { model: 'ApeosPort-V C3375', speed: 35, tec: 1.40, era: '約 6~8 年前（主流商用）', src: 'Fuji Xerox 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
+    { model: 'DocuCentre-IV C2260', speed: 20, tec: 2.15, era: '約 8~10 年前（早期高耗電款）', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' },
+    { model: 'Apeos C2060', speed: 20, tec: 0.75, era: '約 3~4 年前（近代雷射機種）', src: 'FUJIFILM 官方規格 / 能源之星 v3.0', std: 'ES v3.0' }
   ],
   Canon: [
-    { model: 'iR-ADV C3520i III', speed: 20, tec: 0.82, era: '約 4~5 年前（三代主力）', src: 'Canon 官方規格 / 能源之星' },
-    { model: 'iR-ADV C3525i III', speed: 25, tec: 0.95, era: '約 4~5 年前（三代中速）', src: 'Canon 官方規格 / 能源之星' },
-    { model: 'iR-ADV C3320', speed: 20, tec: 0.85, era: '約 6~7 年前（二代常見主力機種）', src: 'Canon 官方規格 / 能源之星' },
-    { model: 'iR-ADV C3325', speed: 25, tec: 1.05, era: '約 6~7 年前（二代主力）', src: 'Canon 官方規格 / 能源之星' },
-    { model: 'imageRUNNER C3020', speed: 20, tec: 1.20, era: '約 5 年前（經濟入門款）', src: 'Canon 官方規格 / 能源之星' },
-    { model: 'iR-ADV C2220', speed: 20, tec: 1.90, era: '約 8~10 年前（舊代高耗能）', src: 'ENERGY STAR 歷史認證' }
+    { model: 'iR-ADV C3520i III', speed: 20, tec: 0.82, era: '約 4~5 年前（三代主力）', src: 'Canon 官方規格 / 能源之星 v3.0', std: 'ES v3.0' },
+    { model: 'iR-ADV C3525i III', speed: 25, tec: 0.95, era: '約 4~5 年前（三代中速）', src: 'Canon 官方規格 / 能源之星 v3.0', std: 'ES v3.0' },
+    { model: 'iR-ADV C3320', speed: 20, tec: 0.85, era: '約 6~7 年前（二代常見主力機種）', src: 'Canon 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
+    { model: 'iR-ADV C3325', speed: 25, tec: 1.05, era: '約 6~7 年前（二代主力）', src: 'Canon 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
+    { model: 'imageRUNNER C3020', speed: 20, tec: 1.20, era: '約 5 年前（經濟入門款）', src: 'Canon 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
+    { model: 'iR-ADV C2220', speed: 20, tec: 1.90, era: '約 8~10 年前（舊代高耗能）', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' }
   ],
   'Konica Minolta': [
-    { model: 'bizhub C227', speed: 22, tec: 1.00, era: '約 5~7 年前（中小企租賃主力）', src: 'Konica Minolta 官方規格 / 能源之星' },
-    { model: 'bizhub C287', speed: 28, tec: 1.20, era: '約 5~7 年前（中速主力）', src: 'Konica Minolta 官方規格 / 能源之星' },
-    { model: 'bizhub C258', speed: 25, tec: 1.10, era: '約 5~7 年前（主流商用）', src: 'Konica Minolta 官方規格 / 能源之星' },
-    { model: 'bizhub C224e', speed: 22, tec: 1.05, era: '約 7~8 年前（長青普及機）', src: 'Konica Minolta 官方規格 / 能源之星' },
-    { model: 'bizhub C284e', speed: 28, tec: 1.22, era: '約 7~8 年前（長青中速）', src: 'Konica Minolta 官方規格 / 能源之星' },
-    { model: 'bizhub C220', speed: 22, tec: 2.25, era: '早期傳統雷射事務機', src: 'ENERGY STAR 歷史認證' }
+    { model: 'bizhub C227', speed: 22, tec: 1.00, era: '約 5~7 年前（中小企租賃主力）', src: 'Konica Minolta 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
+    { model: 'bizhub C287', speed: 28, tec: 1.20, era: '約 5~7 年前（中速主力）', src: 'Konica Minolta 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
+    { model: 'bizhub C258', speed: 25, tec: 1.10, era: '約 5~7 年前（主流商用）', src: 'Konica Minolta 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
+    { model: 'bizhub C224e', speed: 22, tec: 1.05, era: '約 7~8 年前（長青普及機）', src: 'Konica Minolta 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
+    { model: 'bizhub C284e', speed: 28, tec: 1.22, era: '約 7~8 年前（長青中速）', src: 'Konica Minolta 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
+    { model: 'bizhub C220', speed: 22, tec: 2.25, era: '早期傳統雷射事務機', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' }
   ],
   HP: [
-    { model: 'Color LaserJet Managed E77822', speed: 22, tec: 1.05, era: '約 5 年前（A3 Managed 租賃機）', src: 'HP 官方規格 / 能源之星' },
-    { model: 'Color LaserJet Managed E77825', speed: 25, tec: 1.18, era: '約 5 年前（中速 A3）', src: 'HP 官方規格 / 能源之星' },
-    { model: 'Color LaserJet Managed E77830', speed: 30, tec: 1.35, era: '約 5 年前（30 ppm 款）', src: 'HP 官方規格 / 能源之星' },
-    { model: 'LaserJet Enterprise 700 M775', speed: 30, tec: 2.10, era: '經典高耗能 A3 雷射', src: 'ENERGY STAR 歷史認證' },
-    { model: 'PageWide Managed P77740', speed: 40, tec: 0.65, era: '約 5 年前（早期商用頁寬）', src: 'HP 官方規格 / 能源之星' }
+    { model: 'Color LaserJet Managed E77822', speed: 22, tec: 1.05, era: '約 5 年前（A3 Managed 租賃機）', src: 'HP 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
+    { model: 'Color LaserJet Managed E77825', speed: 25, tec: 1.18, era: '約 5 年前（中速 A3）', src: 'HP 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
+    { model: 'Color LaserJet Managed E77830', speed: 30, tec: 1.35, era: '約 5 年前（30 ppm 款）', src: 'HP 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
+    { model: 'LaserJet Enterprise 700 M775', speed: 30, tec: 2.10, era: '經典高耗能 A3 雷射', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' },
+    { model: 'PageWide Managed P77740', speed: 40, tec: 0.65, era: '約 5 年前（早期商用頁寬）', src: 'HP 官方規格 / 能源之星 v2.0', std: 'ES v2.0' }
   ],
   Sharp: [
-    { model: 'MX-2651', speed: 26, tec: 0.85, era: '約 4~5 年前（辦公室租賃主力）', src: 'Sharp 官方規格 / 能源之星' },
-    { model: 'MX-3051', speed: 30, tec: 1.05, era: '約 4~5 年前（30 ppm 彩色）', src: 'Sharp 官方規格 / 能源之星' },
-    { model: 'MX-2640N', speed: 26, tec: 1.25, era: '約 6~8 年前（長青舊代機）', src: 'Sharp 官方規格 / 能源之星' },
-    { model: 'MX-3140N', speed: 31, tec: 1.45, era: '約 6~8 年前（中速舊代機）', src: 'Sharp 官方規格 / 能源之星' },
-    { model: 'MX-2310F', speed: 23, tec: 2.10, era: '早期高耗能雷射事務機', src: 'ENERGY STAR 歷史認證' }
+    { model: 'MX-2651', speed: 26, tec: 0.85, era: '約 4~5 年前（辦公室租賃主力）', src: 'Sharp 官方規格 / 能源之星 v3.0', std: 'ES v3.0' },
+    { model: 'MX-3051', speed: 30, tec: 1.05, era: '約 4~5 年前（30 ppm 彩色）', src: 'Sharp 官方規格 / 能源之星 v3.0', std: 'ES v3.0' },
+    { model: 'MX-2640N', speed: 26, tec: 1.25, era: '約 6~8 年前（長青舊代機）', src: 'Sharp 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
+    { model: 'MX-3140N', speed: 31, tec: 1.45, era: '約 6~8 年前（中速舊代機）', src: 'Sharp 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
+    { model: 'MX-2310F', speed: 23, tec: 2.10, era: '早期高耗能雷射事務機', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' }
   ],
   KYOCERA: [
-    { model: 'TASKalfa 2552ci', speed: 25, tec: 0.95, era: '約 5~6 年前（彩色租賃主力）', src: 'KYOCERA 官方規格 / 能源之星' },
-    { model: 'TASKalfa 3252ci', speed: 32, tec: 1.30, era: '約 5~6 年前（中速彩色）', src: 'KYOCERA 官方規格 / 能源之星' },
-    { model: 'TASKalfa 2553ci', speed: 25, tec: 0.85, era: '約 4~5 年前（近代機型）', src: 'KYOCERA 官方規格 / 能源之星' },
-    { model: 'TASKalfa 2551ci', speed: 25, tec: 1.80, era: '約 7~9 年前（老一代主力）', src: 'ENERGY STAR 歷史認證' },
-    { model: 'TASKalfa 205c', speed: 20, tec: 2.30, era: '早期傳統雷射舊機', src: 'ENERGY STAR 歷史認證' }
+    { model: 'TASKalfa 2552ci', speed: 25, tec: 0.95, era: '約 5~6 年前（彩色租賃主力）', src: 'KYOCERA 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
+    { model: 'TASKalfa 3252ci', speed: 32, tec: 1.30, era: '約 5~6 年前（中速彩色）', src: 'KYOCERA 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
+    { model: 'TASKalfa 2553ci', speed: 25, tec: 0.85, era: '約 4~5 年前（近代機型）', src: 'KYOCERA 官方規格 / 能源之星 v3.0', std: 'ES v3.0' },
+    { model: 'TASKalfa 2551ci', speed: 25, tec: 1.80, era: '約 7~9 年前（老一代主力）', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' },
+    { model: 'TASKalfa 205c', speed: 20, tec: 2.30, era: '早期傳統雷射舊機', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' }
   ],
   Epson: [
-    { model: 'WorkForce Pro WF-C869R', speed: 24, tec: 0.35, era: '約 5~6 年前（第一代省墨包 A3）', src: 'Epson 官方規格 / 能源之星' },
-    { model: 'WorkForce Pro WF-R8591', speed: 24, tec: 0.55, era: '約 7~8 年前（早期微噴微壓電）', src: 'Epson 官方規格 / 能源之星' },
-    { model: 'AcuLaser CX37DN', speed: 24, tec: 1.75, era: '早期傳統彩色雷射事務機', src: 'ENERGY STAR 歷史認證' }
+    { model: 'WorkForce Pro WF-C869R', speed: 24, tec: 0.35, era: '約 5~6 年前（第一代省墨包 A3）', src: 'Epson 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
+    { model: 'WorkForce Pro WF-R8591', speed: 24, tec: 0.55, era: '約 7~8 年前（早期微噴微壓電）', src: 'Epson 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
+    { model: 'AcuLaser CX37DN', speed: 24, tec: 1.75, era: '早期傳統彩色雷射事務機', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' }
   ]
 };
 
@@ -1582,10 +1671,11 @@ function initABPicker(){
 
     const list = LEGACY_MODELS[brand] || [];
     baseModelSel.innerHTML = list.map((m, idx) => {
+      const tag = m.std ? ` [${m.std}]` : ' [ES v2.0]';
       if (brand === 'PRESET'){
-        return `<option value="${idx}">${esc(m.model)}（TEC ${fmt(m.tec,2)} · ${m.era}）</option>`;
+        return `<option value="${idx}">${esc(m.model)}（TEC ${fmt(m.tec,2)} · ${m.era}）${tag}</option>`;
       }
-      return `<option value="${idx}">${esc(m.model)} (${m.speed} ipm · TEC ${fmt(m.tec,2)})</option>`;
+      return `<option value="${idx}">${esc(m.model)} (${m.speed} ipm · TEC ${fmt(m.tec,2)})${tag}</option>`;
     }).join('');
 
     if (selectModelName){
@@ -1624,10 +1714,11 @@ function initABPicker(){
     document.getElementById('abBaseKwhVal').textContent = fmt(m.tec * 52, 1);
 
     if (badge){
+      const stdBadge = m.std ? `<span class="pill" style="background:#F1F5F9;color:#334155;border:1px solid #CBD5E1;font-weight:700;margin-left:4px">[${esc(m.std)}]</span>` : '';
       if (brand === 'PRESET'){
-        badge.innerHTML = `<span class="pill" style="background:#FFF1EE;color:#9E4A3B;border-color:#E8C5BD;font-weight:600">⏱️ 機齡推估：${esc(m.era)}</span> <div class="muted small" style="margin-top:2px">${esc(m.src)} · 可直接拖曳下方滑桿微調</div>`;
+        badge.innerHTML = `<span class="pill" style="background:#FFF1EE;color:#9E4A3B;border-color:#E8C5BD;font-weight:600">⏱️ 機齡推估：${esc(m.era)}</span>${stdBadge} <div class="muted small" style="margin-top:2px">${esc(m.src)} · 可直接拖曳下方滑桿微調</div>`;
       } else {
-        badge.innerHTML = `<span class="pill" style="background:#FFF1EE;color:#9E4A3B;border-color:#E8C5BD;font-weight:600">🏷️ 歷史登錄：${esc(m.era)}</span> <div class="muted small" style="margin-top:2px">${esc(m.src)} · 速度 ${m.speed} ipm · 典型雷射加熱定影</div>`;
+        badge.innerHTML = `<span class="pill" style="background:#FFF1EE;color:#9E4A3B;border-color:#E8C5BD;font-weight:600">🏷️ 歷史登錄：${esc(m.era)}</span>${stdBadge} <div class="muted small" style="margin-top:2px">${esc(m.src)} · 速度 ${m.speed} ipm · 典型雷射加熱定影</div>`;
       }
     }
 
@@ -1988,11 +2079,12 @@ function renderTable(){
       <td class="c-model">
         <div style="font-weight:500;display:flex;align-items:center;gap:6px;flex-wrap:wrap">
           <span>${esc(m.model)}</span>
-          ${m.src.includes('節能標章') || (!m.src.includes('官網') && !m.src.includes('ENERGY STAR'))
-            ? `<span class="pill" style="background:var(--sage-bg);color:#284B31;border-color:#C2DEC9;font-size:10.5px;padding:0 5px" title="${esc(m.src)}">🏅 節能標章</span>`
-            : m.src.includes('官網')
-              ? `<span class="pill" style="background:#FFF6EE;color:#A85822;border-color:#F5D8C4;font-size:10.5px;padding:0 5px" title="${esc(m.src)}">🏢 官網規格</span>`
-              : `<span class="pill" style="background:var(--blue-bg);color:#465D73;border-color:#CAD7E3;font-size:10.5px;padding:0 5px" title="${esc(m.src)}">⭐ 認證規格</span>`}
+          ${m.std === '節能標章' || m.src.includes('節能標章')
+            ? `<span class="pill" style="background:#ECFDF5;color:#065F46;border:1px solid #A7F3D0;font-size:10.5px;padding:1px 6px;font-weight:700" title="中華民國經濟部能源署節能標章（110V/60Hz 官方核定實測）">[節能標章]</span>`
+            : m.std === 'ES v3.0' || m.src.includes('v3.0')
+              ? `<span class="pill" style="background:#EFF6FF;color:#1E40AF;border:1px solid #BFDBFE;font-size:10.5px;padding:1px 6px;font-weight:700" title="國際能源之星 ENERGY STAR v3.0+ 實測">[ES v3.0]</span>`
+              : `<span class="pill" style="background:#F1F5F9;color:#475569;border:1px solid #CBD5E1;font-size:10.5px;padding:1px 6px;font-weight:700" title="早期國際能源之星 ENERGY STAR v2.0 歷史數據">[ES v2.0]</span>`}
+          ${m.isLegacy ? `<span class="pill" style="background:#FFF1EE;color:#9E4A3B;border:1px solid #E8C5BD;font-size:10px;padding:0 4px">舊機參考</span>` : ''}
         </div>
       </td>
       <td class="c-spec small muted">${m.color==='Color'?'彩色':m.color==='Monochrome'?'黑白':esc(m.color)} · <span class="num">${m.speed}</span> ipm · ${esc(TECH_LABEL[m.tech]||m.tech)}</td>
@@ -2085,9 +2177,10 @@ function renderFleetOldRows(){
       modelOptions = `<option value="${esc(row.model)}" selected>${esc(row.model)}</option>`;
     } else {
       const list = LEGACY_MODELS[row.brand] || [];
-      modelOptions = list.map(m =>
-        `<option value="${esc(m.model)}" data-tec="${m.tec}" ${m.model===row.model?'selected':''}>${esc(m.model)} (TEC ${fmt(m.tec,2)})</option>`
-      ).join('');
+      modelOptions = list.map(m => {
+        const tag = m.std ? ` [${m.std}]` : ' [ES v2.0]';
+        return `<option value="${esc(m.model)}" data-tec="${m.tec}" ${m.model===row.model?'selected':''}>${esc(m.model)} (TEC ${fmt(m.tec,2)})${tag}</option>`;
+      }).join('');
     }
 
     return `<div class="fleet-row" style="background:#fff;border:1px solid #E6D7D2;border-radius:8px;padding:8px 10px;display:flex;flex-direction:column;gap:6px">

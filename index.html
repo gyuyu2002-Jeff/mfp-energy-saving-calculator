@@ -394,7 +394,6 @@ ul.clean li{margin:4px 0}
           <button type="button" class="mode-btn on" id="btnModeSingle">⚡ 單機試算</button>
           <button type="button" class="mode-btn" id="btnModeFleet">🗂️ 多台試算</button>
         </div>
-        <span class="small muted" id="modeDesc">單一機型 1 對 1 即時快速對比</span>
       </div>
       <div class="row" style="gap:8px;margin-left:auto">
         <button type="button" class="btn sm primary" id="btnExportSummary" style="font-weight:700;display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,0.12)">
@@ -923,8 +922,8 @@ ul.clean li{margin:4px 0}
       <a href="https://www.energystar.gov/productfinder/product/certified-imaging-equipment/results" target="_blank" rel="noopener" style="padding:8px 12px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:8px;color:#166534;text-decoration:none;display:flex;justify-content:space-between;align-items:center">
         <span><b>ENERGY STAR</b> · 國際認證產品庫</span><span style="color:#059669">↗</span>
       </a>
-      <a href="https://www.energylabel.org.tw/" target="_blank" rel="noopener" style="padding:8px 12px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:8px;color:#166534;text-decoration:none;display:flex;justify-content:space-between;align-items:center">
-        <span><b>經濟部節能標章</b> · 官方資訊入口</span><span style="color:#059669">↗</span>
+      <a href="https://ea03.moeaea.gov.tw/e0410/01/purchasing/compare/Copymachines.aspx" target="_blank" rel="noopener" style="padding:8px 12px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:8px;color:#166534;text-decoration:none;display:flex;justify-content:space-between;align-items:center">
+        <span><b>經濟部節能標章</b> · 影印機獲證比較專區</span><span style="color:#059669">↗</span>
       </a>
     </div>
   </div>
@@ -1579,7 +1578,7 @@ function getModelSourceInfo(m) {
     esUrl: esUrl,
     twCert: twCert,
     hasTwLabel: hasTwLabel,
-    twUrl: 'https://www.energylabel.org.tw/purchasing/product/list.aspx'
+    twUrl: 'https://ea03.moeaea.gov.tw/e0410/01/purchasing/compare/Copymachines.aspx'
   };
 }
 
@@ -1997,19 +1996,12 @@ function initABPicker(){
     
     const badge = document.getElementById('abSourceBadge');
     const srcInfo = getModelSourceInfo(m);
-    const twCertBadge = srcInfo.twCert ? `<span class="pill" style="background:#ECFDF5;color:#065F46;border-color:#A7F3D0;font-weight:700">🏅 節能標章核定</span>` : '';
-    const twCertLink = srcInfo.hasTwLabel ? `<a href="${srcInfo.twUrl}" target="_blank" rel="noopener" class="src-pill-link" style="font-size:11px;color:#065F46;background:#ECFDF5;border:1px solid #A7F3D0;padding:2px 8px;border-radius:4px;font-weight:700;text-decoration:none" title="前往經濟部能源署節能標章官網查詢案號">🏅 能源署標章查驗 ↗</a>` : '';
+    const twCertLink = srcInfo.hasTwLabel ? `<a href="${srcInfo.twUrl}" target="_blank" rel="noopener" class="src-pill-link" style="font-size:11px;color:#065F46;background:#ECFDF5;border:1px solid #A7F3D0;padding:2px 8px;border-radius:4px;font-weight:700;text-decoration:none" title="前往經濟部能源署節能標章影印機獲證比較專區">🏅 能源署標章查驗 ↗</a>` : '';
 
     badge.innerHTML = `
-      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px">
-        <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
-          <span class="pill" style="background:#EFF6FF;color:#1E40AF;border-color:#BFDBFE;font-weight:700">⭐ 能源之星 v3.0 實測</span>
-          ${twCertBadge}
-        </div>
-        <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
-          <a href="${srcInfo.esUrl}" target="_blank" rel="noopener" class="src-pill-link" style="font-size:11px;color:#1E40AF;background:#EFF6FF;border:1px solid #BFDBFE;padding:2px 8px;border-radius:4px;font-weight:700;text-decoration:none" title="直達國際能源之星官方資料庫，查驗 ${esc(m.model)} 實測 TEC 值">⭐ 查驗 ENERGY STAR 實測 TEC ↗</a>
-          ${twCertLink}
-        </div>
+      <div style="display:flex;align-items:center;flex-wrap:wrap;gap:6px">
+        <a href="${srcInfo.esUrl}" target="_blank" rel="noopener" class="src-pill-link" style="font-size:11px;color:#1E40AF;background:#EFF6FF;border:1px solid #BFDBFE;padding:2px 8px;border-radius:4px;font-weight:700;text-decoration:none" title="直達國際能源之星官方資料庫，查驗 ${esc(m.model)} 實測 TEC 值">⭐ 查驗 ENERGY STAR 實測 TEC ↗</a>
+        ${twCertLink}
       </div>
       <div class="muted small" style="margin-top:5px;line-height:1.4">
         ${srcInfo.twCert ? `<span style="color:#065F46;font-weight:600">節能標章核定案號：${esc(srcInfo.twCert)}</span><br>` : ''}
@@ -2318,19 +2310,12 @@ function setPrimary(k){
     document.getElementById('abTargetSlider').value = m.tec;
     const badge = document.getElementById('abSourceBadge');
     const srcInfo = getModelSourceInfo(m);
-    const twCertBadge = srcInfo.twCert ? `<span class="pill" style="background:#ECFDF5;color:#065F46;border-color:#A7F3D0;font-weight:700">🏅 節能標章核定</span>` : '';
-    const twCertLink = srcInfo.hasTwLabel ? `<a href="${srcInfo.twUrl}" target="_blank" rel="noopener" class="src-pill-link" style="font-size:11px;color:#065F46;background:#ECFDF5;border:1px solid #A7F3D0;padding:2px 8px;border-radius:4px;font-weight:700;text-decoration:none" title="前往經濟部能源署節能標章官網查詢案號">🏅 能源署標章查驗 ↗</a>` : '';
+    const twCertLink = srcInfo.hasTwLabel ? `<a href="${srcInfo.twUrl}" target="_blank" rel="noopener" class="src-pill-link" style="font-size:11px;color:#065F46;background:#ECFDF5;border:1px solid #A7F3D0;padding:2px 8px;border-radius:4px;font-weight:700;text-decoration:none" title="前往經濟部能源署節能標章影印機獲證比較專區">🏅 能源署標章查驗 ↗</a>` : '';
 
     badge.innerHTML = `
-      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px">
-        <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
-          <span class="pill" style="background:#EFF6FF;color:#1E40AF;border-color:#BFDBFE;font-weight:700">⭐ 能源之星 v3.0 實測</span>
-          ${twCertBadge}
-        </div>
-        <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
-          <a href="${srcInfo.esUrl}" target="_blank" rel="noopener" class="src-pill-link" style="font-size:11px;color:#1E40AF;background:#EFF6FF;border:1px solid #BFDBFE;padding:2px 8px;border-radius:4px;font-weight:700;text-decoration:none" title="直達國際能源之星官方資料庫，查驗 ${esc(m.model)} 實測 TEC 值">⭐ 查驗 ENERGY STAR 實測 TEC ↗</a>
-          ${twCertLink}
-        </div>
+      <div style="display:flex;align-items:center;flex-wrap:wrap;gap:6px">
+        <a href="${srcInfo.esUrl}" target="_blank" rel="noopener" class="src-pill-link" style="font-size:11px;color:#1E40AF;background:#EFF6FF;border:1px solid #BFDBFE;padding:2px 8px;border-radius:4px;font-weight:700;text-decoration:none" title="直達國際能源之星官方資料庫，查驗 ${esc(m.model)} 實測 TEC 值">⭐ 查驗 ENERGY STAR 實測 TEC ↗</a>
+        ${twCertLink}
       </div>
       <div class="muted small" style="margin-top:5px;line-height:1.4">
         ${srcInfo.twCert ? `<span style="color:#065F46;font-weight:600">節能標章核定案號：${esc(srcInfo.twCert)}</span><br>` : ''}
@@ -2541,20 +2526,17 @@ function switchCalcMode(mode){
   const btnFleet = document.getElementById('btnModeFleet');
   const pSingle = document.getElementById('panelSingleMode');
   const pFleet = document.getElementById('panelFleetMode');
-  const desc = document.getElementById('modeDesc');
 
   if (mode === 'single'){
     btnSingle.classList.add('on');
     btnFleet.classList.remove('on');
     pSingle.classList.remove('hide');
     pFleet.classList.add('hide');
-    if (desc) desc.textContent = '單一機型 1 對 1 即時快速對比';
   } else {
     btnFleet.classList.add('on');
     btnSingle.classList.remove('on');
     pSingle.classList.add('hide');
     pFleet.classList.remove('hide');
-    if (desc) desc.textContent = '舊機多款 ➔ 新機多款（多台設備整批汰換試算）';
     renderFleetUI();
   }
   render();

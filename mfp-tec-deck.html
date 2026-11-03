@@ -663,7 +663,7 @@ ul.clean li{margin:4px 0}
       <div class="field"><label for="fColor">色彩</label>
         <select id="fColor"><option value="">彩色＋黑白</option><option value="Color">彩色</option><option value="Monochrome">黑白</option></select></div>
       <div class="field"><label for="fSort">排序</label>
-        <select id="fSort"><option value="tec">TEC 低→高</option><option value="speed">速度 低→高</option><option value="brand">品牌</option></select></div>
+        <select id="fSort"><option value="concept">彩機優先 · 舊到新（預設商務）</option><option value="tec">TEC 低→高（最省電）</option><option value="speed">速度 低→高</option><option value="brand">品牌</option></select></div>
       <div class="field f-kw"><label for="fKw">型號關鍵字</label><input type="text" id="fKw" placeholder="例如 C8101、IM C2010、AM-C4000、Apeos"></div>
       <div class="field"><button class="btn primary" id="btnSearch" style="width:100%">篩選標章機種</button></div>
     </div>
@@ -1280,7 +1280,7 @@ const TECH_LABEL = { EP: '雷射', HPIJ: '微噴（免加熱）', IJ: '噴墨' }
 
 const DEFAULTS = {
   units: 2, price: 4.0, years: 5, cf: 0.466, goal: 30,
-  baseTec: 1.60, baseName: '5 年傳統雷射事務機',
+  baseTec: 1.60, baseName: '5 年傳統彩色雷射事務機',
   targetTec: 0.70, targetName: 'Ricoh IM C2010',
   // TEC 圖解用
   s: 20, ej1: 4.0, ej: 1.2, ef: 1.0, ps: 0.5
@@ -1482,9 +1482,11 @@ function markTargetAdjusted(){
    ========================================================= */
 const LEGACY_MODELS = {
   PRESET: [
-    { model: '5 年傳統雷射事務機', speed: 25, tec: 1.60, era: '約 5 年前（租賃滿期主力）', src: '租賃市場傳統雷射基準（對照 ES v2.0）', std: 'ES v2.0' },
-    { model: '7 年傳統雷射事務機', speed: 25, tec: 2.20, era: '約 7 年前（老舊長青機型）', src: '早期定影高溫雷射（對照 ES v2.0）', std: 'ES v2.0' },
-    { model: '3 年傳統雷射事務機', speed: 25, tec: 0.80, era: '約 3 年前（近期舊約機型）', src: '近代雷射事務機（對照 ES v3.0）', std: 'ES v3.0' }
+    { model: '7 年傳統彩色雷射事務機', color: 'Color', speed: 25, tec: 2.20, era: '約 7 年前（早期高溫彩色機）', src: '早期定影高溫雷射（對照 ES v2.0）', std: 'ES v2.0' },
+    { model: '5 年傳統彩色雷射事務機', color: 'Color', speed: 25, tec: 1.60, era: '約 5 年前（租賃滿期彩色主力）', src: '租賃市場傳統雷射基準（對照 ES v2.0）', std: 'ES v2.0' },
+    { model: '3 年傳統彩色雷射事務機', color: 'Color', speed: 25, tec: 0.80, era: '約 3 年前（近期過渡彩色機）', src: '近代雷射事務機（對照 ES v3.0）', std: 'ES v3.0' },
+    { model: '7 年傳統黑白雷射事務機', color: 'Monochrome', speed: 25, tec: 1.80, era: '約 7 年前（早期高耗能黑白機）', src: '早期黑白雷射（對照 ES v2.0）', std: 'ES v2.0' },
+    { model: '5 年傳統黑白雷射事務機', color: 'Monochrome', speed: 25, tec: 1.10, era: '約 5 年前（租賃滿期黑白主力）', src: '傳統黑白雷射基準（對照 ES v2.0）', std: 'ES v2.0' }
   ],
   Ricoh: [
     { model: 'IM C2000', speed: 20, tec: 0.55, era: '約 4~5 年前（2019~2020）', src: 'ENERGY STAR v3.0 歷史認證', std: 'ES v3.0' },
@@ -1495,7 +1497,10 @@ const LEGACY_MODELS = {
     { model: 'MP C3004ex', speed: 30, tec: 1.25, era: '約 6~7 年前（2017~2018）', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' },
     { model: 'MP C3504ex', speed: 35, tec: 1.40, era: '約 6~7 年前（2017~2018）', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' },
     { model: 'MP C2503', speed: 25, tec: 1.60, era: '約 8~10 年前（早期租賃機）', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' },
-    { model: 'Aficio MP C2551', speed: 25, tec: 2.20, era: '早期傳統雷射經典機', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' }
+    { model: 'Aficio MP C2551', color: 'Color', speed: 25, tec: 2.20, era: '早期傳統雷射經典機', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' },
+    { model: 'MP 2501', color: 'Monochrome', speed: 25, tec: 1.40, era: '早期傳統黑白經典款', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' },
+    { model: 'MP 2554', color: 'Monochrome', speed: 25, tec: 0.90, era: '約 6~7 年前（黑白租賃主力）', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' },
+    { model: 'MP 3054', color: 'Monochrome', speed: 30, tec: 1.10, era: '約 6~7 年前（黑白中速主力）', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' }
   ],
   FUJIFILM: [
     { model: 'DocuCentre-V C2263', speed: 20, tec: 1.15, era: '約 5~7 年前（市場普遍租賃機種）', src: 'Fuji Xerox 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
@@ -1505,7 +1510,10 @@ const LEGACY_MODELS = {
     { model: 'ApeosPort-VI C2271', speed: 25, tec: 0.98, era: '約 5~6 年前（高階商務機種）', src: 'Fuji Xerox 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
     { model: 'ApeosPort-V C3375', speed: 35, tec: 1.40, era: '約 6~8 年前（主流商用）', src: 'Fuji Xerox 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
     { model: 'DocuCentre-IV C2260', speed: 20, tec: 2.15, era: '約 8~10 年前（早期高耗電款）', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' },
-    { model: 'Apeos C2060', speed: 20, tec: 0.75, era: '約 3~4 年前（近代雷射機種）', src: 'FUJIFILM 官方規格 / 能源之星 v3.0', std: 'ES v3.0' }
+    { model: 'Apeos C2060', color: 'Color', speed: 20, tec: 0.75, era: '約 3~4 年前（近代雷射機種）', src: 'FUJIFILM 官方規格 / 能源之星 v3.0', std: 'ES v3.0' },
+    { model: 'DocuCentre-IV 2060', color: 'Monochrome', speed: 20, tec: 1.70, era: '早期黑白雷射長青款', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' },
+    { model: 'DocuCentre-V 2060', color: 'Monochrome', speed: 25, tec: 1.10, era: '約 6~7 年前（黑白租賃主力）', src: 'Fuji Xerox 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
+    { model: 'DocuCentre-V 3060', color: 'Monochrome', speed: 30, tec: 1.30, era: '約 6~7 年前（黑白中速主力）', src: 'Fuji Xerox 官方規格 / 能源之星 v2.0', std: 'ES v2.0' }
   ],
   Canon: [
     { model: 'iR-ADV C3520i III', speed: 20, tec: 0.82, era: '約 4~5 年前（三代主力）', src: 'Canon 官方規格 / 能源之星 v3.0', std: 'ES v3.0' },
@@ -1513,7 +1521,10 @@ const LEGACY_MODELS = {
     { model: 'iR-ADV C3320', speed: 20, tec: 0.85, era: '約 6~7 年前（二代常見主力機種）', src: 'Canon 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
     { model: 'iR-ADV C3325', speed: 25, tec: 1.05, era: '約 6~7 年前（二代主力）', src: 'Canon 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
     { model: 'imageRUNNER C3020', speed: 20, tec: 1.20, era: '約 5 年前（經濟入門款）', src: 'Canon 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
-    { model: 'iR-ADV C2220', speed: 20, tec: 1.90, era: '約 8~10 年前（舊代高耗能）', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' }
+    { model: 'iR-ADV C2220', color: 'Color', speed: 20, tec: 1.90, era: '約 8~10 年前（舊代高耗能）', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' },
+    { model: 'imageRUNNER 2520', color: 'Monochrome', speed: 20, tec: 1.50, era: '早期黑白雷射經濟款', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' },
+    { model: 'iR-ADV 4225', color: 'Monochrome', speed: 25, tec: 1.20, era: '約 7~8 年前（黑白租賃主力）', src: 'Canon 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
+    { model: 'iR-ADV 4525', color: 'Monochrome', speed: 25, tec: 0.95, era: '約 5~6 年前（三代黑白主力）', src: 'Canon 官方規格 / 能源之星 v2.0', std: 'ES v2.0' }
   ],
   'Konica Minolta': [
     { model: 'bizhub C227', speed: 22, tec: 1.00, era: '約 5~7 年前（中小企租賃主力）', src: 'Konica Minolta 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
@@ -1521,7 +1532,10 @@ const LEGACY_MODELS = {
     { model: 'bizhub C258', speed: 25, tec: 1.10, era: '約 5~7 年前（主流商用）', src: 'Konica Minolta 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
     { model: 'bizhub C224e', speed: 22, tec: 1.05, era: '約 7~8 年前（長青普及機）', src: 'Konica Minolta 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
     { model: 'bizhub C284e', speed: 28, tec: 1.22, era: '約 7~8 年前（長青中速）', src: 'Konica Minolta 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
-    { model: 'bizhub C220', speed: 22, tec: 2.25, era: '早期傳統雷射事務機', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' }
+    { model: 'bizhub C220', color: 'Color', speed: 22, tec: 2.25, era: '早期傳統雷射事務機', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' },
+    { model: 'bizhub 224e', color: 'Monochrome', speed: 22, tec: 1.00, era: '約 7~8 年前（長青黑白機）', src: 'Konica Minolta 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
+    { model: 'bizhub 227', color: 'Monochrome', speed: 22, tec: 0.95, era: '約 5~7 年前（黑白租賃主力）', src: 'Konica Minolta 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
+    { model: 'bizhub 287', color: 'Monochrome', speed: 28, tec: 1.15, era: '約 5~7 年前（黑白中速主力）', src: 'Konica Minolta 官方規格 / 能源之星 v2.0', std: 'ES v2.0' }
   ],
   HP: [
     { model: 'Color LaserJet Managed E77822', speed: 22, tec: 1.05, era: '約 5 年前（A3 Managed 租賃機）', src: 'HP 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
@@ -1558,7 +1572,7 @@ for (const b in LEGACY_MODELS){
     upsertModel({
       brand: b,
       model: item.model,
-      color: 'Color',
+      color: item.color || (item.model.includes('C') || item.model.includes('ci') ? 'Color' : 'Monochrome'),
       speed: item.speed,
       tech: 'EP',
       tec: item.tec,
@@ -1568,6 +1582,52 @@ for (const b in LEGACY_MODELS){
       era: item.era
     });
   });
+}
+
+
+/* =========================================================
+   選單排序核心邏輯（符合商務直覺：彩機到黑白機、由舊到新）
+   ========================================================= */
+function getModelColorScore(m){
+  const c = (m.color || '').toUpperCase();
+  if (c === 'C' || c === 'COLOR' || c.startsWith('彩')) return 0; // 彩色機種排前面 (0)
+  return 1; // 黑白機種排後面 (1)
+}
+
+function getModelVintageScore(m){
+  // 1. 若有官方節能標章證書字號（民國 105 ~ 115 年），依獲證年份由舊到新
+  if (m.src){
+    const certMatch = m.src.match(/證書(\d{3})/);
+    if (certMatch) return parseInt(certMatch[1], 10) * 10;
+  }
+  // 2. 若為歷史舊機種（文字年代標註）
+  const era = m.era || '';
+  if (era.includes('早期') || era.includes('8~10') || era.includes('7~9')) return 100;
+  if (era.includes('7~8') || era.includes('7 年')) return 102;
+  if (era.includes('6~8') || era.includes('6~7')) return 104;
+  if (era.includes('5~7') || era.includes('5~6') || era.includes('5 年')) return 106;
+  if (era.includes('4~5')) return 108;
+  if (era.includes('3~4') || era.includes('3 年')) return 110;
+  if (m.std === 'ES v2.0') return 104;
+  if (m.std === 'ES v3.0') return 109;
+  return 1130; // 預設現役
+}
+
+function compareModelsUserConcept(a, b){
+  // 優先 1：彩機到黑白機（彩色機 Color=0 在前，黑白機 Mono=1 在後）
+  const cA = getModelColorScore(a), cB = getModelColorScore(b);
+  if (cA !== cB) return cA - cB;
+
+  // 優先 2：舊到新（年代久遠/早期獲證 在前，近代/最新 在後）
+  const vA = getModelVintageScore(a), vB = getModelVintageScore(b);
+  if (vA !== vB) return vA - vB;
+
+  // 優先 3：列印速度由低到高（ipm 升序）
+  const sA = a.speed || 0, sB = b.speed || 0;
+  if (sA !== sB) return sA - sB;
+
+  // 優先 4：TEC 典型用電量升序
+  return (a.tec || 0) - (b.tec || 0);
 }
 
 /* =========================================================
@@ -1593,20 +1653,13 @@ function initABPicker(){
   function updateModels(brand, selectModelName){
     const all = Array.from(MASTER_MAP.values());
     const list = all.filter(m => m.brand.toUpperCase() === brand.toUpperCase());
-    // 排序：Epson EM-C8101 與 AM-C4000 置頂，Ricoh IM C2010 置頂，其餘依 TEC 升序
-    list.sort((a,b) => {
-      const topScore = m => {
-        if (m.model === 'EM-C8101') return -100;
-        if (m.model === 'AM-C4000') return -95;
-        if (m.model === 'IM C2010') return -100;
-        return 0;
-      };
-      return (topScore(a) - topScore(b)) || (a.tec - b.tec);
-    });
+    // 排序概念：彩機到黑白機、由舊到新
+    list.sort(compareModelsUserConcept);
     
     modelSel.innerHTML = list.map(m => {
-      const srcTag = m.src.includes('節能標章') ? ' [🏅節能標章]' : m.src.includes('官網') ? ' [🏢官網規格]' : ' [🏅節能標章]';
-      return `<option value="${keyOf(m)}">${esc(m.model)} (${m.speed} ipm · TEC ${fmt(m.tec,2)})${srcTag}</option>`;
+      const srcTag = m.std === '節能標章' || m.src.includes('節能標章') ? ' [🏅節能標章]' : m.std === 'ES v3.0' ? ' [ES v3.0]' : ' [ES v2.0]';
+      const clrTag = getModelColorScore(m) === 0 ? '彩色' : '黑白';
+      return `<option value="${keyOf(m)}">${esc(m.model)} (${clrTag} · ${m.speed} ipm · TEC ${fmt(m.tec,2)})${srcTag}</option>`;
     }).join('');
 
     if (selectModelName){
@@ -1669,13 +1722,15 @@ function initABPicker(){
     }
     if (baseCustomRow) baseCustomRow.classList.add('hide');
 
-    const list = LEGACY_MODELS[brand] || [];
+    const list = (LEGACY_MODELS[brand] || []).slice();
+    list.sort(compareModelsUserConcept);
     baseModelSel.innerHTML = list.map((m, idx) => {
       const tag = m.std ? ` [${m.std}]` : ' [ES v2.0]';
+      const clrTag = getModelColorScore(m) === 0 ? '彩色' : '黑白';
       if (brand === 'PRESET'){
-        return `<option value="${idx}">${esc(m.model)}（TEC ${fmt(m.tec,2)} · ${m.era}）${tag}</option>`;
+        return `<option value="${idx}">${esc(m.model)}（${clrTag} · TEC ${fmt(m.tec,2)} · ${m.era}）${tag}</option>`;
       }
-      return `<option value="${idx}">${esc(m.model)} (${m.speed} ipm · TEC ${fmt(m.tec,2)})${tag}</option>`;
+      return `<option value="${idx}">${esc(m.model)} (${clrTag} · ${m.speed} ipm · TEC ${fmt(m.tec,2)})${tag}</option>`;
     }).join('');
 
     if (selectModelName){
@@ -1753,7 +1808,7 @@ function initABPicker(){
 
   // 初始化舊機為 PRESET 5 年傳統雷射事務機
   baseBrandSel.value = 'PRESET';
-  updateBaseModels('PRESET', '5 年傳統雷射事務機');
+  updateBaseModels('PRESET', '5 年傳統彩色雷射事務機');
 
   // 初始化新機預設帶入 Ricoh IM C2010
   brandSel.value = 'Ricoh';
@@ -2041,14 +2096,11 @@ function renderTable(){
       const r = brandRank(a.brand) - brandRank(b.brand);
       if (r !== 0) return r;
     }
-    // 特殊置頂：Epson EM-C8101、AM-C4000 與 Ricoh IM C2010 在各自品牌內優先置頂
-    const score = m => (m.model==='EM-C8101' ? -100 : m.model==='AM-C4000' ? -95 : m.model==='IM C2010' ? -100 : 0);
-    const scDiff = score(a) - score(b);
-    if (scDiff !== 0) return scDiff;
-
     if (sort === 'speed') return a.speed - b.speed || a.tec - b.tec;
     if (sort === 'brand') return a.brand.localeCompare(b.brand) || a.tec - b.tec;
-    return a.tec - b.tec || a.speed - b.speed;
+    if (sort === 'tec') return a.tec - b.tec || a.speed - b.speed;
+    // 預設商務排序：彩機到黑白機、由舊到新
+    return compareModelsUserConcept(a, b);
   });
 
   document.getElementById('resCount').textContent = fmt(list.length);
@@ -2176,10 +2228,12 @@ function renderFleetOldRows(){
     if (row.brand === 'CUSTOM'){
       modelOptions = `<option value="${esc(row.model)}" selected>${esc(row.model)}</option>`;
     } else {
-      const list = LEGACY_MODELS[row.brand] || [];
+      const list = (LEGACY_MODELS[row.brand] || []).slice();
+      list.sort(compareModelsUserConcept);
       modelOptions = list.map(m => {
         const tag = m.std ? ` [${m.std}]` : ' [ES v2.0]';
-        return `<option value="${esc(m.model)}" data-tec="${m.tec}" ${m.model===row.model?'selected':''}>${esc(m.model)} (TEC ${fmt(m.tec,2)})${tag}</option>`;
+        const clrTag = getModelColorScore(m) === 0 ? '彩色' : '黑白';
+        return `<option value="${esc(m.model)}" data-tec="${m.tec}" ${m.model===row.model?'selected':''}>${esc(m.model)} (${clrTag} · TEC ${fmt(m.tec,2)})${tag}</option>`;
       }).join('');
     }
 
@@ -2239,11 +2293,12 @@ function renderFleetNewRows(){
     ).join('');
 
     const modelsInBrand = allModels.filter(m => m.brand.toUpperCase() === row.brand.toUpperCase());
-    modelsInBrand.sort((a,b) => (a.model==='EM-C8101'?-100:a.model==='AM-C4000'?-95:a.model==='IM C2010'?-100:0) - (b.model==='EM-C8101'?-100:b.model==='AM-C4000'?-95:b.model==='IM C2010'?-100:0) || (a.tec - b.tec));
+    modelsInBrand.sort(compareModelsUserConcept);
 
-    const modelOptions = modelsInBrand.map(m =>
-      `<option value="${keyOf(m)}" data-tec="${m.tec}" ${m.model===row.model?'selected':''}>${esc(m.model)} (${m.speed} ipm · TEC ${fmt(m.tec,2)})</option>`
-    ).join('');
+    const modelOptions = modelsInBrand.map(m => {
+      const clrTag = getModelColorScore(m) === 0 ? '彩色' : '黑白';
+      return `<option value="${keyOf(m)}" data-tec="${m.tec}" ${m.model===row.model?'selected':''}>${esc(m.model)} (${clrTag} · ${m.speed} ipm · TEC ${fmt(m.tec,2)})</option>`;
+    }).join('');
 
     return `<div class="fleet-row" style="background:#fff;border:1px solid #D5DFE8;border-radius:8px;padding:8px 10px;display:flex;flex-direction:column;gap:6px">
       <div class="row between" style="gap:6px">

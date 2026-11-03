@@ -1355,90 +1355,231 @@ let fleetNew = [
 const keyOf = m => `${m.brand}|${m.model}|${m.speed}`;
 const brandRank = b => { const u = (b||'').toUpperCase(); return u==='RICOH'?0 : u==='EPSON'?1 : 2; };
 
+const GOV_CERTS = {
+  "CANON|ImageFORCE C3150": "佳能 1150638",
+  "CANON|image RUNNER ADVANCE DX 4935i": "佳能 1130123續1",
+  "CANON|imageFORCE 6155": "佳能 1150032",
+  "CANON|imageFORCE 6160": "佳能 1150032",
+  "CANON|imageFORCE 6170": "佳能 1150032",
+  "CANON|imageFORCE C5140": "佳能 1150029",
+  "CANON|imageFORCE C5150": "佳能 1150031",
+  "CANON|imageFORCE C5160": "佳能 1150031",
+  "CANON|imageFORCE C5170": "佳能 1150031",
+  "CANON|imageFORCE C7165": "佳能 1140557",
+  "CANON|imageRUNNER 2925i": "佳能 1130124續1",
+  "CANON|imageRUNNER ADVANCE DX 4735i": "佳能 1120915續1",
+  "CANON|imageRUNNER ADVANCE DX 4745i": "佳能 1120915續1",
+  "CANON|imageRUNNER ADVANCE DX 4751i": "佳能 1120917續1",
+  "CANON|imageRUNNER ADVANCE DX 4835i": "佳能 1120221續1",
+  "CANON|imageRUNNER ADVANCE DX 4945i": "佳能 1130449續1",
+  "CANON|imageRUNNER ADVANCE DX 6755i": "佳能 1120914續1",
+  "CANON|imageRUNNER ADVANCE DX 6855i": "佳能 1120916續1",
+  "CANON|imageRUNNER ADVANCE DX 6860i": "佳能 1130451續1",
+  "CANON|imageRUNNER ADVANCE DX 6870i": "佳能 1120222續1",
+  "CANON|imageRUNNER ADVANCE DX C3930i": "佳能 1130449續1",
+  "CANON|imageRUNNER ADVANCE DX C5840i": "佳能 1130448續1",
+  "CANON|imageRUNNER ADVANCE DX C5850i": "佳能 1130751續1",
+  "CANON|imageRUNNER ADVANCE DX C5860i": "佳能 1130452續1",
+  "CANON|imageRUNNER ADVANCE DX C5870i": "佳能 1130452續1",
+  "CANON|imageRUNNER C3326i": "佳能 1130124續1",
+  "DEVELOP|DEVELOP ineo+ 250i": "康鈦科技 1100274續2",
+  "DEVELOP|DEVELOP ineo+ 360i": "康鈦科技 1100274續2",
+  "DEVELOP|ineo 205i": "康鈦科技 1100274續2",
+  "EPSON|AL-M7150DN": "愛普生 1100675續2",
+  "EPSON|AL-M8250DN": "愛普生 1100675續2",
+  "EPSON|AM-C4000": "愛普生 1130752續1 / 愛普生 1120450續1",
+  "EPSON|AM-C5000": "愛普生 1120450續1",
+  "EPSON|AM-C6000": "愛普生 1120450續1",
+  "EPSON|AM-M5500": "愛普生 1140644",
+  "EPSON|EM-C8100": "愛普生 1140370",
+  "EPSON|EM-C8101": "愛普生 1140644",
+  "EPSON|WF-C20590": "愛普生 107110續4",
+  "EPSON|WF-C20600": "愛普生 1090695續3",
+  "EPSON|WF-C20750": "愛普生 1090695續3",
+  "EPSON|WF-C21000": "愛普生 1090695續3",
+  "EPSON|WF-C869R": "愛普生 106804續4",
+  "EPSON|WF-M21000": "愛普生 1100674續2",
+  "FUJIFILM|Apeos 2560": "富士 1110329續2",
+  "FUJIFILM|Apeos 2561": "富士 1150490",
+  "FUJIFILM|Apeos 3060": "富士 1110329續2",
+  "FUJIFILM|Apeos 3061": "富士 1150490",
+  "FUJIFILM|Apeos 3560": "富士 1110329續2",
+  "FUJIFILM|Apeos 3561": "富士 1150490",
+  "FUJIFILM|Apeos 4570": "富士 1110179續2",
+  "FUJIFILM|Apeos 5570": "富士 1110179續2",
+  "FUJIFILM|Apeos 6571": "富士 1150640",
+  "FUJIFILM|Apeos 6580": "富士 1120283續1",
+  "FUJIFILM|Apeos 7580": "富士 1120283續1",
+  "FUJIFILM|Apeos C2060": "富士 1110328續2",
+  "FUJIFILM|Apeos C2061": "富士 1140307",
+  "FUJIFILM|Apeos C2560": "富士 1110328續2",
+  "FUJIFILM|Apeos C2567": "富士 1140307",
+  "FUJIFILM|Apeos C3060": "富士 1110328續2",
+  "FUJIFILM|Apeos C3067": "富士 1140307",
+  "FUJIFILM|Apeos C3070": "富士 1100500續2",
+  "FUJIFILM|Apeos C3071": "富士 1140114",
+  "FUJIFILM|Apeos C3570": "富士 1100500續2",
+  "FUJIFILM|Apeos C3571": "富士 1140114",
+  "FUJIFILM|Apeos C4570": "富士 1100500續2",
+  "FUJIFILM|Apeos C4571": "富士 1140114",
+  "FUJIFILM|Apeos C5570": "富士 1100500續2",
+  "FUJIFILM|Apeos C5571": "富士 1140114",
+  "FUJIFILM|Apeos C6570": "富士 1100500續2",
+  "FUJIFILM|Apeos C6571": "富士 1140113",
+  "FUJIFILM|Apeos C6580": "富士 1140759",
+  "FUJIFILM|Apeos C7070": "富士 1100500續2",
+  "FUJIFILM|Apeos C7071": "富士 1140114",
+  "FUJIFILM|Apeos C7580": "富士 1140759",
+  "FUJIFILM|ApeosPort C3060": "富士 1100051續2",
+  "FUJIFILM|ApeosPort C3570 R": "富士 1150458",
+  "FUJIFILM|ApeosPort C5570 R": "富士 1150458",
+  "FUJIFILM|ApeosPort-V 6080": "富士 1100348續2",
+  "FUJIFILM|ApeosPort-V 7080": "富士 1100348續2",
+  "FUJIFILM|ApeosPort-V C3376 R": "富士 1100499續2",
+  "FUJIFILM|ApeosPort-V C5576 R": "富士 1100499續2",
+  "FUJIFILM|ApeosPort-VI C3371 R": "富士 1130038續1",
+  "FUJIFILM|ApeosPort-VI C5571 R": "富士 1130038續1",
+  "FUJIFILM|ApeosPort-VII C3373 R": "富士 1140451",
+  "FUJIFILM|ApeosPort-VII C4473": "富士 1100052續2",
+  "FUJIFILM|ApeosPort-VII C5573": "富士 1100052續2 / 富士 1140451",
+  "FUJIFILM|ApeosPort-VII C5573 R": "富士 1100052續2 / 富士 1140451",
+  "FUJIFILM|ApeosPro C650": "富士 1130866續1",
+  "FUJIFILM|ApeosPro C810": "富士 1100502續2",
+  "FUJIFILM|DocuCentre-V 6080": "富士 1100348續2",
+  "FUJIFILM|DocuCentre-V 7080": "富士 1100348續2",
+  "FUJIFILM|DocuCentre-VII C4473": "富士 1100052續2",
+  "FUJIFILM|DocuCentre-VII C5573": "富士 1100052續2",
+  "FUJIFILM|Revoria Press E1136": "富士 1110052續2",
+  "HP|HP Color LaserJet Managed MFP E785dn": "台灣惠普 1140647",
+  "HP|HP Color LaserJet Managed MFP E786dn": "台灣惠普 1140648",
+  "HP|HP Color LaserJet Managed MFP E877dn": "台灣惠普 1140649",
+  "HP|HP LaserJet MFP M42625dn": "台灣惠普 1100577續2",
+  "HP|HP LaserJet Managed MFP E731dn": "台灣惠普 1140645",
+  "HP|HP LaserJet Managed MFP E826dn": "台灣惠普 1140646",
+  "KONICA MINOLTA|bizhub 227i": "金儀 1150033",
+  "KONICA MINOLTA|bizhub 287": "金儀 105066續5",
+  "KONICA MINOLTA|bizhub 300i": "金儀 1130119續1",
+  "KONICA MINOLTA|bizhub 301i": "金儀 1140252",
+  "KONICA MINOLTA|bizhub 360i": "金儀 1130119續1",
+  "KONICA MINOLTA|bizhub 361i": "金儀 1140049",
+  "KONICA MINOLTA|bizhub 367": "金儀 1100576續2",
+  "KONICA MINOLTA|bizhub 450i": "金儀 1090989續2",
+  "KONICA MINOLTA|bizhub 451i": "金儀 1140049",
+  "KONICA MINOLTA|bizhub 550i": "金儀 1100049續2",
+  "KONICA MINOLTA|bizhub 551i": "金儀 1140252",
+  "KONICA MINOLTA|bizhub 650i": "金儀 1090989續2",
+  "KONICA MINOLTA|bizhub 651i": "金儀 1140050",
+  "KONICA MINOLTA|bizhub 750i": "金儀 1090989續2",
+  "KONICA MINOLTA|bizhub 751i": "金儀 1140050",
+  "KONICA MINOLTA|bizhub C251i": "金儀 1140252",
+  "KONICA MINOLTA|bizhub C301i": "金儀 1140252",
+  "KONICA MINOLTA|bizhub C361i": "金儀 1140049",
+  "KONICA MINOLTA|bizhub C451i": "金儀 1140049",
+  "KONICA MINOLTA|bizhub C551i": "金儀 1140050",
+  "KONICA MINOLTA|bizhub C651i": "金儀 1140050",
+  "KYOCERA|ECOSYS MZ3201ix": "京瓷 1150639",
+  "KYOCERA|ECOSYS P4060dn": "京瓷 1090515續3",
+  "KYOCERA|ECOSYS P4145dn": "京瓷 1090515續3",
+  "KYOCERA|TASKalfa 2554ci": "京瓷 1110514續2",
+  "KYOCERA|TASKalfa 3554ci": "京瓷 1110514續2",
+  "KYOCERA|TASKalfa 4054ci": "京瓷 1110515續2",
+  "KYOCERA|TASKalfa 5004i": "京瓷 1110514續2",
+  "KYOCERA|TASKalfa 5054ci": "京瓷 1110515續2",
+  "KYOCERA|TASKalfa 6004i": "京瓷 1110514續2",
+  "KYOCERA|TASKalfa 6054ci": "京瓷 1110515續2",
+  "KYOCERA|TASKalfa 7004i": "京瓷 1110514續2",
+  "KYOCERA|TASKalfa 7054ci": "京瓷 1110515續2",
+  "KYOCERA|TASKalfa MZ2202": "京瓷 1150864",
+  "KYOCERA|TASKalfa MZ2501ci": "京瓷 1150456",
+  "KYOCERA|TASKalfa MZ2502": "京瓷 1150864",
+  "KYOCERA|TASKalfa MZ3200i": "京瓷 1110787續1",
+  "KYOCERA|TASKalfa MZ3201i": "京瓷 1150639",
+  "KYOCERA|TASKalfa MZ3501ci": "京瓷 1150456",
+  "KYOCERA|TASKalfa MZ4000i": "京瓷 1110787續1",
+  "KYOCERA|TASKalfa MZ4001ci": "京瓷 1150456",
+  "KYOCERA|TASKalfa MZ5001ci": "京瓷 1150456",
+  "KYOCERA|TASKalfa MZ5001i": "京瓷 1150457",
+  "KYOCERA|TASKalfa MZ6001ci": "京瓷 1150456",
+  "KYOCERA|TASKalfa MZ6001i": "京瓷 1150457",
+  "KYOCERA|TASKalfa MZ7001ci": "京瓷 1150456",
+  "KYOCERA|TASKalfa MZ7001i": "京瓷 1150457",
+  "RICOH|IM 2500": "互盛 1110272續2 / 理光 1130560續1",
+  "RICOH|IM 2510": "互盛 1150863",
+  "RICOH|IM 3000": "理光 1130564續1",
+  "RICOH|IM 3500": "互盛 1110272續2 / 理光 1130559續1",
+  "RICOH|IM 3510": "互盛 1150863 / 理光 1150916",
+  "RICOH|IM 4000": "互盛 1110272續2 / 理光 1130561續1",
+  "RICOH|IM 4510": "互盛 1150863",
+  "RICOH|IM 5000": "互盛 1110272續2 / 理光 1130565續1",
+  "RICOH|IM 5510": "互盛 1150863",
+  "RICOH|IM 6000": "互盛 1110193續2 / 理光 1130562續1",
+  "RICOH|IM 6010": "互盛 1150863 / 理光 1150915",
+  "RICOH|IM 7000": "互盛 1100272續2 / 理光 1130298續1",
+  "RICOH|IM 8000": "理光 1130549續1",
+  "RICOH|IM 9000": "理光 1130550續1",
+  "RICOH|IM C2010": "互盛 1120711續1 / 理光 1150300",
+  "RICOH|IM C2510": "互盛 1120711續1 / 理光 1130566續1",
+  "RICOH|IM C3010": "互盛 1120711續1 / 理光 1130567續1",
+  "RICOH|IM C3510": "互盛 1120711續1 / 理光 1150299",
+  "RICOH|IM C4510": "互盛 1120711續1 / 理光 1130568續1",
+  "RICOH|IM C6010": "互盛 1120711續1 / 理光 1150301",
+  "SHARP|BP-30M28": "震旦行股 1110244續2 / 震旦行股 1110245續2",
+  "SHARP|BP-30M28T": "震旦行股 1110244續2 / 震旦行股 1110245續2",
+  "SHARP|BP-30M31": "震旦行股 1110246續2 / 震旦行股 1110247續2",
+  "SHARP|BP-30M31T": "震旦行股 1110246續2 / 震旦行股 1110247續2",
+  "SHARP|BP-30M35": "震旦行股 1110248續2 / 震旦行股 1110178續2",
+  "SHARP|BP-30M35T": "震旦行股 1110248續2 / 震旦行股 1110178續2",
+  "SHARP|BP-50C26": "震旦行股 1130675續1 / 震旦行股 1130674續1",
+  "SHARP|BP-50C26T": "震旦行股 1130675續1 / 震旦行股 1130674續1",
+  "SHARP|BP-50C31": "震旦行股 1130302續1",
+  "SHARP|BP-50M31": "震旦行股 1130300續1",
+  "SHARP|BP-70C45": "震旦行股 1130037續1 / 震旦行股 1130554續1",
+  "SHARP|BP-70C45T": "震旦行股 1130037續1 / 震旦行股 1130554續1",
+  "SHARP|BP-70C55": "震旦行股 1130301續1 / 震旦行股 1130888續1",
+  "SHARP|BP-70C55T": "震旦行股 1130301續1 / 震旦行股 1130888續1",
+  "SHARP|BP-70C65": "震旦行股 1130036續1 / 震旦行股 1130553續1",
+  "SHARP|BP-70C65T": "震旦行股 1130036續1 / 震旦行股 1130553續1",
+  "SHARP|BP-70M45": "震旦行股 1130677續1 / 震旦行股 1130676續1",
+  "SHARP|BP-70M45T": "震旦行股 1130677續1 / 震旦行股 1130676續1",
+  "SHARP|BP-70M55": "震旦行股 1130299續1",
+  "SHARP|BP-70M65": "震旦行股 1130035續1 / 震旦行股 1130552續1",
+  "SHARP|BP-70M65T": "震旦行股 1130035續1 / 震旦行股 1130552續1",
+  "SHARP|BP-70M75": "震旦行股 1130034續1 / 震旦行股 1130551續1",
+  "SHARP|BP-70M75T": "震旦行股 1130034續1 / 震旦行股 1130551續1",
+  "TOSHIBA|e-STUDIO2520AC(FC-2520AC)": "台芝 1110638續2",
+  "TOSHIBA|e-STUDIO2829A(DP-2829A)": "台芝 1150034",
+  "TOSHIBA|e-STUDIO3028A(DP-3028A)": "台芝 1110638續2",
+  "TOSHIBA|e-STUDIO3525AC(FC-3525AC)": "台芝 1110639續2",
+  "TOSHIBA|e-STUDIO3528A(DP-3528A)": "台芝 1110639續2",
+  "TOSHIBA|e-STUDIO4525AC(FC-4525AC)": "台芝 1110639續2",
+  "TOSHIBA|e-STUDIO4528A(DP-4528A)": "台芝 1110639續2",
+  "TOSHIBA|e-STUDIO5528A(DP-5528A)": "台芝 1110639續2",
+  "TOSHIBA|e-STUDIO6528A(DP-6528A)": "台芝 1110639續2",
+  "TOSHIBA|e-STUDIO7529A(DP-7529A)": "台芝 1120282續1"
+};
+
 function getModelSourceInfo(m) {
   const model = (m && m.model) ? m.model : '';
   const brand = (m && m.brand) ? m.brand : '';
   const u = brand.toUpperCase();
-  const esUrl = 'https://www.energystar.gov/productfinder/product/certified-imaging-equipment/results?search_api_fulltext=' + encodeURIComponent(model);
+  const cleanModel = model.replace(/\(.*?\)/g, '').trim();
+  
+  // 方案一：直通 ENERGY STAR 國際能源之星官方產品資料庫（直接呈現該機型官方實測 TEC 數值）
+  const esUrl = 'https://www.energystar.gov/productfinder/product/certified-imaging-equipment/results?search_api_fulltext=' + encodeURIComponent(cleanModel);
 
-  // 1. 特殊精準實測官方來源（互盛官方理光節能專題，內含實測認證）
-  if (u === 'RICOH' && model.includes('IM C2010')) {
-    return {
-      url: 'https://www.eosasc.com.tw/mfp-power-consumption-energy-saving',
-      label: '互盛官方・節能標章實測 ↗',
-      esUrl: esUrl
-    };
-  }
-
-  // 2. 各品牌台灣原廠產品與官方規格專區（經 200 OK 嚴格測試驗證，絕無 404 或連線中斷）
-  if (u === 'RICOH') {
-    return {
-      url: 'https://www.ricoh.com.tw/products/office-solutions',
-      label: '台灣理光官方規格 ↗',
-      esUrl: esUrl
-    };
-  }
-  if (u === 'FUJIFILM') {
-    return {
-      url: 'https://www.fujifilm.com/fbtw/zh-tw/products/multifunction-printers',
-      label: 'FUJIFILM 富士軟片官方規格 ↗',
-      esUrl: esUrl
-    };
-  }
-  if (u === 'CANON') {
-    return {
-      url: 'https://tw.canon/zh_TW/business',
-      label: 'Canon 佳能台灣官方規格 ↗',
-      esUrl: esUrl
-    };
-  }
-  if (u === 'EPSON') {
-    return {
-      url: 'https://www.epson.com.tw/heat-free',
-      label: 'Epson 台灣微噴官方規格 ↗',
-      esUrl: esUrl
-    };
-  }
-  if (u === 'SHARP') {
-    return {
-      url: 'https://tw.sharp/products/multifunction-printers',
-      label: 'Sharp 夏普官方規格 ↗',
-      esUrl: esUrl
-    };
-  }
-  if (u === 'KONICA MINOLTA' || u === 'DEVELOP') {
-    return {
-      url: 'https://www.oa-world.com.tw/',
-      label: 'Konica Minolta 金儀官方規格 ↗',
-      esUrl: esUrl
-    };
-  }
-  if (u === 'KYOCERA') {
-    return {
-      url: 'https://www.kyoceradocumentsolutions.com/tw/zh/',
-      label: 'KYOCERA 京瓷官方規格 ↗',
-      esUrl: esUrl
-    };
-  }
-  if (u === 'HP') {
-    return {
-      url: 'https://www.hp.com/tw-zh/printers/work-printers.html',
-      label: 'HP 惠普官方規格 ↗',
-      esUrl: esUrl
-    };
-  }
-  if (u === 'TOSHIBA') {
-    return {
-      url: 'https://www.toshibatec.com.tw/',
-      label: 'Toshiba 東芝官方規格 ↗',
-      esUrl: esUrl
-    };
-  }
+  // 台灣經濟部能源署節能標章真實核定案號
+  const key = `${u}|${model}`;
+  const keyClean = `${u}|${cleanModel}`;
+  const twCert = GOV_CERTS[key] || GOV_CERTS[keyClean] || (m && m.twCert) || '';
+  const hasTwLabel = Boolean(twCert || (m && m.std === '節能標章') || (m && m.src && m.src.includes('節能標章')));
 
   return {
     url: esUrl,
-    label: 'ENERGY STAR 認證產品庫 ↗',
-    esUrl: esUrl
+    label: '⭐ ENERGY STAR 實測 TEC ↗',
+    esUrl: esUrl,
+    twCert: twCert,
+    hasTwLabel: hasTwLabel,
+    twUrl: 'https://www.energylabel.org.tw/purchasing/product/list.aspx'
   };
 }
 
@@ -1856,28 +1997,24 @@ function initABPicker(){
     
     const badge = document.getElementById('abSourceBadge');
     const srcInfo = getModelSourceInfo(m);
-    if (m.src.includes('節能標章') || (!m.src.includes('官網') && !m.src.includes('ENERGY STAR'))){
-      badge.innerHTML = `
-        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px">
-          <span class="pill" style="background:var(--sage-bg);color:#284B31;border-color:#C2DEC9;font-weight:600">🏅 經濟部能源署節能標章實測</span>
-          <a href="${srcInfo.url}" target="_blank" rel="noopener" style="font-size:11px;color:#2563EB;font-weight:600;text-decoration:underline">🔗 查驗官方來源 ↗</a>
+    const twCertBadge = srcInfo.twCert ? `<span class="pill" style="background:#ECFDF5;color:#065F46;border-color:#A7F3D0;font-weight:700">🏅 節能標章核定</span>` : '';
+    const twCertLink = srcInfo.hasTwLabel ? `<a href="${srcInfo.twUrl}" target="_blank" rel="noopener" class="src-pill-link" style="font-size:11px;color:#065F46;background:#ECFDF5;border:1px solid #A7F3D0;padding:2px 8px;border-radius:4px;font-weight:700;text-decoration:none" title="前往經濟部能源署節能標章官網查詢案號">🏅 能源署標章查驗 ↗</a>` : '';
+
+    badge.innerHTML = `
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px">
+        <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+          <span class="pill" style="background:#EFF6FF;color:#1E40AF;border-color:#BFDBFE;font-weight:700">⭐ 能源之星 v3.0 實測</span>
+          ${twCertBadge}
         </div>
-        <div class="muted small" style="margin-top:3px">${esc(m.src)} · 技術：${esc(TECH_LABEL[m.tech]||m.tech)}</div>`;
-    } else if (m.src.includes('官網')){
-      badge.innerHTML = `
-        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px">
-          <span class="pill" style="background:#FFF6EE;color:#A85822;border-color:#F5D8C4;font-weight:600">🏢 台灣原廠官網技術規格</span>
-          <a href="${srcInfo.url}" target="_blank" rel="noopener" style="font-size:11px;color:#2563EB;font-weight:600;text-decoration:underline">🔗 查驗官方來源 ↗</a>
+        <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+          <a href="${srcInfo.esUrl}" target="_blank" rel="noopener" class="src-pill-link" style="font-size:11px;color:#1E40AF;background:#EFF6FF;border:1px solid #BFDBFE;padding:2px 8px;border-radius:4px;font-weight:700;text-decoration:none" title="直達國際能源之星官方資料庫，查驗 ${esc(m.model)} 實測 TEC 值">⭐ 查驗 ENERGY STAR 實測 TEC ↗</a>
+          ${twCertLink}
         </div>
-        <div class="muted small" style="margin-top:3px">${esc(m.src)} · 技術：${esc(TECH_LABEL[m.tech]||m.tech)}</div>`;
-    } else {
-      badge.innerHTML = `
-        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px">
-          <span class="pill" style="background:var(--blue-bg);color:#465D73;border-color:#CAD7E3;font-weight:600">⭐ 認證規格</span>
-          <a href="${srcInfo.url}" target="_blank" rel="noopener" style="font-size:11px;color:#2563EB;font-weight:600;text-decoration:underline">🔗 查驗官方來源 ↗</a>
-        </div>
-        <div class="muted small" style="margin-top:3px">${esc(m.src)} · 技術：${esc(TECH_LABEL[m.tech]||m.tech)}</div>`;
-    }
+      </div>
+      <div class="muted small" style="margin-top:5px;line-height:1.4">
+        ${srcInfo.twCert ? `<span style="color:#065F46;font-weight:600">節能標章核定案號：${esc(srcInfo.twCert)}</span><br>` : ''}
+        <b>數據標準：</b>國際能源之星 ENERGY STAR v3.0 實測（TEC ${fmt(m.tec,2)} kWh/週）· 技術：${esc(TECH_LABEL[m.tech]||m.tech)}
+      </div>`;
 
     if (!compare.some(x => keyOf(x) === k)){
       if (compare.length >= 4) compare.shift();
@@ -1963,14 +2100,14 @@ function initABPicker(){
         badge.innerHTML = `
           <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px">
             <div><span class="pill" style="background:#FFF1EE;color:#9E4A3B;border-color:#E8C5BD;font-weight:600">⏱️ 機齡推估：${esc(m.era)}</span>${stdBadge}</div>
-            <a href="${bInfo.url}" target="_blank" rel="noopener" style="font-size:11px;color:#9E4A3B;font-weight:600;text-decoration:underline">🔗 查驗歷史規格 ↗</a>
+            <a href="${bInfo.esUrl || bInfo.url}" target="_blank" rel="noopener" class="src-pill-link" style="font-size:11px;color:#9E4A3B;font-weight:700;text-decoration:none;background:#FFF1EE;border:1px solid #E8C5BD;padding:2px 8px;border-radius:4px" title="直達國際能源之星官方資料庫查驗歷史規格">⭐ 查驗歷史 TEC ↗</a>
           </div>
           <div class="muted small" style="margin-top:3px">${esc(m.src)} · 可直接拖曳下方滑桿微調</div>`;
       } else {
         badge.innerHTML = `
           <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px">
             <div><span class="pill" style="background:#FFF1EE;color:#9E4A3B;border-color:#E8C5BD;font-weight:600">🏷️ 歷史登錄：${esc(m.era)}</span>${stdBadge}</div>
-            <a href="${bInfo.url}" target="_blank" rel="noopener" style="font-size:11px;color:#9E4A3B;font-weight:600;text-decoration:underline">🔗 查驗歷史規格 ↗</a>
+            <a href="${bInfo.esUrl || bInfo.url}" target="_blank" rel="noopener" class="src-pill-link" style="font-size:11px;color:#9E4A3B;font-weight:700;text-decoration:none;background:#FFF1EE;border:1px solid #E8C5BD;padding:2px 8px;border-radius:4px" title="直達國際能源之星官方資料庫查驗歷史規格">⭐ 查驗歷史 TEC ↗</a>
           </div>
           <div class="muted small" style="margin-top:3px">${esc(m.src)} · 速度 ${m.speed} ipm · 典型雷射加熱定影</div>`;
       }
@@ -1979,7 +2116,6 @@ function initABPicker(){
     render();
     renderTable();
   }
-
   baseBrandSel.addEventListener('change', () => updateBaseModels(baseBrandSel.value));
   baseModelSel.addEventListener('change', onBaseModelChange);
 
@@ -2168,11 +2304,12 @@ function setPrimary(k){
     brandSel.value = m.brand;
     const all = Array.from(MASTER_MAP.values());
     const list = all.filter(x => x.brand.toUpperCase() === m.brand.toUpperCase());
-    list.sort((a,b) => {
-      const topScore = x => (x.model==='EM-C8101' ? -100 : x.model==='AM-C4000' ? -95 : x.model==='IM C2010' ? -100 : 0);
-      return (topScore(a) - topScore(b)) || (a.tec - b.tec);
-    });
-    modelSel.innerHTML = list.map(x => `<option value="${keyOf(x)}">${esc(x.model)} (${x.speed} ipm · TEC ${fmt(x.tec,2)})${x.src.includes('節能標章')?' [🏅節能標章]':x.src.includes('官網')?' [🏢官網規格]':' [🏅節能標章]'}</option>`).join('');
+    list.sort(compareModelsUserConcept);
+    modelSel.innerHTML = list.map(x => {
+      const srcTag = x.std === '節能標章' || x.src.includes('節能標章') ? ' [🏅節能標章]' : x.std === 'ES v3.0' ? ' [ES v3.0]' : ' [ES v2.0]';
+      const clrTag = getModelColorScore(x) === 0 ? '彩色' : '黑白';
+      return `<option value="${keyOf(x)}">${esc(x.model)} (${clrTag} · ${x.speed} ipm · TEC ${fmt(x.tec,2)})${srcTag}</option>`;
+    }).join('');
     modelSel.value = keyOf(m);
     
     document.getElementById('abTargetTecOut').textContent = fmt(m.tec, 2);
@@ -2181,28 +2318,24 @@ function setPrimary(k){
     document.getElementById('abTargetSlider').value = m.tec;
     const badge = document.getElementById('abSourceBadge');
     const srcInfo = getModelSourceInfo(m);
-    if (m.src.includes('節能標章') || (!m.src.includes('官網') && !m.src.includes('ENERGY STAR'))){
-      badge.innerHTML = `
-        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px">
-          <span class="pill" style="background:var(--sage-bg);color:#284B31;border-color:#C2DEC9;font-weight:600">🏅 經濟部能源署節能標章實測</span>
-          <a href="${srcInfo.url}" target="_blank" rel="noopener" style="font-size:11px;color:#2563EB;font-weight:600;text-decoration:underline">🔗 查驗官方來源 ↗</a>
+    const twCertBadge = srcInfo.twCert ? `<span class="pill" style="background:#ECFDF5;color:#065F46;border-color:#A7F3D0;font-weight:700">🏅 節能標章核定</span>` : '';
+    const twCertLink = srcInfo.hasTwLabel ? `<a href="${srcInfo.twUrl}" target="_blank" rel="noopener" class="src-pill-link" style="font-size:11px;color:#065F46;background:#ECFDF5;border:1px solid #A7F3D0;padding:2px 8px;border-radius:4px;font-weight:700;text-decoration:none" title="前往經濟部能源署節能標章官網查詢案號">🏅 能源署標章查驗 ↗</a>` : '';
+
+    badge.innerHTML = `
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px">
+        <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+          <span class="pill" style="background:#EFF6FF;color:#1E40AF;border-color:#BFDBFE;font-weight:700">⭐ 能源之星 v3.0 實測</span>
+          ${twCertBadge}
         </div>
-        <div class="muted small" style="margin-top:3px">${esc(m.src)} · 技術：${esc(TECH_LABEL[m.tech]||m.tech)}</div>`;
-    } else if (m.src.includes('官網')){
-      badge.innerHTML = `
-        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px">
-          <span class="pill" style="background:#FFF6EE;color:#A85822;border-color:#F5D8C4;font-weight:600">🏢 台灣原廠官網技術規格</span>
-          <a href="${srcInfo.url}" target="_blank" rel="noopener" style="font-size:11px;color:#2563EB;font-weight:600;text-decoration:underline">🔗 查驗官方來源 ↗</a>
+        <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+          <a href="${srcInfo.esUrl}" target="_blank" rel="noopener" class="src-pill-link" style="font-size:11px;color:#1E40AF;background:#EFF6FF;border:1px solid #BFDBFE;padding:2px 8px;border-radius:4px;font-weight:700;text-decoration:none" title="直達國際能源之星官方資料庫，查驗 ${esc(m.model)} 實測 TEC 值">⭐ 查驗 ENERGY STAR 實測 TEC ↗</a>
+          ${twCertLink}
         </div>
-        <div class="muted small" style="margin-top:3px">${esc(m.src)} · 技術：${esc(TECH_LABEL[m.tech]||m.tech)}</div>`;
-    } else {
-      badge.innerHTML = `
-        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px">
-          <span class="pill" style="background:var(--blue-bg);color:#465D73;border-color:#CAD7E3;font-weight:600">⭐ 認證規格</span>
-          <a href="${srcInfo.url}" target="_blank" rel="noopener" style="font-size:11px;color:#2563EB;font-weight:600;text-decoration:underline">🔗 查驗官方來源 ↗</a>
-        </div>
-        <div class="muted small" style="margin-top:3px">${esc(m.src)} · 技術：${esc(TECH_LABEL[m.tech]||m.tech)}</div>`;
-    }
+      </div>
+      <div class="muted small" style="margin-top:5px;line-height:1.4">
+        ${srcInfo.twCert ? `<span style="color:#065F46;font-weight:600">節能標章核定案號：${esc(srcInfo.twCert)}</span><br>` : ''}
+        <b>數據標準：</b>國際能源之星 ENERGY STAR v3.0 實測（TEC ${fmt(m.tec,2)} kWh/週）· 技術：${esc(TECH_LABEL[m.tech]||m.tech)}
+      </div>`;
   }
 
   render(); renderTable();
@@ -2357,10 +2490,11 @@ function renderTable(){
             : m.std === 'ES v3.0' || m.src.includes('v3.0')
               ? `<span class="pill" style="background:#EFF6FF;color:#1E40AF;border:1px solid #BFDBFE;font-size:10px;padding:1px 5px;font-weight:700" title="國際能源之星 ENERGY STAR v3.0+ 實測">[ES v3.0]</span>`
               : `<span class="pill" style="background:#F1F5F9;color:#475569;border:1px solid #CBD5E1;font-size:10px;padding:1px 5px;font-weight:700" title="早期國際能源之星 ENERGY STAR v2.0 歷史數據">[ES v2.0]</span>`}
-          <a href="${getModelSourceInfo(m).url}" target="_blank" rel="noopener" class="src-pill-link" title="前往「${esc(m.brand)}」原廠官方技術規格專區（另開新分頁）" style="font-size:10.5px;color:#2563EB;text-decoration:none;display:inline-flex;align-items:center;gap:2px;background:#F0F7FF;border:1px solid #BFDBFE;padding:1px 6px;border-radius:4px;font-weight:600">🔗 原廠規格 ↗</a>
+          <a href="${getModelSourceInfo(m).esUrl}" target="_blank" rel="noopener" class="src-pill-link" title="直達國際能源之星官方資料庫，查驗「${esc(m.brand)} ${esc(m.model)}」實測 TEC 值（另開新分頁）" style="font-size:10.5px;color:#1E40AF;text-decoration:none;display:inline-flex;align-items:center;gap:2px;background:#F0F7FF;border:1px solid #BFDBFE;padding:1px 6px;border-radius:4px;font-weight:700">⭐ 實測 TEC ↗</a>
+          ${getModelSourceInfo(m).hasTwLabel ? `<a href="${getModelSourceInfo(m).twUrl}" target="_blank" rel="noopener" class="src-pill-link" title="${getModelSourceInfo(m).twCert ? '經濟部能源署節能標章核定案號：' + esc(getModelSourceInfo(m).twCert) : '前往經濟部能源署節能標章官網查驗'}" style="font-size:10.5px;color:#065F46;text-decoration:none;display:inline-flex;align-items:center;gap:2px;background:#ECFDF5;border:1px solid #A7F3D0;padding:1px 6px;border-radius:4px;font-weight:700">🏅 標章案號 ↗</a>` : ''}
           ${m.isLegacy ? `<span class="pill" style="background:#FFF1EE;color:#9E4A3B;border:1px solid #E8C5BD;font-size:10px;padding:0 4px">舊機參考</span>` : ''}
         </div>
-        <div class="muted small" style="margin-top:2px;font-size:11px;line-height:1.3">${esc(m.src)}</div>
+        <div class="muted small" style="margin-top:2px;font-size:11px;line-height:1.3">${getModelSourceInfo(m).twCert ? `<span style="color:#065F46;font-weight:600">標章案號：${esc(getModelSourceInfo(m).twCert)}</span> · ` : ''}${esc(m.src)}</div>
       </td>
       <td class="c-spec small muted">${m.color==='Color'?'彩色':m.color==='Monochrome'?'黑白':esc(m.color)} · <span class="num">${m.speed}</span> ipm · ${esc(TECH_LABEL[m.tech]||m.tech)}</td>
       <td class="c-tec r"><span class="tecbadge" style="color:${tecColor}">${fmt(m.tec,2)}</span></td>
@@ -2538,7 +2672,7 @@ function renderFleetNewRows(){
       <div class="row between" style="font-size:12px;gap:6px;flex-wrap:wrap">
         <div class="row" style="gap:5px;align-items:center">
           <span class="pill" style="background:var(--sage-bg);color:#284B31;border-color:#C2DEC9;font-size:10px;padding:1px 5px">🏅 節能標章</span>
-          <a href="${getModelSourceInfo(row).url}" target="_blank" rel="noopener" style="font-size:10.5px;color:#2563EB;text-decoration:underline;font-weight:600" title="前往「${esc(row.brand)}」原廠官方規格專區">原廠規格 ↗</a>
+          <a href="${getModelSourceInfo(row).esUrl}" target="_blank" rel="noopener" style="font-size:10.5px;color:#1E40AF;text-decoration:underline;font-weight:700" title="直達國際能源之星官方資料庫查驗實測 TEC 值">⭐ 實測 TEC ↗</a>${getModelSourceInfo(row).hasTwLabel ? `<a href="${getModelSourceInfo(row).twUrl}" target="_blank" rel="noopener" style="font-size:10.5px;color:#065F46;text-decoration:underline;font-weight:700;margin-left:4px" title="${getModelSourceInfo(row).twCert ? '節能標章案號：' + esc(getModelSourceInfo(row).twCert) : '前往能源署標章查驗'}">🏅 標章 ↗</a>` : ''}
           <span class="muted">單機 TEC:</span>
           <span class="num c-blue" style="font-weight:700">${fmt(row.tec,2)}</span>
           <span class="muted">kWh/週</span>

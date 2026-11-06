@@ -44,7 +44,14 @@ def build_catalog(moea, energy_star, requested):
             continue
         selected.append(dict(record))
 
-    eligible_es = [r for r in energy_star['records'] if record_keys(r) & requested_keys and not record_keys(r) & (government_keys | husheng_keys)]
+    eligible_es = []
+    for record in energy_star['records']:
+        if not record_keys(record) & requested_keys or record_keys(record) & (government_keys | husheng_keys):
+            continue
+        if record.get('sourceDataset') == 't2v6-g4nf' and str(record['sourceRecordId']) == '2634757':
+            excluded.append({**record, 'reason': '依使用者指定移除 GreenLine IM C3000（ESUID 2634757），不列入試算選單'})
+            continue
+        eligible_es.append(record)
     current_keys = set().union(*(record_keys(r) for r in eligible_es if not r.get('archived') and not r.get('remanufactured')))
     for record in eligible_es:
         if record.get('archived') and record_keys(record) & current_keys:

@@ -78,6 +78,19 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(len(result['models']),2)
         self.assertIn('GreenLine IM C2010',[m['model'] for m in result['models']])
 
+    def test_removed_greenline_record_keeps_both_original_im_c3000_records(self):
+        records=[
+            row('energystar',0.43,'2634757',model='GreenLine IM C3000',modelAliases=['IM C3000'],sourceDataset='t2v6-g4nf',remanufactured=True),
+            row('energystar',1.1,'2325462',model='IM C3000',sourceDataset='historical-v2',archived=True),
+            row('energystar',0.3,'2345187',model='IM C3000',sourceDataset='historical-v2',archived=True)
+        ]
+        result=catalog.build_catalog({'checkedAt':'2026-11-06','records':[],'missing':[]},
+            {'checkedAt':'2026-11-06','records':records},[{'brand':'Ricoh','model':'IM C3000'}])
+        self.assertEqual({m['sourceRecordId']:m['tec'] for m in result['models']},{'2325462':1.1,'2345187':0.3})
+        self.assertEqual(result['unresolved'],[])
+        self.assertEqual(len(result['excluded']),1)
+        self.assertIn('2634757',result['excluded'][0]['reason'])
+
     def test_official_alias_replaces_generic_name_but_not_specific_names(self):
         generic=row('energystar',0.7,'generic',model='MFP (Multi Function Printer)',modelAliases=['IM C2010'],ambiguous=True)
         result=self.build([],[generic])

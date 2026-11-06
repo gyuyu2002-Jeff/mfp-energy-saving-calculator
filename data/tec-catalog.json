@@ -7918,48 +7918,6 @@
     },
     {
       "brand": "Ricoh",
-      "model": "GreenLine IM C3000",
-      "company": null,
-      "sourceModel": "GreenLine IM C3000",
-      "modelAliases": [
-        "GreenLine IM C3000",
-        "IM C3000"
-      ],
-      "ambiguous": null,
-      "remanufactured": true,
-      "tec": 0.43,
-      "unit": "kWh/week",
-      "source": "energystar",
-      "sourceUrl": "https://data.energystar.gov/resource/t2v6-g4nf.json?pd_id=2634757",
-      "sourceRecordId": "2634757",
-      "standard": "ENERGY STAR v3.0/v3.1/v3.2 (individual version unpublished)",
-      "voltage": null,
-      "certificate": "ES_20367_IM C3000_08092023154820_4698357",
-      "validFrom": null,
-      "validUntil": null,
-      "checkedAt": "2026-11-06T13:46:01+00:00",
-      "notes": [
-        "官方紀錄未明列逐筆測試電壓；不得假定為台灣 110V/60Hz。",
-        "Standard 紙張規格同時涵蓋 A3/A4，本筆未確認 A3 能力。",
-        "官方標示為再製／翻新品，不能當作同名原版設備的實測值。"
-      ],
-      "color": "Color",
-      "speed": 30.0,
-      "tech": "EP",
-      "a3": null,
-      "markets": "United States, Canada",
-      "archived": false,
-      "fallbackReason": "已查能源署影印機／印表機有效清單，未找到同型號實測 TEC；採 ENERGY STAR",
-      "moeaCheckedAt": "2026-11-06T13:45:17+00:00",
-      "sourceDataset": "t2v6-g4nf",
-      "archiveRow": null,
-      "id": "energystar:t2v6-g4nf:2634757:",
-      "src": "ENERGY STAR 官方實測",
-      "std": "ENERGY STAR v3.0/v3.1/v3.2 (individual version unpublished)",
-      "variantLabel": "ESUID 2634757"
-    },
-    {
-      "brand": "Ricoh",
       "model": "IM C2000",
       "company": null,
       "sourceModel": "IM C2000",
@@ -8736,11 +8694,19 @@
       "certificate": "1150301",
       "sourceUrl": "https://ea03.moeaea.gov.tw/e0410/01/purchasing/product/item.aspx?itemp0=75073&uid=0&con=1&cid=33&cid2=0&year=&month=&day=&key=&pageno=0",
       "reason": "同型號已有互盛有效節能標章，依獲證公司優先規則不列入台灣理光紀錄"
+    },
+    {
+      "brand": "Ricoh",
+      "model": "GreenLine IM C3000",
+      "company": null,
+      "certificate": "ES_20367_IM C3000_08092023154820_4698357",
+      "sourceUrl": "https://data.energystar.gov/resource/t2v6-g4nf.json?pd_id=2634757",
+      "reason": "依使用者指定移除 GreenLine IM C3000（ESUID 2634757），不列入試算選單"
     }
   ],
   "counts": {
     "moea": 196,
-    "energystar": 22,
+    "energystar": 21,
     "unresolvedModels": 47
   }
 }

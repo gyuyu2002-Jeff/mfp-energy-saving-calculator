@@ -10,8 +10,48 @@ def row(source, value, record_id, **extras):
     return {'brand':'Ricoh','model':'IM C2010','tec':value,'source':source,'sourceRecordId':record_id,'sourceUrl':'https://example.invalid/record/'+record_id,'a3':True,'unit':'kWh/week',**extras}
 
 class CatalogTests(unittest.TestCase):
-    def build(self, government, es):
-        return catalog.build_catalog({'checkedAt':'2026-11-06','records':government,'missing':[]},{'checkedAt':'2026-11-06','records':es},[{'brand':'Ricoh','model':'IM C2010'}])
+    def build(self, government, es, missing=None):
+        return catalog.build_catalog({'checkedAt':'2026-11-06','records':government,'missing':missing or []},{'checkedAt':'2026-11-06','records':es},[{'brand':'Ricoh','model':'IM C2010'}])
+
+    def test_husheng_certificate_wins_over_lower_taiwan_ricoh_tec(self):
+        husheng=row('moea',1.3,'h',company='互盛公司(互盛股份有限公司)',certificate='1120711續1',validUntil='2027-09-21')
+        taiwan=row('moea',0.7,'t',company='台灣理光(台灣理光股份有限公司)',certificate='1150300')
+        result=self.build([taiwan,husheng],[row('energystar',0.2,'es')])
+        self.assertEqual([(m['sourceRecordId'],m['tec'],m['company']) for m in result['models']],[('h',1.3,husheng['company'])])
+        self.assertIn('互盛有效節能標章',result['excluded'][0]['reason'])
+        self.assertEqual(result['excluded'][0]['company'],taiwan['company'])
+
+    def test_taiwan_ricoh_remains_when_no_husheng_certificate_exists(self):
+        result=self.build([row('moea',0.7,'t',company='台灣理光股份有限公司',certificate='1150300')],[])
+        self.assertEqual([m['sourceRecordId'] for m in result['models']],['t'])
+
+    def test_expired_or_future_husheng_certificate_does_not_block_taiwan_ricoh(self):
+        taiwan=row('moea',0.7,'t',company='台灣理光股份有限公司',certificate='1150300')
+        for dates in [{'validUntil':'2026-11-05'},{'validFrom':'2026-11-07'}]:
+            with self.subTest(dates=dates):
+                husheng=row('moea',1.3,'h',company='互盛股份有限公司',certificate='1120711續1',**dates)
+                result=self.build([husheng,taiwan],[])
+                self.assertEqual([m['sourceRecordId'] for m in result['models']],['t'])
+
+    def test_husheng_conflict_stays_unresolved_instead_of_using_another_company(self):
+        husheng=row('moea',1.3,'h',company='互盛股份有限公司',certificate='1120711續1',needsReview=True)
+        taiwan=row('moea',0.7,'t',company='台灣理光股份有限公司',certificate='1150300')
+        result=self.build([husheng,taiwan],[row('energystar',0.2,'es')])
+        self.assertEqual(result['models'],[])
+        self.assertIn('互盛已有有效節能標章',result['unresolved'][0]['reason'])
+
+    def test_husheng_certificate_without_tec_is_also_respected(self):
+        husheng=row('moea',None,'h',company='互盛股份有限公司',certificate='1120711續1')
+        taiwan=row('moea',0.7,'t',company='台灣理光股份有限公司',certificate='1150300')
+        result=self.build([taiwan],[row('energystar',0.2,'es')],missing=[husheng])
+        self.assertEqual(result['models'],[])
+        self.assertIn('互盛已有有效節能標章',result['unresolved'][0]['reason'])
+
+    def test_company_preference_does_not_merge_different_model_suffixes(self):
+        husheng=row('moea',1.3,'h',model='IM C2010A',company='互盛股份有限公司',certificate='h-cert')
+        taiwan=row('moea',0.7,'t',company='台灣理光股份有限公司',certificate='t-cert')
+        result=self.build([husheng,taiwan],[])
+        self.assertEqual({m['sourceRecordId'] for m in result['models']},{'h','t'})
 
     def test_government_wins_even_when_energy_star_is_lower(self):
         result=self.build([row('moea',1.3,'a'),row('moea',0.7,'b')],[row('energystar',0.2,'c')])

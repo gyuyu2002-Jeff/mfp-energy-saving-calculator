@@ -670,7 +670,7 @@ ul.clean li{margin:4px 0}
       <span>📌</span> 數據來源依據與推測計算免責聲明
     </div>
     <ul class="clean small" style="margin:0;padding-left:18px;color:var(--ink-2)">
-      <li id="sourcePolicy"><b>資料採用順序</b>：優先採用經濟部能源署（原能源局）可核對的機型實測 TEC；查無可用實測欄位時，才採用 ENERGY STAR 的個別認證紀錄。尚未核實或手動輸入的數值僅標示為人工情境。</li>
+      <li id="sourcePolicy"><b>資料採用順序</b>：能源署（原能源局）實測 TEC 優先。Ricoh 同型號有互盛有效節能標章時只採互盛，互盛沒有有效標章才採台灣理光；互盛 TEC 缺漏或衝突則列待核實，不改採其他來源。其餘查無可用政府實測值時才採 ENERGY STAR 紀錄。未核實與手動輸入值僅供人工情境。</li>
       <li><b>比較條件</b>：取得節能標章不代表使用同一測試版本。請核對每筆 TEC 的測試方法、電壓、頻率與列印速度；跨版本或條件未明時，差額僅供情境探索，不宜解讀為實際換機節電率。</li>
       <li><b>機齡假設</b>：通用機齡預設是人工情境，並非特定機型的實測數據。自行量測時，請以同一期間與使用條件換算週用電量，並保留量測紀錄。</li>
       <li><b>推測計算僅供參考</b>：TEC（典型用電量，kWh/週）為模擬 168 小時工作與睡眠模式之標準化實驗室測算值。實際年耗電度數與電費差額會因<b>企業實際印量多寡、設備休眠設定、電價計費級距與操作習慣</b>而有所不同。</li>
@@ -696,7 +696,7 @@ ul.clean li{margin:4px 0}
   <!-- 來源特別提示說明 -->
   <div class="note" style="margin-bottom:14px;background:#FFF9F4;border-color:#F2DACB;color:#784523">
     <b>📌 數據來源特別說明：</b>
-    資料來源以<b>能源署（原能源局）的個別產品實測 TEC</b>優先；查無可用值時才採用 ENERGY STAR 紀錄。認證狀態、實測值與測試版本分別揭露。尚未核實的資料僅供人工情境，不能因列在清單中就視為已獲證或可直接跨版本比較。
+    資料來源以<b>能源署（原能源局）的個別產品實測 TEC</b>優先。Ricoh 同型號先採<b>互盛有效節能標章</b>，互盛沒有有效標章才採台灣理光；互盛 TEC 缺漏或衝突時列待核實，不自動換來源。符合備援條件才採 ENERGY STAR。各筆揭露獲證公司、認證狀態、實測值與測試條件，未採用的紀錄仍保留原始證據。
   </div>
 
   <div class="card" style="margin-bottom:16px">
@@ -849,7 +849,7 @@ ul.clean li{margin:4px 0}
   </div>
 
   <div class="comparison-notice" style="margin-bottom:20px">
-    <b>同一型號可能出現不同 TEC：</b>能源署的 Ricoh IM C2010 有 <a href="https://ea03.moeaea.gov.tw/e0410/01/purchasing/product/item.aspx?itemp0=62856" target="_blank" rel="noopener">1120711續1：1.3 kWh/週</a>與 <a href="https://ea03.moeaea.gov.tw/e0410/01/purchasing/product/item.aspx?itemp0=75066" target="_blank" rel="noopener">1150300：0.7 kWh/週</a>兩筆證書紀錄。它們與其他來源的 0.20 不能因型號相同就直接互換；須依設備版本、證書與測試條件選擇。本工具保留各筆紀錄，不自動挑選最低值。
+    <b>Ricoh 獲證公司採用範例：</b>IM C2010 採用互盛有效證書 <a href="https://ea03.moeaea.gov.tw/e0410/01/purchasing/product/item.aspx?itemp0=62856" target="_blank" rel="noopener">1120711續1：1.3 kWh/週</a>。台灣理光的 <a href="https://ea03.moeaea.gov.tw/e0410/01/purchasing/product/item.aspx?itemp0=75066" target="_blank" rel="noopener">1150300：0.7 kWh/週</a>保留為原始查核證據，不列入試算選單。這是獲證公司優先規則，不是選擇較低的 TEC；不同證書的測試條件仍須查核。若互盛有有效標章但 TEC 缺漏或衝突，該機型列待核實，不改採台灣理光補值。
   </div>
 
   <!-- 168 小時測試週期與 24 小時時間軸 -->
@@ -919,7 +919,7 @@ ul.clean li{margin:4px 0}
       <span class="pill primary">逐筆來源查核</span>
     </div>
     <ul class="clean small">
-      <li><b>來源優先順序</b>：能源署（原能源局）的個別產品實測 TEC 優先；查無可用值才採用 ENERGY STAR 個別認證紀錄。品牌首頁及搜尋入口只能協助查找，不構成某個 TEC 數字的直接證據。</li>
+      <li><b>來源優先順序</b>：能源署（原能源局）實測 TEC 優先。Ricoh 同型號僅在互盛沒有有效節能標章時才採台灣理光；互盛資料缺漏或衝突則列待核實，不以其他來源補值。其餘符合備援條件的機型才採 ENERGY STAR。品牌首頁及搜尋入口不能代替個別實測證據。</li>
       <li><b>人工情境與正式紀錄</b>：未核實、通用機齡或手動調整數值都屬人工情境。不得將合格門檻當作實測值，也不從機型新舊或列印技術預先假定固定節電幅度。</li>
       <li><b>耗電與費用換算式</b>：依業界能源評估實務標準換算：年用電度數 ＝ TEC（度/週）× 52 週 × 設備台數；年電費 ＝ 年用電度數 × 平均電價（預設 NT$4.0/度，可依貴公司電費單調校）。</li>
       <li><b>碳排放計算係數</b>：以畫面設定的電力排碳係數計算用電相關碳排差額。請依評估年度、供電情況與盤查用途選用公告係數；自行調整的數值不可標示為官方公告值。</li>
@@ -984,7 +984,7 @@ ul.clean li{margin:4px 0}
 
 <footer>
   <div class="bar" style="line-height:1.6;font-size:11.5px">
-    <span><b>事務機 節能計算器</b> · 來源順序：能源署實測 TEC → ENERGY STAR 個別紀錄；未核實數值僅供人工情境。認證狀態與測試條件請逐筆查核。</span>
+    <span><b>事務機 節能計算器</b> · 能源署實測 TEC 優先，Ricoh 同型號優先採互盛有效標章；符合備援條件才採 ENERGY STAR。獲證公司與測試條件請逐筆查核。</span>
     <span>【免責聲明】本工具所有推算數據均為理論模型推估之參考值，僅供設備選型與節能規劃初步評估，非屬設備效能承諾或電費保證，實際規格與費用請以原廠合約及台電電費單為準。</span>
   </div>
 </footer>
@@ -1119,8 +1119,8 @@ ul.clean li{margin:4px 0}
         <!-- 法規與免責宣告 -->
         <div class="pdf-footer-note">
           <div style="font-weight:700;color:#374151;margin-bottom:4px">三、評估基準與數據來源說明：</div>
-          <div id="pdfSourceNotes">各機型來源、原始實測欄位與查核狀態將依目前情境列出。</div>
-          <div><b>資料政策</b>：能源署（原能源局）實測 TEC 優先，查無可用值才採 ENERGY STAR 個別紀錄；未核實與手動調整值僅供人工情境。認證不代表同一測試版本。</div>
+          <div id="pdfSourceNotes">各機型來源、獲證公司、實測欄位與查核狀態將依目前情境列出。</div>
+          <div><b>資料政策</b>：能源署實測 TEC 優先；Ricoh 同型號有互盛有效標章時只採互盛，互盛沒有有效標章才採台灣理光。互盛 TEC 缺漏或衝突則列待核實，不改採其他來源；其餘符合備援條件才採 ENERGY STAR。未核實與自訂值僅供情境，認證不代表同一測試版本。</div>
           <div><b>係數與範圍</b>：電價及電力排碳係數依上方參數計算；本報告僅估算用電相關差額，不包含設備、租賃、耗材、維護費或完整生命週期碳排。</div>
           <div><b>推估限制</b>：實際用電受印量、休眠設定、電價與操作習慣影響。條件不同或未核實的 TEC 比較不構成節電率證明、設備效能承諾或電費保證。</div>
         </div>
@@ -1147,8 +1147,8 @@ ul.clean li{margin:4px 0}
   <div class="d-body" id="dBody"></div>
 </aside>
 
-<script src="assets/tec-data.js"></script>
+<script src="assets/tec-data.js?v=20261106-husheng"></script>
 <script src="assets/calculator.js"></script>
-<script src="assets/app.js"></script>
+<script src="assets/app.js?v=20261106-husheng"></script>
 </body>
 </html>

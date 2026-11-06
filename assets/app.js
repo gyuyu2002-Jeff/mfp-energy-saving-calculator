@@ -1,5 +1,6 @@
-/* Official TEC snapshot: MOEA first, ENERGY STAR only when MOEA has no usable TEC. */
+/* Official TEC snapshot: MOEA first; Ricoh follows certificate-holder priority. */
 const SNAPSHOT_DATE = TEC_DATA.checkedAt;
+const RICOH_SOURCE_POLICY = 'Ricoh 同型號優先採互盛有效節能標章，互盛沒有有效標章才採台灣理光；互盛實測 TEC 缺漏或衝突則列待核實，不自動改採其他來源。';
 const TECH_LABEL = { EP: '雷射', HPIJ: '高效能噴墨', IJ: '噴墨' };
 const DEFAULTS = {
   units: 2, price: 4, years: 5, cf: 0.466, goal: 30,
@@ -28,6 +29,9 @@ for (const [brand, models] of Object.entries(LEGACY_MODELS)) {
 function findModel(id) { return MASTER_MAP.get(id) || PRESETS.find(m => m.id === id); }
 function sourceName(m) {
   return m.source === 'moea' ? '經濟部能源署' : m.source === 'energystar' ? 'ENERGY STAR（備援）' : m.source === 'scenario' ? '情境假設' : '使用者自訂';
+}
+function companyText(m) {
+  return m.source === 'moea' && m.company ? `獲證公司：${m.company}` : '';
 }
 function withValue(record, tec, name, units) {
   const row = {...record, model:name || record?.model || '自訂機型', tec, units};
@@ -69,6 +73,7 @@ function comparisonNotice() {
 function sourceText(m) {
   const parts = [sourceName(m), `TEC ${fmt(m.tec,3)} kWh/週`];
   if (['moea','energystar'].includes(m.source)) {
+    if (m.source === 'moea' && m.company) parts.push(companyText(m));
     parts.push(`測試標準：${m.standard || '來源未明列'}`, `電壓：${m.voltage || '來源未明列'}`);
     if (m.certificate) parts.push(`證書：${m.certificate}`);
     if (m.validUntil) parts.push(`有效期限：${m.validUntil}`);
@@ -79,17 +84,18 @@ function sourceText(m) {
     if (m.markets?.length) parts.push(`市場：${Array.isArray(m.markets) ? m.markets.join('、') : m.markets}`);
     parts.push(m.sourceUrl);
   } else parts.push('此輸入值並非官方認證數值');
-  if (m.reference?.sourceUrl) parts.push(`調整前參考：${m.reference.sourceUrl}（${m.reference.tec} kWh/週）`);
+  if (m.reference?.sourceUrl) parts.push(`調整前參考：${companyText(m.reference)} ${m.reference.sourceUrl}（${m.reference.tec} kWh/週）`);
   return parts.filter(Boolean).join(' · ');
 }
 function sourceHTML(m, expanded=false) {
   const url = m.sourceUrl && /^https:\/\//.test(m.sourceUrl) ? m.sourceUrl : null;
-  const summary = [m.certificate && `證書 ${m.certificate}`,m.checkedAt && `查核 ${m.checkedAt.slice(0,10)}`].filter(Boolean).join(' · ');
+  const summary = [companyText(m),m.certificate && `證書 ${m.certificate}`,m.checkedAt && `查核 ${m.checkedAt.slice(0,10)}`].filter(Boolean).join(' · ');
   const text = `<div class="small muted" style="overflow-wrap:anywhere;margin-top:4px">${esc(sourceText(m))}</div>`;
   return `<div class="source-detail"><b>${esc(sourceName(m))}</b>${url ? ` · <a href="${esc(url)}" target="_blank" rel="noopener noreferrer">查驗本筆原始資料 ↗</a>` : ''}${summary?`<div class="small muted">${esc(summary)}</div>`:''}${expanded?text:`<details><summary class="small">${url?'測試條件與查核資訊':'假設說明'}</summary>${text}</details>`}</div>`;
 }
 function modelOption(m) {
-  const suffix = m.variantLabel ? ` · ${m.variantLabel}` : '';
+  const details = [companyText(m),m.variantLabel].filter(Boolean);
+  const suffix = details.length ? ` · ${details.join(' · ')}` : '';
   return `<option value="${esc(m.id)}">${esc(m.model)} · TEC ${fmt(m.tec,3)} [${esc(sourceName(m))}]${esc(suffix)}</option>`;
 }
 
@@ -387,7 +393,7 @@ function loadBrands(){
   setStatus('ok', `可查證 TEC：${MASTER_MAP.size} 筆來源紀錄 · 查核 ${SNAPSHOT_DATE}`);
   let coverage=document.getElementById('sourceCoverage');
   if(!coverage){coverage=document.createElement('details');coverage.id='sourceCoverage';coverage.className='note';document.getElementById('apiStatus').parentElement.after(coverage);}
-  coverage.innerHTML=`<summary>來源涵蓋：能源署 ${TEC_DATA.counts.moea} 筆、ENERGY STAR ${TEC_DATA.counts.energystar} 筆；${TEC_DATA.unresolved.length} 個原機型未納入自動試算</summary><p>同型號不同證書分別列示。查無有效清單紀錄不代表未曾獲證；沒有可核實 TEC 時不沿用舊站數值。</p><ul>${TEC_DATA.unresolved.map(m=>`<li><b>${esc(m.brand)} ${esc(m.model)}</b>：${esc(m.reason)}</li>`).join('')}</ul><p><a href="data/tec-catalog.json" target="_blank" rel="noopener">檢視完整來源快照與排除原因</a></p>`;
+  coverage.innerHTML=`<summary>來源涵蓋：能源署 ${TEC_DATA.counts.moea} 筆、ENERGY STAR ${TEC_DATA.counts.energystar} 筆；${TEC_DATA.unresolved.length} 個原機型未納入自動試算</summary><p>${esc(RICOH_SOURCE_POLICY)}其餘同型號不同證書依來源規則列示。未採用的紀錄仍保留為查核證據；沒有可核實 TEC 時不沿用舊站數值。</p><ul>${TEC_DATA.unresolved.map(m=>`<li><b>${esc(m.brand)} ${esc(m.model)}</b>：${esc(m.reason)}</li>`).join('')}</ul><p><a href="data/tec-catalog.json" target="_blank" rel="noopener">檢視完整來源快照與排除原因</a></p>`;
 }
 
 function currentFilters(){
@@ -438,9 +444,9 @@ function renderTable(){
   const infoEl = document.getElementById('resFilterInfo');
   if (infoEl) {
     if (f.brand) {
-      infoEl.textContent = `僅顯示 ${f.brand} 品牌機型`;
+      infoEl.textContent = `僅顯示 ${f.brand} 品牌機型${f.brand==='Ricoh'?' · 互盛有效節能標章優先':''}`;
     } else {
-      infoEl.textContent = `能源署優先；不同證書／測試紀錄分別列示`;
+      infoEl.textContent = `能源署優先；Ricoh 依互盛有效節能標章優先規則列示`;
     }
   }
 
@@ -544,7 +550,7 @@ function renderFleetNewRows(){renderFleetRows('new');}
 
 function generateSummaryText(){
   const rows=currentRows(), m=currentCalculation();
-  const lines=['事務機用電差額評估',`產生日期：${new Date().toLocaleDateString('sv-SE')}`,`模式：${calcMode==='fleet'?'多台組合':'單一機型'}`,`年限：${S.years} 年；電價：NT$ ${S.price}/度`, `排碳係數：${S.cf} kg CO₂e/度（${carbonSource()}）`,comparisonNotice()];
+  const lines=['事務機用電差額評估',`產生日期：${new Date().toLocaleDateString('sv-SE')}`,`模式：${calcMode==='fleet'?'多台組合':'單一機型'}`,`年限：${S.years} 年；電價：NT$ ${S.price}/度`, `排碳係數：${S.cf} kg CO₂e/度（${carbonSource()}）`,comparisonNotice(),RICOH_SOURCE_POLICY];
   for(const [title,list] of [['現況舊機',rows.old],['擬換新機',rows.next]]){
     lines.push('',title);
     list.forEach(row=>lines.push(`${row.model} × ${row.units} 台；年用電 ${fmt(row.tec*52*row.units,1)} 度`,sourceText(row)));
@@ -643,7 +649,7 @@ function updatePdfReportDOM(){
   document.getElementById('pdfKpiCo2Total').textContent = fmt(m.co2Total, 1);
 
 const rows=currentRows();
-  document.getElementById('pdfTableBody').innerHTML=[['現況舊機',rows.old],['擬換新機',rows.next]].map(([title,list])=>list.map((row,index)=>`<tr>${index===0?`<td rowspan="${list.length}">${title}</td>`:''}<td><b>${esc(row.model)}</b><div class="small">${esc(sourceName(row))}${row.certificate?' · 證書 '+esc(row.certificate):''}</div></td><td>${fmt(row.tec,3)}</td><td>${row.units} 台</td><td>${fmt(row.tec*52*row.units,1)} 度</td></tr>`).join('')).join('');
+  document.getElementById('pdfTableBody').innerHTML=[['現況舊機',rows.old],['擬換新機',rows.next]].map(([title,list])=>list.map((row,index)=>`<tr>${index===0?`<td rowspan="${list.length}">${title}</td>`:''}<td><b>${esc(row.model)}</b><div class="small">${esc(sourceName(row))}${companyText(row)?' · '+esc(companyText(row)):''}${row.certificate?' · 證書 '+esc(row.certificate):''}</div></td><td>${fmt(row.tec,3)}</td><td>${row.units} 台</td><td>${fmt(row.tec*52*row.units,1)} 度</td></tr>`).join('')).join('');
   document.getElementById('pdfSourceNotes').innerHTML=[...rows.old,...rows.next].map(row=>`<div class="pdf-source-record"><b>${esc(row.model)}</b>${sourceHTML(row,true)}</div>`).join('')+`<p>排碳係數：${fmt(S.cf,3)} · ${esc(carbonSource())}。<a href="https://www.moeaea.gov.tw/ECW/PDA.aspx?kind=1&news_id=34473">能源署公告</a></p>`;
   document.getElementById('pdfComparisonNotice').textContent=comparisonNotice();
   const cfLabel=document.getElementById('pdfCfSource');if(cfLabel)cfLabel.textContent=carbonSource();

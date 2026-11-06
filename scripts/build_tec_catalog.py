@@ -19,11 +19,19 @@ def build_catalog(moea, energy_star, requested):
     government_keys = set().union(*(record_keys(r) for r in moea['records']))
     missing_tec_keys = set().union(*(record_keys(r) for r in moea.get('missing', [])))
     today = date.fromisoformat(moea['checkedAt'][:10])
+    # The company preference is based on certification, even if its TEC needs review.
+    husheng_keys = set().union(*(record_keys(r) for r in [*moea['records'], *moea.get('missing', [])]
+        if r['brand'].upper() == 'RICOH' and r.get('company', '').startswith('互盛') and r.get('certificate')
+        and (not r.get('validFrom') or date.fromisoformat(r['validFrom']) <= today)
+        and (not r.get('validUntil') or date.fromisoformat(r['validUntil']) >= today)))
     selected = []
     excluded = []
     for record in moea['records']:
         relevant = record.get('a3') is True or bool(record_keys(record) & requested_keys)
         if not relevant or record.get('a3') is False:
+            continue
+        if record['brand'].upper() == 'RICOH' and record.get('company', '').startswith(('台灣理光', '臺灣理光')) and record_keys(record) & husheng_keys:
+            excluded.append({**record, 'reason': '同型號已有互盛有效節能標章，依獲證公司優先規則不列入台灣理光紀錄'})
             continue
         if record.get('sourceConflict') or record.get('needsReview'):
             excluded.append({**record, 'reason': '官方明細與開放資料實測值不一致，暫不自動採用'})
@@ -31,9 +39,12 @@ def build_catalog(moea, energy_star, requested):
         if record.get('validUntil') and date.fromisoformat(record['validUntil']) < today:
             excluded.append({**record, 'reason': '證書已逾期，需重新核實'})
             continue
+        if record.get('validFrom') and date.fromisoformat(record['validFrom']) > today:
+            excluded.append({**record, 'reason': '證書尚未生效，暫不自動採用'})
+            continue
         selected.append(dict(record))
 
-    eligible_es = [r for r in energy_star['records'] if record_keys(r) & requested_keys and not record_keys(r) & government_keys]
+    eligible_es = [r for r in energy_star['records'] if record_keys(r) & requested_keys and not record_keys(r) & (government_keys | husheng_keys)]
     current_keys = set().union(*(record_keys(r) for r in eligible_es if not r.get('archived') and not r.get('remanufactured')))
     for record in eligible_es:
         if record.get('archived') and record_keys(record) & current_keys:
@@ -55,7 +66,7 @@ def build_catalog(moea, energy_star, requested):
             copy['notes'].append('官方標示為再製／翻新品，不能當作同名原版設備的實測值。')
         selected.append(copy)
 
-    fields = ['brand','model','sourceModel','modelAliases','ambiguous','remanufactured','tec','unit','source','sourceUrl','sourceRecordId','standard','voltage','certificate','validFrom','validUntil','checkedAt','notes','color','speed','tech','a3','markets','archived','fallbackReason','moeaCheckedAt','sourceDataset','archiveRow']
+    fields = ['brand','model','company','sourceModel','modelAliases','ambiguous','remanufactured','tec','unit','source','sourceUrl','sourceRecordId','standard','voltage','certificate','validFrom','validUntil','checkedAt','notes','color','speed','tech','a3','markets','archived','fallbackReason','moeaCheckedAt','sourceDataset','archiveRow']
     models, seen = [], set()
     for record in selected:
         item = {key: record.get(key) for key in fields}
@@ -74,17 +85,19 @@ def build_catalog(moea, energy_star, requested):
     for key in sorted(requested_keys - selected_keys):
         row = next(m for m in requested if identity(m['brand'], m['model']) == key)
         reason = '未取得可核實的每週 TEC；未沿用舊站數值'
-        if key in missing_tec_keys:
+        if key in husheng_keys:
+            reason = '互盛已有有效節能標章，但 TEC 缺漏或資料待核實；依優先規則不改用台灣理光或 ENERGY STAR'
+        elif key in missing_tec_keys:
             reason = '能源署未公布每週 TEC，ENERGY STAR 亦無可用同型號 TEC；不將睡眠功率 W 換成 kWh/週'
         elif key in government_keys:
             reason = '政府紀錄存在，但非 A3、已逾期或來源衝突；未以 ENERGY STAR 覆蓋'
         unresolved.append({'brand': row['brand'], 'model': row['model'], 'reason': reason})
     return {
         'checkedAt': min(moea['checkedAt'][:10], energy_star['checkedAt'][:10]),
-        'policy': '能源署實測優先；查無同型號可用實測 TEC 時才採 ENERGY STAR；同型號多筆紀錄不取最低值。',
+        'policy': '能源署實測優先；Ricoh 同型號有互盛有效節能標章時優先互盛，無互盛有效標章才採台灣理光。互盛 TEC 缺漏或衝突時列待核實；其餘查無同型號可用實測 TEC 時才採 ENERGY STAR，不自動取最低值。',
         'models': models,
         'unresolved': unresolved,
-        'excluded': [{'brand': r['brand'], 'model': r['model'], 'certificate': r.get('certificate'), 'sourceUrl': r['sourceUrl'], 'reason': r['reason']} for r in excluded],
+        'excluded': [{'brand': r['brand'], 'model': r['model'], 'company': r.get('company'), 'certificate': r.get('certificate'), 'sourceUrl': r['sourceUrl'], 'reason': r['reason']} for r in excluded],
         'counts': {'moea': sum(m['source']=='moea' for m in models), 'energystar': sum(m['source']=='energystar' for m in models), 'unresolvedModels': len(unresolved)}
     }
 

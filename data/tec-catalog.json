@@ -1,10 +1,11 @@
 {
   "checkedAt": "2026-11-06",
-  "policy": "能源署實測優先；查無同型號可用實測 TEC 時才採 ENERGY STAR；同型號多筆紀錄不取最低值。",
+  "policy": "能源署實測優先；Ricoh 同型號有互盛有效節能標章時優先互盛，無互盛有效標章才採台灣理光。互盛 TEC 缺漏或衝突時列待核實；其餘查無同型號可用實測 TEC 時才採 ENERGY STAR，不自動取最低值。",
   "models": [
     {
       "brand": "Canon",
       "model": "ImageFORCE C3150",
+      "company": "台灣佳能(台灣佳能資訊股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -42,6 +43,7 @@
     {
       "brand": "Canon",
       "model": "image RUNNER ADVANCE DX 4935i",
+      "company": "台灣佳能(台灣佳能資訊股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -79,6 +81,7 @@
     {
       "brand": "Canon",
       "model": "imageFORCE 6155",
+      "company": "台灣佳能(台灣佳能資訊股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -116,6 +119,7 @@
     {
       "brand": "Canon",
       "model": "imageFORCE 6160",
+      "company": "台灣佳能(台灣佳能資訊股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -153,6 +157,7 @@
     {
       "brand": "Canon",
       "model": "imageFORCE 6170",
+      "company": "台灣佳能(台灣佳能資訊股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -190,6 +195,7 @@
     {
       "brand": "Canon",
       "model": "imageFORCE C5140",
+      "company": "台灣佳能(台灣佳能資訊股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -227,6 +233,7 @@
     {
       "brand": "Canon",
       "model": "imageFORCE C5150",
+      "company": "台灣佳能(台灣佳能資訊股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -264,6 +271,7 @@
     {
       "brand": "Canon",
       "model": "imageFORCE C5160",
+      "company": "台灣佳能(台灣佳能資訊股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -301,6 +309,7 @@
     {
       "brand": "Canon",
       "model": "imageFORCE C5170",
+      "company": "台灣佳能(台灣佳能資訊股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -338,6 +347,7 @@
     {
       "brand": "Canon",
       "model": "imageFORCE C7165",
+      "company": "台灣佳能(台灣佳能資訊股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -375,6 +385,7 @@
     {
       "brand": "Canon",
       "model": "imageRUNNER 2925i",
+      "company": "台灣佳能(台灣佳能資訊股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -412,6 +423,7 @@
     {
       "brand": "Canon",
       "model": "imageRUNNER ADVANCE DX 4735i",
+      "company": "台灣佳能(台灣佳能資訊股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -449,6 +461,7 @@
     {
       "brand": "Canon",
       "model": "imageRUNNER ADVANCE DX 4745i",
+      "company": "台灣佳能(台灣佳能資訊股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -486,6 +499,7 @@
     {
       "brand": "Canon",
       "model": "imageRUNNER ADVANCE DX 4751i",
+      "company": "台灣佳能(台灣佳能資訊股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -523,6 +537,7 @@
     {
       "brand": "Canon",
       "model": "imageRUNNER ADVANCE DX 4835i",
+      "company": "台灣佳能(台灣佳能資訊股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -560,6 +575,7 @@
     {
       "brand": "Canon",
       "model": "imageRUNNER ADVANCE DX 4945i",
+      "company": "台灣佳能(台灣佳能資訊股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -597,6 +613,7 @@
     {
       "brand": "Canon",
       "model": "imageRUNNER ADVANCE DX 6755i",
+      "company": "台灣佳能(台灣佳能資訊股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -634,6 +651,7 @@
     {
       "brand": "Canon",
       "model": "imageRUNNER ADVANCE DX 6855i",
+      "company": "台灣佳能(台灣佳能資訊股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -671,6 +689,7 @@
     {
       "brand": "Canon",
       "model": "imageRUNNER ADVANCE DX 6860i",
+      "company": "台灣佳能(台灣佳能資訊股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -708,6 +727,7 @@
     {
       "brand": "Canon",
       "model": "imageRUNNER ADVANCE DX 6870i",
+      "company": "台灣佳能(台灣佳能資訊股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -745,6 +765,7 @@
     {
       "brand": "Canon",
       "model": "imageRUNNER ADVANCE DX C3930i",
+      "company": "台灣佳能(台灣佳能資訊股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -782,6 +803,7 @@
     {
       "brand": "Canon",
       "model": "imageRUNNER ADVANCE DX C5840i",
+      "company": "台灣佳能(台灣佳能資訊股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -819,6 +841,7 @@
     {
       "brand": "Canon",
       "model": "imageRUNNER ADVANCE DX C5850i",
+      "company": "台灣佳能(台灣佳能資訊股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -856,6 +879,7 @@
     {
       "brand": "Canon",
       "model": "imageRUNNER ADVANCE DX C5860i",
+      "company": "台灣佳能(台灣佳能資訊股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -893,6 +917,7 @@
     {
       "brand": "Canon",
       "model": "imageRUNNER ADVANCE DX C5870i",
+      "company": "台灣佳能(台灣佳能資訊股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -930,6 +955,7 @@
     {
       "brand": "Canon",
       "model": "imageRUNNER C3326i",
+      "company": "台灣佳能(台灣佳能資訊股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -967,6 +993,7 @@
     {
       "brand": "DEVELOP",
       "model": "DEVELOP ineo+ 250i",
+      "company": "康鈦科技(康鈦科技股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -1004,6 +1031,7 @@
     {
       "brand": "DEVELOP",
       "model": "DEVELOP ineo+ 360i",
+      "company": "康鈦科技(康鈦科技股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -1041,6 +1069,7 @@
     {
       "brand": "DEVELOP",
       "model": "ineo 205i",
+      "company": "康鈦科技(康鈦科技股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -1078,6 +1107,7 @@
     {
       "brand": "Epson",
       "model": "AL-M7150DN",
+      "company": "台灣愛普生(台灣愛普生科技股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -1115,6 +1145,7 @@
     {
       "brand": "Epson",
       "model": "AL-M8250DN",
+      "company": "台灣愛普生(台灣愛普生科技股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -1152,6 +1183,7 @@
     {
       "brand": "Epson",
       "model": "AM-C4000",
+      "company": "台灣愛普生(台灣愛普生科技股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -1189,6 +1221,7 @@
     {
       "brand": "Epson",
       "model": "AM-C5000",
+      "company": "台灣愛普生(台灣愛普生科技股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -1226,6 +1259,7 @@
     {
       "brand": "Epson",
       "model": "AM-C6000",
+      "company": "台灣愛普生(台灣愛普生科技股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -1263,6 +1297,7 @@
     {
       "brand": "Epson",
       "model": "AM-M5500",
+      "company": "台灣愛普生(台灣愛普生科技股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -1300,6 +1335,7 @@
     {
       "brand": "Epson",
       "model": "WF-C20590",
+      "company": "台灣愛普生(台灣愛普生科技股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -1337,6 +1373,7 @@
     {
       "brand": "Epson",
       "model": "WF-C20600",
+      "company": "台灣愛普生(台灣愛普生科技股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -1374,6 +1411,7 @@
     {
       "brand": "Epson",
       "model": "WF-C20750",
+      "company": "台灣愛普生(台灣愛普生科技股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -1411,6 +1449,7 @@
     {
       "brand": "Epson",
       "model": "WF-C21000",
+      "company": "台灣愛普生(台灣愛普生科技股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -1448,6 +1487,7 @@
     {
       "brand": "Epson",
       "model": "WF-M21000",
+      "company": "台灣愛普生(台灣愛普生科技股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -1485,6 +1525,7 @@
     {
       "brand": "FUJIFILM",
       "model": "Apeos 2560",
+      "company": "台灣富士軟片系統整合(台灣富士軟片系統整合股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -1522,6 +1563,7 @@
     {
       "brand": "FUJIFILM",
       "model": "Apeos 2561",
+      "company": "台灣富士軟片系統整合(台灣富士軟片系統整合股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -1559,6 +1601,7 @@
     {
       "brand": "FUJIFILM",
       "model": "Apeos 3060",
+      "company": "台灣富士軟片系統整合(台灣富士軟片系統整合股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -1596,6 +1639,7 @@
     {
       "brand": "FUJIFILM",
       "model": "Apeos 3061",
+      "company": "台灣富士軟片系統整合(台灣富士軟片系統整合股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -1633,6 +1677,7 @@
     {
       "brand": "FUJIFILM",
       "model": "Apeos 3560",
+      "company": "台灣富士軟片系統整合(台灣富士軟片系統整合股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -1670,6 +1715,7 @@
     {
       "brand": "FUJIFILM",
       "model": "Apeos 3561",
+      "company": "台灣富士軟片系統整合(台灣富士軟片系統整合股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -1707,6 +1753,7 @@
     {
       "brand": "FUJIFILM",
       "model": "Apeos 4570",
+      "company": "台灣富士軟片系統整合(台灣富士軟片系統整合股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -1744,6 +1791,7 @@
     {
       "brand": "FUJIFILM",
       "model": "Apeos 5570",
+      "company": "台灣富士軟片系統整合(台灣富士軟片系統整合股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -1781,6 +1829,7 @@
     {
       "brand": "FUJIFILM",
       "model": "Apeos 6571",
+      "company": "台灣富士軟片系統整合(台灣富士軟片系統整合股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -1818,6 +1867,7 @@
     {
       "brand": "FUJIFILM",
       "model": "Apeos 6580",
+      "company": "台灣富士軟片系統整合(台灣富士軟片系統整合股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -1855,6 +1905,7 @@
     {
       "brand": "FUJIFILM",
       "model": "Apeos 7580",
+      "company": "台灣富士軟片系統整合(台灣富士軟片系統整合股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -1892,6 +1943,7 @@
     {
       "brand": "FUJIFILM",
       "model": "Apeos C2060",
+      "company": "台灣富士軟片系統整合(台灣富士軟片系統整合股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -1929,6 +1981,7 @@
     {
       "brand": "FUJIFILM",
       "model": "Apeos C2061",
+      "company": "台灣富士軟片系統整合(台灣富士軟片系統整合股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -1966,6 +2019,7 @@
     {
       "brand": "FUJIFILM",
       "model": "Apeos C2560",
+      "company": "台灣富士軟片系統整合(台灣富士軟片系統整合股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -2003,6 +2057,7 @@
     {
       "brand": "FUJIFILM",
       "model": "Apeos C2567",
+      "company": "台灣富士軟片系統整合(台灣富士軟片系統整合股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -2040,6 +2095,7 @@
     {
       "brand": "FUJIFILM",
       "model": "Apeos C3060",
+      "company": "台灣富士軟片系統整合(台灣富士軟片系統整合股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -2077,6 +2133,7 @@
     {
       "brand": "FUJIFILM",
       "model": "Apeos C3067",
+      "company": "台灣富士軟片系統整合(台灣富士軟片系統整合股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -2114,6 +2171,7 @@
     {
       "brand": "FUJIFILM",
       "model": "Apeos C3070",
+      "company": "台灣富士軟片系統整合(台灣富士軟片系統整合股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -2151,6 +2209,7 @@
     {
       "brand": "FUJIFILM",
       "model": "Apeos C3071",
+      "company": "台灣富士軟片系統整合(台灣富士軟片系統整合股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -2188,6 +2247,7 @@
     {
       "brand": "FUJIFILM",
       "model": "Apeos C3570",
+      "company": "台灣富士軟片系統整合(台灣富士軟片系統整合股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -2225,6 +2285,7 @@
     {
       "brand": "FUJIFILM",
       "model": "Apeos C3571",
+      "company": "台灣富士軟片系統整合(台灣富士軟片系統整合股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -2262,6 +2323,7 @@
     {
       "brand": "FUJIFILM",
       "model": "Apeos C4570",
+      "company": "台灣富士軟片系統整合(台灣富士軟片系統整合股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -2299,6 +2361,7 @@
     {
       "brand": "FUJIFILM",
       "model": "Apeos C4571",
+      "company": "台灣富士軟片系統整合(台灣富士軟片系統整合股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -2336,6 +2399,7 @@
     {
       "brand": "FUJIFILM",
       "model": "Apeos C5570",
+      "company": "台灣富士軟片系統整合(台灣富士軟片系統整合股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -2373,6 +2437,7 @@
     {
       "brand": "FUJIFILM",
       "model": "Apeos C5571",
+      "company": "台灣富士軟片系統整合(台灣富士軟片系統整合股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -2410,6 +2475,7 @@
     {
       "brand": "FUJIFILM",
       "model": "Apeos C6570",
+      "company": "台灣富士軟片系統整合(台灣富士軟片系統整合股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -2447,6 +2513,7 @@
     {
       "brand": "FUJIFILM",
       "model": "Apeos C6571",
+      "company": "台灣富士軟片系統整合(台灣富士軟片系統整合股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -2484,6 +2551,7 @@
     {
       "brand": "FUJIFILM",
       "model": "Apeos C6580",
+      "company": "台灣富士軟片系統整合(台灣富士軟片系統整合股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -2521,6 +2589,7 @@
     {
       "brand": "FUJIFILM",
       "model": "Apeos C7070",
+      "company": "台灣富士軟片系統整合(台灣富士軟片系統整合股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -2558,6 +2627,7 @@
     {
       "brand": "FUJIFILM",
       "model": "Apeos C7071",
+      "company": "台灣富士軟片系統整合(台灣富士軟片系統整合股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -2595,6 +2665,7 @@
     {
       "brand": "FUJIFILM",
       "model": "Apeos C7580",
+      "company": "台灣富士軟片系統整合(台灣富士軟片系統整合股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -2632,6 +2703,7 @@
     {
       "brand": "FUJIFILM",
       "model": "ApeosPort C3060",
+      "company": "台灣富士軟片系統整合(台灣富士軟片系統整合股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -2669,6 +2741,7 @@
     {
       "brand": "FUJIFILM",
       "model": "ApeosPort C3570 R",
+      "company": "台灣富士軟片系統整合(台灣富士軟片系統整合股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -2706,6 +2779,7 @@
     {
       "brand": "FUJIFILM",
       "model": "ApeosPort C5570 R",
+      "company": "台灣富士軟片系統整合(台灣富士軟片系統整合股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -2743,6 +2817,7 @@
     {
       "brand": "FUJIFILM",
       "model": "ApeosPort-V 6080",
+      "company": "台灣富士軟片系統整合(台灣富士軟片系統整合股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -2780,6 +2855,7 @@
     {
       "brand": "FUJIFILM",
       "model": "ApeosPort-V 7080",
+      "company": "台灣富士軟片系統整合(台灣富士軟片系統整合股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -2817,6 +2893,7 @@
     {
       "brand": "FUJIFILM",
       "model": "ApeosPort-V C3376 R",
+      "company": "台灣富士軟片系統整合(台灣富士軟片系統整合股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -2854,6 +2931,7 @@
     {
       "brand": "FUJIFILM",
       "model": "ApeosPort-V C5576 R",
+      "company": "台灣富士軟片系統整合(台灣富士軟片系統整合股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -2891,6 +2969,7 @@
     {
       "brand": "FUJIFILM",
       "model": "ApeosPort-VI C3371 R",
+      "company": "台灣富士軟片系統整合(台灣富士軟片系統整合股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -2928,6 +3007,7 @@
     {
       "brand": "FUJIFILM",
       "model": "ApeosPort-VI C5571 R",
+      "company": "台灣富士軟片系統整合(台灣富士軟片系統整合股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -2965,6 +3045,7 @@
     {
       "brand": "FUJIFILM",
       "model": "ApeosPort-VII C3373 R",
+      "company": "台灣富士軟片系統整合(台灣富士軟片系統整合股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -3002,6 +3083,7 @@
     {
       "brand": "FUJIFILM",
       "model": "ApeosPort-VII C4473",
+      "company": "台灣富士軟片系統整合(台灣富士軟片系統整合股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -3039,6 +3121,7 @@
     {
       "brand": "FUJIFILM",
       "model": "ApeosPort-VII C5573",
+      "company": "台灣富士軟片系統整合(台灣富士軟片系統整合股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -3076,6 +3159,7 @@
     {
       "brand": "FUJIFILM",
       "model": "ApeosPort-VII C5573 R",
+      "company": "台灣富士軟片系統整合(台灣富士軟片系統整合股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -3113,6 +3197,7 @@
     {
       "brand": "FUJIFILM",
       "model": "ApeosPro C650",
+      "company": "台灣富士軟片資訊股份有限公司(台灣富士軟片資訊股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -3150,6 +3235,7 @@
     {
       "brand": "FUJIFILM",
       "model": "ApeosPro C810",
+      "company": "台灣富士軟片資訊股份有限公司(台灣富士軟片資訊股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -3187,6 +3273,7 @@
     {
       "brand": "FUJIFILM",
       "model": "DocuCentre-V 6080",
+      "company": "台灣富士軟片系統整合(台灣富士軟片系統整合股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -3224,6 +3311,7 @@
     {
       "brand": "FUJIFILM",
       "model": "DocuCentre-V 7080",
+      "company": "台灣富士軟片系統整合(台灣富士軟片系統整合股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -3261,6 +3349,7 @@
     {
       "brand": "FUJIFILM",
       "model": "DocuCentre-VII C4473",
+      "company": "台灣富士軟片系統整合(台灣富士軟片系統整合股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -3298,6 +3387,7 @@
     {
       "brand": "FUJIFILM",
       "model": "DocuCentre-VII C5573",
+      "company": "台灣富士軟片系統整合(台灣富士軟片系統整合股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -3335,6 +3425,7 @@
     {
       "brand": "FUJIFILM",
       "model": "Revoria Press E1136",
+      "company": "台灣富士軟片資訊股份有限公司(台灣富士軟片資訊股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -3372,6 +3463,7 @@
     {
       "brand": "HP",
       "model": "HP Color LaserJet Managed MFP E785dn",
+      "company": "台灣惠普(台灣惠普資訊科技股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -3409,6 +3501,7 @@
     {
       "brand": "HP",
       "model": "HP Color LaserJet Managed MFP E786dn",
+      "company": "台灣惠普(台灣惠普資訊科技股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -3446,6 +3539,7 @@
     {
       "brand": "HP",
       "model": "HP Color LaserJet Managed MFP E877dn",
+      "company": "台灣惠普(台灣惠普資訊科技股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -3483,6 +3577,7 @@
     {
       "brand": "HP",
       "model": "HP LaserJet MFP M42625dn",
+      "company": "台灣惠普(台灣惠普資訊科技股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -3520,6 +3615,7 @@
     {
       "brand": "HP",
       "model": "HP LaserJet Managed MFP E731dn",
+      "company": "台灣惠普(台灣惠普資訊科技股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -3557,6 +3653,7 @@
     {
       "brand": "HP",
       "model": "HP LaserJet Managed MFP E826dn",
+      "company": "台灣惠普(台灣惠普資訊科技股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -3594,6 +3691,7 @@
     {
       "brand": "KYOCERA",
       "model": "ECOSYS MZ3201ix",
+      "company": "台灣京瓷辦公資訊系統(台灣京瓷辦公資訊系統股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -3631,6 +3729,7 @@
     {
       "brand": "KYOCERA",
       "model": "ECOSYS P4060dn",
+      "company": "台灣京瓷辦公資訊系統(台灣京瓷辦公資訊系統股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -3668,6 +3767,7 @@
     {
       "brand": "KYOCERA",
       "model": "ECOSYS P4145dn",
+      "company": "台灣京瓷辦公資訊系統(台灣京瓷辦公資訊系統股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -3705,6 +3805,7 @@
     {
       "brand": "KYOCERA",
       "model": "TASKalfa 2554ci",
+      "company": "台灣京瓷辦公資訊系統(台灣京瓷辦公資訊系統股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -3742,6 +3843,7 @@
     {
       "brand": "KYOCERA",
       "model": "TASKalfa 3554ci",
+      "company": "台灣京瓷辦公資訊系統(台灣京瓷辦公資訊系統股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -3779,6 +3881,7 @@
     {
       "brand": "KYOCERA",
       "model": "TASKalfa 4054ci",
+      "company": "台灣京瓷辦公資訊系統(台灣京瓷辦公資訊系統股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -3816,6 +3919,7 @@
     {
       "brand": "KYOCERA",
       "model": "TASKalfa 5004i",
+      "company": "台灣京瓷辦公資訊系統(台灣京瓷辦公資訊系統股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -3853,6 +3957,7 @@
     {
       "brand": "KYOCERA",
       "model": "TASKalfa 5054ci",
+      "company": "台灣京瓷辦公資訊系統(台灣京瓷辦公資訊系統股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -3890,6 +3995,7 @@
     {
       "brand": "KYOCERA",
       "model": "TASKalfa 6004i",
+      "company": "台灣京瓷辦公資訊系統(台灣京瓷辦公資訊系統股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -3927,6 +4033,7 @@
     {
       "brand": "KYOCERA",
       "model": "TASKalfa 6054ci",
+      "company": "台灣京瓷辦公資訊系統(台灣京瓷辦公資訊系統股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -3964,6 +4071,7 @@
     {
       "brand": "KYOCERA",
       "model": "TASKalfa 7004i",
+      "company": "台灣京瓷辦公資訊系統(台灣京瓷辦公資訊系統股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -4001,6 +4109,7 @@
     {
       "brand": "KYOCERA",
       "model": "TASKalfa 7054ci",
+      "company": "台灣京瓷辦公資訊系統(台灣京瓷辦公資訊系統股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -4038,6 +4147,7 @@
     {
       "brand": "KYOCERA",
       "model": "TASKalfa MZ2202",
+      "company": "台灣京瓷辦公資訊系統(台灣京瓷辦公資訊系統股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -4075,6 +4185,7 @@
     {
       "brand": "KYOCERA",
       "model": "TASKalfa MZ2501ci",
+      "company": "台灣京瓷辦公資訊系統(台灣京瓷辦公資訊系統股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -4112,6 +4223,7 @@
     {
       "brand": "KYOCERA",
       "model": "TASKalfa MZ2502",
+      "company": "台灣京瓷辦公資訊系統(台灣京瓷辦公資訊系統股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -4149,6 +4261,7 @@
     {
       "brand": "KYOCERA",
       "model": "TASKalfa MZ3200i",
+      "company": "台灣京瓷辦公資訊系統(台灣京瓷辦公資訊系統股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -4186,6 +4299,7 @@
     {
       "brand": "KYOCERA",
       "model": "TASKalfa MZ3201i",
+      "company": "台灣京瓷辦公資訊系統(台灣京瓷辦公資訊系統股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -4223,6 +4337,7 @@
     {
       "brand": "KYOCERA",
       "model": "TASKalfa MZ3501ci",
+      "company": "台灣京瓷辦公資訊系統(台灣京瓷辦公資訊系統股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -4260,6 +4375,7 @@
     {
       "brand": "KYOCERA",
       "model": "TASKalfa MZ4000i",
+      "company": "台灣京瓷辦公資訊系統(台灣京瓷辦公資訊系統股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -4297,6 +4413,7 @@
     {
       "brand": "KYOCERA",
       "model": "TASKalfa MZ4001ci",
+      "company": "台灣京瓷辦公資訊系統(台灣京瓷辦公資訊系統股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -4334,6 +4451,7 @@
     {
       "brand": "KYOCERA",
       "model": "TASKalfa MZ5001ci",
+      "company": "台灣京瓷辦公資訊系統(台灣京瓷辦公資訊系統股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -4371,6 +4489,7 @@
     {
       "brand": "KYOCERA",
       "model": "TASKalfa MZ5001i",
+      "company": "台灣京瓷辦公資訊系統(台灣京瓷辦公資訊系統股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -4408,6 +4527,7 @@
     {
       "brand": "KYOCERA",
       "model": "TASKalfa MZ6001ci",
+      "company": "台灣京瓷辦公資訊系統(台灣京瓷辦公資訊系統股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -4445,6 +4565,7 @@
     {
       "brand": "KYOCERA",
       "model": "TASKalfa MZ6001i",
+      "company": "台灣京瓷辦公資訊系統(台灣京瓷辦公資訊系統股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -4482,6 +4603,7 @@
     {
       "brand": "KYOCERA",
       "model": "TASKalfa MZ7001ci",
+      "company": "台灣京瓷辦公資訊系統(台灣京瓷辦公資訊系統股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -4519,6 +4641,7 @@
     {
       "brand": "KYOCERA",
       "model": "TASKalfa MZ7001i",
+      "company": "台灣京瓷辦公資訊系統(台灣京瓷辦公資訊系統股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -4556,6 +4679,7 @@
     {
       "brand": "Konica Minolta",
       "model": "bizhub 227i",
+      "company": "金儀(金儀股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -4593,6 +4717,7 @@
     {
       "brand": "Konica Minolta",
       "model": "bizhub 287",
+      "company": "金儀(金儀股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -4630,6 +4755,7 @@
     {
       "brand": "Konica Minolta",
       "model": "bizhub 300i",
+      "company": "金儀(金儀股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -4667,6 +4793,7 @@
     {
       "brand": "Konica Minolta",
       "model": "bizhub 301i",
+      "company": "金儀(金儀股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -4704,6 +4831,7 @@
     {
       "brand": "Konica Minolta",
       "model": "bizhub 360i",
+      "company": "金儀(金儀股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -4741,6 +4869,7 @@
     {
       "brand": "Konica Minolta",
       "model": "bizhub 361i",
+      "company": "金儀(金儀股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -4778,6 +4907,7 @@
     {
       "brand": "Konica Minolta",
       "model": "bizhub 367",
+      "company": "金儀(金儀股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -4815,6 +4945,7 @@
     {
       "brand": "Konica Minolta",
       "model": "bizhub 450i",
+      "company": "金儀(金儀股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -4852,6 +4983,7 @@
     {
       "brand": "Konica Minolta",
       "model": "bizhub 451i",
+      "company": "金儀(金儀股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -4889,6 +5021,7 @@
     {
       "brand": "Konica Minolta",
       "model": "bizhub 550i",
+      "company": "金儀(金儀股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -4926,6 +5059,7 @@
     {
       "brand": "Konica Minolta",
       "model": "bizhub 551i",
+      "company": "金儀(金儀股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -4963,6 +5097,7 @@
     {
       "brand": "Konica Minolta",
       "model": "bizhub 650i",
+      "company": "金儀(金儀股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -5000,6 +5135,7 @@
     {
       "brand": "Konica Minolta",
       "model": "bizhub 651i",
+      "company": "金儀(金儀股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -5037,6 +5173,7 @@
     {
       "brand": "Konica Minolta",
       "model": "bizhub 750i",
+      "company": "金儀(金儀股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -5074,6 +5211,7 @@
     {
       "brand": "Konica Minolta",
       "model": "bizhub 751i",
+      "company": "金儀(金儀股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -5111,6 +5249,7 @@
     {
       "brand": "Konica Minolta",
       "model": "bizhub C251i",
+      "company": "金儀(金儀股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -5148,6 +5287,7 @@
     {
       "brand": "Konica Minolta",
       "model": "bizhub C301i",
+      "company": "金儀(金儀股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -5185,6 +5325,7 @@
     {
       "brand": "Konica Minolta",
       "model": "bizhub C361i",
+      "company": "金儀(金儀股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -5222,6 +5363,7 @@
     {
       "brand": "Konica Minolta",
       "model": "bizhub C451i",
+      "company": "金儀(金儀股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -5259,6 +5401,7 @@
     {
       "brand": "Konica Minolta",
       "model": "bizhub C551i",
+      "company": "金儀(金儀股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -5296,6 +5439,7 @@
     {
       "brand": "Konica Minolta",
       "model": "bizhub C651i",
+      "company": "金儀(金儀股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -5333,6 +5477,7 @@
     {
       "brand": "Ricoh",
       "model": "IM 2500",
+      "company": "互盛公司(互盛股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -5369,44 +5514,8 @@
     },
     {
       "brand": "Ricoh",
-      "model": "IM 2500",
-      "sourceModel": null,
-      "modelAliases": null,
-      "ambiguous": null,
-      "remanufactured": null,
-      "tec": 0.9,
-      "unit": "kWh/week",
-      "source": "moea",
-      "sourceUrl": "https://ea03.moeaea.gov.tw/e0410/01/purchasing/product/item.aspx?itemp0=66207&uid=0&con=1&cid=33&cid2=0&year=&month=&day=&key=&pageno=0",
-      "sourceRecordId": "66207",
-      "standard": null,
-      "voltage": null,
-      "certificate": "1130560續1",
-      "validFrom": "2026-06-19",
-      "validUntil": "2028-06-18",
-      "checkedAt": "2026-11-06T13:44:57+00:00",
-      "notes": [
-        "採用官方明細的典型用電量 TEC 實測值；能源效率基準未用於計算。",
-        "明細未直接載明測試版本或電壓時保留空值，不由證書年份、DFE 欄位或品牌推定。"
-      ],
-      "color": "Monochrome",
-      "speed": 25.0,
-      "tech": "EP",
-      "a3": true,
-      "markets": null,
-      "archived": null,
-      "fallbackReason": null,
-      "moeaCheckedAt": null,
-      "sourceDataset": null,
-      "archiveRow": null,
-      "id": "moea:label:66207:",
-      "src": "經濟部能源署實測",
-      "std": "來源未明列測試版本",
-      "variantLabel": "證書 1130560續1"
-    },
-    {
-      "brand": "Ricoh",
       "model": "IM 2510",
+      "company": "互盛公司(互盛股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -5444,6 +5553,7 @@
     {
       "brand": "Ricoh",
       "model": "IM 3000",
+      "company": "台灣理光(台灣理光股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -5481,6 +5591,7 @@
     {
       "brand": "Ricoh",
       "model": "IM 3500",
+      "company": "互盛公司(互盛股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -5517,44 +5628,8 @@
     },
     {
       "brand": "Ricoh",
-      "model": "IM 3500",
-      "sourceModel": null,
-      "modelAliases": null,
-      "ambiguous": null,
-      "remanufactured": null,
-      "tec": 1.5,
-      "unit": "kWh/week",
-      "source": "moea",
-      "sourceUrl": "https://ea03.moeaea.gov.tw/e0410/01/purchasing/product/item.aspx?itemp0=66206&uid=0&con=1&cid=33&cid2=0&year=&month=&day=&key=&pageno=0",
-      "sourceRecordId": "66206",
-      "standard": null,
-      "voltage": null,
-      "certificate": "1130559續1",
-      "validFrom": "2026-06-19",
-      "validUntil": "2028-06-18",
-      "checkedAt": "2026-11-06T13:44:57+00:00",
-      "notes": [
-        "採用官方明細的典型用電量 TEC 實測值；能源效率基準未用於計算。",
-        "明細未直接載明測試版本或電壓時保留空值，不由證書年份、DFE 欄位或品牌推定。"
-      ],
-      "color": "Monochrome",
-      "speed": 35.0,
-      "tech": "EP",
-      "a3": true,
-      "markets": null,
-      "archived": null,
-      "fallbackReason": null,
-      "moeaCheckedAt": null,
-      "sourceDataset": null,
-      "archiveRow": null,
-      "id": "moea:label:66206:",
-      "src": "經濟部能源署實測",
-      "std": "來源未明列測試版本",
-      "variantLabel": "證書 1130559續1"
-    },
-    {
-      "brand": "Ricoh",
       "model": "IM 3510",
+      "company": "互盛公司(互盛股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -5591,44 +5666,8 @@
     },
     {
       "brand": "Ricoh",
-      "model": "IM 3510",
-      "sourceModel": null,
-      "modelAliases": null,
-      "ambiguous": null,
-      "remanufactured": null,
-      "tec": 1.2,
-      "unit": "kWh/week",
-      "source": "moea",
-      "sourceUrl": "https://ea03.moeaea.gov.tw/e0410/01/purchasing/product/item.aspx?itemp0=76910&uid=0&con=1&cid=32&cid2=0&year=&month=&day=&key=&pageno=0",
-      "sourceRecordId": "76910",
-      "standard": null,
-      "voltage": null,
-      "certificate": "1150916",
-      "validFrom": "2026-10-15",
-      "validUntil": "2028-10-14",
-      "checkedAt": "2026-11-06T13:44:45+00:00",
-      "notes": [
-        "採用官方明細的典型用電量 TEC 實測值；能源效率基準未用於計算。",
-        "明細未直接載明測試版本或電壓時保留空值，不由證書年份、DFE 欄位或品牌推定。"
-      ],
-      "color": "Monochrome",
-      "speed": 35.0,
-      "tech": "EP",
-      "a3": true,
-      "markets": null,
-      "archived": null,
-      "fallbackReason": null,
-      "moeaCheckedAt": null,
-      "sourceDataset": null,
-      "archiveRow": null,
-      "id": "moea:label:76910:",
-      "src": "經濟部能源署實測",
-      "std": "來源未明列測試版本",
-      "variantLabel": "證書 1150916"
-    },
-    {
-      "brand": "Ricoh",
       "model": "IM 4000",
+      "company": "互盛公司(互盛股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -5665,44 +5704,8 @@
     },
     {
       "brand": "Ricoh",
-      "model": "IM 4000",
-      "sourceModel": null,
-      "modelAliases": null,
-      "ambiguous": null,
-      "remanufactured": null,
-      "tec": 1.6,
-      "unit": "kWh/week",
-      "source": "moea",
-      "sourceUrl": "https://ea03.moeaea.gov.tw/e0410/01/purchasing/product/item.aspx?itemp0=66208&uid=0&con=1&cid=33&cid2=0&year=&month=&day=&key=&pageno=0",
-      "sourceRecordId": "66208",
-      "standard": null,
-      "voltage": null,
-      "certificate": "1130561續1",
-      "validFrom": "2026-06-19",
-      "validUntil": "2028-06-18",
-      "checkedAt": "2026-11-06T13:44:58+00:00",
-      "notes": [
-        "採用官方明細的典型用電量 TEC 實測值；能源效率基準未用於計算。",
-        "明細未直接載明測試版本或電壓時保留空值，不由證書年份、DFE 欄位或品牌推定。"
-      ],
-      "color": "Monochrome",
-      "speed": 40.0,
-      "tech": "EP",
-      "a3": true,
-      "markets": null,
-      "archived": null,
-      "fallbackReason": null,
-      "moeaCheckedAt": null,
-      "sourceDataset": null,
-      "archiveRow": null,
-      "id": "moea:label:66208:",
-      "src": "經濟部能源署實測",
-      "std": "來源未明列測試版本",
-      "variantLabel": "證書 1130561續1"
-    },
-    {
-      "brand": "Ricoh",
       "model": "IM 4510",
+      "company": "互盛公司(互盛股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -5740,6 +5743,7 @@
     {
       "brand": "Ricoh",
       "model": "IM 5000",
+      "company": "互盛公司(互盛股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -5776,44 +5780,8 @@
     },
     {
       "brand": "Ricoh",
-      "model": "IM 5000",
-      "sourceModel": null,
-      "modelAliases": null,
-      "ambiguous": null,
-      "remanufactured": null,
-      "tec": 2.2,
-      "unit": "kWh/week",
-      "source": "moea",
-      "sourceUrl": "https://ea03.moeaea.gov.tw/e0410/01/purchasing/product/item.aspx?itemp0=66214&uid=0&con=1&cid=33&cid2=0&year=&month=&day=&key=&pageno=0",
-      "sourceRecordId": "66214",
-      "standard": null,
-      "voltage": null,
-      "certificate": "1130565續1",
-      "validFrom": "2026-06-19",
-      "validUntil": "2028-06-18",
-      "checkedAt": "2026-11-06T13:44:58+00:00",
-      "notes": [
-        "採用官方明細的典型用電量 TEC 實測值；能源效率基準未用於計算。",
-        "明細未直接載明測試版本或電壓時保留空值，不由證書年份、DFE 欄位或品牌推定。"
-      ],
-      "color": "Monochrome",
-      "speed": 50.0,
-      "tech": "EP",
-      "a3": true,
-      "markets": null,
-      "archived": null,
-      "fallbackReason": null,
-      "moeaCheckedAt": null,
-      "sourceDataset": null,
-      "archiveRow": null,
-      "id": "moea:label:66214:",
-      "src": "經濟部能源署實測",
-      "std": "來源未明列測試版本",
-      "variantLabel": "證書 1130565續1"
-    },
-    {
-      "brand": "Ricoh",
       "model": "IM 5510",
+      "company": "互盛公司(互盛股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -5851,6 +5819,7 @@
     {
       "brand": "Ricoh",
       "model": "IM 6000",
+      "company": "互盛公司(互盛股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -5887,44 +5856,8 @@
     },
     {
       "brand": "Ricoh",
-      "model": "IM 6000",
-      "sourceModel": null,
-      "modelAliases": null,
-      "ambiguous": null,
-      "remanufactured": null,
-      "tec": 2.6,
-      "unit": "kWh/week",
-      "source": "moea",
-      "sourceUrl": "https://ea03.moeaea.gov.tw/e0410/01/purchasing/product/item.aspx?itemp0=66209&uid=0&con=1&cid=33&cid2=0&year=&month=&day=&key=&pageno=0",
-      "sourceRecordId": "66209",
-      "standard": null,
-      "voltage": null,
-      "certificate": "1130562續1",
-      "validFrom": "2026-06-19",
-      "validUntil": "2028-06-18",
-      "checkedAt": "2026-11-06T13:44:58+00:00",
-      "notes": [
-        "採用官方明細的典型用電量 TEC 實測值；能源效率基準未用於計算。",
-        "明細未直接載明測試版本或電壓時保留空值，不由證書年份、DFE 欄位或品牌推定。"
-      ],
-      "color": "Monochrome",
-      "speed": 60.0,
-      "tech": "EP",
-      "a3": true,
-      "markets": null,
-      "archived": null,
-      "fallbackReason": null,
-      "moeaCheckedAt": null,
-      "sourceDataset": null,
-      "archiveRow": null,
-      "id": "moea:label:66209:",
-      "src": "經濟部能源署實測",
-      "std": "來源未明列測試版本",
-      "variantLabel": "證書 1130562續1"
-    },
-    {
-      "brand": "Ricoh",
       "model": "IM 6010",
+      "company": "互盛公司(互盛股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -5961,81 +5894,8 @@
     },
     {
       "brand": "Ricoh",
-      "model": "IM 6010",
-      "sourceModel": null,
-      "modelAliases": null,
-      "ambiguous": null,
-      "remanufactured": null,
-      "tec": 2.7,
-      "unit": "kWh/week",
-      "source": "moea",
-      "sourceUrl": "https://ea03.moeaea.gov.tw/e0410/01/purchasing/product/item.aspx?itemp0=76909&uid=0&con=1&cid=32&cid2=0&year=&month=&day=&key=&pageno=0",
-      "sourceRecordId": "76909",
-      "standard": null,
-      "voltage": null,
-      "certificate": "1150915",
-      "validFrom": "2026-10-15",
-      "validUntil": "2028-10-14",
-      "checkedAt": "2026-11-06T13:44:44+00:00",
-      "notes": [
-        "採用官方明細的典型用電量 TEC 實測值；能源效率基準未用於計算。",
-        "明細未直接載明測試版本或電壓時保留空值，不由證書年份、DFE 欄位或品牌推定。"
-      ],
-      "color": "Monochrome",
-      "speed": 60.0,
-      "tech": "EP",
-      "a3": true,
-      "markets": null,
-      "archived": null,
-      "fallbackReason": null,
-      "moeaCheckedAt": null,
-      "sourceDataset": null,
-      "archiveRow": null,
-      "id": "moea:label:76909:",
-      "src": "經濟部能源署實測",
-      "std": "來源未明列測試版本",
-      "variantLabel": "證書 1150915"
-    },
-    {
-      "brand": "Ricoh",
-      "model": "IM 7000",
-      "sourceModel": null,
-      "modelAliases": null,
-      "ambiguous": null,
-      "remanufactured": null,
-      "tec": 4.5,
-      "unit": "kWh/week",
-      "source": "moea",
-      "sourceUrl": "https://ea03.moeaea.gov.tw/e0410/01/purchasing/product/item.aspx?itemp0=64897&uid=0&con=1&cid=32&cid2=0&year=&month=&day=&key=&pageno=0",
-      "sourceRecordId": "64897",
-      "standard": null,
-      "voltage": null,
-      "certificate": "1130298續1",
-      "validFrom": "2026-04-18",
-      "validUntil": "2028-04-17",
-      "checkedAt": "2026-11-06T13:44:44+00:00",
-      "notes": [
-        "採用官方明細的典型用電量 TEC 實測值；能源效率基準未用於計算。",
-        "明細未直接載明測試版本或電壓時保留空值，不由證書年份、DFE 欄位或品牌推定。"
-      ],
-      "color": "Monochrome",
-      "speed": 70.0,
-      "tech": "EP",
-      "a3": true,
-      "markets": null,
-      "archived": null,
-      "fallbackReason": null,
-      "moeaCheckedAt": null,
-      "sourceDataset": null,
-      "archiveRow": null,
-      "id": "moea:label:64897:",
-      "src": "經濟部能源署實測",
-      "std": "來源未明列測試版本",
-      "variantLabel": "證書 1130298續1"
-    },
-    {
-      "brand": "Ricoh",
       "model": "IM 8000",
+      "company": "台灣理光(台灣理光股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -6073,6 +5933,7 @@
     {
       "brand": "Ricoh",
       "model": "IM 9000",
+      "company": "台灣理光(台灣理光股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -6110,6 +5971,7 @@
     {
       "brand": "Ricoh",
       "model": "IM C2010",
+      "company": "互盛公司(互盛股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -6146,44 +6008,8 @@
     },
     {
       "brand": "Ricoh",
-      "model": "IM C2010",
-      "sourceModel": null,
-      "modelAliases": null,
-      "ambiguous": null,
-      "remanufactured": null,
-      "tec": 0.7,
-      "unit": "kWh/week",
-      "source": "moea",
-      "sourceUrl": "https://ea03.moeaea.gov.tw/e0410/01/purchasing/product/item.aspx?itemp0=75066&uid=0&con=1&cid=33&cid2=0&year=&month=&day=&key=&pageno=0",
-      "sourceRecordId": "75066",
-      "standard": null,
-      "voltage": null,
-      "certificate": "1150300",
-      "validFrom": "2026-04-15",
-      "validUntil": "2028-04-14",
-      "checkedAt": "2026-11-06T13:44:58+00:00",
-      "notes": [
-        "採用官方明細的典型用電量 TEC 實測值；能源效率基準未用於計算。",
-        "明細未直接載明測試版本或電壓時保留空值，不由證書年份、DFE 欄位或品牌推定。"
-      ],
-      "color": "Color",
-      "speed": 20.0,
-      "tech": "EP",
-      "a3": true,
-      "markets": null,
-      "archived": null,
-      "fallbackReason": null,
-      "moeaCheckedAt": null,
-      "sourceDataset": null,
-      "archiveRow": null,
-      "id": "moea:label:75066:",
-      "src": "經濟部能源署實測",
-      "std": "來源未明列測試版本",
-      "variantLabel": "證書 1150300"
-    },
-    {
-      "brand": "Ricoh",
       "model": "IM C2510",
+      "company": "互盛公司(互盛股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -6220,44 +6046,8 @@
     },
     {
       "brand": "Ricoh",
-      "model": "IM C2510",
-      "sourceModel": null,
-      "modelAliases": null,
-      "ambiguous": null,
-      "remanufactured": null,
-      "tec": 0.9,
-      "unit": "kWh/week",
-      "source": "moea",
-      "sourceUrl": "https://ea03.moeaea.gov.tw/e0410/01/purchasing/product/item.aspx?itemp0=66219&uid=0&con=1&cid=33&cid2=0&year=&month=&day=&key=&pageno=0",
-      "sourceRecordId": "66219",
-      "standard": null,
-      "voltage": null,
-      "certificate": "1130566續1",
-      "validFrom": "2026-06-19",
-      "validUntil": "2028-06-18",
-      "checkedAt": "2026-11-06T13:44:58+00:00",
-      "notes": [
-        "採用官方明細的典型用電量 TEC 實測值；能源效率基準未用於計算。",
-        "明細未直接載明測試版本或電壓時保留空值，不由證書年份、DFE 欄位或品牌推定。"
-      ],
-      "color": "Color",
-      "speed": 25.0,
-      "tech": "EP",
-      "a3": true,
-      "markets": null,
-      "archived": null,
-      "fallbackReason": null,
-      "moeaCheckedAt": null,
-      "sourceDataset": null,
-      "archiveRow": null,
-      "id": "moea:label:66219:",
-      "src": "經濟部能源署實測",
-      "std": "來源未明列測試版本",
-      "variantLabel": "證書 1130566續1"
-    },
-    {
-      "brand": "Ricoh",
       "model": "IM C3010",
+      "company": "互盛公司(互盛股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -6294,44 +6084,8 @@
     },
     {
       "brand": "Ricoh",
-      "model": "IM C3010",
-      "sourceModel": null,
-      "modelAliases": null,
-      "ambiguous": null,
-      "remanufactured": null,
-      "tec": 1.1,
-      "unit": "kWh/week",
-      "source": "moea",
-      "sourceUrl": "https://ea03.moeaea.gov.tw/e0410/01/purchasing/product/item.aspx?itemp0=66220&uid=0&con=1&cid=33&cid2=0&year=&month=&day=&key=&pageno=0",
-      "sourceRecordId": "66220",
-      "standard": null,
-      "voltage": null,
-      "certificate": "1130567續1",
-      "validFrom": "2026-06-19",
-      "validUntil": "2028-06-18",
-      "checkedAt": "2026-11-06T13:44:58+00:00",
-      "notes": [
-        "採用官方明細的典型用電量 TEC 實測值；能源效率基準未用於計算。",
-        "明細未直接載明測試版本或電壓時保留空值，不由證書年份、DFE 欄位或品牌推定。"
-      ],
-      "color": "Color",
-      "speed": 30.0,
-      "tech": "EP",
-      "a3": true,
-      "markets": null,
-      "archived": null,
-      "fallbackReason": null,
-      "moeaCheckedAt": null,
-      "sourceDataset": null,
-      "archiveRow": null,
-      "id": "moea:label:66220:",
-      "src": "經濟部能源署實測",
-      "std": "來源未明列測試版本",
-      "variantLabel": "證書 1130567續1"
-    },
-    {
-      "brand": "Ricoh",
       "model": "IM C3510",
+      "company": "互盛公司(互盛股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -6368,44 +6122,8 @@
     },
     {
       "brand": "Ricoh",
-      "model": "IM C3510",
-      "sourceModel": null,
-      "modelAliases": null,
-      "ambiguous": null,
-      "remanufactured": null,
-      "tec": 1.3,
-      "unit": "kWh/week",
-      "source": "moea",
-      "sourceUrl": "https://ea03.moeaea.gov.tw/e0410/01/purchasing/product/item.aspx?itemp0=75067&uid=0&con=1&cid=33&cid2=0&year=&month=&day=&key=&pageno=0",
-      "sourceRecordId": "75067",
-      "standard": null,
-      "voltage": null,
-      "certificate": "1150299",
-      "validFrom": "2026-04-15",
-      "validUntil": "2028-04-14",
-      "checkedAt": "2026-11-06T13:44:58+00:00",
-      "notes": [
-        "採用官方明細的典型用電量 TEC 實測值；能源效率基準未用於計算。",
-        "明細未直接載明測試版本或電壓時保留空值，不由證書年份、DFE 欄位或品牌推定。"
-      ],
-      "color": "Color",
-      "speed": 35.0,
-      "tech": "EP",
-      "a3": true,
-      "markets": null,
-      "archived": null,
-      "fallbackReason": null,
-      "moeaCheckedAt": null,
-      "sourceDataset": null,
-      "archiveRow": null,
-      "id": "moea:label:75067:",
-      "src": "經濟部能源署實測",
-      "std": "來源未明列測試版本",
-      "variantLabel": "證書 1150299"
-    },
-    {
-      "brand": "Ricoh",
       "model": "IM C4510",
+      "company": "互盛公司(互盛股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -6442,44 +6160,8 @@
     },
     {
       "brand": "Ricoh",
-      "model": "IM C4510",
-      "sourceModel": null,
-      "modelAliases": null,
-      "ambiguous": null,
-      "remanufactured": null,
-      "tec": 1.6,
-      "unit": "kWh/week",
-      "source": "moea",
-      "sourceUrl": "https://ea03.moeaea.gov.tw/e0410/01/purchasing/product/item.aspx?itemp0=66221&uid=0&con=1&cid=33&cid2=0&year=&month=&day=&key=&pageno=0",
-      "sourceRecordId": "66221",
-      "standard": null,
-      "voltage": null,
-      "certificate": "1130568續1",
-      "validFrom": "2026-06-19",
-      "validUntil": "2028-06-18",
-      "checkedAt": "2026-11-06T13:44:59+00:00",
-      "notes": [
-        "採用官方明細的典型用電量 TEC 實測值；能源效率基準未用於計算。",
-        "明細未直接載明測試版本或電壓時保留空值，不由證書年份、DFE 欄位或品牌推定。"
-      ],
-      "color": "Color",
-      "speed": 45.0,
-      "tech": "EP",
-      "a3": true,
-      "markets": null,
-      "archived": null,
-      "fallbackReason": null,
-      "moeaCheckedAt": null,
-      "sourceDataset": null,
-      "archiveRow": null,
-      "id": "moea:label:66221:",
-      "src": "經濟部能源署實測",
-      "std": "來源未明列測試版本",
-      "variantLabel": "證書 1130568續1"
-    },
-    {
-      "brand": "Ricoh",
       "model": "IM C6010",
+      "company": "互盛公司(互盛股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -6515,45 +6197,9 @@
       "variantLabel": "證書 1120711續1"
     },
     {
-      "brand": "Ricoh",
-      "model": "IM C6010",
-      "sourceModel": null,
-      "modelAliases": null,
-      "ambiguous": null,
-      "remanufactured": null,
-      "tec": 2.5,
-      "unit": "kWh/week",
-      "source": "moea",
-      "sourceUrl": "https://ea03.moeaea.gov.tw/e0410/01/purchasing/product/item.aspx?itemp0=75073&uid=0&con=1&cid=33&cid2=0&year=&month=&day=&key=&pageno=0",
-      "sourceRecordId": "75073",
-      "standard": null,
-      "voltage": null,
-      "certificate": "1150301",
-      "validFrom": "2026-04-15",
-      "validUntil": "2028-04-14",
-      "checkedAt": "2026-11-06T13:44:59+00:00",
-      "notes": [
-        "採用官方明細的典型用電量 TEC 實測值；能源效率基準未用於計算。",
-        "明細未直接載明測試版本或電壓時保留空值，不由證書年份、DFE 欄位或品牌推定。"
-      ],
-      "color": "Color",
-      "speed": 60.0,
-      "tech": "EP",
-      "a3": true,
-      "markets": null,
-      "archived": null,
-      "fallbackReason": null,
-      "moeaCheckedAt": null,
-      "sourceDataset": null,
-      "archiveRow": null,
-      "id": "moea:label:75073:",
-      "src": "經濟部能源署實測",
-      "std": "來源未明列測試版本",
-      "variantLabel": "證書 1150301"
-    },
-    {
       "brand": "Sharp",
       "model": "BP-30M28",
+      "company": "震旦行(震旦行股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -6591,6 +6237,7 @@
     {
       "brand": "Sharp",
       "model": "BP-30M28T",
+      "company": "震旦行(震旦行股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -6628,6 +6275,7 @@
     {
       "brand": "Sharp",
       "model": "BP-30M31",
+      "company": "震旦行(震旦行股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -6665,6 +6313,7 @@
     {
       "brand": "Sharp",
       "model": "BP-30M31T",
+      "company": "震旦行(震旦行股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -6702,6 +6351,7 @@
     {
       "brand": "Sharp",
       "model": "BP-30M35",
+      "company": "震旦行(震旦行股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -6739,6 +6389,7 @@
     {
       "brand": "Sharp",
       "model": "BP-30M35T",
+      "company": "震旦行(震旦行股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -6776,6 +6427,7 @@
     {
       "brand": "Sharp",
       "model": "BP-50C26",
+      "company": "震旦行(震旦行股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -6813,6 +6465,7 @@
     {
       "brand": "Sharp",
       "model": "BP-50C26T",
+      "company": "震旦行(震旦行股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -6850,6 +6503,7 @@
     {
       "brand": "Sharp",
       "model": "BP-50C31",
+      "company": "震旦行(震旦行股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -6887,6 +6541,7 @@
     {
       "brand": "Sharp",
       "model": "BP-50M31",
+      "company": "震旦行(震旦行股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -6924,6 +6579,7 @@
     {
       "brand": "Sharp",
       "model": "BP-70C45",
+      "company": "震旦行(震旦行股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -6961,6 +6617,7 @@
     {
       "brand": "Sharp",
       "model": "BP-70C45T",
+      "company": "震旦行(震旦行股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -6998,6 +6655,7 @@
     {
       "brand": "Sharp",
       "model": "BP-70C55",
+      "company": "震旦行(震旦行股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -7035,6 +6693,7 @@
     {
       "brand": "Sharp",
       "model": "BP-70C55T",
+      "company": "震旦行(震旦行股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -7072,6 +6731,7 @@
     {
       "brand": "Sharp",
       "model": "BP-70C65",
+      "company": "震旦行(震旦行股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -7109,6 +6769,7 @@
     {
       "brand": "Sharp",
       "model": "BP-70C65T",
+      "company": "震旦行(震旦行股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -7146,6 +6807,7 @@
     {
       "brand": "Sharp",
       "model": "BP-70M45",
+      "company": "震旦行(震旦行股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -7183,6 +6845,7 @@
     {
       "brand": "Sharp",
       "model": "BP-70M45T",
+      "company": "震旦行(震旦行股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -7220,6 +6883,7 @@
     {
       "brand": "Sharp",
       "model": "BP-70M55",
+      "company": "震旦行(震旦行股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -7257,6 +6921,7 @@
     {
       "brand": "Sharp",
       "model": "BP-70M65",
+      "company": "震旦行(震旦行股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -7294,6 +6959,7 @@
     {
       "brand": "Sharp",
       "model": "BP-70M65T",
+      "company": "震旦行(震旦行股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -7331,6 +6997,7 @@
     {
       "brand": "Sharp",
       "model": "BP-70M75",
+      "company": "震旦行(震旦行股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -7368,6 +7035,7 @@
     {
       "brand": "Sharp",
       "model": "BP-70M75T",
+      "company": "震旦行(震旦行股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -7405,6 +7073,7 @@
     {
       "brand": "Toshiba",
       "model": "e-STUDIO2520AC(FC-2520AC)",
+      "company": "台芝(台芝國際股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -7442,6 +7111,7 @@
     {
       "brand": "Toshiba",
       "model": "e-STUDIO2829A(DP-2829A)",
+      "company": "台芝(台芝國際股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -7479,6 +7149,7 @@
     {
       "brand": "Toshiba",
       "model": "e-STUDIO3028A(DP-3028A)",
+      "company": "台芝(台芝國際股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -7516,6 +7187,7 @@
     {
       "brand": "Toshiba",
       "model": "e-STUDIO3525AC(FC-3525AC)",
+      "company": "台芝(台芝國際股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -7553,6 +7225,7 @@
     {
       "brand": "Toshiba",
       "model": "e-STUDIO3528A(DP-3528A)",
+      "company": "台芝(台芝國際股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -7590,6 +7263,7 @@
     {
       "brand": "Toshiba",
       "model": "e-STUDIO4525AC(FC-4525AC)",
+      "company": "台芝(台芝國際股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -7627,6 +7301,7 @@
     {
       "brand": "Toshiba",
       "model": "e-STUDIO4528A(DP-4528A)",
+      "company": "台芝(台芝國際股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -7664,6 +7339,7 @@
     {
       "brand": "Toshiba",
       "model": "e-STUDIO5528A(DP-5528A)",
+      "company": "台芝(台芝國際股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -7701,6 +7377,7 @@
     {
       "brand": "Toshiba",
       "model": "e-STUDIO6528A(DP-6528A)",
+      "company": "台芝(台芝國際股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -7738,6 +7415,7 @@
     {
       "brand": "Toshiba",
       "model": "e-STUDIO7529A(DP-7529A)",
+      "company": "台芝(台芝國際股份有限公司)",
       "sourceModel": null,
       "modelAliases": null,
       "ambiguous": null,
@@ -7775,6 +7453,7 @@
     {
       "brand": "KYOCERA",
       "model": "2553ci",
+      "company": null,
       "sourceModel": "2553ci",
       "modelAliases": [
         "2553ci",
@@ -7816,6 +7495,7 @@
     {
       "brand": "KYOCERA",
       "model": "TASKalfa 2551ci",
+      "company": null,
       "sourceModel": "MFP (Multi Function Printer)",
       "modelAliases": [
         "MFP (Multi Function Printer)",
@@ -7858,6 +7538,7 @@
     {
       "brand": "KYOCERA",
       "model": "TASKalfa 2552ci",
+      "company": null,
       "sourceModel": "MFP (Multi Function Printer)",
       "modelAliases": [
         "MFP (Multi Function Printer)",
@@ -7900,6 +7581,7 @@
     {
       "brand": "KYOCERA",
       "model": "TASKalfa 2553ci",
+      "company": null,
       "sourceModel": "MFP (Multi Function Printer)",
       "modelAliases": [
         "MFP (Multi Function Printer)",
@@ -7942,6 +7624,7 @@
     {
       "brand": "KYOCERA",
       "model": "TASKalfa 3252ci",
+      "company": null,
       "sourceModel": "MFP (Multi Function Printer)",
       "modelAliases": [
         "MFP (Multi Function Printer)",
@@ -7984,6 +7667,7 @@
     {
       "brand": "Konica Minolta",
       "model": "bizhub 227",
+      "company": null,
       "sourceModel": "bizhub 227",
       "modelAliases": [
         "bizhub 227",
@@ -8025,6 +7709,7 @@
     {
       "brand": "Konica Minolta",
       "model": "bizhub C224e",
+      "company": null,
       "sourceModel": "bizhub C224e",
       "modelAliases": [
         "bizhub C224e",
@@ -8066,6 +7751,7 @@
     {
       "brand": "Konica Minolta",
       "model": "bizhub C227",
+      "company": null,
       "sourceModel": "bizhub C227",
       "modelAliases": [
         "bizhub C227",
@@ -8107,6 +7793,7 @@
     {
       "brand": "Konica Minolta",
       "model": "bizhub C258",
+      "company": null,
       "sourceModel": "bizhub C258",
       "modelAliases": [
         "bizhub C258",
@@ -8148,6 +7835,7 @@
     {
       "brand": "Konica Minolta",
       "model": "bizhub C284e",
+      "company": null,
       "sourceModel": "bizhub C284e",
       "modelAliases": [
         "bizhub C284e",
@@ -8189,6 +7877,7 @@
     {
       "brand": "Konica Minolta",
       "model": "bizhub C287",
+      "company": null,
       "sourceModel": "bizhub C287",
       "modelAliases": [
         "bizhub C287",
@@ -8230,6 +7919,7 @@
     {
       "brand": "Ricoh",
       "model": "GreenLine IM C3000",
+      "company": null,
       "sourceModel": "GreenLine IM C3000",
       "modelAliases": [
         "GreenLine IM C3000",
@@ -8271,6 +7961,7 @@
     {
       "brand": "Ricoh",
       "model": "IM C2000",
+      "company": null,
       "sourceModel": "IM C2000",
       "modelAliases": [
         "IM C2000"
@@ -8312,6 +8003,7 @@
     {
       "brand": "Ricoh",
       "model": "IM C2000",
+      "company": null,
       "sourceModel": "IM C2000",
       "modelAliases": [
         "IM C2000"
@@ -8353,6 +8045,7 @@
     {
       "brand": "Ricoh",
       "model": "IM C2500",
+      "company": null,
       "sourceModel": "IM C2500",
       "modelAliases": [
         "IM C2500"
@@ -8394,6 +8087,7 @@
     {
       "brand": "Ricoh",
       "model": "IM C2500",
+      "company": null,
       "sourceModel": "IM C2500",
       "modelAliases": [
         "IM C2500"
@@ -8435,6 +8129,7 @@
     {
       "brand": "Ricoh",
       "model": "IM C3000",
+      "company": null,
       "sourceModel": "IM C3000",
       "modelAliases": [
         "IM C3000"
@@ -8476,6 +8171,7 @@
     {
       "brand": "Ricoh",
       "model": "IM C3000",
+      "company": null,
       "sourceModel": "IM C3000",
       "modelAliases": [
         "IM C3000"
@@ -8517,6 +8213,7 @@
     {
       "brand": "Sharp",
       "model": "MX-2651",
+      "company": null,
       "sourceModel": "MX-2651",
       "modelAliases": [
         "MX-2651"
@@ -8558,6 +8255,7 @@
     {
       "brand": "Sharp",
       "model": "MX-2651",
+      "company": null,
       "sourceModel": "MX-2651",
       "modelAliases": [
         "MX-2651"
@@ -8599,6 +8297,7 @@
     {
       "brand": "Sharp",
       "model": "MX-3051",
+      "company": null,
       "sourceModel": "MX-3051",
       "modelAliases": [
         "MX-3051"
@@ -8640,6 +8339,7 @@
     {
       "brand": "Sharp",
       "model": "MX-3051",
+      "company": null,
       "sourceModel": "MX-3051",
       "modelAliases": [
         "MX-3051"
@@ -8857,6 +8557,11 @@
     },
     {
       "brand": "Ricoh",
+      "model": "IM 7000",
+      "reason": "互盛已有有效節能標章，但 TEC 缺漏或資料待核實；依優先規則不改用台灣理光或 ENERGY STAR"
+    },
+    {
+      "brand": "Ricoh",
       "model": "MP 2501",
       "reason": "未取得可核實的每週 TEC；未沿用舊站數值"
     },
@@ -8914,15 +8619,128 @@
   "excluded": [
     {
       "brand": "Ricoh",
+      "model": "IM 2500",
+      "company": "台灣理光(台灣理光股份有限公司)",
+      "certificate": "1130560續1",
+      "sourceUrl": "https://ea03.moeaea.gov.tw/e0410/01/purchasing/product/item.aspx?itemp0=66207&uid=0&con=1&cid=33&cid2=0&year=&month=&day=&key=&pageno=0",
+      "reason": "同型號已有互盛有效節能標章，依獲證公司優先規則不列入台灣理光紀錄"
+    },
+    {
+      "brand": "Ricoh",
+      "model": "IM 3500",
+      "company": "台灣理光(台灣理光股份有限公司)",
+      "certificate": "1130559續1",
+      "sourceUrl": "https://ea03.moeaea.gov.tw/e0410/01/purchasing/product/item.aspx?itemp0=66206&uid=0&con=1&cid=33&cid2=0&year=&month=&day=&key=&pageno=0",
+      "reason": "同型號已有互盛有效節能標章，依獲證公司優先規則不列入台灣理光紀錄"
+    },
+    {
+      "brand": "Ricoh",
+      "model": "IM 3510",
+      "company": "台灣理光(台灣理光股份有限公司)",
+      "certificate": "1150916",
+      "sourceUrl": "https://ea03.moeaea.gov.tw/e0410/01/purchasing/product/item.aspx?itemp0=76910&uid=0&con=1&cid=32&cid2=0&year=&month=&day=&key=&pageno=0",
+      "reason": "同型號已有互盛有效節能標章，依獲證公司優先規則不列入台灣理光紀錄"
+    },
+    {
+      "brand": "Ricoh",
+      "model": "IM 4000",
+      "company": "台灣理光(台灣理光股份有限公司)",
+      "certificate": "1130561續1",
+      "sourceUrl": "https://ea03.moeaea.gov.tw/e0410/01/purchasing/product/item.aspx?itemp0=66208&uid=0&con=1&cid=33&cid2=0&year=&month=&day=&key=&pageno=0",
+      "reason": "同型號已有互盛有效節能標章，依獲證公司優先規則不列入台灣理光紀錄"
+    },
+    {
+      "brand": "Ricoh",
+      "model": "IM 5000",
+      "company": "台灣理光(台灣理光股份有限公司)",
+      "certificate": "1130565續1",
+      "sourceUrl": "https://ea03.moeaea.gov.tw/e0410/01/purchasing/product/item.aspx?itemp0=66214&uid=0&con=1&cid=33&cid2=0&year=&month=&day=&key=&pageno=0",
+      "reason": "同型號已有互盛有效節能標章，依獲證公司優先規則不列入台灣理光紀錄"
+    },
+    {
+      "brand": "Ricoh",
+      "model": "IM 6000",
+      "company": "台灣理光(台灣理光股份有限公司)",
+      "certificate": "1130562續1",
+      "sourceUrl": "https://ea03.moeaea.gov.tw/e0410/01/purchasing/product/item.aspx?itemp0=66209&uid=0&con=1&cid=33&cid2=0&year=&month=&day=&key=&pageno=0",
+      "reason": "同型號已有互盛有效節能標章，依獲證公司優先規則不列入台灣理光紀錄"
+    },
+    {
+      "brand": "Ricoh",
+      "model": "IM 6010",
+      "company": "台灣理光(台灣理光股份有限公司)",
+      "certificate": "1150915",
+      "sourceUrl": "https://ea03.moeaea.gov.tw/e0410/01/purchasing/product/item.aspx?itemp0=76909&uid=0&con=1&cid=32&cid2=0&year=&month=&day=&key=&pageno=0",
+      "reason": "同型號已有互盛有效節能標章，依獲證公司優先規則不列入台灣理光紀錄"
+    },
+    {
+      "brand": "Ricoh",
       "model": "IM 7000",
+      "company": "互盛公司(互盛股份有限公司)",
       "certificate": "1100272續2",
       "sourceUrl": "https://ea03.moeaea.gov.tw/e0410/01/purchasing/product/item.aspx?itemp0=55346&uid=0&con=1&cid=32&cid2=0&year=&month=&day=&key=&pageno=0",
       "reason": "官方明細與開放資料實測值不一致，暫不自動採用"
+    },
+    {
+      "brand": "Ricoh",
+      "model": "IM 7000",
+      "company": "台灣理光(台灣理光股份有限公司)",
+      "certificate": "1130298續1",
+      "sourceUrl": "https://ea03.moeaea.gov.tw/e0410/01/purchasing/product/item.aspx?itemp0=64897&uid=0&con=1&cid=32&cid2=0&year=&month=&day=&key=&pageno=0",
+      "reason": "同型號已有互盛有效節能標章，依獲證公司優先規則不列入台灣理光紀錄"
+    },
+    {
+      "brand": "Ricoh",
+      "model": "IM C2010",
+      "company": "台灣理光(台灣理光股份有限公司)",
+      "certificate": "1150300",
+      "sourceUrl": "https://ea03.moeaea.gov.tw/e0410/01/purchasing/product/item.aspx?itemp0=75066&uid=0&con=1&cid=33&cid2=0&year=&month=&day=&key=&pageno=0",
+      "reason": "同型號已有互盛有效節能標章，依獲證公司優先規則不列入台灣理光紀錄"
+    },
+    {
+      "brand": "Ricoh",
+      "model": "IM C2510",
+      "company": "台灣理光(台灣理光股份有限公司)",
+      "certificate": "1130566續1",
+      "sourceUrl": "https://ea03.moeaea.gov.tw/e0410/01/purchasing/product/item.aspx?itemp0=66219&uid=0&con=1&cid=33&cid2=0&year=&month=&day=&key=&pageno=0",
+      "reason": "同型號已有互盛有效節能標章，依獲證公司優先規則不列入台灣理光紀錄"
+    },
+    {
+      "brand": "Ricoh",
+      "model": "IM C3010",
+      "company": "台灣理光(台灣理光股份有限公司)",
+      "certificate": "1130567續1",
+      "sourceUrl": "https://ea03.moeaea.gov.tw/e0410/01/purchasing/product/item.aspx?itemp0=66220&uid=0&con=1&cid=33&cid2=0&year=&month=&day=&key=&pageno=0",
+      "reason": "同型號已有互盛有效節能標章，依獲證公司優先規則不列入台灣理光紀錄"
+    },
+    {
+      "brand": "Ricoh",
+      "model": "IM C3510",
+      "company": "台灣理光(台灣理光股份有限公司)",
+      "certificate": "1150299",
+      "sourceUrl": "https://ea03.moeaea.gov.tw/e0410/01/purchasing/product/item.aspx?itemp0=75067&uid=0&con=1&cid=33&cid2=0&year=&month=&day=&key=&pageno=0",
+      "reason": "同型號已有互盛有效節能標章，依獲證公司優先規則不列入台灣理光紀錄"
+    },
+    {
+      "brand": "Ricoh",
+      "model": "IM C4510",
+      "company": "台灣理光(台灣理光股份有限公司)",
+      "certificate": "1130568續1",
+      "sourceUrl": "https://ea03.moeaea.gov.tw/e0410/01/purchasing/product/item.aspx?itemp0=66221&uid=0&con=1&cid=33&cid2=0&year=&month=&day=&key=&pageno=0",
+      "reason": "同型號已有互盛有效節能標章，依獲證公司優先規則不列入台灣理光紀錄"
+    },
+    {
+      "brand": "Ricoh",
+      "model": "IM C6010",
+      "company": "台灣理光(台灣理光股份有限公司)",
+      "certificate": "1150301",
+      "sourceUrl": "https://ea03.moeaea.gov.tw/e0410/01/purchasing/product/item.aspx?itemp0=75073&uid=0&con=1&cid=33&cid2=0&year=&month=&day=&key=&pageno=0",
+      "reason": "同型號已有互盛有效節能標章，依獲證公司優先規則不列入台灣理光紀錄"
     }
   ],
   "counts": {
-    "moea": 210,
+    "moea": 196,
     "energystar": 22,
-    "unresolvedModels": 46
+    "unresolvedModels": 47
   }
 }

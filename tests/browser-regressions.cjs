@@ -105,7 +105,8 @@ test('default TEC uses the MOEA record and every catalog value has matching sour
   const target = state.rows.next[0];
   assert.equal(target.source, 'moea');
   assert.match(target.model, /IM C2010/);
-  assert.ok([1.3, 0.7].some(tec => Math.abs(tec - target.tec) < 1e-9));
+  near(target.tec, 1.3);
+  assert.match(target.company, /互盛/);
   assert.equal(await page.locator('#abModelSel').inputValue(), state.primaryKey);
   assert.equal(await page.locator('#abSourceBadge a').first().getAttribute('href'), target.sourceUrl);
   assert.match(await page.locator('#comparisonNotice').textContent(), /假設|情境/);
@@ -120,7 +121,7 @@ test('default TEC uses the MOEA record and every catalog value has matching sour
       (row.sourceDataset || null) === (model.sourceDataset || null));
     assert.ok(original, `${model.id} must reference a retained official record`);
     near(model.tec, original.tec);
-    for (const field of ['sourceUrl', 'standard', 'voltage', 'certificate']) {
+    for (const field of ['sourceUrl', 'standard', 'voltage', 'certificate', 'company']) {
       assert.equal(model[field] ?? null, original[field] ?? null, `${model.id}: invented or changed ${field}`);
     }
     const url = new URL(model.sourceUrl);
@@ -134,6 +135,29 @@ test('default TEC uses the MOEA record and every catalog value has matching sour
   const renderedSources = await page.locator('#resBody a[href]').evaluateAll(links => links.map(a => a.href));
   assert.ok(renderedSources.length > 0, 'Results need individual source links');
   assert.ok(renderedSources.every(url => models.some(model => model.sourceUrl === url)));
+});
+
+test('Ricoh choices prefer Husheng and expose the certificate company in the report', async t => {
+  const page = await openPage(t);
+  const models = await page.evaluate(() => TEC_DATA.models);
+  const c2010 = models.filter(m => m.brand === 'Ricoh' && m.model === 'IM C2010');
+  assert.equal(c2010.length, 1);
+  assert.match(c2010[0].company, /互盛/);
+  assert.match(await page.locator('#abModelSel option:checked').textContent(), /互盛/);
+  assert.match(await page.locator('#abSourceBadge').textContent(), /互盛/);
+  assert.match(await page.evaluate(() => generateSummaryText()), /互盛/);
+  await page.locator('#btnExportSummary').click();
+  assert.match(await page.locator('#pdfTableBody').textContent(), /互盛/);
+  assert.match(await page.locator('#pdfSourceNotes').textContent(), /互盛/);
+  await page.keyboard.press('Escape');
+
+  const fallback = models.find(m => m.brand === 'Ricoh' && m.model === 'IM 3000');
+  assert.match(fallback.company, /台灣理光/);
+  await page.locator('#abModelSel').selectOption(fallback.id);
+  assert.match(await page.locator('#abSourceBadge').textContent(), /台灣理光/);
+  near((await snapshot(page)).params.targetTec, fallback.tec);
+  assert.equal(models.some(m => m.brand === 'Ricoh' && m.model === 'IM 7000'), false);
+  assert.match(await page.evaluate(() => TEC_DATA.unresolved.find(m => m.model === 'IM 7000').reason), /互盛.*待核實/);
 });
 
 test('a more expensive replacement retains negative cost, energy and carbon in UI and report', async t => {

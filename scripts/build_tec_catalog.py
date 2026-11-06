@@ -77,7 +77,7 @@ def build_catalog(moea, energy_star, requested):
         item['src'] = '經濟部能源署實測' if item['source'] == 'moea' else 'ENERGY STAR 官方實測'
         item['std'] = item['standard'] or '來源未明列測試版本'
         item['color'] = 'Monochrome' if item['color'] in ['Mono', 'M', 'Monochrome'] else item['color']
-        item['variantLabel'] = ('證書 ' + str(item['certificate'])) if item['source'] == 'moea' else ('歷史紀錄 ' if item['archived'] else 'ESUID ') + str(item['sourceRecordId'])
+        item['variantLabel'] = ('證書 ' + str(item['certificate'])) if item['source'] == 'moea' else ('舊版認證資料 ' if item['archived'] else 'ESUID ') + str(item['sourceRecordId'])
         models.append(item)
     models.sort(key=lambda m: (m['source'] != 'moea', m['brand'], m['model'], m['id']))
     selected_keys = set().union(*(record_keys(r) for r in selected))

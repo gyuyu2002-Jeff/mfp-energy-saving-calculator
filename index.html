@@ -423,9 +423,8 @@ ul.clean li{margin:4px 0}
 <section class="slide on" id="s1">
   <div class="head">
     <span class="kicker">01 · 換機效益試算</span>
-    <h2 class="title">換機情境：<span class="num" data-o="units">2</span> 台舊機，<span data-o="years">5</span> 年電費差額 <span class="c-sage">NT$ <span class="num" data-o="totalCost">—</span></span>（用電減幅 <span class="num" data-o="rate">—</span>）</h2>
+    <h2 class="title">換機情境：<span class="num" data-o="units">1</span> 台舊機，<span data-o="years">5</span> 年電費差額 <span class="c-sage">NT$ <span class="num" data-o="totalCost">—</span></span>（用電減幅 <span class="num" data-o="rate">—</span>）</h2>
     <p class="lead">差額＝舊機－新機：正值表示節省或減少，負值表示增加。以 TEC（kWh/週）換算，點選指標可查看算式與假設。</p>
-    <div id="comparisonNotice" class="comparison-notice" role="status" aria-live="polite">請確認每筆資料來源、測試版本與條件；尚未核實的數值僅用於人工情境。</div>
   </div>
 
   <!-- 🌟 案件切換：單機試算 vs 多台試算 🌟 -->
@@ -480,7 +479,7 @@ ul.clean li{margin:4px 0}
 
           <div id="abBaseCustomRow" class="field hide" style="margin-bottom:8px">
             <label for="abBaseName" style="font-size:12px;font-weight:500;color:var(--ink-2)">③ 自訂舊機名稱標示</label>
-            <input type="text" id="abBaseName" value="5 年傳統雷射事務機" placeholder="請輸入舊機名稱，例如：辦公室現役舊機" style="width:100%;border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 10px;font-size:13px">
+            <input type="text" id="abBaseName" value="5 年傳統彩色雷射事務機・30 張/分（情境假設）" placeholder="請輸入舊機名稱，例如：辦公室現役舊機" style="width:100%;border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 10px;font-size:13px">
           </div>
 
           <div id="abBaseSourceBadge" class="ab-source" style="border-color:#E2D1CC;background:rgba(255,255,255,.75)">
@@ -580,7 +579,7 @@ ul.clean li{margin:4px 0}
   <div class="grid g-hero">
     <div class="card hero">
       <div style="position:relative;z-index:1">
-        <div class="row between"><span class="label"><span data-o="years">5</span> 年累計電費差額</span><span class="pill" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);color:#D7DADD"><span data-o="units">2</span> 台</span></div>
+        <div class="row between"><span class="label"><span data-o="years">5</span> 年累計電費差額</span><span class="pill" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);color:#D7DADD"><span data-o="units">1</span> 台</span></div>
         <div class="big"><small>NT$</small><span data-o="totalCost">0</span></div>
         <div class="sub">以 <b data-o="targetName" style="color:#fff">—</b> 取代 <b data-o="baseName" style="color:#fff">—</b></div>
         <button type="button" class="btn sm audit" style="margin-top:14px" data-audit="total" aria-controls="drawer" aria-haspopup="dialog">查看算式與假設 →</button>
@@ -733,10 +732,10 @@ ul.clean li{margin:4px 0}
 
   <div class="card" style="margin-top:20px">
     <div class="row between" style="margin-bottom:12px">
-      <h3 style="margin:0">比較：<span class="num" data-o="units">2</span> 台的全年用電、電費、碳排</h3>
+      <h3 style="margin:0">比較：<span class="num" data-o="units">1</span> 台的全年用電、電費、碳排</h3>
       <div class="row small muted"><span>台數</span>
         <input type="range" data-k="units" min="1" max="200" step="1" style="width:160px" aria-label="台數">
-        <b class="num" data-o="units">2</b> 台</div>
+        <b class="num" data-o="units">1</b> 台</div>
     </div>
     <div class="chips" id="chips" style="margin-bottom:16px"></div>
     <div id="compareBars"></div>
@@ -1058,8 +1057,6 @@ ul.clean li{margin:4px 0}
           <div><b>電力排碳係數：</b><span id="pdfParamCf">0.466</span> kg CO₂e/度（可調整）</div>
         </div>
 
-        <div id="pdfComparisonNotice" class="comparison-notice">差額＝舊機－新機：正值表示節省或減少，負值表示增加。測試條件不同或來源未核實時，僅供人工情境參考。</div>
-
         <!-- 核心差額指標卡 (KPIs) -->
         <div class="pdf-kpis">
           <div class="pdf-kpi">
@@ -1147,8 +1144,8 @@ ul.clean li{margin:4px 0}
   <div class="d-body" id="dBody"></div>
 </aside>
 
-<script src="assets/tec-data.js?v=20261106-husheng"></script>
+<script src="assets/tec-data.js?v=20261106-30ppm"></script>
 <script src="assets/calculator.js"></script>
-<script src="assets/app.js?v=20261106-husheng"></script>
+<script src="assets/app.js?v=20261106-30ppm"></script>
 </body>
 </html>

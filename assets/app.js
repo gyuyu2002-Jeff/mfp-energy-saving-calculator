@@ -3,8 +3,8 @@ const SNAPSHOT_DATE = TEC_DATA.checkedAt;
 const RICOH_SOURCE_POLICY = 'Ricoh 同型號優先採互盛有效節能標章，互盛沒有有效標章才採台灣理光；互盛實測 TEC 缺漏或衝突則列待核實，不自動改採其他來源。';
 const TECH_LABEL = { EP: '雷射', HPIJ: '高效能噴墨', IJ: '噴墨' };
 const DEFAULTS = {
-  units: 2, price: 4, years: 5, cf: 0.466, goal: 30,
-  baseTec: 1.6, baseName: '5 年傳統彩色雷射事務機（情境假設）',
+  units: 1, price: 4, years: 5, cf: 0.466, goal: 30,
+  baseTec: 1.6, baseName: '5 年傳統彩色雷射事務機・30 張/分（情境假設）',
   targetTec: 0, targetName: '', s: 20, ej1: 4, ej: 1.2, ef: 1, ps: 0.5
 };
 const S = { ...DEFAULTS };
@@ -16,11 +16,11 @@ const brandRank = () => 0;
 const MASTER_MAP = new Map(TEC_DATA.models.map(m => [m.id, m]));
 const PRESETS = [
   {id:'scenario-7c', model:'7 年傳統彩色雷射事務機（情境假設）', color:'Color', tec:2.2},
-  {id:'scenario-5c', model:DEFAULTS.baseName, color:'Color', tec:1.6},
+  {id:'scenario-5c', model:DEFAULTS.baseName, color:'Color', tec:1.6, speed:30},
   {id:'scenario-3c', model:'3 年傳統彩色雷射事務機（情境假設）', color:'Color', tec:0.8},
   {id:'scenario-7m', model:'7 年傳統黑白雷射事務機（情境假設）', color:'Monochrome', tec:1.8},
   {id:'scenario-5m', model:'5 年傳統黑白雷射事務機（情境假設）', color:'Monochrome', tec:1.1}
-].map(m => ({...m, brand:'PRESET', source:'scenario', src:'人工情境假設，非官方實測', standard:null, speed:null}));
+].map(m => ({...m, brand:'PRESET', source:'scenario', src:'人工情境假設，非官方實測', standard:null, speed:m.speed??null}));
 const LEGACY_MODELS = { PRESET: PRESETS };
 for (const m of MASTER_MAP.values()) (LEGACY_MODELS[m.brand] ||= []).push(m);
 for (const [brand, models] of Object.entries(LEGACY_MODELS)) {
@@ -28,7 +28,7 @@ for (const [brand, models] of Object.entries(LEGACY_MODELS)) {
 }
 function findModel(id) { return MASTER_MAP.get(id) || PRESETS.find(m => m.id === id); }
 function sourceName(m) {
-  return m.source === 'moea' ? '經濟部能源署' : m.source === 'energystar' ? 'ENERGY STAR（備援）' : m.source === 'scenario' ? '情境假設' : '使用者自訂';
+  return m.source === 'moea' ? '經濟部能源署' : m.source === 'energystar' ? (m.archived ? 'ENERGY STAR（舊版認證資料）' : 'ENERGY STAR（備援）') : m.source === 'scenario' ? '情境假設' : '使用者自訂';
 }
 function companyText(m) {
   return m.source === 'moea' && m.company ? `獲證公司：${m.company}` : '';
@@ -62,14 +62,6 @@ function currentCalculation() {
 function carbonSource() {
   return S.cf === DEFAULTS.cf ? '能源署 114 年度產業電力排碳係數（2026-06-02 公布）' : '使用者自訂係數；官方參考值為 0.466';
 }
-function comparisonNotice() {
-  const {old, next} = currentRows(), rows = [...old, ...next];
-  const notices = ['標準化用電情境推估；正值為節省，負值為增加。'];
-  if (rows.some(m => !['moea','energystar'].includes(m.source))) notices.push('包含人工假設或自訂 TEC，不能視為官方實測節電率。');
-  if (rows.some(m => !m.standard || !m.voltage) || new Set(rows.map(m=>m.standard)).size > 1 || new Set(rows.map(m=>m.voltage)).size > 1) notices.push('測試版本或電壓未確認一致，差額不代表相同工作量下的實測節能幅度。');
-  if (old.reduce((n,m)=>n+m.units,0) !== next.reduce((n,m)=>n+m.units,0)) notices.push('新舊設備台數不同，請另確認列印量與服務能力可滿足需求。');
-  return notices.join(' ');
-}
 function sourceText(m) {
   const parts = [sourceName(m), `TEC ${fmt(m.tec,3)} kWh/週`];
   if (['moea','energystar'].includes(m.source)) {
@@ -96,7 +88,7 @@ function sourceHTML(m, expanded=false) {
 function modelOption(m) {
   const details = [companyText(m),m.variantLabel].filter(Boolean);
   const suffix = details.length ? ` · ${details.join(' · ')}` : '';
-  return `<option value="${esc(m.id)}">${esc(m.model)} · TEC ${fmt(m.tec,3)} [${esc(sourceName(m))}]${esc(suffix)}</option>`;
+  return `<option value="${esc(m.id)}">${esc(m.model)}${m.speed?` · ${esc(m.speed)} 張/分`:''} · TEC ${fmt(m.tec,3)} [${esc(sourceName(m))}]${esc(suffix)}</option>`;
 }
 
 function calcLab(st){
@@ -243,7 +235,6 @@ function render(skip){
   const isFleet = calcMode === 'fleet';
   const m = currentCalculation();
   syncABPickerUI();
-  document.getElementById('comparisonNotice').textContent=comparisonNotice();
 
   // 同步所有輸入元件
   document.querySelectorAll('[data-k]').forEach(el => {
@@ -550,7 +541,7 @@ function renderFleetNewRows(){renderFleetRows('new');}
 
 function generateSummaryText(){
   const rows=currentRows(), m=currentCalculation();
-  const lines=['事務機用電差額評估',`產生日期：${new Date().toLocaleDateString('sv-SE')}`,`模式：${calcMode==='fleet'?'多台組合':'單一機型'}`,`年限：${S.years} 年；電價：NT$ ${S.price}/度`, `排碳係數：${S.cf} kg CO₂e/度（${carbonSource()}）`,comparisonNotice(),RICOH_SOURCE_POLICY];
+  const lines=['事務機用電差額評估',`產生日期：${new Date().toLocaleDateString('sv-SE')}`,`模式：${calcMode==='fleet'?'多台組合':'單一機型'}`,`年限：${S.years} 年；電價：NT$ ${S.price}/度`, `排碳係數：${S.cf} kg CO₂e/度（${carbonSource()}）`,RICOH_SOURCE_POLICY];
   for(const [title,list] of [['現況舊機',rows.old],['擬換新機',rows.next]]){
     lines.push('',title);
     list.forEach(row=>lines.push(`${row.model} × ${row.units} 台；年用電 ${fmt(row.tec*52*row.units,1)} 度`,sourceText(row)));
@@ -651,7 +642,6 @@ function updatePdfReportDOM(){
 const rows=currentRows();
   document.getElementById('pdfTableBody').innerHTML=[['現況舊機',rows.old],['擬換新機',rows.next]].map(([title,list])=>list.map((row,index)=>`<tr>${index===0?`<td rowspan="${list.length}">${title}</td>`:''}<td><b>${esc(row.model)}</b><div class="small">${esc(sourceName(row))}${companyText(row)?' · '+esc(companyText(row)):''}${row.certificate?' · 證書 '+esc(row.certificate):''}</div></td><td>${fmt(row.tec,3)}</td><td>${row.units} 台</td><td>${fmt(row.tec*52*row.units,1)} 度</td></tr>`).join('')).join('');
   document.getElementById('pdfSourceNotes').innerHTML=[...rows.old,...rows.next].map(row=>`<div class="pdf-source-record"><b>${esc(row.model)}</b>${sourceHTML(row,true)}</div>`).join('')+`<p>排碳係數：${fmt(S.cf,3)} · ${esc(carbonSource())}。<a href="https://www.moeaea.gov.tw/ECW/PDA.aspx?kind=1&news_id=34473">能源署公告</a></p>`;
-  document.getElementById('pdfComparisonNotice').textContent=comparisonNotice();
   const cfLabel=document.getElementById('pdfCfSource');if(cfLabel)cfLabel.textContent=carbonSource();
 
   // Charts
@@ -761,7 +751,7 @@ function bindFleetEvents(){
 function openAudit(type){
   const m=currentCalculation(), rows=currentRows();
   const detail=(title,list)=>`<h4>${title}</h4>`+list.map(row=>`<div class="formula">${esc(row.model)}：${fmt(row.tec,3)} × 52 × ${row.units} = ${fmt(row.tec*52*row.units,1)} 度/年</div>${sourceHTML(row)}`).join('');
-  document.getElementById('dBody').innerHTML=`<p>${esc(comparisonNotice())}</p><h4>共同參數</h4><p>年限 ${S.years} 年 · 電價 NT$ ${S.price}/度 · 排碳係數 ${S.cf}（${esc(carbonSource())}）</p>${detail('現況舊機',rows.old)}${detail('擬換新機',rows.next)}<h4>年用電差額</h4><div class="formula">${fmt(m.baseKwh,1)} − ${fmt(m.targetKwh,1)} = ${fmt(m.kwhYr,1)} 度</div><h4>年電費差額</h4><div class="formula">${fmt(m.kwhYr,1)} × ${S.price} = NT$ ${fmt(m.costYr,1)}</div><h4>${S.years} 年累計</h4><div class="formula">${fmt(m.costYr,1)} × ${S.years} = NT$ ${fmt(m.totalCost,1)}</div><h4>年碳排差額</h4><div class="formula">${fmt(m.kwhYr,1)} × ${S.cf} = ${fmt(m.co2Yr,1)} kg CO₂e</div><p class="small">正值為節省，負值為增加。此為能源費用推估，並非採購總成本或實際節能保證。</p>`;
+  document.getElementById('dBody').innerHTML=`<h4>共同參數</h4><p>年限 ${S.years} 年 · 電價 NT$ ${S.price}/度 · 排碳係數 ${S.cf}（${esc(carbonSource())}）</p>${detail('現況舊機',rows.old)}${detail('擬換新機',rows.next)}<h4>年用電差額</h4><div class="formula">${fmt(m.baseKwh,1)} − ${fmt(m.targetKwh,1)} = ${fmt(m.kwhYr,1)} 度</div><h4>年電費差額</h4><div class="formula">${fmt(m.kwhYr,1)} × ${S.price} = NT$ ${fmt(m.costYr,1)}</div><h4>${S.years} 年累計</h4><div class="formula">${fmt(m.costYr,1)} × ${S.years} = NT$ ${fmt(m.totalCost,1)}</div><h4>年碳排差額</h4><div class="formula">${fmt(m.kwhYr,1)} × ${S.cf} = ${fmt(m.co2Yr,1)} kg CO₂e</div><p class="small">正值為節省，負值為增加。此為能源費用推估，並非採購總成本或實際節能保證。</p>`;
   document.getElementById('mask').classList.add('on');openDialog('drawer');
 }
 function closeAudit(){if(activeDialog?.id==='drawer')closeDialog();}
@@ -770,8 +760,8 @@ document.getElementById('dClose').addEventListener('click',closeAudit);
 document.getElementById('mask').addEventListener('click',closeAudit);
 document.getElementById('btnReset').addEventListener('click',()=>{
   Object.assign(S,DEFAULTS);setBaseline(PRESETS[1]);
-  setPrimary([...MASTER_MAP.values()].find(m=>m.brand==='Ricoh'&&m.model==='IM C2010')?.id||[...MASTER_MAP.keys()][0]);
-  fleetOld=[{...PRESETS[1],units:2}];fleetNew=[{...MASTER_MAP.get(primaryKey),units:2}];
+  setPrimary([...MASTER_MAP.values()].find(m=>m.brand==='Ricoh'&&m.model==='IM C3010')?.id||[...MASTER_MAP.keys()][0]);
+  fleetOld=[{...PRESETS[1],units:DEFAULTS.units}];fleetNew=[{...MASTER_MAP.get(primaryKey),units:DEFAULTS.units}];
   renderFleetUI();syncABPickerUI();render();renderTable();
 });
 
@@ -825,9 +815,9 @@ document.addEventListener('keydown',e=>{
    10. 初始化
    ========================================================= */
 (function init(){
-  const first=[...MASTER_MAP.values()].find(m=>m.brand==='Ricoh'&&m.model==='IM C2010')||[...MASTER_MAP.values()][0];
+  const first=[...MASTER_MAP.values()].find(m=>m.brand==='Ricoh'&&m.model==='IM C3010')||[...MASTER_MAP.values()][0];
   primaryKey=first.id;compare=[first];
-  fleetOld=[{...PRESETS[1],units:2}];fleetNew=[{...first,units:2}];
+  fleetOld=[{...PRESETS[1],units:DEFAULTS.units}];fleetNew=[{...first,units:DEFAULTS.units}];
   initABPicker();bindFleetEvents();go(1);render();renderTable();loadBrands();
 
 })();

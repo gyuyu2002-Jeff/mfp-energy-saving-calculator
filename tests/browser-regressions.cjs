@@ -104,12 +104,18 @@ test('default TEC uses the MOEA record and every catalog value has matching sour
   const state = await snapshot(page);
   const target = state.rows.next[0];
   assert.equal(target.source, 'moea');
-  assert.match(target.model, /IM C2010/);
-  near(target.tec, 1.3);
+  assert.match(target.model, /IM C3010/);
+  near(target.tec, 0.8);
+  assert.equal(target.speed, 30);
+  assert.equal(state.params.units, 1);
+  assert.equal(state.rows.old[0].speed, 30);
+  assert.equal(state.rows.old[0].source, 'scenario');
+  assert.match(await page.locator('#abBaseModelSel option:checked').textContent(), /30 張\/分/);
+  assert.match(await page.locator('#abModelSel option:checked').textContent(), /30 張\/分/);
   assert.match(target.company, /互盛/);
   assert.equal(await page.locator('#abModelSel').inputValue(), state.primaryKey);
   assert.equal(await page.locator('#abSourceBadge a').first().getAttribute('href'), target.sourceUrl);
-  assert.match(await page.locator('#comparisonNotice').textContent(), /假設|情境/);
+  assert.equal(await page.locator('#comparisonNotice').count(), 0);
 
   const models = await page.evaluate(() => TEC_DATA.models);
   assert.ok(models.length > 0);
@@ -165,8 +171,8 @@ test('a more expensive replacement retains negative cost, energy and carbon in U
   await setParameter(page, 'baseTec', 0.2);
   await setParameter(page, 'targetTec', 2);
   const state = await snapshot(page), expected = expectedResult(state);
-  near(expected.kwhYr, -187.2);
-  near(expected.costYr, -748.8);
+  near(expected.kwhYr, -93.6);
+  near(expected.costYr, -374.4);
   for (const key of ['kwhYr', 'costYr', 'totalCost', 'co2Yr', 'co2Total']) {
     near(state.calculation[key], expected[key]);
     assert.ok(state.calculation[key] < 0, key);
@@ -208,13 +214,35 @@ test('reset restores matching names, TEC values and selected record IDs', async 
   assert.equal(state.params.baseTec, 1.6);
   assert.match(state.params.baseName, /5 年.*情境假設/);
   assert.equal(state.params.years, 5);
-  assert.equal(state.params.units, 2);
+  assert.equal(state.params.units, 1);
   const records = await page.evaluate(() => ({ base: findModel(baseKey), target: MASTER_MAP.get(primaryKey) }));
   assert.equal(state.params.baseName, records.base.model);
   near(state.params.baseTec, records.base.tec);
   near(state.params.targetTec, records.target.tec);
   near(number(await page.locator('#abTargetTecOut').textContent()), records.target.tec);
   assert.match(await page.locator('#abBaseModelSel option:checked').textContent(), /5 年/);
+  assert.equal(state.rows.old[0].speed, 30);
+  assert.equal(state.rows.next[0].speed, 30);
+  await page.locator('#btnModeFleet').click();
+  const fleet = await snapshot(page);
+  assert.equal(fleet.rows.old[0].units, 1);
+  assert.equal(fleet.rows.next[0].units, 1);
+  assert.equal(fleet.rows.old[0].speed, 30);
+  assert.equal(fleet.rows.next[0].speed, 30);
+});
+
+test('archived ENERGY STAR options explain the old certification source', async t => {
+  const page = await openPage(t);
+  const archived = await page.evaluate(() => TEC_DATA.models.find(m => m.brand === 'Ricoh' && m.archived));
+  await page.locator('#abModelSel').selectOption(archived.id);
+  assert.match(await page.locator('#abModelSel option:checked').textContent(), /舊版認證資料/);
+  assert.doesNotMatch(await page.locator('#abModelSel option:checked').textContent(), /歷史紀錄/);
+  assert.match(await page.locator('#abSourceBadge').textContent(), /ENERGY STAR（舊版認證資料）/);
+  assert.match(await page.locator('#abSourceBadge').textContent(), /不代表目前仍有效認證/);
+  assert.equal(await page.locator('#comparisonNotice').count(), 0);
+  assert.doesNotMatch(await page.evaluate(() => generateSummaryText()), /標準化用電情境推估|測試版本或電壓未確認一致/);
+  await page.locator('#btnExportSummary').click();
+  assert.equal(await page.locator('#pdfComparisonNotice').count(), 0);
 });
 
 test('unequal multi-row fleets agree across cards, audit formulas and PDF', async t => {
@@ -237,7 +265,7 @@ test('unequal multi-row fleets agree across cards, audit formulas and PDF', asyn
   assert.equal(state.calculation.totalUnitsOld, 5);
   assert.equal(state.calculation.totalUnitsNew, 3);
   for (const [key, value] of Object.entries(expected)) near(state.calculation[key], value);
-  assert.match(await page.locator('#comparisonNotice').textContent(), /台數不同/);
+  assert.equal(await page.locator('#comparisonNotice').count(), 0);
   await assertMainOutputs(page, expected);
   await page.locator('button[data-audit="total"]').click();
   const formulas = await page.locator('#dBody').evaluate(el =>
@@ -254,7 +282,7 @@ test('unequal multi-row fleets agree across cards, audit formulas and PDF', asyn
   await page.locator('#btnExportSummary').click();
   await assertPdfOutputs(page, expected);
   assert.equal(await page.locator('#pdfTableBody tr').count(), 4);
-  assert.match(await page.locator('#pdfComparisonNotice').textContent(), /台數不同/);
+  assert.equal(await page.locator('#pdfComparisonNotice').count(), 0);
   const sourceLinks = await page.locator('#pdfSourceNotes a[href]').evaluateAll(links => links.map(a => a.href));
   for (const row of [...state.rows.old, ...state.rows.next].filter(row => row.sourceUrl)) {
     assert.ok(sourceLinks.includes(row.sourceUrl), `Report lost source for ${row.model}`);

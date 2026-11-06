@@ -1,0 +1,1702 @@
+[
+  {
+    "brand": "Epson",
+    "model": "WF-C869R",
+    "color": "C",
+    "speed": 24,
+    "tech": "HPIJ"
+  },
+  {
+    "brand": "Epson",
+    "model": "EM-C8100",
+    "color": "C",
+    "speed": 25,
+    "tech": "HPIJ"
+  },
+  {
+    "brand": "Epson",
+    "model": "EM-C8101",
+    "color": "C",
+    "speed": 26,
+    "tech": "HPIJ"
+  },
+  {
+    "brand": "Epson",
+    "model": "AM-C4000",
+    "color": "C",
+    "speed": 40,
+    "tech": "HPIJ"
+  },
+  {
+    "brand": "Epson",
+    "model": "AM-C5000",
+    "color": "C",
+    "speed": 50,
+    "tech": "HPIJ"
+  },
+  {
+    "brand": "Epson",
+    "model": "AM-C6000",
+    "color": "C",
+    "speed": 60,
+    "tech": "HPIJ"
+  },
+  {
+    "brand": "Epson",
+    "model": "WF-C20600",
+    "color": "C",
+    "speed": 60,
+    "tech": "HPIJ"
+  },
+  {
+    "brand": "Epson",
+    "model": "WF-C20750",
+    "color": "C",
+    "speed": 75,
+    "tech": "HPIJ"
+  },
+  {
+    "brand": "Epson",
+    "model": "WF-C20590",
+    "color": "C",
+    "speed": 100,
+    "tech": "HPIJ"
+  },
+  {
+    "brand": "Epson",
+    "model": "WF-C21000",
+    "color": "C",
+    "speed": 100,
+    "tech": "HPIJ"
+  },
+  {
+    "brand": "Epson",
+    "model": "AL-M7150DN",
+    "color": "M",
+    "speed": 35,
+    "tech": "EP"
+  },
+  {
+    "brand": "Epson",
+    "model": "AL-M8250DN",
+    "color": "M",
+    "speed": 45,
+    "tech": "EP"
+  },
+  {
+    "brand": "Epson",
+    "model": "AM-M5500",
+    "color": "M",
+    "speed": 55,
+    "tech": "HPIJ"
+  },
+  {
+    "brand": "Epson",
+    "model": "WF-M21000",
+    "color": "M",
+    "speed": 100,
+    "tech": "HPIJ"
+  },
+  {
+    "brand": "Ricoh",
+    "model": "IM C2010",
+    "color": "C",
+    "speed": 20,
+    "tech": "EP"
+  },
+  {
+    "brand": "Ricoh",
+    "model": "IM C2510",
+    "color": "C",
+    "speed": 25,
+    "tech": "EP"
+  },
+  {
+    "brand": "Ricoh",
+    "model": "IM C3010",
+    "color": "C",
+    "speed": 30,
+    "tech": "EP"
+  },
+  {
+    "brand": "Ricoh",
+    "model": "IM C3510",
+    "color": "C",
+    "speed": 35,
+    "tech": "EP"
+  },
+  {
+    "brand": "Ricoh",
+    "model": "IM C4510",
+    "color": "C",
+    "speed": 45,
+    "tech": "EP"
+  },
+  {
+    "brand": "Ricoh",
+    "model": "IM C6010",
+    "color": "C",
+    "speed": 60,
+    "tech": "EP"
+  },
+  {
+    "brand": "Ricoh",
+    "model": "IM 2500",
+    "color": "M",
+    "speed": 25,
+    "tech": "EP"
+  },
+  {
+    "brand": "Ricoh",
+    "model": "IM 2510",
+    "color": "M",
+    "speed": 25,
+    "tech": "EP"
+  },
+  {
+    "brand": "Ricoh",
+    "model": "IM 3000",
+    "color": "M",
+    "speed": 30,
+    "tech": "EP"
+  },
+  {
+    "brand": "Ricoh",
+    "model": "IM 3510",
+    "color": "M",
+    "speed": 35,
+    "tech": "EP"
+  },
+  {
+    "brand": "Ricoh",
+    "model": "IM 3500",
+    "color": "M",
+    "speed": 35,
+    "tech": "EP"
+  },
+  {
+    "brand": "Ricoh",
+    "model": "IM 4000",
+    "color": "M",
+    "speed": 40,
+    "tech": "EP"
+  },
+  {
+    "brand": "Ricoh",
+    "model": "IM 4510",
+    "color": "M",
+    "speed": 45,
+    "tech": "EP"
+  },
+  {
+    "brand": "Ricoh",
+    "model": "IM 5000",
+    "color": "M",
+    "speed": 50,
+    "tech": "EP"
+  },
+  {
+    "brand": "Ricoh",
+    "model": "IM 5510",
+    "color": "M",
+    "speed": 55,
+    "tech": "EP"
+  },
+  {
+    "brand": "Ricoh",
+    "model": "IM 6000",
+    "color": "M",
+    "speed": 60,
+    "tech": "EP"
+  },
+  {
+    "brand": "Ricoh",
+    "model": "IM 6010",
+    "color": "M",
+    "speed": 60,
+    "tech": "EP"
+  },
+  {
+    "brand": "Ricoh",
+    "model": "IM 7000",
+    "color": "M",
+    "speed": 70,
+    "tech": "EP"
+  },
+  {
+    "brand": "Ricoh",
+    "model": "IM 8000",
+    "color": "M",
+    "speed": 80,
+    "tech": "EP"
+  },
+  {
+    "brand": "Ricoh",
+    "model": "IM 9000",
+    "color": "M",
+    "speed": 90,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "Apeos C2060",
+    "color": "C",
+    "speed": 20,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "Apeos C2061",
+    "color": "C",
+    "speed": 20,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "Apeos C2560",
+    "color": "C",
+    "speed": 25,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "Apeos C2567",
+    "color": "C",
+    "speed": 25,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "Apeos C3070",
+    "color": "C",
+    "speed": 30,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "Apeos C3071",
+    "color": "C",
+    "speed": 30,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "ApeosPort C3060",
+    "color": "C",
+    "speed": 30,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "Apeos C3067",
+    "color": "C",
+    "speed": 30,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "Apeos C3060",
+    "color": "C",
+    "speed": 30,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "Apeos C3570",
+    "color": "C",
+    "speed": 35,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "Apeos C3571",
+    "color": "C",
+    "speed": 35,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "ApeosPort C3570 R",
+    "color": "C",
+    "speed": 35,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "ApeosPort-VI C3371 R",
+    "color": "C",
+    "speed": 35,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "ApeosPort-V C3376 R",
+    "color": "C",
+    "speed": 35,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "ApeosPort-VII C3373 R",
+    "color": "C",
+    "speed": 35,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "Apeos C4571",
+    "color": "C",
+    "speed": 45,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "Apeos C4570",
+    "color": "C",
+    "speed": 45,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "ApeosPort-VII C4473",
+    "color": "C",
+    "speed": 45,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "DocuCentre-VII C4473",
+    "color": "C",
+    "speed": 45,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "ApeosPort-VII C5573",
+    "color": "C",
+    "speed": 55,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "ApeosPort-VI C5571 R",
+    "color": "C",
+    "speed": 55,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "DocuCentre-VII C5573",
+    "color": "C",
+    "speed": 55,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "Apeos C5571",
+    "color": "C",
+    "speed": 55,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "ApeosPort C5570 R",
+    "color": "C",
+    "speed": 55,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "ApeosPort-VII C5573 R",
+    "color": "C",
+    "speed": 55,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "Apeos C5570",
+    "color": "C",
+    "speed": 55,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "ApeosPort-V C5576 R",
+    "color": "C",
+    "speed": 55,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "Apeos C6570",
+    "color": "C",
+    "speed": 65,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "Apeos C6571",
+    "color": "C",
+    "speed": 65,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "Apeos C6580",
+    "color": "C",
+    "speed": 65,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "ApeosPro C650",
+    "color": "C",
+    "speed": 65,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "Apeos C7071",
+    "color": "C",
+    "speed": 70,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "Apeos C7070",
+    "color": "C",
+    "speed": 70,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "Apeos C7580",
+    "color": "C",
+    "speed": 75,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "ApeosPro C810",
+    "color": "C",
+    "speed": 81,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "Apeos 2561",
+    "color": "M",
+    "speed": 25,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "Apeos 2560",
+    "color": "M",
+    "speed": 25,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "Apeos 3061",
+    "color": "M",
+    "speed": 30,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "Apeos 3060",
+    "color": "M",
+    "speed": 30,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "Apeos 3561",
+    "color": "M",
+    "speed": 35,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "Apeos 3560",
+    "color": "M",
+    "speed": 35,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "Apeos 4570",
+    "color": "M",
+    "speed": 45,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "Apeos 5570",
+    "color": "M",
+    "speed": 55,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "Apeos 6571",
+    "color": "M",
+    "speed": 65,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "Apeos 6580",
+    "color": "M",
+    "speed": 65,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "ApeosPort-V 6080",
+    "color": "M",
+    "speed": 65,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "DocuCentre-V 6080",
+    "color": "M",
+    "speed": 65,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "Apeos 7580",
+    "color": "M",
+    "speed": 75,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "ApeosPort-V 7080",
+    "color": "M",
+    "speed": 75,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "DocuCentre-V 7080",
+    "color": "M",
+    "speed": 75,
+    "tech": "EP"
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "Revoria Press E1136",
+    "color": "M",
+    "speed": 136,
+    "tech": "EP"
+  },
+  {
+    "brand": "Canon",
+    "model": "imageRUNNER C3326i",
+    "color": "C",
+    "speed": 26,
+    "tech": "EP"
+  },
+  {
+    "brand": "Canon",
+    "model": "imageRUNNER ADVANCE DX C3930i",
+    "color": "C",
+    "speed": 30,
+    "tech": "EP"
+  },
+  {
+    "brand": "Canon",
+    "model": "imageFORCE C5140",
+    "color": "C",
+    "speed": 40,
+    "tech": "EP"
+  },
+  {
+    "brand": "Canon",
+    "model": "imageRUNNER ADVANCE DX C5840i",
+    "color": "C",
+    "speed": 40,
+    "tech": "EP"
+  },
+  {
+    "brand": "Canon",
+    "model": "imageFORCE C5150",
+    "color": "C",
+    "speed": 50,
+    "tech": "EP"
+  },
+  {
+    "brand": "Canon",
+    "model": "ImageFORCE C3150",
+    "color": "C",
+    "speed": 50,
+    "tech": "EP"
+  },
+  {
+    "brand": "Canon",
+    "model": "imageRUNNER ADVANCE DX C5850i",
+    "color": "C",
+    "speed": 50,
+    "tech": "EP"
+  },
+  {
+    "brand": "Canon",
+    "model": "imageFORCE C5160",
+    "color": "C",
+    "speed": 60,
+    "tech": "EP"
+  },
+  {
+    "brand": "Canon",
+    "model": "imageRUNNER ADVANCE DX C5860i",
+    "color": "C",
+    "speed": 60,
+    "tech": "EP"
+  },
+  {
+    "brand": "Canon",
+    "model": "imageFORCE C7165",
+    "color": "C",
+    "speed": 65,
+    "tech": "EP"
+  },
+  {
+    "brand": "Canon",
+    "model": "imageFORCE C5170",
+    "color": "C",
+    "speed": 70,
+    "tech": "EP"
+  },
+  {
+    "brand": "Canon",
+    "model": "imageRUNNER ADVANCE DX C5870i",
+    "color": "C",
+    "speed": 70,
+    "tech": "EP"
+  },
+  {
+    "brand": "Canon",
+    "model": "imageRUNNER ADVANCE DX 4835i",
+    "color": "M",
+    "speed": 25,
+    "tech": "EP"
+  },
+  {
+    "brand": "Canon",
+    "model": "imageRUNNER 2925i",
+    "color": "M",
+    "speed": 25,
+    "tech": "EP"
+  },
+  {
+    "brand": "Canon",
+    "model": "imageRUNNER ADVANCE DX 6870i",
+    "color": "M",
+    "speed": 25,
+    "tech": "EP"
+  },
+  {
+    "brand": "Canon",
+    "model": "imageRUNNER ADVANCE DX 4735i",
+    "color": "M",
+    "speed": 35,
+    "tech": "EP"
+  },
+  {
+    "brand": "Canon",
+    "model": "image RUNNER ADVANCE DX 4935i",
+    "color": "M",
+    "speed": 35,
+    "tech": "EP"
+  },
+  {
+    "brand": "Canon",
+    "model": "imageRUNNER ADVANCE DX 4945i",
+    "color": "M",
+    "speed": 45,
+    "tech": "EP"
+  },
+  {
+    "brand": "Canon",
+    "model": "imageRUNNER ADVANCE DX 4745i",
+    "color": "M",
+    "speed": 45,
+    "tech": "EP"
+  },
+  {
+    "brand": "Canon",
+    "model": "imageRUNNER ADVANCE DX 4751i",
+    "color": "M",
+    "speed": 51,
+    "tech": "EP"
+  },
+  {
+    "brand": "Canon",
+    "model": "imageRUNNER ADVANCE DX 6855i",
+    "color": "M",
+    "speed": 55,
+    "tech": "EP"
+  },
+  {
+    "brand": "Canon",
+    "model": "imageFORCE 6155",
+    "color": "M",
+    "speed": 55,
+    "tech": "EP"
+  },
+  {
+    "brand": "Canon",
+    "model": "imageRUNNER ADVANCE DX 6755i",
+    "color": "M",
+    "speed": 55,
+    "tech": "EP"
+  },
+  {
+    "brand": "Canon",
+    "model": "imageFORCE 6160",
+    "color": "M",
+    "speed": 60,
+    "tech": "EP"
+  },
+  {
+    "brand": "Canon",
+    "model": "imageRUNNER ADVANCE DX 6860i",
+    "color": "M",
+    "speed": 60,
+    "tech": "EP"
+  },
+  {
+    "brand": "Canon",
+    "model": "imageFORCE 6170",
+    "color": "M",
+    "speed": 70,
+    "tech": "EP"
+  },
+  {
+    "brand": "KYOCERA",
+    "model": "TASKalfa 2554ci",
+    "color": "C",
+    "speed": 25,
+    "tech": "EP"
+  },
+  {
+    "brand": "KYOCERA",
+    "model": "TASKalfa MZ2501ci",
+    "color": "C",
+    "speed": 25,
+    "tech": "EP"
+  },
+  {
+    "brand": "KYOCERA",
+    "model": "TASKalfa MZ3501ci",
+    "color": "C",
+    "speed": 35,
+    "tech": "EP"
+  },
+  {
+    "brand": "KYOCERA",
+    "model": "TASKalfa 3554ci",
+    "color": "C",
+    "speed": 35,
+    "tech": "EP"
+  },
+  {
+    "brand": "KYOCERA",
+    "model": "TASKalfa MZ4001ci",
+    "color": "C",
+    "speed": 40,
+    "tech": "EP"
+  },
+  {
+    "brand": "KYOCERA",
+    "model": "TASKalfa 4054ci",
+    "color": "C",
+    "speed": 40,
+    "tech": "EP"
+  },
+  {
+    "brand": "KYOCERA",
+    "model": "TASKalfa 5054ci",
+    "color": "C",
+    "speed": 50,
+    "tech": "EP"
+  },
+  {
+    "brand": "KYOCERA",
+    "model": "TASKalfa MZ5001ci",
+    "color": "C",
+    "speed": 50,
+    "tech": "EP"
+  },
+  {
+    "brand": "KYOCERA",
+    "model": "TASKalfa 6054ci",
+    "color": "C",
+    "speed": 60,
+    "tech": "EP"
+  },
+  {
+    "brand": "KYOCERA",
+    "model": "TASKalfa MZ6001ci",
+    "color": "C",
+    "speed": 60,
+    "tech": "EP"
+  },
+  {
+    "brand": "KYOCERA",
+    "model": "TASKalfa 7054ci",
+    "color": "C",
+    "speed": 70,
+    "tech": "EP"
+  },
+  {
+    "brand": "KYOCERA",
+    "model": "TASKalfa MZ7001ci",
+    "color": "C",
+    "speed": 70,
+    "tech": "EP"
+  },
+  {
+    "brand": "KYOCERA",
+    "model": "TASKalfa MZ2202",
+    "color": "M",
+    "speed": 22,
+    "tech": "EP"
+  },
+  {
+    "brand": "KYOCERA",
+    "model": "TASKalfa MZ2502",
+    "color": "M",
+    "speed": 25,
+    "tech": "EP"
+  },
+  {
+    "brand": "KYOCERA",
+    "model": "TASKalfa MZ3200i",
+    "color": "M",
+    "speed": 25,
+    "tech": "EP"
+  },
+  {
+    "brand": "KYOCERA",
+    "model": "TASKalfa MZ4000i",
+    "color": "M",
+    "speed": 25,
+    "tech": "EP"
+  },
+  {
+    "brand": "KYOCERA",
+    "model": "ECOSYS MZ3201ix",
+    "color": "M",
+    "speed": 32,
+    "tech": "EP"
+  },
+  {
+    "brand": "KYOCERA",
+    "model": "TASKalfa MZ3201i",
+    "color": "M",
+    "speed": 32,
+    "tech": "EP"
+  },
+  {
+    "brand": "KYOCERA",
+    "model": "ECOSYS P4145dn",
+    "color": "M",
+    "speed": 45,
+    "tech": "EP"
+  },
+  {
+    "brand": "KYOCERA",
+    "model": "TASKalfa MZ5001i",
+    "color": "M",
+    "speed": 50,
+    "tech": "EP"
+  },
+  {
+    "brand": "KYOCERA",
+    "model": "TASKalfa 5004i",
+    "color": "M",
+    "speed": 50,
+    "tech": "EP"
+  },
+  {
+    "brand": "KYOCERA",
+    "model": "TASKalfa 6004i",
+    "color": "M",
+    "speed": 60,
+    "tech": "EP"
+  },
+  {
+    "brand": "KYOCERA",
+    "model": "TASKalfa MZ6001i",
+    "color": "M",
+    "speed": 60,
+    "tech": "EP"
+  },
+  {
+    "brand": "KYOCERA",
+    "model": "ECOSYS P4060dn",
+    "color": "M",
+    "speed": 60,
+    "tech": "EP"
+  },
+  {
+    "brand": "KYOCERA",
+    "model": "TASKalfa MZ7001i",
+    "color": "M",
+    "speed": 70,
+    "tech": "EP"
+  },
+  {
+    "brand": "KYOCERA",
+    "model": "TASKalfa 7004i",
+    "color": "M",
+    "speed": 70,
+    "tech": "EP"
+  },
+  {
+    "brand": "Sharp",
+    "model": "BP-50C26",
+    "color": "C",
+    "speed": 26,
+    "tech": "EP"
+  },
+  {
+    "brand": "Sharp",
+    "model": "BP-50C26T",
+    "color": "C",
+    "speed": 26,
+    "tech": "EP"
+  },
+  {
+    "brand": "Sharp",
+    "model": "BP-50C31",
+    "color": "C",
+    "speed": 31,
+    "tech": "EP"
+  },
+  {
+    "brand": "Sharp",
+    "model": "BP-70C45",
+    "color": "C",
+    "speed": 45,
+    "tech": "EP"
+  },
+  {
+    "brand": "Sharp",
+    "model": "BP-70C45T",
+    "color": "C",
+    "speed": 45,
+    "tech": "EP"
+  },
+  {
+    "brand": "Sharp",
+    "model": "BP-70C55T",
+    "color": "C",
+    "speed": 55,
+    "tech": "EP"
+  },
+  {
+    "brand": "Sharp",
+    "model": "BP-70C55",
+    "color": "C",
+    "speed": 55,
+    "tech": "EP"
+  },
+  {
+    "brand": "Sharp",
+    "model": "BP-70C65T",
+    "color": "C",
+    "speed": 65,
+    "tech": "EP"
+  },
+  {
+    "brand": "Sharp",
+    "model": "BP-70C65",
+    "color": "C",
+    "speed": 65,
+    "tech": "EP"
+  },
+  {
+    "brand": "Sharp",
+    "model": "BP-30M28T",
+    "color": "M",
+    "speed": 28,
+    "tech": "EP"
+  },
+  {
+    "brand": "Sharp",
+    "model": "BP-30M28",
+    "color": "M",
+    "speed": 28,
+    "tech": "EP"
+  },
+  {
+    "brand": "Sharp",
+    "model": "BP-30M31",
+    "color": "M",
+    "speed": 31,
+    "tech": "EP"
+  },
+  {
+    "brand": "Sharp",
+    "model": "BP-50M31",
+    "color": "M",
+    "speed": 31,
+    "tech": "EP"
+  },
+  {
+    "brand": "Sharp",
+    "model": "BP-30M31T",
+    "color": "M",
+    "speed": 31,
+    "tech": "EP"
+  },
+  {
+    "brand": "Sharp",
+    "model": "BP-30M35T",
+    "color": "M",
+    "speed": 35,
+    "tech": "EP"
+  },
+  {
+    "brand": "Sharp",
+    "model": "BP-30M35",
+    "color": "M",
+    "speed": 35,
+    "tech": "EP"
+  },
+  {
+    "brand": "Sharp",
+    "model": "BP-70M45",
+    "color": "M",
+    "speed": 45,
+    "tech": "EP"
+  },
+  {
+    "brand": "Sharp",
+    "model": "BP-70M45T",
+    "color": "M",
+    "speed": 45,
+    "tech": "EP"
+  },
+  {
+    "brand": "Sharp",
+    "model": "BP-70M55",
+    "color": "M",
+    "speed": 55,
+    "tech": "EP"
+  },
+  {
+    "brand": "Sharp",
+    "model": "BP-70M65",
+    "color": "M",
+    "speed": 65,
+    "tech": "EP"
+  },
+  {
+    "brand": "Sharp",
+    "model": "BP-70M65T",
+    "color": "M",
+    "speed": 65,
+    "tech": "EP"
+  },
+  {
+    "brand": "Sharp",
+    "model": "BP-70M75T",
+    "color": "M",
+    "speed": 75,
+    "tech": "EP"
+  },
+  {
+    "brand": "Sharp",
+    "model": "BP-70M75",
+    "color": "M",
+    "speed": 75,
+    "tech": "EP"
+  },
+  {
+    "brand": "Konica Minolta",
+    "model": "bizhub C251i",
+    "color": "C",
+    "speed": 25,
+    "tech": "EP"
+  },
+  {
+    "brand": "Konica Minolta",
+    "model": "bizhub C301i",
+    "color": "C",
+    "speed": 30,
+    "tech": "EP"
+  },
+  {
+    "brand": "Konica Minolta",
+    "model": "bizhub C361i",
+    "color": "C",
+    "speed": 36,
+    "tech": "EP"
+  },
+  {
+    "brand": "Konica Minolta",
+    "model": "bizhub C451i",
+    "color": "C",
+    "speed": 45,
+    "tech": "EP"
+  },
+  {
+    "brand": "Konica Minolta",
+    "model": "bizhub C551i",
+    "color": "C",
+    "speed": 55,
+    "tech": "EP"
+  },
+  {
+    "brand": "Konica Minolta",
+    "model": "bizhub C651i",
+    "color": "C",
+    "speed": 65,
+    "tech": "EP"
+  },
+  {
+    "brand": "Konica Minolta",
+    "model": "bizhub 227i",
+    "color": "M",
+    "speed": 22,
+    "tech": "EP"
+  },
+  {
+    "brand": "Konica Minolta",
+    "model": "bizhub 287",
+    "color": "M",
+    "speed": 28,
+    "tech": "EP"
+  },
+  {
+    "brand": "Konica Minolta",
+    "model": "bizhub 300i",
+    "color": "M",
+    "speed": 30,
+    "tech": "EP"
+  },
+  {
+    "brand": "Konica Minolta",
+    "model": "bizhub 301i",
+    "color": "M",
+    "speed": 30,
+    "tech": "EP"
+  },
+  {
+    "brand": "Konica Minolta",
+    "model": "bizhub 360i",
+    "color": "M",
+    "speed": 36,
+    "tech": "EP"
+  },
+  {
+    "brand": "Konica Minolta",
+    "model": "bizhub 361i",
+    "color": "M",
+    "speed": 36,
+    "tech": "EP"
+  },
+  {
+    "brand": "Konica Minolta",
+    "model": "bizhub 367",
+    "color": "M",
+    "speed": 36,
+    "tech": "EP"
+  },
+  {
+    "brand": "Konica Minolta",
+    "model": "bizhub 451i",
+    "color": "M",
+    "speed": 45,
+    "tech": "EP"
+  },
+  {
+    "brand": "Konica Minolta",
+    "model": "bizhub 450i",
+    "color": "M",
+    "speed": 45,
+    "tech": "EP"
+  },
+  {
+    "brand": "Konica Minolta",
+    "model": "bizhub 550i",
+    "color": "M",
+    "speed": 55,
+    "tech": "EP"
+  },
+  {
+    "brand": "Konica Minolta",
+    "model": "bizhub 551i",
+    "color": "M",
+    "speed": 55,
+    "tech": "EP"
+  },
+  {
+    "brand": "Konica Minolta",
+    "model": "bizhub 650i",
+    "color": "M",
+    "speed": 65,
+    "tech": "EP"
+  },
+  {
+    "brand": "Konica Minolta",
+    "model": "bizhub 651i",
+    "color": "M",
+    "speed": 65,
+    "tech": "EP"
+  },
+  {
+    "brand": "Konica Minolta",
+    "model": "bizhub 750i",
+    "color": "M",
+    "speed": 75,
+    "tech": "EP"
+  },
+  {
+    "brand": "Konica Minolta",
+    "model": "bizhub 751i",
+    "color": "M",
+    "speed": 75,
+    "tech": "EP"
+  },
+  {
+    "brand": "Toshiba",
+    "model": "e-STUDIO2520AC(FC-2520AC)",
+    "color": "C",
+    "speed": 25,
+    "tech": "EP"
+  },
+  {
+    "brand": "Toshiba",
+    "model": "e-STUDIO3525AC(FC-3525AC)",
+    "color": "C",
+    "speed": 35,
+    "tech": "EP"
+  },
+  {
+    "brand": "Toshiba",
+    "model": "e-STUDIO4525AC(FC-4525AC)",
+    "color": "C",
+    "speed": 45,
+    "tech": "EP"
+  },
+  {
+    "brand": "Toshiba",
+    "model": "e-STUDIO2829A(DP-2829A)",
+    "color": "M",
+    "speed": 28,
+    "tech": "EP"
+  },
+  {
+    "brand": "Toshiba",
+    "model": "e-STUDIO3028A(DP-3028A)",
+    "color": "M",
+    "speed": 30,
+    "tech": "EP"
+  },
+  {
+    "brand": "Toshiba",
+    "model": "e-STUDIO3528A(DP-3528A)",
+    "color": "M",
+    "speed": 35,
+    "tech": "EP"
+  },
+  {
+    "brand": "Toshiba",
+    "model": "e-STUDIO4528A(DP-4528A)",
+    "color": "M",
+    "speed": 45,
+    "tech": "EP"
+  },
+  {
+    "brand": "Toshiba",
+    "model": "e-STUDIO5528A(DP-5528A)",
+    "color": "M",
+    "speed": 55,
+    "tech": "EP"
+  },
+  {
+    "brand": "Toshiba",
+    "model": "e-STUDIO6528A(DP-6528A)",
+    "color": "M",
+    "speed": 65,
+    "tech": "EP"
+  },
+  {
+    "brand": "Toshiba",
+    "model": "e-STUDIO7529A(DP-7529A)",
+    "color": "M",
+    "speed": 75,
+    "tech": "EP"
+  },
+  {
+    "brand": "HP",
+    "model": "HP Color LaserJet Managed MFP E785dn",
+    "color": "C",
+    "speed": 28,
+    "tech": "EP"
+  },
+  {
+    "brand": "HP",
+    "model": "HP Color LaserJet Managed MFP E786dn",
+    "color": "C",
+    "speed": 35,
+    "tech": "EP"
+  },
+  {
+    "brand": "HP",
+    "model": "HP Color LaserJet Managed MFP E877dn",
+    "color": "C",
+    "speed": 70,
+    "tech": "EP"
+  },
+  {
+    "brand": "HP",
+    "model": "HP LaserJet MFP M42625dn",
+    "color": "M",
+    "speed": 25,
+    "tech": "EP"
+  },
+  {
+    "brand": "HP",
+    "model": "HP LaserJet Managed MFP E731dn",
+    "color": "M",
+    "speed": 40,
+    "tech": "EP"
+  },
+  {
+    "brand": "HP",
+    "model": "HP LaserJet Managed MFP E826dn",
+    "color": "M",
+    "speed": 70,
+    "tech": "EP"
+  },
+  {
+    "brand": "DEVELOP",
+    "model": "DEVELOP ineo+ 250i",
+    "color": "C",
+    "speed": 25,
+    "tech": "EP"
+  },
+  {
+    "brand": "DEVELOP",
+    "model": "DEVELOP ineo+ 360i",
+    "color": "C",
+    "speed": 36,
+    "tech": "EP"
+  },
+  {
+    "brand": "DEVELOP",
+    "model": "ineo 205i",
+    "color": "M",
+    "speed": 20,
+    "tech": "EP"
+  },
+  {
+    "brand": "Ricoh",
+    "model": "IM C2000",
+    "speed": 20
+  },
+  {
+    "brand": "Ricoh",
+    "model": "IM C2500",
+    "speed": 25
+  },
+  {
+    "brand": "Ricoh",
+    "model": "IM C3000",
+    "speed": 30
+  },
+  {
+    "brand": "Ricoh",
+    "model": "MP C2004ex",
+    "speed": 20
+  },
+  {
+    "brand": "Ricoh",
+    "model": "MP C2504ex",
+    "speed": 25
+  },
+  {
+    "brand": "Ricoh",
+    "model": "MP C3004ex",
+    "speed": 30
+  },
+  {
+    "brand": "Ricoh",
+    "model": "MP C3504ex",
+    "speed": 35
+  },
+  {
+    "brand": "Ricoh",
+    "model": "MP C2503",
+    "speed": 25
+  },
+  {
+    "brand": "Ricoh",
+    "model": "Aficio MP C2551",
+    "speed": 25
+  },
+  {
+    "brand": "Ricoh",
+    "model": "MP 2501",
+    "speed": 25
+  },
+  {
+    "brand": "Ricoh",
+    "model": "MP 2554",
+    "speed": 25
+  },
+  {
+    "brand": "Ricoh",
+    "model": "MP 3054",
+    "speed": 30
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "DocuCentre-V C2263",
+    "speed": 20
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "DocuCentre-V C2265",
+    "speed": 25
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "DocuCentre-VI C2271",
+    "speed": 25
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "DocuCentre-VI C3371",
+    "speed": 35
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "ApeosPort-VI C2271",
+    "speed": 25
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "ApeosPort-V C3375",
+    "speed": 35
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "DocuCentre-IV C2260",
+    "speed": 20
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "Apeos C2060",
+    "speed": 20
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "DocuCentre-SC2020",
+    "speed": 20
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "DocuCentre-IV 2060",
+    "speed": 20
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "DocuCentre-V 2060",
+    "speed": 25
+  },
+  {
+    "brand": "FUJIFILM",
+    "model": "DocuCentre-V 3060",
+    "speed": 30
+  },
+  {
+    "brand": "Canon",
+    "model": "iR-ADV C3520i III",
+    "speed": 20
+  },
+  {
+    "brand": "Canon",
+    "model": "iR-ADV C3525i III",
+    "speed": 25
+  },
+  {
+    "brand": "Canon",
+    "model": "iR-ADV C3320",
+    "speed": 20
+  },
+  {
+    "brand": "Canon",
+    "model": "iR-ADV C3325",
+    "speed": 25
+  },
+  {
+    "brand": "Canon",
+    "model": "imageRUNNER C3020",
+    "speed": 20
+  },
+  {
+    "brand": "Canon",
+    "model": "iR-ADV C2220",
+    "speed": 20
+  },
+  {
+    "brand": "Canon",
+    "model": "imageRUNNER 2520",
+    "speed": 20
+  },
+  {
+    "brand": "Canon",
+    "model": "iR-ADV 4225",
+    "speed": 25
+  },
+  {
+    "brand": "Canon",
+    "model": "iR-ADV 4525",
+    "speed": 25
+  },
+  {
+    "brand": "Konica Minolta",
+    "model": "bizhub C227",
+    "speed": 22
+  },
+  {
+    "brand": "Konica Minolta",
+    "model": "bizhub C287",
+    "speed": 28
+  },
+  {
+    "brand": "Konica Minolta",
+    "model": "bizhub C258",
+    "speed": 25
+  },
+  {
+    "brand": "Konica Minolta",
+    "model": "bizhub C224e",
+    "speed": 22
+  },
+  {
+    "brand": "Konica Minolta",
+    "model": "bizhub C284e",
+    "speed": 28
+  },
+  {
+    "brand": "Konica Minolta",
+    "model": "bizhub C220",
+    "speed": 22
+  },
+  {
+    "brand": "Konica Minolta",
+    "model": "bizhub 224e",
+    "speed": 22
+  },
+  {
+    "brand": "Konica Minolta",
+    "model": "bizhub 227",
+    "speed": 22
+  },
+  {
+    "brand": "Konica Minolta",
+    "model": "bizhub 287",
+    "speed": 28
+  },
+  {
+    "brand": "HP",
+    "model": "Color LaserJet Managed E77822",
+    "speed": 22
+  },
+  {
+    "brand": "HP",
+    "model": "Color LaserJet Managed E77825",
+    "speed": 25
+  },
+  {
+    "brand": "HP",
+    "model": "Color LaserJet Managed E77830",
+    "speed": 30
+  },
+  {
+    "brand": "HP",
+    "model": "LaserJet Enterprise 700 M775",
+    "speed": 30
+  },
+  {
+    "brand": "HP",
+    "model": "PageWide Managed P77740",
+    "speed": 40
+  },
+  {
+    "brand": "Sharp",
+    "model": "MX-2651",
+    "speed": 26
+  },
+  {
+    "brand": "Sharp",
+    "model": "MX-3051",
+    "speed": 30
+  },
+  {
+    "brand": "Sharp",
+    "model": "MX-2640N",
+    "speed": 26
+  },
+  {
+    "brand": "Sharp",
+    "model": "MX-3140N",
+    "speed": 31
+  },
+  {
+    "brand": "Sharp",
+    "model": "MX-2310F",
+    "speed": 23
+  },
+  {
+    "brand": "KYOCERA",
+    "model": "TASKalfa 2552ci",
+    "speed": 25
+  },
+  {
+    "brand": "KYOCERA",
+    "model": "TASKalfa 3252ci",
+    "speed": 32
+  },
+  {
+    "brand": "KYOCERA",
+    "model": "TASKalfa 2553ci",
+    "speed": 25
+  },
+  {
+    "brand": "KYOCERA",
+    "model": "TASKalfa 2551ci",
+    "speed": 25
+  },
+  {
+    "brand": "KYOCERA",
+    "model": "TASKalfa 205c",
+    "speed": 20
+  },
+  {
+    "brand": "Epson",
+    "model": "WorkForce Pro WF-C869R",
+    "speed": 24
+  },
+  {
+    "brand": "Epson",
+    "model": "WorkForce Pro WF-R8591",
+    "speed": 24
+  },
+  {
+    "brand": "Epson",
+    "model": "AcuLaser CX37DN",
+    "speed": 24
+  }
+]

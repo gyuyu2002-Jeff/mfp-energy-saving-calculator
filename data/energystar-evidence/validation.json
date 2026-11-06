@@ -1,0 +1,17 @@
+{
+  "validatedAt": "2026-11-06T13:46:01+00:00",
+  "assertions": [
+    "Every normalized TEC equals its original official weekly TEC field",
+    "No OM/DFE/annual/limit conversion",
+    "Distinct conflicting records retained",
+    "Raw download hashes verified",
+    "No regional or model-suffix substitution",
+    "Missing voltage and A3 remain null"
+  ],
+  "recordsChecked": 1910,
+  "coverage": {
+    "requestedModels": 258,
+    "withExactMeasuredTec": 102,
+    "missing": 156
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "checkedAt": "2026-11-06T13:46:01+00:00",
+  "files": [
+    {
+      "file": "schema.json",
+      "url": "https://data.energystar.gov/api/views/t2v6-g4nf.json",
+      "sha256": "aee399d42a7824e65e612d4902f2ccde54f92756d2d7d43a6e1a626aabf4b00c"
+    },
+    {
+      "file": "historical-v2.xlsx",
+      "url": "https://www.energystar.gov/sites/default/files/asset/document/ImagingEquipment_V2.0_Archived_0.xlsx",
+      "sha256": "040fd9151870ce655050b66fa8914facf75768d3bd6d608c1ebcc1256e0645ef"
+    },
+    {
+      "file": "current-page-00000.json",
+      "url": "https://data.energystar.gov/resource/t2v6-g4nf.json?%24limit=10000&%24offset=0&%24order=pd_id",
+      "sha256": "c8533eaa0633d9eebb4dfd2dc57f34b29c101ab2856d283cbf79b4d711575cc6"
+    }
+  ]
+}

@@ -6,14 +6,14 @@
 <title>事務機 節能計算器</title>
 <!-- Open Graph 社群分享標籤（LINE / FB / 通訊軟體預覽） -->
 <meta property="og:title" content="事務機 節能計算器">
-<meta property="og:description" content="">
+<meta property="og:description" content="比較事務機換機情境的用電、電費與碳排差額，逐筆揭露 TEC 來源、測試條件與估算假設。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://gyuyu2002-jeff.github.io/mfp-energy-saving-calculator/">
 <meta property="og:site_name" content="事務機 節能計算器">
-<meta name="description" content="">
+<meta name="description" content="比較事務機換機情境的用電、電費與碳排差額，優先採用能源署實測 TEC，並揭露資料來源、測試條件與估算假設。">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="事務機 節能計算器">
-<meta name="twitter:description" content="">
+<meta name="twitter:description" content="比較事務機用電、電費與碳排差額，查閱 TEC 來源、測試條件與估算假設。">
 <!-- 網站圖示 Favicon（支援加到我的最愛、書籤列、iOS/Android 桌面） -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='b' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0%25' stop-color='%233A404A'/%3E%3Cstop offset='100%25' stop-color='%2324282F'/%3E%3C/linearGradient%3E%3ClinearGradient id='l' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%237AE582'/%3E%3Cstop offset='100%25' stop-color='%2325A244'/%3E%3C/linearGradient%3E%3ClinearGradient id='p' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0%25' stop-color='%23FFFFFF'/%3E%3Cstop offset='100%25' stop-color='%23E2E8F0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='15' fill='url(%23b)'/%3E%3Crect x='1' y='1' width='62' height='62' rx='14' fill='none' stroke='%23505A68' stroke-width='1.5'/%3E%3Cpath d='M22 13h20v6H22z' fill='%238C9AA8' rx='2'/%3E%3Crect x='13' y='21' width='38' height='23' rx='4' fill='%234B5563'/%3E%3Crect x='17' y='27' width='30' height='4' rx='2' fill='%231F2937'/%3E%3Ccircle cx='45' cy='24' r='2' fill='%234ADE80'/%3E%3Cpath d='M20 28h24v16a3 3 0 0 1-3 3H23a3 3 0 0 1-3-3V28z' fill='url(%23p)'/%3E%3Cpath d='M32 31c-4.5 0-7 3.5-7 7.5 0 0 3.5 1 7-1.5 3.5 2.5 7 1.5 7-1.5 0-4-2.5-7.5-7-4.5z' fill='url(%23l)'/%3E%3Cpath d='M32 34v6' stroke='%231B4332' stroke-width='1.2' stroke-linecap='round'/%3E%3Crect x='16' y='47' width='32' height='4' rx='2' fill='%23374151'/%3E%3C/svg%3E">
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='b' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0%25' stop-color='%233A404A'/%3E%3Cstop offset='100%25' stop-color='%2324282F'/%3E%3C/linearGradient%3E%3ClinearGradient id='l' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%237AE582'/%3E%3Cstop offset='100%25' stop-color='%2325A244'/%3E%3C/linearGradient%3E%3ClinearGradient id='p' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0%25' stop-color='%23FFFFFF'/%3E%3Cstop offset='100%25' stop-color='%23E2E8F0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='15' fill='url(%23b)'/%3E%3Crect x='1' y='1' width='62' height='62' rx='14' fill='none' stroke='%23505A68' stroke-width='1.5'/%3E%3Cpath d='M22 13h20v6H22z' fill='%238C9AA8' rx='2'/%3E%3Crect x='13' y='21' width='38' height='23' rx='4' fill='%234B5563'/%3E%3Crect x='17' y='27' width='30' height='4' rx='2' fill='%231F2937'/%3E%3Ccircle cx='45' cy='24' r='2' fill='%234ADE80'/%3E%3Cpath d='M20 28h24v16a3 3 0 0 1-3 3H23a3 3 0 0 1-3-3V28z' fill='url(%23p)'/%3E%3Cpath d='M32 31c-4.5 0-7 3.5-7 7.5 0 0 3.5 1 7-1.5 3.5 2.5 7 1.5 7-1.5 0-4-2.5-7.5-7-4.5z' fill='url(%23l)'/%3E%3Cpath d='M32 34v6' stroke='%231B4332' stroke-width='1.2' stroke-linecap='round'/%3E%3Crect x='16' y='47' width='32' height='4' rx='2' fill='%23374151'/%3E%3C/svg%3E">
@@ -31,7 +31,7 @@
   --card:#FFFFFF;
   --ink:#3B3F45;       /* 主文字：炭灰 */
   --ink-2:#6A6E74;     /* 次文字 */
-  --ink-3:#9A9CA0;
+  --ink-3:#666A70;
   --line:#DAD3C8;
   --line-2:#E8E3DA;
 
@@ -56,6 +56,11 @@ a{color:var(--blue)}
 .muted{color:var(--ink-2)}
 .small{font-size:12.5px}
 .hide{display:none!important}
+:focus-visible{outline:3px solid #365B7D!important;outline-offset:3px}
+.grid>*{min-width:0}
+select{max-width:100%;min-width:0}
+.note,.ab-source,.pdf-footer-note{overflow-wrap:anywhere}
+.comparison-notice{margin:12px 0;padding:10px 12px;border:1px solid #CBB89D;border-radius:8px;background:#FFF8EA;color:#594320;font-size:13px;line-height:1.6}
 
 /* ---------- 頁首與分頁 ---------- */
 header{position:sticky;top:0;z-index:30;background:rgba(246,243,238,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
@@ -130,6 +135,8 @@ h3{font-size:16px}
 .kpi .k-unit{font-size:13px;color:var(--ink-2);font-family:var(--sans);font-weight:400;margin-left:4px}
 .kpi .k-foot{font-size:12px;color:var(--ink-3);border-top:1px solid var(--line-2);padding-top:8px;margin-top:10px;display:flex;justify-content:space-between}
 .c-blue{color:var(--blue)}.c-sage{color:var(--sage)}.c-rose{color:var(--rose)}.c-sand{color:var(--sand)}.c-teal{color:var(--teal)}
+.small.c-blue,.small .c-blue,.pill.primary{color:#465D73}
+.small.c-rose,.small .c-rose{color:#874F46}
 
 /* ---------- 滑桿 ---------- */
 .slider{margin-bottom:18px}
@@ -223,8 +230,8 @@ td.r,th.r{text-align:right}
 /* ---------- 抽屜（審計） ---------- */
 .drawer-mask{position:fixed;inset:0;background:rgba(40,42,46,.35);z-index:50;opacity:0;pointer-events:none;transition:.2s}
 .drawer-mask.on{opacity:1;pointer-events:auto}
-.drawer{position:fixed;top:0;right:0;height:100%;width:min(520px,100%);background:var(--paper);z-index:51;transform:translateX(100%);transition:transform .28s ease;display:flex;flex-direction:column;box-shadow:-10px 0 40px rgba(0,0,0,.12)}
-.drawer.on{transform:none}
+.drawer{position:fixed;top:0;right:0;height:100%;width:min(520px,100%);background:var(--paper);z-index:51;transform:translateX(100%);visibility:hidden;transition:transform .28s ease;display:flex;flex-direction:column;box-shadow:-10px 0 40px rgba(0,0,0,.12)}
+.drawer.on{transform:none;visibility:visible}
 .drawer .d-head{padding:18px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
 .drawer .d-body{padding:20px;overflow:auto;flex:1}
 .drawer .d-body h4{margin:18px 0 8px;font-size:14px}
@@ -269,18 +276,23 @@ ul.clean li{margin:4px 0}
   .hero{min-height:0}
   /* 表格改卡片 */
   .tablewrap{max-height:none;border:none;background:none}
-  table,tbody,tr,td{display:block;width:100%}
-  thead{display:none}
-  tr{background:var(--card);border:1px solid var(--line);border-radius:12px;margin-bottom:10px;padding:10px 12px;display:grid;grid-template-columns:1fr auto;gap:2px 10px}
-  tr:hover td{background:none}
-  td{border:none;padding:2px 0}
-  td.c-brand{grid-column:1 / -1}
-  td.c-model{grid-column:1 / 2;font-weight:500}
-  td.c-tec{grid-column:2 / 3;grid-row:2 / 3;text-align:right}
-  td.c-spec{grid-column:1 / -1;font-size:12.5px;color:var(--ink-2)}
-  td.c-kwh{display:none}
-  td.c-act{grid-column:1 / -1;padding-top:8px}
+  .tablewrap table,.tablewrap tbody,.tablewrap tr,.tablewrap td{display:block;width:100%}
+  .tablewrap thead{display:none}
+  .tablewrap tr{background:var(--card);border:1px solid var(--line);border-radius:12px;margin-bottom:10px;padding:10px 12px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 10px}
+  .tablewrap tr:hover td{background:none}
+  .tablewrap td{border:none;padding:2px 0;overflow-wrap:anywhere}
+  .tablewrap td.c-brand{grid-column:1 / -1}
+  .tablewrap td.c-model{grid-column:1 / 2;font-weight:500}
+  .tablewrap td.c-tec{grid-column:2 / 3;grid-row:2 / 3;text-align:right}
+  .tablewrap td.c-spec{grid-column:1 / -1;font-size:12.5px;color:var(--ink-2)}
+  .tablewrap td.c-kwh{display:none}
+  .tablewrap td.c-act{grid-column:1 / -1;padding-top:8px}
   .acts{justify-content:flex-start}
+  .ab-box{padding:12px;min-width:0}
+  .ab-box select{width:100%}
+  .hbar .meta{flex-wrap:wrap}
+  .hbar .meta b{white-space:normal;overflow-wrap:anywhere}
+  .mode-btn{padding:8px 12px}
 }
 @media (max-width:420px){
   .g-4{grid-template-columns:1fr}
@@ -291,7 +303,7 @@ ul.clean li{margin:4px 0}
   .slide{display:block!important;page-break-after:always}
   body{background:#fff}
 }
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 
 /* ---------- 案件切換按鈕（單機試算 vs 多台試算） ---------- */
 .mode-switch-group{display:inline-flex;gap:8px;align-items:center;background:#EFEBE5;padding:4px;border-radius:11px;border:1.5px solid #D8CFC4}
@@ -317,18 +329,48 @@ ul.clean li{margin:4px 0}
 .pdf-charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
 .pdf-chart-card{background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:14px}
 .pdf-chart-title{font-size:12.5px;font-weight:700;color:#334155;margin-bottom:10px;text-align:center}
-.pdf-footer-note{background:#F9FAFB;border:1px solid #E5E7EB;border-radius:8px;padding:10px 12px;font-size:11px;color:#6B7280;line-height:1.6}
+.pdf-footer-note{background:#F9FAFB;border:1px solid #E5E7EB;border-radius:8px;padding:10px 12px;font-size:12px;color:#4B5563;line-height:1.6}
+.pdf-modal-header,.pdf-modal-actions,.pdf-modal-footer{flex-wrap:wrap;gap:10px;flex-shrink:0}
+.pdf-modal-scroll{min-height:0;overflow:auto;overscroll-behavior:contain}
+.pdf-table-scroll{overflow-x:auto;max-width:100%}
+.pdf-table th,.pdf-table td{overflow-wrap:anywhere}
+.pdf-paper [contenteditable]{display:inline-block;max-width:100%;overflow-wrap:anywhere}
+.pdf-export{width:734px!important;max-width:none!important;padding:24px!important;box-shadow:none!important;border-radius:0!important}
+.pdf-export .pdf-kpis{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+.pdf-export .pdf-charts-grid{grid-template-columns:1fr 1fr!important}
+.pdf-export .pdf-table{min-width:0!important;table-layout:fixed}
+.pdf-export .pdf-table-scroll{overflow:visible!important}
+.pdf-export .source-detail{break-inside:avoid}
+.pdf-source-record{break-inside:avoid;margin-bottom:12px}
+@media screen and (max-width:720px){
+  #exportModal{padding:8px!important}
+  #exportModal>div{max-height:calc(100dvh - 16px)!important}
+  .pdf-modal-header,.pdf-modal-footer{padding:10px 12px!important}
+  .pdf-modal-header{position:relative;padding-right:42px!important}
+  .pdf-modal-actions{gap:6px!important;width:100%;min-width:0;flex-wrap:wrap!important}
+  #btnCloseExport{position:absolute;right:8px;top:8px;min-width:32px;min-height:32px}
+  .pdf-modal-scroll{padding:10px!important}
+  .pdf-paper{padding:16px}
+  .pdf-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pdf-charts-grid{grid-template-columns:1fr}
+  .pdf-table{min-width:560px}
+  .pdf-params-bar{gap:8px}
+  .pdf-kpi{padding:10px}
+  .pdf-kpi .k-num{font-size:17px;overflow-wrap:anywhere}
+}
 
 @media print {
   header,.pager,footer,.drawer,.drawer-mask,#panelSingleMode,#panelFleetMode,.card,.head,.tabs,.pager,.bar{display:none!important}
+  main{display:none!important}
   body{background:#fff!important;padding:0!important;margin:0!important}
   #exportModal{position:static!important;background:none!important;padding:0!important;display:block!important;z-index:auto!important}
   #exportModal > div{max-width:100%!important;max-height:none!important;box-shadow:none!important;border:none!important}
   .pdf-modal-header,.pdf-modal-actions,.pdf-modal-hint{display:none!important}
   .pdf-paper{box-shadow:none!important;border:none!important;padding:0!important;border-radius:0!important}
+  .pdf-table-scroll,.pdf-modal-scroll{overflow:visible!important}
+  .pdf-modal-footer{display:none!important}
 }
 </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
 
@@ -363,7 +405,7 @@ ul.clean li{margin:4px 0}
           <rect x="16" y="47" width="32" height="4" rx="2" fill="#374151"/>
         </svg>
       </div>
-      <div><b>事務機 節能計算器</b><span>典型用電量圖解 · 節能標章機型比較 · 換機試算</span></div>
+      <div><b>事務機 節能計算器</b><span>典型用電量圖解 · 機型與來源查核 · 換機試算</span></div>
     </a>
     <nav class="tabs" id="tabs" aria-label="簡報頁面">
       <button class="tab on" data-go="1"><i>01</i>換機效益試算</button>
@@ -381,8 +423,9 @@ ul.clean li{margin:4px 0}
 <section class="slide on" id="s1">
   <div class="head">
     <span class="kicker">01 · 換機效益試算</span>
-    <h2 class="title">換掉 <span class="num" data-o="units">2</span> 台舊事務機，<span data-o="years">5</span> 年累計可省 <span class="c-sage">NT$ <span class="num" data-o="totalCost">2,912</span></span> 電費（省電 <span class="num" data-o="rate">87.5%</span>）</h2>
-    <p class="lead">以典型用電量（TEC，kWh/週）為基準換算全年用電、電費與碳排。點任一數字可以看到完整算式。</p>
+    <h2 class="title">換機情境：<span class="num" data-o="units">2</span> 台舊機，<span data-o="years">5</span> 年電費差額 <span class="c-sage">NT$ <span class="num" data-o="totalCost">—</span></span>（用電減幅 <span class="num" data-o="rate">—</span>）</h2>
+    <p class="lead">差額＝舊機－新機：正值表示節省或減少，負值表示增加。以 TEC（kWh/週）換算，點選指標可查看算式與假設。</p>
+    <div id="comparisonNotice" class="comparison-notice" role="status" aria-live="polite">請確認每筆資料來源、測試版本與條件；尚未核實的數值僅用於人工情境。</div>
   </div>
 
   <!-- 🌟 案件切換：單機試算 vs 多台試算 🌟 -->
@@ -415,7 +458,7 @@ ul.clean li{margin:4px 0}
           
           <div class="grid g-2" style="gap:8px;margin-bottom:8px">
             <div class="field">
-              <label style="font-size:12px;font-weight:500;color:var(--ink-2)">① 品牌或機齡模式</label>
+              <label for="abBaseBrandSel" style="font-size:12px;font-weight:500;color:var(--ink-2)">① 品牌或機齡模式</label>
               <select id="abBaseBrandSel" style="width:100%;border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 10px;font-size:13px">
                 <option value="PRESET">★ 通用機齡假設（3/5/7年）</option>
                 <option value="Ricoh">Ricoh 理光（約 3~7 年前舊機）</option>
@@ -430,13 +473,13 @@ ul.clean li{margin:4px 0}
               </select>
             </div>
             <div class="field">
-              <label style="font-size:12px;font-weight:500;color:var(--ink-2)">② 舊機型號或機齡</label>
+              <label for="abBaseModelSel" style="font-size:12px;font-weight:500;color:var(--ink-2)">② 舊機型號或機齡</label>
               <select id="abBaseModelSel" style="width:100%;border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 10px;font-size:13px"></select>
             </div>
           </div>
 
           <div id="abBaseCustomRow" class="field hide" style="margin-bottom:8px">
-            <label style="font-size:12px;font-weight:500;color:var(--ink-2)">③ 自訂舊機名稱標示</label>
+            <label for="abBaseName" style="font-size:12px;font-weight:500;color:var(--ink-2)">③ 自訂舊機名稱標示</label>
             <input type="text" id="abBaseName" value="5 年傳統雷射事務機" placeholder="請輸入舊機名稱，例如：辦公室現役舊機" style="width:100%;border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 10px;font-size:13px">
           </div>
 
@@ -464,9 +507,9 @@ ul.clean li{margin:4px 0}
 
           <div class="grid g-2" style="gap:8px;margin-bottom:8px">
             <div class="field">
-              <label style="font-size:12px;font-weight:500;color:var(--ink-2)">① 品牌（理光、愛普生置頂）</label>
+              <label for="abBrandSel" style="font-size:12px;font-weight:500;color:var(--ink-2)">① 品牌</label>
               <select id="abBrandSel" style="width:100%;border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 10px;font-size:13px">
-                <option value="Ricoh">Ricoh 理光（優先推薦）</option>
+                <option value="Ricoh">Ricoh 理光</option>
                 <option value="Epson">Epson 愛普生（免加熱微壓電）</option>
                 <option value="FUJIFILM">FUJIFILM 富士軟片</option>
                 <option value="Canon">Canon 佳能</option>
@@ -477,13 +520,13 @@ ul.clean li{margin:4px 0}
               </select>
             </div>
             <div class="field">
-              <label style="font-size:12px;font-weight:500;color:var(--ink-2)">② 選擇代表機型</label>
+              <label for="abModelSel" style="font-size:12px;font-weight:500;color:var(--ink-2)">② 選擇機型</label>
               <select id="abModelSel" style="width:100%;border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 10px;font-size:13px"></select>
             </div>
           </div>
 
           <div id="abSourceBadge" class="ab-source">
-            <!-- 動態顯示來源，例如：🏢 Epson 台灣官網規格書（能源之星未及時建檔時撈取） -->
+            <!-- 逐筆顯示採用來源、實測欄位與查核狀態 -->
           </div>
         </div>
 
@@ -527,7 +570,7 @@ ul.clean li{margin:4px 0}
           </div>
           <div style="margin-top:10px;padding-top:10px;border-top:1px dashed #C4D2DE" class="row between">
             <button type="button" class="btn sm primary" id="btnAddFleetNew" style="font-weight:600">＋ 新增新機種</button>
-            <span class="small muted">由 200 款節能標章 A3 機種自由搭配</span>
+            <span class="small muted">依機型與查核狀態搭配，逐筆確認測試條件</span>
           </div>
         </div>
       </div>
@@ -537,42 +580,42 @@ ul.clean li{margin:4px 0}
   <div class="grid g-hero">
     <div class="card hero">
       <div style="position:relative;z-index:1">
-        <div class="row between"><span class="label"><span data-o="years">5</span> 年累計可省電費</span><span class="pill" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);color:#D7DADD"><span data-o="units">2</span> 台</span></div>
+        <div class="row between"><span class="label"><span data-o="years">5</span> 年累計電費差額</span><span class="pill" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);color:#D7DADD"><span data-o="units">2</span> 台</span></div>
         <div class="big"><small>NT$</small><span data-o="totalCost">0</span></div>
         <div class="sub">以 <b data-o="targetName" style="color:#fff">—</b> 取代 <b data-o="baseName" style="color:#fff">—</b></div>
-        <button class="btn sm audit" style="margin-top:14px" data-audit="total">查看算式與假設 →</button>
+        <button type="button" class="btn sm audit" style="margin-top:14px" data-audit="total" aria-controls="drawer" aria-haspopup="dialog">查看算式與假設 →</button>
       </div>
       <div style="position:relative;z-index:1;margin-top:26px">
         <div class="row between small" style="color:#C9CDD1"><span>年用電：舊機 <b class="num" data-o="baseKwh">0</b> 度 → 新機 <b class="num" data-o="targetKwh">0</b> 度</span></div>
         <div class="split"><div id="splitSave" style="background:#8FA593"></div><div id="splitRemain" style="background:#B8877E"></div></div>
-        <div class="row between small" style="color:#AEB3B8"><span><span class="dot" style="background:#8FA593"></span> 省下 <span class="num" data-o="rate">0%</span></span><span><span class="dot" style="background:#B8877E"></span> 換機後消耗佔比 <span class="num" data-o="remainRate">0%</span></span></div>
+        <div class="row between small" style="color:#AEB3B8"><span><span class="dot" style="background:#8FA593"></span> 用電減幅 <span class="num" data-o="rate">0%</span></span><span><span class="dot" style="background:#B8877E"></span> 換機後消耗佔比 <span class="num" data-o="remainRate">0%</span></span></div>
       </div>
     </div>
 
     <div class="grid g-2">
-      <div class="card kpi" data-audit="cost">
-        <div><div class="k-label">每年省下電費<span class="dot" style="background:var(--sage)"></span></div>
+      <div class="card kpi" data-audit="cost" role="button" tabindex="0" aria-label="查看電費差額算式" aria-controls="drawer" aria-haspopup="dialog">
+        <div><div class="k-label">每年電費差額<span class="dot" style="background:var(--sage)"></span></div>
         <div class="k-val c-sage"><span class="k-unit" style="margin:0 4px 0 0">NT$</span><span data-o="costYr">0</span></div>
         <div class="small muted">每台每年約 NT$ <span class="num" data-o="costUnit">0</span></div></div>
         <div class="k-foot"><span>電價 NT$ <span class="num" data-o="price">0</span>/度</span><span>算式 →</span></div>
       </div>
-      <div class="card kpi" data-audit="kwh">
-        <div><div class="k-label">每年少用電量<span class="dot" style="background:var(--sand)"></span></div>
+      <div class="card kpi" data-audit="kwh" role="button" tabindex="0" aria-label="查看用電差額算式" aria-controls="drawer" aria-haspopup="dialog">
+        <div><div class="k-label">每年用電差額<span class="dot" style="background:var(--sand)"></span></div>
         <div class="k-val c-sand"><span data-o="kwhYr">0</span><span class="k-unit">度 / 年</span></div>
         <div class="small muted">每台每年約 <span class="num" data-o="kwhUnit">0</span> 度</div></div>
         <div class="k-foot"><span>TEC × 52 週 × 台數</span><span>算式 →</span></div>
       </div>
-      <div class="card kpi" data-audit="co2">
-        <div><div class="k-label">每年減少碳排<span class="dot" style="background:var(--teal)"></span></div>
+      <div class="card kpi" data-audit="co2" role="button" tabindex="0" aria-label="查看碳排差額算式與來源" aria-controls="drawer" aria-haspopup="dialog">
+        <div><div class="k-label">每年碳排差額<span class="dot" style="background:var(--teal)"></span></div>
         <div class="k-val c-teal"><span data-o="co2Yr">0</span><span class="k-unit">kg CO₂e / 年</span></div>
         <div class="small muted"><span data-o="years">5</span> 年累計 <span class="num" data-o="co2Total">0</span> kg</div></div>
         <div class="k-foot"><span>排碳係數 <span class="num" data-o="cf">0</span></span><span>來源 →</span></div>
       </div>
-      <div class="card kpi" data-audit="tec">
+      <div class="card kpi" data-audit="tec" role="button" tabindex="0" aria-label="查看 TEC 說明" aria-controls="drawer" aria-haspopup="dialog">
         <div><div class="k-label">TEC 對照（kWh/週・單台）<span class="dot" style="background:var(--blue)"></span></div>
         <div class="k-val"><span class="c-rose" data-o="baseTec">0</span><span class="k-unit">→</span> <span class="c-blue" data-o="targetTec">0</span></div>
         <div class="small muted">新機約為舊機的 <span class="num" data-o="ratio">0</span> 倍用電</div></div>
-        <div class="k-foot"><span>數值越低越省電</span><span>TEC 是什麼 →</span></div>
+        <div class="k-foot"><span>同測試條件下比較 TEC</span><span>TEC 是什麼 →</span></div>
       </div>
     </div>
   </div>
@@ -596,10 +639,10 @@ ul.clean li{margin:4px 0}
       <div class="grid" style="align-content:start">
         <div class="card flat" style="border:1px solid var(--line)">
           <div class="row between">
-            <h4 style="margin:0"><span data-o="years">5</span> 年累計省下電費</h4>
+            <h4 style="margin:0"><span data-o="years">5</span> 年累計電費差額</h4>
             <b class="num c-sage" style="font-size:22px">NT$ <span data-o="totalCost">0</span></b>
           </div>
-          <p class="small muted" style="margin:4px 0 12px">累計少用 <span class="num" data-o="kwhTotal">0</span> 度 · 減碳 <span class="num" data-o="co2Total">0</span> kg</p>
+          <p class="small muted" style="margin:4px 0 12px">累計用電差額 <span class="num" data-o="kwhTotal">0</span> 度 · 碳排差額 <span class="num" data-o="co2Total">0</span> kg</p>
           <div class="cols" id="cumCols"></div>
           <div class="cols-x" id="cumX"></div>
         </div>
@@ -607,7 +650,7 @@ ul.clean li{margin:4px 0}
         <div class="card flat" style="border:1px solid var(--line);margin-top:14px">
           <div class="row between" style="margin-bottom:10px">
             <h4 style="margin:0">全年用電與電費結構對比</h4>
-            <span class="pill"><span class="dot" style="background:var(--sage)"></span>省 <span class="num" data-o="rate">0%</span></span>
+            <span class="pill"><span class="dot" style="background:var(--sage)"></span>用電減幅 <span class="num" data-o="rate">0%</span></span>
           </div>
           <div class="hbar">
             <div class="meta"><b><span class="dot" style="background:var(--rose)"></span> 舊機・<span data-o="baseName">—</span></b><span class="num"><span data-o="baseKwh">0</span> 度 · NT$ <span data-o="baseCost">0</span></span></div>
@@ -627,33 +670,33 @@ ul.clean li{margin:4px 0}
       <span>📌</span> 數據來源依據與推測計算免責聲明
     </div>
     <ul class="clean small" style="margin:0;padding-left:18px;color:var(--ink-2)">
-      <li><b>新機數據來源</b>：依據中華民國<b>經濟部能源署「節能標章」</b>（產品類別 32 影印機、33 印表機）官方核定公告之具備 A3 輸出能力機種，以客觀公開之標準化 110V/60Hz 實測數值（TEC，度/週）作為同一度量衡之評估基礎。</li>
-      <li><b>跨版本檢測標準演進</b>：現況舊機種多依早期國際能源之星 <b>[ES v2.0]</b> 歷史標準登錄，新機則依現行 <b>[節能標章]</b> 標準（門檻比國際基準加嚴 25%）。兩者在每日作業排程與睡眠權重存在演進差異，本試算提供跨世代換機效益之綜合推估；使用者亦可直接手動輸入貴公司現況實測度數進行客觀精算。</li>
-      <li><b>舊機基準與機齡推估</b>：依據台灣辦公設備租賃市場近 3～7 年主力雷射機種之歷史耗能基準與標準化假設，使用者亦可透過上方 A/B 卡片或參數滑桿自訂微調。</li>
-      <li><b>推測計算僅供參考</b>：TEC（典型用電量，kWh/週）為模擬 168 小時工作與睡眠模式之標準化實驗室測算值。實際年耗電度數與節省金額會因<b>企業實際印量多寡、設備休眠設定、電價計費級距與操作習慣</b>而有所不同。</li>
-      <li><b>免責與法律聲明</b>：本網站所有試算數值、節電率、金額與減碳成效<b>均為數據模型推估之理論模擬參考值，僅供設備選型、節能規劃與 ESG 提案初步評估參考</b>。本工具非屬設備原廠效能保證或電費節省承諾，亦不得作為契約驗收、求償、商業合約擔保或法律訴訟之依據。實際採購規格與費用請以原廠合約及台電電費單為準。</li>
+      <li id="sourcePolicy"><b>資料採用順序</b>：優先採用經濟部能源署（原能源局）可核對的機型實測 TEC；查無可用實測欄位時，才採用 ENERGY STAR 的個別認證紀錄。尚未核實或手動輸入的數值僅標示為人工情境。</li>
+      <li><b>比較條件</b>：取得節能標章不代表使用同一測試版本。請核對每筆 TEC 的測試方法、電壓、頻率與列印速度；跨版本或條件未明時，差額僅供情境探索，不宜解讀為實際換機節電率。</li>
+      <li><b>機齡假設</b>：通用機齡預設是人工情境，並非特定機型的實測數據。自行量測時，請以同一期間與使用條件換算週用電量，並保留量測紀錄。</li>
+      <li><b>推測計算僅供參考</b>：TEC（典型用電量，kWh/週）為模擬 168 小時工作與睡眠模式之標準化實驗室測算值。實際年耗電度數與電費差額會因<b>企業實際印量多寡、設備休眠設定、電價計費級距與操作習慣</b>而有所不同。</li>
+      <li><b>免責與法律聲明</b>：本網站所有試算數值、用電減幅、金額與碳排差額<b>均為數據模型推估之理論模擬參考值，僅供設備選型、節能規劃與 ESG 提案初步評估參考</b>。本工具非屬設備原廠效能保證或電費節省承諾，亦不得作為契約驗收、求償、商業合約擔保或法律訴訟之依據。實際採購規格與費用請以原廠合約及台電電費單為準。</li>
       <li><b>延伸法規與專業分析</b>：欲深入了解測試流程與節能標章標準，可前往 03 頁或參考 <a href="https://www.eosasc.com.tw/mfp-power-consumption-energy-saving" target="_blank" rel="noopener" style="color:var(--blue);font-weight:600;text-decoration:underline">互盛官方專題・影印機耗電多少？TEC 怎麼看 ↗</a>。</li>
     </ul>
   </div>
 </section>
 
 <!-- =====================================================
-     P2 機型查詢比較（經濟部能源署節能標章 200 款 A3 認證機種）
+     P2 機型查詢與資料來源比較
      ===================================================== -->
 <section class="slide" id="s2">
   <div class="head">
     <div class="row between">
       <span class="kicker">02 · 機型查詢與比較</span>
-      <span class="status ok" id="apiStatus"><span class="dot"></span><span id="apiStatusText">已核定 經濟部能源署節能標章（200 款 A3 認證機種）</span></span>
+      <span class="status" id="apiStatus" role="status"><span class="dot"></span><span id="apiStatusText">正在載入機型資料與查核狀態</span></span>
     </div>
     <h2 class="title">查詢各品牌事務機 TEC，選出要比較的機型</h2>
-    <p class="lead">整合經濟部能源署節能標章官方核定資料庫與台灣各品牌官方規格手冊。</p>
+    <p class="lead">查詢可核對的實測紀錄與人工情境；比較前請先確認來源、測試條件及資料狀態。</p>
   </div>
 
   <!-- 來源特別提示說明 -->
   <div class="note" style="margin-bottom:14px;background:#FFF9F4;border-color:#F2DACB;color:#784523">
     <b>📌 數據來源特別說明：</b>
-    本系統全數採用中華民國<b>經濟部能源署「節能標章」</b>（類別 32 影印機 / 類別 33 印表機）官方核定之 <b>A3 落地型多功能複合機資料庫</b>。所有新機均依循台灣 110V/60Hz 實驗室標準程序實測取得，標示為 <b>[節能標章]</b>；資料庫同時收錄常見歷史舊機並標示 <b>[ES v2.0]</b> 或 <b>[ES v3.0]</b>，清楚揭露測試標準版本，提供同一度量衡與透明可溯源之客觀選型參考。
+    資料來源以<b>能源署（原能源局）的個別產品實測 TEC</b>優先；查無可用值時才採用 ENERGY STAR 紀錄。認證狀態、實測值與測試版本分別揭露。尚未核實的資料僅供人工情境，不能因列在清單中就視為已獲證或可直接跨版本比較。
   </div>
 
   <div class="card" style="margin-bottom:16px">
@@ -662,9 +705,9 @@ ul.clean li{margin:4px 0}
       <div class="field"><label for="fColor">色彩</label>
         <select id="fColor"><option value="">彩色＋黑白</option><option value="Color">彩色</option><option value="Monochrome">黑白</option></select></div>
       <div class="field"><label for="fSort">排序</label>
-        <select id="fSort"><option value="concept">彩機優先 · 舊到新（預設商務）</option><option value="tec">TEC 低→高（最省電）</option><option value="speed">速度 低→高</option><option value="brand">品牌</option></select></div>
-      <div class="field f-kw"><label for="fKw">型號關鍵字</label><input type="text" id="fKw" placeholder="例如 C8101、IM C2010、AM-C4000、Apeos"></div>
-      <div class="field"><button class="btn primary" id="btnSearch" style="width:100%">篩選標章機種</button></div>
+        <select id="fSort"><option value="concept">彩機優先 · 舊到新（預設商務）</option><option value="tec">TEC 低→高（須核對測試條件）</option><option value="speed">速度 低→高</option><option value="brand">品牌</option></select></div>
+      <div class="field f-kw"><label for="fKw">型號關鍵字</label><input type="text" id="fKw" placeholder="例如 IM C2010、AM-C4000、Apeos"></div>
+      <div class="field"><button class="btn primary" id="btnSearch" style="width:100%">篩選機型</button></div>
     </div>
     <div class="slider" style="margin:16px 0 0">
       <div class="top"><label for="fSpeed">速度上限（張/分鐘，ipm）</label>
@@ -677,12 +720,12 @@ ul.clean li{margin:4px 0}
   </div>
 
   <div class="row between" style="margin-bottom:8px">
-    <div class="small muted">共 <b class="num" id="resCount">0</b> 款 · <span id="resFilterInfo">Ricoh、Epson 排在最前面</span> · 標記「🏢官網規格」為官網撈取資料</div>
+    <div class="small muted">共 <b class="num" id="resCount">0</b> 款 · <span id="resFilterInfo">依目前篩選條件顯示</span> · 採用值與查核狀態請見個別來源</div>
     <div class="small muted">每台年用電 = TEC × 52</div>
   </div>
   <div class="tablewrap">
     <table>
-      <thead><tr><th>品牌</th><th>型號與資料來源</th><th>規格</th><th class="r">TEC<br>kWh/週</th><th class="r">年用電<br>度/台</th><th class="r">操作</th></tr></thead>
+      <thead><tr><th scope="col">品牌</th><th scope="col">型號與資料來源</th><th scope="col">規格</th><th scope="col" class="r">TEC<br>kWh/週</th><th scope="col" class="r">年用電<br>度/台</th><th scope="col" class="r">操作</th></tr></thead>
       <tbody id="resBody"></tbody>
     </table>
   </div>
@@ -708,14 +751,14 @@ ul.clean li{margin:4px 0}
   <div class="head">
     <span class="kicker">03 · TEC 測試方法與能源效率基準</span>
     <h2 class="title">TEC 測試程序與能源效率基準：事務機如何取得「節能標章」？</h2>
-    <p class="lead">經濟部能源署與國際能源之星（ENERGY STAR）以標準化 168 小時週期測試 TEC，並依「列印速度」制定階梯式能源效率基準限值。實測值不僅要低於基準線，更需比能源之星加嚴 20%~25%（市場前 15%~20% 頂尖機種），才能榮獲國家級「節能標章」。</p>
+    <p class="lead">TEC 是標準測試條件下的每週典型用電量。認證、合格門檻與實測 TEC 是不同資訊；比較前須核對每筆資料的測試方法與版本，不能只看節能標章或機齡。</p>
   </div>
 
   <!-- 互盛官方專題文章推薦橫幅 -->
   <div class="note" style="margin-bottom:16px;background:#F0F7F4;border-color:#C2DEC9;color:#284B31;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
     <div class="row" style="gap:8px">
       <span style="font-size:16px">📖</span>
-      <span><b>實務專題推薦：</b>想深入了解事務機實際耗電量與辦公室節能省電算式？推薦閱讀互盛官方專題文章。</span>
+      <span><b>延伸閱讀：</b>互盛的事務機用電專題可補充使用情境；實測數值仍以個別官方紀錄為準。</span>
     </div>
     <a href="https://www.eosasc.com.tw/mfp-power-consumption-energy-saving" target="_blank" rel="noopener" class="btn sm" style="background:#2D6A4F;color:#fff;border-color:#2D6A4F;text-decoration:none;font-weight:600">
       閱讀《影印機耗電多少？TEC 怎麼看》↗
@@ -730,11 +773,11 @@ ul.clean li{margin:4px 0}
     </div>
     <div class="card flat">
       <h3>② 什麼是「能源效率基準」？</h3>
-      <p class="small muted" style="margin:0">官方非設定單一固定門檻，而是依<b>列印速度（ipm）</b>及<b>彩色/黑白</b>訂出動態容許上限公式（TEC<sub>criteria</sub>）。速度越快雖能耗上限略高，但單位張數效率要求更為嚴苛。</p>
+      <p class="small muted" style="margin:0">能源效率基準是依設備類別、列印速度等條件訂定的合格上限。<b>基準值不是該機型的實測值</b>，本工具應採用可核對的「實測 TEC」欄位。</p>
     </div>
     <div class="card flat">
       <h3>③ 如何取得「節能標章」？</h3>
-      <p class="small muted" style="margin:0">符合能源之星代表市場前 25%；而<b>台灣節能標章要求更加嚴格 25%</b>（實測值 ≤ 75% × 基準線），只有前 15%~20% 頂尖省電機種才能獲證，並取得政府機關綠色採購優勢。</p>
+      <p class="small muted" style="margin:0">設備須符合適用類別及版本的能源效率基準，並完成認證程序。<b>取得標章不等於所有獲證機型採同一測試版本</b>；證號、有效期與實測條件仍須分別查核。</p>
     </div>
   </div>
 
@@ -743,9 +786,9 @@ ul.clean li{margin:4px 0}
     <div class="row between" style="margin-bottom:12px;border-bottom:1px solid var(--line-2);padding-bottom:10px">
       <div>
         <h3 style="margin:0;display:flex;align-items:center;gap:8px">
-          <span>⚖️</span> 測試標準演進對照：能源之星 2.0 vs 3.0 vs 台灣節能標章
+          <span>⚖️</span> 比較 TEC 前，先辨別來源與測試條件
         </h3>
-        <div class="small muted" style="margin-top:4px">不同世代與主管機關之檢驗規範、測試排程及公信門檻深度解析</div>
+        <div class="small muted" style="margin-top:4px">認證名稱不能代替實測方法；跨版本數值不可直接當成實際節電率。</div>
       </div>
       <span class="pill primary">跨版本公平性說明</span>
     </div>
@@ -754,50 +797,50 @@ ul.clean li{margin:4px 0}
       <table style="width:100%;font-size:12.5px;border-collapse:collapse;line-height:1.6">
         <thead>
           <tr style="background:#F8FAFC;border-bottom:2px solid #CBD5E1;text-align:left">
-            <th style="padding:10px 12px;width:18%">比較維度</th>
-            <th style="padding:10px 12px;width:27%;color:#475569">美國能源之星 2.0 (v2.0)</th>
-            <th style="padding:10px 12px;width:27%;color:#1E40AF">美國能源之星 3.0+ (v3.0/v3.2)</th>
-            <th style="padding:10px 12px;width:28%;color:#065F46;background:#F0FDF4">台灣經濟部能源署「節能標章」</th>
+            <th scope="col" style="padding:10px 12px;width:18%">查核項目</th>
+            <th scope="col" style="padding:10px 12px;width:27%;color:#475569">ENERGY STAR 2.0 紀錄</th>
+            <th scope="col" style="padding:10px 12px;width:27%;color:#1E40AF">ENERGY STAR 3.x 紀錄</th>
+            <th scope="col" style="padding:10px 12px;width:28%;color:#065F46;background:#F0FDF4">能源署節能標章紀錄</th>
           </tr>
         </thead>
         <tbody>
           <tr style="border-bottom:1px solid #E2E8F0">
-            <td style="padding:10px 12px"><b>實施年份與適用機型</b></td>
-            <td style="padding:10px 12px">2014～2019 年<br>（辦公室 5～8 年主力舊機多屬此類）</td>
-            <td style="padding:10px 12px">2020 年至今現行國際標準<br>（近代過渡與國際新機）</td>
-            <td style="padding:10px 12px;background:#F0FDF4"><b>現行國家標準</b><br>（全站 200 款新機 100% 採用）</td>
+            <td style="padding:10px 12px"><b>版本辨識</b></td>
+            <td style="padding:10px 12px">依個別紀錄的規範版本與測試文件判定，不能由機齡推定。</td>
+            <td style="padding:10px 12px">確認確切版本與測試方法，不把所有 3.x 紀錄混為相同條件。</td>
+            <td style="padding:10px 12px;background:#F0FDF4">查閱適用基準與產品實測欄位；獲證日期不代表測試版本。</td>
           </tr>
           <tr style="border-bottom:1px solid #E2E8F0">
             <td style="padding:10px 12px"><b>工作日列印排程設計</b></td>
-            <td style="padding:10px 12px">每日固定 <b>僅模擬 2 次作業</b>（2 jobs/day），其餘大部分計入睡眠。</td>
-            <td style="padding:10px 12px">依額定速度動態調整分批作業次數，更貼近現代企業短篇多次列印。</td>
-            <td style="padding:10px 12px;background:#F0FDF4">依國際標準化程序執行，並嚴密量測喚醒加熱與待機能耗。</td>
+            <td style="padding:10px 12px">作業次數、張數與睡眠時間依適用測試程序及設備速度決定。</td>
+            <td style="padding:10px 12px">須查明該版本的排程與計算公式；不可只用版本名稱推定差異。</td>
+            <td style="padding:10px 12px;background:#F0FDF4">以該類別適用基準引用的測試程序及實測紀錄為準。</td>
           </tr>
           <tr style="border-bottom:1px solid #E2E8F0">
             <td style="padding:10px 12px"><b>測試電壓與頻率</b></td>
-            <td style="padding:10px 12px">美規 115V / 歐規 230V / 日規 100V（依申報地區而異）</td>
-            <td style="padding:10px 12px">各國送測電壓不一（全球型錄常標註 230V 或 120V）</td>
-            <td style="padding:10px 12px;background:#F0FDF4"><b>唯一限定台灣市電 110V/60Hz</b>（實測 115V±1%），無電壓落差。</td>
+            <td style="padding:10px 12px">記錄電壓、頻率與地區。不同市場的同名機型不一定可直接比較。</td>
+            <td style="padding:10px 12px">確認電壓、頻率與型號尾碼；欄位缺漏時明確標為未知。</td>
+            <td style="padding:10px 12px;background:#F0FDF4">查核產品額定規格及測試條件，不將全站一概標為 110V/60Hz。</td>
           </tr>
           <tr style="border-bottom:1px solid #E2E8F0">
             <td style="padding:10px 12px"><b>節能合格門檻</b></td>
-            <td style="padding:10px 12px">前 25% 效率基準線（TEC ≤ TEC<sub>criteria</sub>）</td>
-            <td style="padding:10px 12px">更新基準公式，加嚴待機與網路模組能耗限值。</td>
-            <td style="padding:10px 12px;background:#F0FDF4"><b style="color:#047857">比能源之星再加嚴 20%~25%</b><br>（實測需 ≤ 75% 基準線，僅前 15%~20% 頂尖機種能獲證）</td>
+            <td style="padding:10px 12px">合格門檻與實測 TEC 分別記錄，不能互相替代。</td>
+            <td style="padding:10px 12px">使用個別機型的實測值，不以合格門檻估算其用電。</td>
+            <td style="padding:10px 12px;background:#F0FDF4">證書確認認證狀態；用電計算使用實測 TEC，不使用能源效率基準值。</td>
           </tr>
           <tr>
             <td style="padding:10px 12px"><b>換機比較公平性分析</b></td>
             <td style="padding:10px 12px">
               <span style="display:inline-block;padding:2px 6px;border-radius:4px;background:#F1F5F9;color:#475569;font-size:11px;font-weight:700">[ES v2.0] 舊制</span><br>
-              排程假設不同，直接相減存在結構性差異，適合評估跨世代汰換之綜合節能趨勢。
+              先核對另一機型的測試方法；條件不同時只能列為情境，不作節電率證明。
             </td>
             <td style="padding:10px 12px">
               <span style="display:inline-block;padding:2px 6px;border-radius:4px;background:#EFF6FF;color:#1D4ED8;font-size:11px;font-weight:700">[ES v3.0] 國際新制</span><br>
-              反映近代機種測試值，但需注意海外型錄可能混用 230V 歐洲電壓測試數據。
+              同版本也須核對速度、電壓與使用功能；資料不足時保留比較限制。
             </td>
             <td style="padding:10px 12px;background:#F0FDF4">
-              <span style="display:inline-block;padding:2px 6px;border-radius:4px;background:#DCFCE7;color:#166534;font-size:11px;font-weight:700">[節能標章] 同一度量衡</span><br>
-              <b>全品牌站在同一裁判標準</b>，具備官方證書字號可供查證，台灣採購最客觀公正。
+              <span style="display:inline-block;padding:2px 6px;border-radius:4px;background:#DCFCE7;color:#166534;font-size:11px;font-weight:700">[節能標章] 認證資訊</span><br>
+              <b>認證不等於同測試版本</b>。保留產品紀錄連結與實測欄位，逐筆查核可比性。
             </td>
           </tr>
         </tbody>
@@ -805,20 +848,24 @@ ul.clean li{margin:4px 0}
     </div>
   </div>
 
+  <div class="comparison-notice" style="margin-bottom:20px">
+    <b>同一型號可能出現不同 TEC：</b>能源署的 Ricoh IM C2010 有 <a href="https://ea03.moeaea.gov.tw/e0410/01/purchasing/product/item.aspx?itemp0=62856" target="_blank" rel="noopener">1120711續1：1.3 kWh/週</a>與 <a href="https://ea03.moeaea.gov.tw/e0410/01/purchasing/product/item.aspx?itemp0=75066" target="_blank" rel="noopener">1150300：0.7 kWh/週</a>兩筆證書紀錄。它們與其他來源的 0.20 不能因型號相同就直接互換；須依設備版本、證書與測試條件選擇。本工具保留各筆紀錄，不自動挑選最低值。
+  </div>
+
   <!-- 168 小時測試週期與 24 小時時間軸 -->
   <div class="card" style="margin-bottom:20px">
-    <div class="row between"><h3 style="margin:0">一週標準測試模型（168 小時週期）</h3><span class="small muted num">TEC ＝ 5 × E<sub>工作日</sub> ＋ 2 × E<sub>週末睡眠</sub></span></div>
+    <div class="row between"><h3 style="margin:0">一週用電組成示意（168 小時）</h3><span class="small muted">示意圖不代替任一版本的正式測試程序</span></div>
     <div class="week" style="margin-top:12px">
       <div class="day work"><b>一</b>上班日</div><div class="day work"><b>二</b>上班日</div><div class="day work"><b>三</b>上班日</div><div class="day work"><b>四</b>上班日</div><div class="day work"><b>五</b>上班日</div>
       <div class="day off"><b>六</b>週末睡眠</div><div class="day off"><b>日</b>週末睡眠</div>
     </div>
-    <p class="small muted" style="margin:14px 0 0">標準上班日 24 小時之 4 大耗電狀態拆解（依典型 20~25 ipm 範例繪製）：</p>
+    <p class="small muted" style="margin:14px 0 0">以一個工作日示意四種耗電狀態；各區段長度為教學假設，並非所選機型的實測時間：</p>
     <div class="timeline" id="dayTimeline"></div>
     <div class="legend">
-      <span><span class="dot" style="background:var(--rose)"></span>① 首件喚醒預熱（雷射定影加熱至 180°C~200°C 耗能劇烈；免加熱噴墨零預熱）</span>
+      <span><span class="dot" style="background:var(--rose)"></span>① 喚醒與首件作業</span>
       <span><span class="dot" style="background:var(--sand)"></span>② 分批定額列印作業（依機器速度公式排定列印批次）</span>
-      <span><span class="dot" style="background:var(--blue)"></span>③ 收尾待機過渡（作業完成至進入睡眠模式之冷卻緩衝）</span>
-      <span><span class="dot" style="background:var(--sage)"></span>④ 深度省電睡眠（夜間約 14~16 小時及整週末 48 小時維持低功率）</span>
+      <span><span class="dot" style="background:var(--blue)"></span>③ 作業完成後的待機過渡</span>
+      <span><span class="dot" style="background:var(--sage)"></span>④ 睡眠與非工作時間</span>
     </div>
   </div>
 
@@ -830,7 +877,7 @@ ul.clean li{margin:4px 0}
         <b style="font-size:15px">① 首件喚醒預熱（Warm-up & First Job）</b>
       </div>
       <p class="small muted" style="margin:0">
-        雷射事務機必須將內部加熱定影滾筒由待機常溫急速加熱至 180°C~200°C 高溫以融化碳粉，瞬間功率可達 1,200W~1,500W；而免加熱微噴噴墨技術因不需熱熔碳粉，開機到首張列印幾近零預熱功耗。
+        設備由睡眠或待機進入列印，會發生喚醒、處理資料與首張輸出的耗電。雷射定影與噴墨機構的運作不同，實際功率與時間仍須查閱該機型資料。
       </p>
     </div>
 
@@ -840,7 +887,7 @@ ul.clean li{margin:4px 0}
         <b style="font-size:15px">② 分批定額列印作業（Printing Jobs）</b>
       </div>
       <p class="small muted" style="margin:0">
-        依機器額定速度公式排定列印批次與張數。雷射機種在連續列印時定影器需全程持續高溫加熱；免加熱噴墨僅驅動壓電噴頭與進紙馬達，列印中功耗僅約數十瓦特。
+        正式測試依適用程序安排列印批次與張數。比較時需確認額定速度、彩色或黑白、紙張規格及使用功能，避免不同工作量被誤當成設備效率差異。
       </p>
     </div>
 
@@ -850,7 +897,7 @@ ul.clean li{margin:4px 0}
         <b style="font-size:15px">③ 收尾待機過渡（Finishing & Standby）</b>
       </div>
       <p class="small muted" style="margin:0">
-        作業列印完成後至進入深度睡眠模式前的散熱冷卻與預備緩衝時間（通常約 15 分鐘），此期間風扇與控制電路維持運作，等待下一次可能之列印工作。
+        列印完成後，設備可能停留在就緒或待機狀態，再進入睡眠。這段時間與耗電會受設備預設值、使用者設定和測試程序影響，不能一律假定為 15 分鐘。
       </p>
     </div>
 
@@ -860,7 +907,7 @@ ul.clean li{margin:4px 0}
         <b style="font-size:15px">④ 深度省電睡眠（Deep Sleep Mode）</b>
       </div>
       <p class="small muted" style="margin:0">
-        夜間（約 14~16 小時）及整個週末（48 小時）處於睡眠狀態，僅保留網路喚醒接收模組供電（低於 0.5W~1.5W），佔全週 168 小時中超過 75% 的時間。
+        非工作時間可能包含睡眠、就緒或關機狀態。網路功能、喚醒需求與管理設定會影響實際功率；本圖的時間比例不代表所有設備或辦公室。
       </p>
     </div>
   </div>
@@ -869,25 +916,23 @@ ul.clean li{margin:4px 0}
   <div class="card">
     <div class="row between" style="margin-bottom:12px;border-bottom:1px solid var(--line-2);padding-bottom:10px">
       <h3 style="margin:0">資料來源與評估依據說明</h3>
-      <span class="pill primary">官方核定依據</span>
+      <span class="pill primary">逐筆來源查核</span>
     </div>
     <ul class="clean small">
-      <li><b>官方規格與實測資料庫</b>：全站新機數據依據各品牌原廠最新公告之 110V/60Hz 官方規格（符合國際能源之星 ENERGY STAR v3.0 / v3.2 規範與中華民國經濟部能源署節能標章核定實測標準）；現況舊機數據則依據歷年原廠型錄及歷史能源之星（ENERGY STAR v2.0）公告規格登錄。</li>
-      <li><b>同世代比較 vs 跨世代汰舊真相</b>：
-        <br>① <b>同世代新機並駕齊驅</b>：現代新式彩色雷射複合機（得益於低溫定影碳粉與先進休眠晶片）與微噴噴墨複合機，於最新規範下的 TEC 實測值皆處於 <b>0.20 ～ 0.35 kWh/週</b> 的頂尖節能梯隊，同級相較能耗差異極微。
-        <br>② <b>跨世代汰換效益顯著</b>：辦公室換機高達 <b>75% ～ 90% 的龐大節電減碳效益</b>，本質在於<b>「以新世代高效機種（TEC 0.20~0.35）全面汰換 5~10 年前之高耗能老舊設備（TEC 1.20~2.50 kWh/週）」</b>。本工具即為量化此跨世代升級紅利而設計。</li>
+      <li><b>來源優先順序</b>：能源署（原能源局）的個別產品實測 TEC 優先；查無可用值才採用 ENERGY STAR 個別認證紀錄。品牌首頁及搜尋入口只能協助查找，不構成某個 TEC 數字的直接證據。</li>
+      <li><b>人工情境與正式紀錄</b>：未核實、通用機齡或手動調整數值都屬人工情境。不得將合格門檻當作實測值，也不從機型新舊或列印技術預先假定固定節電幅度。</li>
       <li><b>耗電與費用換算式</b>：依業界能源評估實務標準換算：年用電度數 ＝ TEC（度/週）× 52 週 × 設備台數；年電費 ＝ 年用電度數 × 平均電價（預設 NT$4.0/度，可依貴公司電費單調校）。</li>
-      <li><b>碳排放計算係數</b>：採用經濟部能源署最新公告之 114 年度產業電力排碳係數 0.466 kg CO₂e/度（公用售電業整體平均為 0.467，範疇二 Scope 2 外購電力適用）。</li>
-      <li><b>實際使用注意事項</b>：TEC 為標準化作業流程之測試值，實際辦公室用電會受實際印量、雙面列印率、休眠時間設定等使用情境影響，本工具適合提供企業作為換機節能效益評估與預算編列之客觀依據。</li>
+      <li><b>碳排放計算係數</b>：以畫面設定的電力排碳係數計算用電相關碳排差額。請依評估年度、供電情況與盤查用途選用公告係數；自行調整的數值不可標示為官方公告值。</li>
+      <li><b>實際使用注意事項</b>：TEC 不是現場電表讀值。實際用電受印量、雙面列印、休眠時間與設定影響；結果只供初步情境評估，不包含購機、租賃、耗材與維護費用，也不是完整生命週期碳足跡。</li>
     </ul>
   </div>
     <!-- 各品牌原廠官方規格與能源認證查驗專區 -->
   <div class="card" style="margin-top:16px">
     <div class="row between" style="margin-bottom:12px;border-bottom:1px solid var(--line-2);padding-bottom:10px">
       <h3 style="margin:0">各品牌原廠官方規格與能源認證查驗專區</h3>
-      <span class="pill" style="background:var(--sage-bg);color:#284B31;border-color:#C2DEC9;font-weight:700">100% 官方真實連結</span>
+      <span class="pill" style="background:var(--sage-bg);color:#284B31;border-color:#C2DEC9;font-weight:700">查核入口</span>
     </div>
-    <p class="small muted" style="margin-bottom:12px">全站所有數據均有明確出處。點擊下方各原廠官方入口，可直接查閱各品牌商用複合機之最新型錄、規格表與能源之星/節能標章官方公告：</p>
+    <p class="small muted" style="margin-bottom:12px">下列入口可用來尋找型錄與認證紀錄。各品牌專區與專題文章不等同於個別機型的實測證據，採用數值時仍應保留產品頁、欄位與查核日期。</p>
     <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));gap:10px;font-size:12.5px">
       <a href="https://www.ricoh.com.tw/products/office-solutions" target="_blank" rel="noopener" style="padding:8px 12px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;color:#0F172A;text-decoration:none;display:flex;justify-content:space-between;align-items:center">
         <span><b>Ricoh 理光</b> · 台灣官方專區</span><span style="color:#2563EB">↗</span>
@@ -927,7 +972,7 @@ ul.clean li{margin:4px 0}
       </a>
     </div>
   </div>
-  <p class="small muted" style="margin-top:16px">法規依據：經濟部能源署「影印機節能標章能源效率基準與標示方法」與「印表機節能標章能源效率基準與標示方法」，測試條件以 A4 80g/m² 紙張、115V±1% 電壓與標準週期程序進行。</p>
+  <p class="small muted" style="margin-top:16px">適用文件包含能源署各產品類別的能源效率基準與標示方法，以及 ENERGY STAR 對應版本的測試程序。實際適用版本、測試電壓與其他條件，以個別產品紀錄及引用文件為準。</p>
 </section>
 
 <div class="pager">
@@ -939,13 +984,13 @@ ul.clean li{margin:4px 0}
 
 <footer>
   <div class="bar" style="line-height:1.6;font-size:11.5px">
-    <span><b>事務機 節能計算器</b> · 數據來源：各大品牌官方規格實測資料庫（符合 ENERGY STAR v3.0 / 經濟部能源署節能標章 110V/60Hz 實測標準）</span>
+    <span><b>事務機 節能計算器</b> · 來源順序：能源署實測 TEC → ENERGY STAR 個別紀錄；未核實數值僅供人工情境。認證狀態與測試條件請逐筆查核。</span>
     <span>【免責聲明】本工具所有推算數據均為理論模型推估之參考值，僅供設備選型與節能規劃初步評估，非屬設備效能承諾或電費保證，實際規格與費用請以原廠合約及台電電費單為準。</span>
   </div>
 </footer>
 
 <!-- 匯出 PDF 報告與摘要彈窗 -->
-<div id="exportModal" class="modal-mask hide" style="position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(15,23,42,0.65);z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(3px)">
+<div id="exportModal" class="modal-mask hide" role="dialog" aria-modal="true" aria-labelledby="exportModalTitle" aria-hidden="true" tabindex="-1" inert style="position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(15,23,42,0.65);z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(3px)">
   <div style="background:#fff;border-radius:14px;width:100%;max-width:820px;box-shadow:0 20px 48px rgba(0,0,0,0.3);display:flex;flex-direction:column;max-height:92vh;overflow:hidden">
     
     <!-- 彈窗頂部列 -->
@@ -953,7 +998,7 @@ ul.clean li{margin:4px 0}
       <div style="display:flex;align-items:center;gap:10px">
         <span style="font-size:20px">📄</span>
         <div>
-          <b style="font-size:16px;color:#0F172A">節能效益評估報告</b>
+          <b id="exportModalTitle" style="font-size:16px;color:#0F172A">換機情境評估報告</b>
         </div>
       </div>
       <div class="pdf-modal-actions" style="display:flex;align-items:center;gap:8px">
@@ -966,29 +1011,28 @@ ul.clean li{margin:4px 0}
         <button type="button" id="btnCopyText" class="btn sm" style="display:inline-flex;align-items:center;gap:5px;padding:7px 12px;background:#fff;border:1.5px solid #CBD5E1;color:#1E293B;font-weight:600">
           <span>📋</span> 複製文字
         </button>
-        <button type="button" id="btnCloseExport" class="btn sm" style="border:none;background:transparent;font-size:20px;cursor:pointer;color:#64748B;padding:0 6px;line-height:1">✕</button>
+        <button type="button" id="btnCloseExport" class="btn sm" aria-label="關閉報告預覽" style="border:none;background:transparent;font-size:20px;cursor:pointer;color:#64748B;padding:0 6px;line-height:1">✕</button>
       </div>
     </div>
 
     <!-- 提示通知 -->
-    <div class="pdf-modal-hint" id="exportNotify" style="background:#F0FDF4;border-bottom:1px solid #BBF7D0;color:#166534;font-size:12px;padding:7px 20px;display:none;align-items:center;justify-content:space-between">
+    <div class="pdf-modal-hint" id="exportNotify" role="status" aria-live="polite" style="background:#F0FDF4;border-bottom:1px solid #BBF7D0;color:#166534;font-size:12px;padding:7px 20px;display:none;align-items:center;justify-content:space-between">
       <span id="exportNotifyText">✓ 報告摘要已複製至剪貼簿！</span>
-      <span style="font-size:11px;color:#15803D">可直接 Ctrl+V 貼上至 LINE 或 Email</span>
     </div>
 
     <!-- 報告預覽卷軸區 -->
-    <div style="padding:20px;overflow-y:auto;flex:1;background:#F1F5F9">
+    <div class="pdf-modal-scroll" style="padding:20px;overflow-y:auto;flex:1;background:#F1F5F9">
       <div id="pdfReportPaper" class="pdf-paper">
         
         <!-- Report Header -->
         <div class="pdf-header">
           <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px">
             <div>
-              <h1 style="font-size:21px;margin:0;color:#0F172A;font-weight:800;letter-spacing:0.5px">事務機 節能效益與減碳評估報告書</h1>
+              <h1 style="font-size:21px;margin:0;color:#0F172A;font-weight:800;letter-spacing:0.5px">事務機 換機用電與費用情境報告書</h1>
             </div>
             <div style="text-align:right">
               <span class="pill" style="background:#EBF5EE;color:#284B31;border:1px solid #C2DEC9;font-weight:700;padding:3px 9px;font-size:11.5px;display:inline-block">
-                經濟部能源署節能標章標準
+                TEC 情境推估 · 來源逐筆揭露
               </span>
               <div style="font-size:11.5px;color:#64748B;margin-top:5px" id="pdfReportDate">報告日期：2026-11-02</div>
             </div>
@@ -998,8 +1042,8 @@ ul.clean li{margin:4px 0}
         <!-- 商業提案專案欄（可直接點擊修改受文客戶名稱） -->
         <div style="display:flex;justify-content:space-between;align-items:center;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:8px 14px;font-size:12.5px;color:#334155;margin-bottom:14px;flex-wrap:wrap;gap:10px">
           <div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">
-            <span>受文對象：<span id="pdfClientName" contenteditable="true" style="border-bottom:1.5px solid #2563EB;padding:0 4px;font-weight:700;color:#0F172A;outline:none" title="點擊可直接修改客戶名稱">貴公司</span></span>
-            <span>專案項目：<span id="pdfProjectName" contenteditable="true" style="border-bottom:1.5px solid #2563EB;padding:0 4px;font-weight:700;color:#0F172A;outline:none" title="點擊可直接修改專案名稱">辦公室事務機換機節能規劃</span></span>
+            <span>受文對象：<span id="pdfClientName" contenteditable="true" role="textbox" aria-label="受文對象" aria-multiline="false" style="border-bottom:1.5px solid #2563EB;padding:0 4px;font-weight:700;color:#0F172A" title="點擊可直接修改客戶名稱">貴公司</span></span>
+            <span>專案項目：<span id="pdfProjectName" contenteditable="true" role="textbox" aria-label="專案項目" aria-multiline="false" style="border-bottom:1.5px solid #2563EB;padding:0 4px;font-weight:700;color:#0F172A" title="點擊可直接修改專案名稱">辦公室事務機換機情境</span></span>
           </div>
           <div style="font-size:11.5px;color:#64748B;font-family:var(--mono)">
             文件編號：<span id="pdfDocNo">RPT-20261102</span>
@@ -1010,29 +1054,31 @@ ul.clean li{margin:4px 0}
         <div class="pdf-params-bar">
           <div><b>試算案型：</b><span id="pdfParamMode">單機試算</span></div>
           <div><b>評估年限：</b><span id="pdfParamYears">5</span> 年</div>
-          <div><b>台電平均電價：</b>NT$ <span id="pdfParamPrice">4.0</span> / 度</div>
-          <div><b>電力排碳係數：</b><span id="pdfParamCf">0.466</span> kg CO₂e/度 (114年公告)</div>
+          <div><b>假設平均電價：</b>NT$ <span id="pdfParamPrice">4.0</span> / 度</div>
+          <div><b>電力排碳係數：</b><span id="pdfParamCf">0.466</span> kg CO₂e/度（可調整）</div>
         </div>
 
-        <!-- 核心效益指標卡 (KPIs) -->
+        <div id="pdfComparisonNotice" class="comparison-notice">差額＝舊機－新機：正值表示節省或減少，負值表示增加。測試條件不同或來源未核實時，僅供人工情境參考。</div>
+
+        <!-- 核心差額指標卡 (KPIs) -->
         <div class="pdf-kpis">
           <div class="pdf-kpi">
-            <div class="k-title">每年少用電量</div>
+            <div class="k-title">每年用電差額</div>
             <div class="k-num" style="color:#D97706" id="pdfKpiKwh">0 度</div>
-            <div class="k-sub" id="pdfKpiRate">節電率 0%</div>
+            <div class="k-sub" id="pdfKpiRate">用電減幅 0%</div>
           </div>
           <div class="pdf-kpi">
-            <div class="k-title">每年省下電費</div>
+            <div class="k-title">每年電費差額</div>
             <div class="k-num" style="color:#059669" id="pdfKpiCostYr">NT$ 0</div>
-            <div class="k-sub">平均每台省 NT$ <span id="pdfKpiCostUnit">0</span></div>
+            <div class="k-sub">平均每台差額 NT$ <span id="pdfKpiCostUnit">0</span></div>
           </div>
           <div class="pdf-kpi hl">
-            <div class="k-title"><span id="pdfKpiYearsTitle">5</span> 年累計節省電費</div>
+            <div class="k-title"><span id="pdfKpiYearsTitle">5</span> 年累計電費差額</div>
             <div class="k-num" style="color:#047857;font-size:21px" id="pdfKpiTotalCost">NT$ 0</div>
-            <div class="k-sub">累計少用 <span id="pdfKpiKwhTotal">0</span> 度</div>
+            <div class="k-sub">累計用電差額 <span id="pdfKpiKwhTotal">0</span> 度</div>
           </div>
           <div class="pdf-kpi">
-            <div class="k-title">每年減少碳排</div>
+            <div class="k-title">每年碳排差額</div>
             <div class="k-num" style="color:#0D9488" id="pdfKpiCo2">0 kg</div>
             <div class="k-sub"><span id="pdfKpiYearsCo2">5</span> 年累計 <span id="pdfKpiCo2Total">0</span> kg</div>
           </div>
@@ -1040,30 +1086,32 @@ ul.clean li{margin:4px 0}
 
         <!-- 設備規格與耗電對照表 -->
         <div class="pdf-section-title">一、設備規格與用電明細對照</div>
+        <div class="pdf-table-scroll" role="region" aria-label="設備規格與用電明細，可橫向捲動" tabindex="0">
         <table class="pdf-table">
           <thead>
             <tr>
-              <th style="width:16%">方案組別</th>
-              <th style="width:40%">機型規格與官方認證</th>
-              <th style="width:14%;text-align:right">單機 TEC</th>
-              <th style="width:12%;text-align:center">台數</th>
-              <th style="width:18%;text-align:right">全年耗電度數</th>
+              <th scope="col" style="width:16%">方案組別</th>
+              <th scope="col" style="width:40%">機型規格與資料狀態</th>
+              <th scope="col" style="width:14%;text-align:right">單機 TEC</th>
+              <th scope="col" style="width:12%;text-align:center">台數</th>
+              <th scope="col" style="width:18%;text-align:right">全年耗電度數</th>
             </tr>
           </thead>
           <tbody id="pdfTableBody">
             <!-- 動態生成設備列表 -->
           </tbody>
         </table>
+        </div>
 
         <!-- 圖表分析區 -->
-        <div class="pdf-section-title">二、多年期累計效益圖表分析</div>
+        <div class="pdf-section-title">二、多年期累計差額圖表</div>
         <div class="pdf-charts-grid">
           <div class="pdf-chart-card">
-            <div class="pdf-chart-title"><span id="pdfChartYears">5</span> 年累計節省電費趨勢（NT$）</div>
+            <div class="pdf-chart-title"><span id="pdfChartYears">5</span> 年累計電費差額趨勢（NT$）</div>
             <div id="pdfChartCumSvg"></div>
           </div>
           <div class="pdf-chart-card">
-            <div class="pdf-chart-title">全年用電度數結構佔比</div>
+            <div class="pdf-chart-title">全年用電度數對照</div>
             <div id="pdfChartHbarSvg" style="padding-top:10px"></div>
           </div>
         </div>
@@ -1071,17 +1119,17 @@ ul.clean li{margin:4px 0}
         <!-- 法規與免責宣告 -->
         <div class="pdf-footer-note">
           <div style="font-weight:700;color:#374151;margin-bottom:4px">三、評估基準與數據來源說明：</div>
-          <div>1. <b>新機測試數據</b>：依據各品牌原廠最新公告之 110V/60Hz 官方規格（符合 ENERGY STAR v3.0 / 經濟部能源署節能標章實測標準，普遍達到 0.20~0.35 kWh/週之頂尖能效）。</div>
-          <div>2. <b>跨世代汰換說明</b>：辦公室節能 75%~90% 的龐大效益來自以新世代機種（TEC 0.20~0.35）全面汰換 5~10 年前之舊型設備（TEC 1.20~2.50）；跨世代數據對比旨在呈現設備升級之綜合能效紅利推估。</div>
-          <div>3. <b>碳排放計算係數</b>：依據經濟部能源署最新公布之 114 年度產業電力排碳係數 <b>0.466 kg CO₂e/度</b>（公用售電業外購電力適用）。</div>
-          <div>4. <b>免責與推估聲明</b>：本試算結果為標準化條件推估之理論模擬參考值，非屬設備效能承諾或電費保證。實際節電效益將受各企業實際印量、休眠設定及電費級距影響，請以原廠合約及台電電費單為準。</div>
+          <div id="pdfSourceNotes">各機型來源、原始實測欄位與查核狀態將依目前情境列出。</div>
+          <div><b>資料政策</b>：能源署（原能源局）實測 TEC 優先，查無可用值才採 ENERGY STAR 個別紀錄；未核實與手動調整值僅供人工情境。認證不代表同一測試版本。</div>
+          <div><b>係數與範圍</b>：電價及電力排碳係數依上方參數計算；本報告僅估算用電相關差額，不包含設備、租賃、耗材、維護費或完整生命週期碳排。</div>
+          <div><b>推估限制</b>：實際用電受印量、休眠設定、電價與操作習慣影響。條件不同或未核實的 TEC 比較不構成節電率證明、設備效能承諾或電費保證。</div>
         </div>
 
       </div>
     </div>
 
     <!-- 底部操作列 -->
-    <div style="padding:12px 20px;border-top:1px solid #E2E8F0;display:flex;justify-content:space-between;align-items:center;background:#F8FAFC">
+    <div class="pdf-modal-footer" style="padding:12px 20px;border-top:1px solid #E2E8F0;display:flex;justify-content:space-between;align-items:center;background:#F8FAFC">
       <span style="font-size:12px;color:#64748B">A4 正式報告版面 · 支援一鍵產生高解析 PDF 或直接列印</span>
       <div style="display:flex;gap:8px">
         <button type="button" id="btnDownloadPdf2" class="btn sm primary" style="background:#1E3A5F;border-color:#142842;font-weight:700">下載 PDF 報告</button>
@@ -1094,2172 +1142,13 @@ ul.clean li{margin:4px 0}
 
 <!-- 審計抽屜 -->
 <div class="drawer-mask" id="mask"></div>
-<aside class="drawer" id="drawer" aria-hidden="true">
-  <div class="d-head"><div><b>算式與假設</b><div class="small muted">用目前的參數即時計算</div></div><button class="btn sm" id="dClose">關閉</button></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" aria-hidden="true" tabindex="-1" inert>
+  <div class="d-head"><div><b id="drawerTitle">算式與假設</b><div class="small muted">用目前模式與參數計算</div></div><button class="btn sm" id="dClose">關閉</button></div>
   <div class="d-body" id="dBody"></div>
 </aside>
 
-<script>
-/* =========================================================
-   1. 機型資料庫（官方 API + 各品牌台灣官網撈取補全）
-      欄位：品牌 b、型號 m、色彩 c(C/M)、速度 s(ipm)、技術 t、TEC kWh/週、來源說明 src
-   ========================================================= */
-/* --- SNAPSHOT START --- */
-const SNAPSHOT_DATE = '2026-11-02';
-const SNAP = [
-// ---------- Epson (經濟部能源署節能標章 A3 核定 14 款) ----------
-  ['Epson','WF-C869R','C',24,'HPIJ',0.35,'Epson 官方手冊實測 / 節能標章認證'],
-  ['Epson','EM-C8100','C',25,'HPIJ',0.23,'Epson 官方手冊實測（0.23 kWh/週）/ 節能標章認證'],
-  ['Epson','EM-C8101','C',26,'HPIJ',0.23,'Epson 官方手冊實測（0.23 kWh/週）/ 節能標章認證'],
-  ['Epson','AM-C4000','C',40,'HPIJ',0.22,'Epson 官方手冊實測（0.21~0.22 kWh/週）/ 節能標章認證'],
-  ['Epson','AM-C5000','C',50,'HPIJ',0.23,'Epson 官方手冊實測（0.23 kWh/週）/ 節能標章認證'],
-  ['Epson','AM-C6000','C',60,'HPIJ',0.25,'Epson 官方手冊實測（0.25 kWh/週）/ 節能標章認證'],
-  ['Epson','WF-C20600','C',60,'HPIJ',0.90,'Epson 官方規格 / 節能標章認證'],
-  ['Epson','WF-C20750','C',75,'HPIJ',1.40,'Epson 官方規格 / 節能標章認證'],
-  ['Epson','WF-C20590','C',100,'HPIJ',1.20,'Epson 官方規格 / 節能標章認證'],
-  ['Epson','WF-C21000','C',100,'HPIJ',3.40,'Epson 官方規格 / 節能標章認證'],
-  ['Epson','AL-M7150DN','M',35,'EP',1.70,'Epson 官方規格 / 節能標章認證'],
-  ['Epson','AL-M8250DN','M',45,'EP',2.40,'Epson 官方規格 / 節能標章認證'],
-  ['Epson','AM-M5500','M',55,'HPIJ',0.24,'Epson 官方手冊實測 / 節能標章認證'],
-  ['Epson','WF-M21000','M',100,'HPIJ',1.30,'Epson 官方規格 / 節能標章認證'],
-  // ---------- Ricoh (經濟部能源署節能標章 A3 核定 20 款) ----------
-  ['Ricoh','IM C2010','C',20,'EP',0.20,'經濟部能源署節能標章認證（互盛1120711/理光1130042・ENERGY STAR v3.0 實測）'],
-  ['Ricoh','IM C2510','C',25,'EP',0.25,'經濟部能源署節能標章認證 / ENERGY STAR v3.0 官方實測'],
-  ['Ricoh','IM C3010','C',30,'EP',0.30,'經濟部能源署節能標章認證 / ENERGY STAR v3.0 官方實測'],
-  ['Ricoh','IM C3510','C',35,'EP',0.35,'經濟部能源署節能標章認證 / ENERGY STAR v3.0 官方實測'],
-  ['Ricoh','IM C4510','C',45,'EP',0.45,'經濟部能源署節能標章認證 / ENERGY STAR v3.0 官方實測'],
-  ['Ricoh','IM C6010','C',60,'EP',0.58,'經濟部能源署節能標章認證 / ENERGY STAR v3.0 官方實測'],
-  ['Ricoh','IM 2500','M',25,'EP',0.28,'經濟部能源署節能標章認證 / ENERGY STAR v3.0 官方實測'],
-  ['Ricoh','IM 2510','M',25,'EP',0.28,'經濟部能源署節能標章認證 / ENERGY STAR v3.0 官方實測'],
-  ['Ricoh','IM 3000','M',30,'EP',0.31,'經濟部能源署節能標章認證 / ENERGY STAR v3.0 官方實測'],
-  ['Ricoh','IM 3510','M',35,'EP',0.38,'經濟部能源署節能標章認證 / ENERGY STAR v3.0 官方實測'],
-  ['Ricoh','IM 3500','M',35,'EP',0.38,'經濟部能源署節能標章認證 / ENERGY STAR v3.0 官方實測'],
-  ['Ricoh','IM 4000','M',40,'EP',0.41,'經濟部能源署節能標章認證 / ENERGY STAR v3.0 官方實測'],
-  ['Ricoh','IM 4510','M',45,'EP',0.45,'經濟部能源署節能標章認證 / ENERGY STAR v3.0 官方實測'],
-  ['Ricoh','IM 5000','M',50,'EP',0.52,'經濟部能源署節能標章認證 / ENERGY STAR v3.0 官方實測'],
-  ['Ricoh','IM 5510','M',55,'EP',0.56,'經濟部能源署節能標章認證 / ENERGY STAR v3.0 官方實測'],
-  ['Ricoh','IM 6000','M',60,'EP',0.62,'經濟部能源署節能標章認證 / ENERGY STAR v3.0 官方實測'],
-  ['Ricoh','IM 6010','M',60,'EP',0.62,'經濟部能源署節能標章認證 / ENERGY STAR v3.0 官方實測'],
-  ['Ricoh','IM 7000','M',70,'EP',1.20,'經濟部能源署節能標章認證 / ENERGY STAR v3.0 官方實測'],
-  ['Ricoh','IM 8000','M',80,'EP',1.45,'經濟部能源署節能標章認證 / ENERGY STAR v3.0 官方實測'],
-  ['Ricoh','IM 9000','M',90,'EP',1.60,'經濟部能源署節能標章認證 / ENERGY STAR v3.0 官方實測'],
-  // ---------- FUJIFILM (經濟部能源署節能標章 A3 核定 51 款) ----------
-  ['FUJIFILM','Apeos C2060','C',20,'EP',0.23,'FUJIFILM 官方規格 / ENERGY STAR v3.0 實測'],
-  ['FUJIFILM','Apeos C2061','C',20,'EP',0.23,'FUJIFILM 官方規格 / ENERGY STAR v3.0 實測'],
-  ['FUJIFILM','Apeos C2560','C',25,'EP',0.25,'FUJIFILM 官方規格 / ENERGY STAR v3.0 實測'],
-  ['FUJIFILM','Apeos C2567','C',25,'EP',0.25,'FUJIFILM 官方規格 / ENERGY STAR v3.0 實測'],
-  ['FUJIFILM','Apeos C3070','C',30,'EP',0.32,'FUJIFILM 官方規格 / ENERGY STAR v3.0 實測'],
-  ['FUJIFILM','Apeos C3071','C',30,'EP',0.32,'FUJIFILM 官方規格 / ENERGY STAR v3.0 實測'],
-  ['FUJIFILM','ApeosPort C3060','C',30,'EP',0.33,'FUJIFILM 官方規格 / ENERGY STAR v3.0 實測'],
-  ['FUJIFILM','Apeos C3067','C',30,'EP',0.33,'FUJIFILM 官方規格 / ENERGY STAR v3.0 實測'],
-  ['FUJIFILM','Apeos C3060','C',30,'EP',0.33,'FUJIFILM 官方規格 / ENERGY STAR v3.0 實測'],
-  ['FUJIFILM','Apeos C3570','C',35,'EP',0.36,'FUJIFILM 官方規格 / ENERGY STAR v3.0 實測'],
-  ['FUJIFILM','Apeos C3571','C',35,'EP',0.36,'FUJIFILM 官方規格 / ENERGY STAR v3.0 實測'],
-  ['FUJIFILM','ApeosPort C3570 R','C',35,'EP',0.36,'FUJIFILM 官方規格 / 節能標章認證'],
-  ['FUJIFILM','ApeosPort-VI C3371 R','C',35,'EP',0.38,'FUJIFILM 官方規格 / 節能標章認證'],
-  ['FUJIFILM','ApeosPort-V C3376 R','C',35,'EP',0.38,'FUJIFILM 官方規格 / 節能標章認證'],
-  ['FUJIFILM','ApeosPort-VII C3373 R','C',35,'EP',0.38,'FUJIFILM 官方規格 / 節能標章認證'],
-  ['FUJIFILM','Apeos C4571','C',45,'EP',0.48,'FUJIFILM 官方規格 / ENERGY STAR v3.0 實測'],
-  ['FUJIFILM','Apeos C4570','C',45,'EP',0.48,'FUJIFILM 官方規格 / ENERGY STAR v3.0 實測'],
-  ['FUJIFILM','ApeosPort-VII C4473','C',45,'EP',0.48,'FUJIFILM 官方規格 / 節能標章認證'],
-  ['FUJIFILM','DocuCentre-VII C4473','C',45,'EP',0.48,'FUJIFILM 官方規格 / 節能標章認證'],
-  ['FUJIFILM','ApeosPort-VII C5573','C',55,'EP',0.57,'FUJIFILM 官方規格 / 節能標章認證'],
-  ['FUJIFILM','ApeosPort-VI C5571 R','C',55,'EP',0.57,'FUJIFILM 官方規格 / 節能標章認證'],
-  ['FUJIFILM','DocuCentre-VII C5573','C',55,'EP',0.57,'FUJIFILM 官方規格 / 節能標章認證'],
-  ['FUJIFILM','Apeos C5571','C',55,'EP',0.57,'FUJIFILM 官方規格 / ENERGY STAR v3.0 實測'],
-  ['FUJIFILM','ApeosPort C5570 R','C',55,'EP',0.57,'FUJIFILM 官方規格 / 節能標章認證'],
-  ['FUJIFILM','ApeosPort-VII C5573 R','C',55,'EP',0.57,'FUJIFILM 官方規格 / 節能標章認證'],
-  ['FUJIFILM','Apeos C5570','C',55,'EP',0.57,'FUJIFILM 官方規格 / ENERGY STAR v3.0 實測'],
-  ['FUJIFILM','ApeosPort-V C5576 R','C',55,'EP',0.58,'FUJIFILM 官方規格 / 節能標章認證'],
-  ['FUJIFILM','Apeos C6570','C',65,'EP',0.72,'FUJIFILM 官方規格 / ENERGY STAR v3.0 實測'],
-  ['FUJIFILM','Apeos C6571','C',65,'EP',0.72,'FUJIFILM 官方規格 / ENERGY STAR v3.0 實測'],
-  ['FUJIFILM','Apeos C6580','C',65,'EP',0.72,'FUJIFILM 官方規格 / ENERGY STAR v3.0 實測'],
-  ['FUJIFILM','ApeosPro C650','C',65,'EP',1.80,'FUJIFILM 官方規格 / 數位生產機'],
-  ['FUJIFILM','Apeos C7071','C',70,'EP',0.82,'FUJIFILM 官方規格 / ENERGY STAR v3.0 實測'],
-  ['FUJIFILM','Apeos C7070','C',70,'EP',0.82,'FUJIFILM 官方規格 / ENERGY STAR v3.0 實測'],
-  ['FUJIFILM','Apeos C7580','C',75,'EP',0.95,'FUJIFILM 官方規格 / ENERGY STAR v3.0 實測'],
-  ['FUJIFILM','ApeosPro C810','C',81,'EP',2.20,'FUJIFILM 官方規格 / 數位生產機'],
-  ['FUJIFILM','Apeos 2561','M',25,'EP',0.28,'FUJIFILM 官方規格 / ENERGY STAR v3.0 實測'],
-  ['FUJIFILM','Apeos 2560','M',25,'EP',0.28,'FUJIFILM 官方規格 / ENERGY STAR v3.0 實測'],
-  ['FUJIFILM','Apeos 3061','M',30,'EP',0.33,'FUJIFILM 官方規格 / ENERGY STAR v3.0 實測'],
-  ['FUJIFILM','Apeos 3060','M',30,'EP',0.33,'FUJIFILM 官方規格 / ENERGY STAR v3.0 實測'],
-  ['FUJIFILM','Apeos 3561','M',35,'EP',0.39,'FUJIFILM 官方規格 / ENERGY STAR v3.0 實測'],
-  ['FUJIFILM','Apeos 3560','M',35,'EP',0.39,'FUJIFILM 官方規格 / ENERGY STAR v3.0 實測'],
-  ['FUJIFILM','Apeos 4570','M',45,'EP',0.49,'FUJIFILM 官方規格 / ENERGY STAR v3.0 實測'],
-  ['FUJIFILM','Apeos 5570','M',55,'EP',0.58,'FUJIFILM 官方規格 / ENERGY STAR v3.0 實測'],
-  ['FUJIFILM','Apeos 6571','M',65,'EP',0.75,'FUJIFILM 官方規格 / ENERGY STAR v3.0 實測'],
-  ['FUJIFILM','Apeos 6580','M',65,'EP',0.75,'FUJIFILM 官方規格 / ENERGY STAR v3.0 實測'],
-  ['FUJIFILM','ApeosPort-V 6080','M',65,'EP',0.78,'FUJIFILM 官方規格 / 節能標章認證'],
-  ['FUJIFILM','DocuCentre-V 6080','M',65,'EP',0.78,'FUJIFILM 官方規格 / 節能標章認證'],
-  ['FUJIFILM','Apeos 7580','M',75,'EP',0.88,'FUJIFILM 官方規格 / ENERGY STAR v3.0 實測'],
-  ['FUJIFILM','ApeosPort-V 7080','M',75,'EP',0.88,'FUJIFILM 官方規格 / 節能標章認證'],
-  ['FUJIFILM','DocuCentre-V 7080','M',75,'EP',0.88,'FUJIFILM 官方規格 / 節能標章認證'],
-  ['FUJIFILM','Revoria Press E1136','M',136,'EP',4.50,'FUJIFILM 官方規格 / 輕量型數位量產機'],
-  // ---------- Canon (經濟部能源署節能標章 A3 核定 26 款) ----------
-  ['Canon','imageRUNNER C3326i','C',26,'EP',0.32,'Canon 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Canon','imageRUNNER ADVANCE DX C3930i','C',30,'EP',0.30,'Canon 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Canon','imageFORCE C5140','C',40,'EP',0.40,'Canon 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Canon','imageRUNNER ADVANCE DX C5840i','C',40,'EP',0.40,'Canon 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Canon','imageFORCE C5150','C',50,'EP',0.48,'Canon 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Canon','ImageFORCE C3150','C',50,'EP',0.48,'Canon 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Canon','imageRUNNER ADVANCE DX C5850i','C',50,'EP',0.48,'Canon 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Canon','imageFORCE C5160','C',60,'EP',0.58,'Canon 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Canon','imageRUNNER ADVANCE DX C5860i','C',60,'EP',0.58,'Canon 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Canon','imageFORCE C7165','C',65,'EP',0.65,'Canon 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Canon','imageFORCE C5170','C',70,'EP',0.72,'Canon 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Canon','imageRUNNER ADVANCE DX C5870i','C',70,'EP',0.72,'Canon 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Canon','imageRUNNER ADVANCE DX 4835i','M',25,'EP',0.28,'Canon 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Canon','imageRUNNER 2925i','M',25,'EP',0.28,'Canon 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Canon','imageRUNNER ADVANCE DX 6870i','M',25,'EP',0.85,'Canon 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Canon','imageRUNNER ADVANCE DX 4735i','M',35,'EP',0.38,'Canon 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Canon','image RUNNER ADVANCE DX 4935i','M',35,'EP',0.38,'Canon 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Canon','imageRUNNER ADVANCE DX 4945i','M',45,'EP',0.48,'Canon 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Canon','imageRUNNER ADVANCE DX 4745i','M',45,'EP',0.48,'Canon 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Canon','imageRUNNER ADVANCE DX 4751i','M',51,'EP',0.53,'Canon 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Canon','imageRUNNER ADVANCE DX 6855i','M',55,'EP',0.62,'Canon 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Canon','imageFORCE 6155','M',55,'EP',0.62,'Canon 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Canon','imageRUNNER ADVANCE DX 6755i','M',55,'EP',0.62,'Canon 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Canon','imageFORCE 6160','M',60,'EP',0.68,'Canon 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Canon','imageRUNNER ADVANCE DX 6860i','M',60,'EP',0.68,'Canon 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Canon','imageFORCE 6170','M',70,'EP',0.78,'Canon 官方規格 / ENERGY STAR v3.0 實測'],
-  // ---------- KYOCERA (經濟部能源署節能標章 A3 核定 26 款) ----------
-  ['KYOCERA','TASKalfa 2554ci','C',25,'EP',0.29,'KYOCERA 官方規格 / ENERGY STAR v3.0 實測'],
-  ['KYOCERA','TASKalfa MZ2501ci','C',25,'EP',0.29,'KYOCERA 官方規格 / ENERGY STAR v3.0 實測'],
-  ['KYOCERA','TASKalfa MZ3501ci','C',35,'EP',0.44,'KYOCERA 官方規格 / ENERGY STAR v3.0 實測'],
-  ['KYOCERA','TASKalfa 3554ci','C',35,'EP',0.44,'KYOCERA 官方規格 / ENERGY STAR v3.0 實測'],
-  ['KYOCERA','TASKalfa MZ4001ci','C',40,'EP',0.51,'KYOCERA 官方規格 / ENERGY STAR v3.0 實測'],
-  ['KYOCERA','TASKalfa 4054ci','C',40,'EP',0.51,'KYOCERA 官方規格 / ENERGY STAR v3.0 實測'],
-  ['KYOCERA','TASKalfa 5054ci','C',50,'EP',0.63,'KYOCERA 官方規格 / ENERGY STAR v3.0 實測'],
-  ['KYOCERA','TASKalfa MZ5001ci','C',50,'EP',0.63,'KYOCERA 官方規格 / ENERGY STAR v3.0 實測'],
-  ['KYOCERA','TASKalfa 6054ci','C',60,'EP',0.74,'KYOCERA 官方規格 / ENERGY STAR v3.0 實測'],
-  ['KYOCERA','TASKalfa MZ6001ci','C',60,'EP',0.74,'KYOCERA 官方規格 / ENERGY STAR v3.0 實測'],
-  ['KYOCERA','TASKalfa 7054ci','C',70,'EP',0.88,'KYOCERA 官方規格 / ENERGY STAR v3.0 實測'],
-  ['KYOCERA','TASKalfa MZ7001ci','C',70,'EP',0.88,'KYOCERA 官方規格 / ENERGY STAR v3.0 實測'],
-  ['KYOCERA','TASKalfa MZ2202','M',22,'EP',0.26,'KYOCERA 官方規格 / ENERGY STAR v3.0 實測'],
-  ['KYOCERA','TASKalfa MZ2502','M',25,'EP',0.29,'KYOCERA 官方規格 / ENERGY STAR v3.0 實測'],
-  ['KYOCERA','TASKalfa MZ3200i','M',25,'EP',0.34,'KYOCERA 官方規格 / ENERGY STAR v3.0 實測'],
-  ['KYOCERA','TASKalfa MZ4000i','M',25,'EP',0.42,'KYOCERA 官方規格 / ENERGY STAR v3.0 實測'],
-  ['KYOCERA','ECOSYS MZ3201ix','M',32,'EP',0.34,'KYOCERA 官方規格 / ENERGY STAR v3.0 實測'],
-  ['KYOCERA','TASKalfa MZ3201i','M',32,'EP',0.34,'KYOCERA 官方規格 / ENERGY STAR v3.0 實測'],
-  ['KYOCERA','ECOSYS P4145dn','M',45,'EP',0.48,'KYOCERA 官方規格 / ENERGY STAR v3.0 實測'],
-  ['KYOCERA','TASKalfa MZ5001i','M',50,'EP',0.54,'KYOCERA 官方規格 / ENERGY STAR v3.0 實測'],
-  ['KYOCERA','TASKalfa 5004i','M',50,'EP',0.54,'KYOCERA 官方規格 / ENERGY STAR v3.0 實測'],
-  ['KYOCERA','TASKalfa 6004i','M',60,'EP',0.66,'KYOCERA 官方規格 / ENERGY STAR v3.0 實測'],
-  ['KYOCERA','TASKalfa MZ6001i','M',60,'EP',0.66,'KYOCERA 官方規格 / ENERGY STAR v3.0 實測'],
-  ['KYOCERA','ECOSYS P4060dn','M',60,'EP',0.66,'KYOCERA 官方規格 / ENERGY STAR v3.0 實測'],
-  ['KYOCERA','TASKalfa MZ7001i','M',70,'EP',0.82,'KYOCERA 官方規格 / ENERGY STAR v3.0 實測'],
-  ['KYOCERA','TASKalfa 7004i','M',70,'EP',0.82,'KYOCERA 官方規格 / ENERGY STAR v3.0 實測'],
-  // ---------- Sharp (經濟部能源署節能標章 A3 核定 23 款) ----------
-  ['Sharp','BP-50C26','C',26,'EP',0.28,'Sharp 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Sharp','BP-50C26T','C',26,'EP',0.28,'Sharp 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Sharp','BP-50C31','C',31,'EP',0.32,'Sharp 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Sharp','BP-70C45','C',45,'EP',0.48,'Sharp 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Sharp','BP-70C45T','C',45,'EP',0.48,'Sharp 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Sharp','BP-70C55T','C',55,'EP',0.58,'Sharp 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Sharp','BP-70C55','C',55,'EP',0.58,'Sharp 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Sharp','BP-70C65T','C',65,'EP',0.70,'Sharp 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Sharp','BP-70C65','C',65,'EP',0.70,'Sharp 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Sharp','BP-30M28T','M',28,'EP',0.30,'Sharp 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Sharp','BP-30M28','M',28,'EP',0.30,'Sharp 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Sharp','BP-30M31','M',31,'EP',0.33,'Sharp 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Sharp','BP-50M31','M',31,'EP',0.33,'Sharp 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Sharp','BP-30M31T','M',31,'EP',0.33,'Sharp 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Sharp','BP-30M35T','M',35,'EP',0.38,'Sharp 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Sharp','BP-30M35','M',35,'EP',0.38,'Sharp 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Sharp','BP-70M45','M',45,'EP',0.46,'Sharp 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Sharp','BP-70M45T','M',45,'EP',0.46,'Sharp 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Sharp','BP-70M55','M',55,'EP',0.55,'Sharp 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Sharp','BP-70M65','M',65,'EP',0.68,'Sharp 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Sharp','BP-70M65T','M',65,'EP',0.68,'Sharp 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Sharp','BP-70M75T','M',75,'EP',0.82,'Sharp 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Sharp','BP-70M75','M',75,'EP',0.82,'Sharp 官方規格 / ENERGY STAR v3.0 實測'],
-  // ---------- Konica Minolta (經濟部能源署節能標章 A3 核定 21 款) ----------
-  ['Konica Minolta','bizhub C251i','C',25,'EP',0.28,'Konica Minolta 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Konica Minolta','bizhub C301i','C',30,'EP',0.32,'Konica Minolta 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Konica Minolta','bizhub C361i','C',36,'EP',0.38,'Konica Minolta 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Konica Minolta','bizhub C451i','C',45,'EP',0.48,'Konica Minolta 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Konica Minolta','bizhub C551i','C',55,'EP',0.57,'Konica Minolta 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Konica Minolta','bizhub C651i','C',65,'EP',0.68,'Konica Minolta 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Konica Minolta','bizhub 227i','M',22,'EP',0.25,'Konica Minolta 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Konica Minolta','bizhub 287','M',28,'EP',1.15,'經濟部能源署節能標章展期（證書105066續5・ES v2.0 實測）'],
-  ['Konica Minolta','bizhub 300i','M',30,'EP',0.31,'Konica Minolta 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Konica Minolta','bizhub 301i','M',30,'EP',0.31,'Konica Minolta 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Konica Minolta','bizhub 360i','M',36,'EP',0.36,'Konica Minolta 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Konica Minolta','bizhub 361i','M',36,'EP',0.36,'Konica Minolta 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Konica Minolta','bizhub 367','M',36,'EP',1.45,'經濟部能源署節能標章展期（證書105067續5・ES v2.0 實測）'],
-  ['Konica Minolta','bizhub 451i','M',45,'EP',0.46,'Konica Minolta 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Konica Minolta','bizhub 450i','M',45,'EP',0.46,'Konica Minolta 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Konica Minolta','bizhub 550i','M',55,'EP',0.56,'Konica Minolta 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Konica Minolta','bizhub 551i','M',55,'EP',0.56,'Konica Minolta 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Konica Minolta','bizhub 650i','M',65,'EP',0.70,'Konica Minolta 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Konica Minolta','bizhub 651i','M',65,'EP',0.70,'Konica Minolta 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Konica Minolta','bizhub 750i','M',75,'EP',0.85,'Konica Minolta 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Konica Minolta','bizhub 751i','M',75,'EP',0.85,'Konica Minolta 官方規格 / ENERGY STAR v3.0 實測'],
-  // ---------- Toshiba (經濟部能源署節能標章 A3 核定 10 款) ----------
-  ['Toshiba','e-STUDIO2520AC(FC-2520AC)','C',25,'EP',0.29,'Toshiba 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Toshiba','e-STUDIO3525AC(FC-3525AC)','C',35,'EP',0.41,'Toshiba 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Toshiba','e-STUDIO4525AC(FC-4525AC)','C',45,'EP',0.52,'Toshiba 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Toshiba','e-STUDIO2829A(DP-2829A)','M',28,'EP',0.30,'Toshiba 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Toshiba','e-STUDIO3028A(DP-3028A)','M',30,'EP',0.32,'Toshiba 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Toshiba','e-STUDIO3528A(DP-3528A)','M',35,'EP',0.38,'Toshiba 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Toshiba','e-STUDIO4528A(DP-4528A)','M',45,'EP',0.46,'Toshiba 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Toshiba','e-STUDIO5528A(DP-5528A)','M',55,'EP',0.58,'Toshiba 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Toshiba','e-STUDIO6528A(DP-6528A)','M',65,'EP',0.72,'Toshiba 官方規格 / ENERGY STAR v3.0 實測'],
-  ['Toshiba','e-STUDIO7529A(DP-7529A)','M',75,'EP',0.88,'Toshiba 官方規格 / ENERGY STAR v3.0 實測'],
-  // ---------- HP (經濟部能源署節能標章 A3 核定 6 款) ----------
-  ['HP','HP Color LaserJet Managed MFP E785dn','C',28,'EP',0.30,'HP 官方規格 / ENERGY STAR v3.0 實測'],
-  ['HP','HP Color LaserJet Managed MFP E786dn','C',35,'EP',0.42,'HP 官方規格 / ENERGY STAR v3.0 實測'],
-  ['HP','HP Color LaserJet Managed MFP E877dn','C',70,'EP',0.85,'HP 官方規格 / ENERGY STAR v3.0 實測'],
-  ['HP','HP LaserJet MFP M42625dn','M',25,'EP',0.28,'HP 官方規格 / ENERGY STAR v3.0 實測'],
-  ['HP','HP LaserJet Managed MFP E731dn','M',40,'EP',0.42,'HP 官方規格 / ENERGY STAR v3.0 實測'],
-  ['HP','HP LaserJet Managed MFP E826dn','M',70,'EP',0.80,'HP 官方規格 / ENERGY STAR v3.0 實測'],
-  // ---------- DEVELOP (經濟部能源署節能標章 A3 核定 3 款) ----------
-  ['DEVELOP','DEVELOP ineo+ 250i','C',25,'EP',0.28,'DEVELOP 官方規格 / ENERGY STAR v3.0 實測'],
-  ['DEVELOP','DEVELOP ineo+ 360i','C',36,'EP',0.38,'DEVELOP 官方規格 / ENERGY STAR v3.0 實測'],
-  ['DEVELOP','ineo 205i','M',20,'EP',0.25,'DEVELOP 官方規格 / ENERGY STAR v3.0 實測'],
-];
-/* --- SNAPSHOT END --- */
-
-/* =========================================================
-   2. 狀態與計算核心（SSOT）
-   ========================================================= */
-const TECH_LABEL = { EP: '雷射', HPIJ: '微噴（免加熱）', IJ: '噴墨' };
-
-const DEFAULTS = {
-  units: 2, price: 4.0, years: 5, cf: 0.466, goal: 30,
-  baseTec: 1.60, baseName: '5 年傳統彩色雷射事務機',
-  targetTec: 0.20, targetName: 'Ricoh IM C2010',
-  // TEC 圖解用
-  s: 20, ej1: 4.0, ej: 1.2, ef: 1.0, ps: 0.5
-};
-const S = Object.assign({}, DEFAULTS);
-let compare = [];          // 比較清單（最多 4）
-let primaryKey = null;     // 主方案
-let results = [];          // 查詢結果
-let shown = 60;
-let online = false;
-let calcMode = 'single'; // 'single' | 'fleet'
-
-// 多台試算（多機種組合）預設資料
-let fleetOld = [
-  { brand: 'Ricoh', model: 'MP C2504ex', speed: 25, tec: 1.10, units: 2, era: '約 6~7 年前（2017~2018）', src: '原廠歷史規格 / 歷史實測' },
-  { brand: 'FUJIFILM', model: 'DocuCentre-V C2263', speed: 20, tec: 1.15, units: 1, era: '約 5~7 年前（租賃普及機）', src: 'Fuji Xerox 官方規格' }
-];
-
-let fleetNew = [
-  { brand: 'Ricoh', model: 'IM C2010', speed: 20, tec: 0.20, units: 2, src: '經濟部能源署節能標章認證（互盛1120711/理光1130042・ENERGY STAR v3.0 實測）' },
-  { brand: 'Epson', model: 'EM-C8101', speed: 26, tec: 0.23, units: 1, src: '經濟部能源署節能標章（印表機・證書1140644）' }
-];
-
-const keyOf = m => `${m.brand}|${m.model}|${m.speed}`;
-const brandRank = b => { const u = (b||'').toUpperCase(); return u==='RICOH'?0 : u==='EPSON'?1 : 2; };
-
-const GOV_CERTS = {
-  "CANON|ImageFORCE C3150": "佳能 1150638",
-  "CANON|image RUNNER ADVANCE DX 4935i": "佳能 1130123續1",
-  "CANON|imageFORCE 6155": "佳能 1150032",
-  "CANON|imageFORCE 6160": "佳能 1150032",
-  "CANON|imageFORCE 6170": "佳能 1150032",
-  "CANON|imageFORCE C5140": "佳能 1150029",
-  "CANON|imageFORCE C5150": "佳能 1150031",
-  "CANON|imageFORCE C5160": "佳能 1150031",
-  "CANON|imageFORCE C5170": "佳能 1150031",
-  "CANON|imageFORCE C7165": "佳能 1140557",
-  "CANON|imageRUNNER 2925i": "佳能 1130124續1",
-  "CANON|imageRUNNER ADVANCE DX 4735i": "佳能 1120915續1",
-  "CANON|imageRUNNER ADVANCE DX 4745i": "佳能 1120915續1",
-  "CANON|imageRUNNER ADVANCE DX 4751i": "佳能 1120917續1",
-  "CANON|imageRUNNER ADVANCE DX 4835i": "佳能 1120221續1",
-  "CANON|imageRUNNER ADVANCE DX 4945i": "佳能 1130449續1",
-  "CANON|imageRUNNER ADVANCE DX 6755i": "佳能 1120914續1",
-  "CANON|imageRUNNER ADVANCE DX 6855i": "佳能 1120916續1",
-  "CANON|imageRUNNER ADVANCE DX 6860i": "佳能 1130451續1",
-  "CANON|imageRUNNER ADVANCE DX 6870i": "佳能 1120222續1",
-  "CANON|imageRUNNER ADVANCE DX C3930i": "佳能 1130449續1",
-  "CANON|imageRUNNER ADVANCE DX C5840i": "佳能 1130448續1",
-  "CANON|imageRUNNER ADVANCE DX C5850i": "佳能 1130751續1",
-  "CANON|imageRUNNER ADVANCE DX C5860i": "佳能 1130452續1",
-  "CANON|imageRUNNER ADVANCE DX C5870i": "佳能 1130452續1",
-  "CANON|imageRUNNER C3326i": "佳能 1130124續1",
-  "DEVELOP|DEVELOP ineo+ 250i": "康鈦科技 1100274續2",
-  "DEVELOP|DEVELOP ineo+ 360i": "康鈦科技 1100274續2",
-  "DEVELOP|ineo 205i": "康鈦科技 1100274續2",
-  "EPSON|AL-M7150DN": "愛普生 1100675續2",
-  "EPSON|AL-M8250DN": "愛普生 1100675續2",
-  "EPSON|AM-C4000": "愛普生 1130752續1 / 愛普生 1120450續1",
-  "EPSON|AM-C5000": "愛普生 1120450續1",
-  "EPSON|AM-C6000": "愛普生 1120450續1",
-  "EPSON|AM-M5500": "愛普生 1140644",
-  "EPSON|EM-C8100": "愛普生 1140370",
-  "EPSON|EM-C8101": "愛普生 1140644",
-  "EPSON|WF-C20590": "愛普生 107110續4",
-  "EPSON|WF-C20600": "愛普生 1090695續3",
-  "EPSON|WF-C20750": "愛普生 1090695續3",
-  "EPSON|WF-C21000": "愛普生 1090695續3",
-  "EPSON|WF-C869R": "愛普生 106804續4",
-  "EPSON|WF-M21000": "愛普生 1100674續2",
-  "FUJIFILM|Apeos 2560": "富士 1110329續2",
-  "FUJIFILM|Apeos 2561": "富士 1150490",
-  "FUJIFILM|Apeos 3060": "富士 1110329續2",
-  "FUJIFILM|Apeos 3061": "富士 1150490",
-  "FUJIFILM|Apeos 3560": "富士 1110329續2",
-  "FUJIFILM|Apeos 3561": "富士 1150490",
-  "FUJIFILM|Apeos 4570": "富士 1110179續2",
-  "FUJIFILM|Apeos 5570": "富士 1110179續2",
-  "FUJIFILM|Apeos 6571": "富士 1150640",
-  "FUJIFILM|Apeos 6580": "富士 1120283續1",
-  "FUJIFILM|Apeos 7580": "富士 1120283續1",
-  "FUJIFILM|Apeos C2060": "富士 1110328續2",
-  "FUJIFILM|Apeos C2061": "富士 1140307",
-  "FUJIFILM|Apeos C2560": "富士 1110328續2",
-  "FUJIFILM|Apeos C2567": "富士 1140307",
-  "FUJIFILM|Apeos C3060": "富士 1110328續2",
-  "FUJIFILM|Apeos C3067": "富士 1140307",
-  "FUJIFILM|Apeos C3070": "富士 1100500續2",
-  "FUJIFILM|Apeos C3071": "富士 1140114",
-  "FUJIFILM|Apeos C3570": "富士 1100500續2",
-  "FUJIFILM|Apeos C3571": "富士 1140114",
-  "FUJIFILM|Apeos C4570": "富士 1100500續2",
-  "FUJIFILM|Apeos C4571": "富士 1140114",
-  "FUJIFILM|Apeos C5570": "富士 1100500續2",
-  "FUJIFILM|Apeos C5571": "富士 1140114",
-  "FUJIFILM|Apeos C6570": "富士 1100500續2",
-  "FUJIFILM|Apeos C6571": "富士 1140113",
-  "FUJIFILM|Apeos C6580": "富士 1140759",
-  "FUJIFILM|Apeos C7070": "富士 1100500續2",
-  "FUJIFILM|Apeos C7071": "富士 1140114",
-  "FUJIFILM|Apeos C7580": "富士 1140759",
-  "FUJIFILM|ApeosPort C3060": "富士 1100051續2",
-  "FUJIFILM|ApeosPort C3570 R": "富士 1150458",
-  "FUJIFILM|ApeosPort C5570 R": "富士 1150458",
-  "FUJIFILM|ApeosPort-V 6080": "富士 1100348續2",
-  "FUJIFILM|ApeosPort-V 7080": "富士 1100348續2",
-  "FUJIFILM|ApeosPort-V C3376 R": "富士 1100499續2",
-  "FUJIFILM|ApeosPort-V C5576 R": "富士 1100499續2",
-  "FUJIFILM|ApeosPort-VI C3371 R": "富士 1130038續1",
-  "FUJIFILM|ApeosPort-VI C5571 R": "富士 1130038續1",
-  "FUJIFILM|ApeosPort-VII C3373 R": "富士 1140451",
-  "FUJIFILM|ApeosPort-VII C4473": "富士 1100052續2",
-  "FUJIFILM|ApeosPort-VII C5573": "富士 1100052續2 / 富士 1140451",
-  "FUJIFILM|ApeosPort-VII C5573 R": "富士 1100052續2 / 富士 1140451",
-  "FUJIFILM|ApeosPro C650": "富士 1130866續1",
-  "FUJIFILM|ApeosPro C810": "富士 1100502續2",
-  "FUJIFILM|DocuCentre-V 6080": "富士 1100348續2",
-  "FUJIFILM|DocuCentre-V 7080": "富士 1100348續2",
-  "FUJIFILM|DocuCentre-VII C4473": "富士 1100052續2",
-  "FUJIFILM|DocuCentre-VII C5573": "富士 1100052續2",
-  "FUJIFILM|Revoria Press E1136": "富士 1110052續2",
-  "HP|HP Color LaserJet Managed MFP E785dn": "台灣惠普 1140647",
-  "HP|HP Color LaserJet Managed MFP E786dn": "台灣惠普 1140648",
-  "HP|HP Color LaserJet Managed MFP E877dn": "台灣惠普 1140649",
-  "HP|HP LaserJet MFP M42625dn": "台灣惠普 1100577續2",
-  "HP|HP LaserJet Managed MFP E731dn": "台灣惠普 1140645",
-  "HP|HP LaserJet Managed MFP E826dn": "台灣惠普 1140646",
-  "KONICA MINOLTA|bizhub 227i": "金儀 1150033",
-  "KONICA MINOLTA|bizhub 287": "金儀 105066續5",
-  "KONICA MINOLTA|bizhub 300i": "金儀 1130119續1",
-  "KONICA MINOLTA|bizhub 301i": "金儀 1140252",
-  "KONICA MINOLTA|bizhub 360i": "金儀 1130119續1",
-  "KONICA MINOLTA|bizhub 361i": "金儀 1140049",
-  "KONICA MINOLTA|bizhub 367": "金儀 1100576續2",
-  "KONICA MINOLTA|bizhub 450i": "金儀 1090989續2",
-  "KONICA MINOLTA|bizhub 451i": "金儀 1140049",
-  "KONICA MINOLTA|bizhub 550i": "金儀 1100049續2",
-  "KONICA MINOLTA|bizhub 551i": "金儀 1140252",
-  "KONICA MINOLTA|bizhub 650i": "金儀 1090989續2",
-  "KONICA MINOLTA|bizhub 651i": "金儀 1140050",
-  "KONICA MINOLTA|bizhub 750i": "金儀 1090989續2",
-  "KONICA MINOLTA|bizhub 751i": "金儀 1140050",
-  "KONICA MINOLTA|bizhub C251i": "金儀 1140252",
-  "KONICA MINOLTA|bizhub C301i": "金儀 1140252",
-  "KONICA MINOLTA|bizhub C361i": "金儀 1140049",
-  "KONICA MINOLTA|bizhub C451i": "金儀 1140049",
-  "KONICA MINOLTA|bizhub C551i": "金儀 1140050",
-  "KONICA MINOLTA|bizhub C651i": "金儀 1140050",
-  "KYOCERA|ECOSYS MZ3201ix": "京瓷 1150639",
-  "KYOCERA|ECOSYS P4060dn": "京瓷 1090515續3",
-  "KYOCERA|ECOSYS P4145dn": "京瓷 1090515續3",
-  "KYOCERA|TASKalfa 2554ci": "京瓷 1110514續2",
-  "KYOCERA|TASKalfa 3554ci": "京瓷 1110514續2",
-  "KYOCERA|TASKalfa 4054ci": "京瓷 1110515續2",
-  "KYOCERA|TASKalfa 5004i": "京瓷 1110514續2",
-  "KYOCERA|TASKalfa 5054ci": "京瓷 1110515續2",
-  "KYOCERA|TASKalfa 6004i": "京瓷 1110514續2",
-  "KYOCERA|TASKalfa 6054ci": "京瓷 1110515續2",
-  "KYOCERA|TASKalfa 7004i": "京瓷 1110514續2",
-  "KYOCERA|TASKalfa 7054ci": "京瓷 1110515續2",
-  "KYOCERA|TASKalfa MZ2202": "京瓷 1150864",
-  "KYOCERA|TASKalfa MZ2501ci": "京瓷 1150456",
-  "KYOCERA|TASKalfa MZ2502": "京瓷 1150864",
-  "KYOCERA|TASKalfa MZ3200i": "京瓷 1110787續1",
-  "KYOCERA|TASKalfa MZ3201i": "京瓷 1150639",
-  "KYOCERA|TASKalfa MZ3501ci": "京瓷 1150456",
-  "KYOCERA|TASKalfa MZ4000i": "京瓷 1110787續1",
-  "KYOCERA|TASKalfa MZ4001ci": "京瓷 1150456",
-  "KYOCERA|TASKalfa MZ5001ci": "京瓷 1150456",
-  "KYOCERA|TASKalfa MZ5001i": "京瓷 1150457",
-  "KYOCERA|TASKalfa MZ6001ci": "京瓷 1150456",
-  "KYOCERA|TASKalfa MZ6001i": "京瓷 1150457",
-  "KYOCERA|TASKalfa MZ7001ci": "京瓷 1150456",
-  "KYOCERA|TASKalfa MZ7001i": "京瓷 1150457",
-  "RICOH|IM 2500": "互盛 1110272續2 / 理光 1130560續1",
-  "RICOH|IM 2510": "互盛 1150863",
-  "RICOH|IM 3000": "理光 1130564續1",
-  "RICOH|IM 3500": "互盛 1110272續2 / 理光 1130559續1",
-  "RICOH|IM 3510": "互盛 1150863 / 理光 1150916",
-  "RICOH|IM 4000": "互盛 1110272續2 / 理光 1130561續1",
-  "RICOH|IM 4510": "互盛 1150863",
-  "RICOH|IM 5000": "互盛 1110272續2 / 理光 1130565續1",
-  "RICOH|IM 5510": "互盛 1150863",
-  "RICOH|IM 6000": "互盛 1110193續2 / 理光 1130562續1",
-  "RICOH|IM 6010": "互盛 1150863 / 理光 1150915",
-  "RICOH|IM 7000": "互盛 1100272續2 / 理光 1130298續1",
-  "RICOH|IM 8000": "理光 1130549續1",
-  "RICOH|IM 9000": "理光 1130550續1",
-  "RICOH|IM C2010": "互盛 1120711續1 / 理光 1130042",
-  "RICOH|IM C2510": "互盛 1120711續1 / 理光 1130566續1",
-  "RICOH|IM C3010": "互盛 1120711續1 / 理光 1130567續1",
-  "RICOH|IM C3510": "互盛 1120711續1 / 理光 1150299",
-  "RICOH|IM C4510": "互盛 1120711續1 / 理光 1130568續1",
-  "RICOH|IM C6010": "互盛 1120711續1 / 理光 1150301",
-  "SHARP|BP-30M28": "震旦行股 1110244續2 / 震旦行股 1110245續2",
-  "SHARP|BP-30M28T": "震旦行股 1110244續2 / 震旦行股 1110245續2",
-  "SHARP|BP-30M31": "震旦行股 1110246續2 / 震旦行股 1110247續2",
-  "SHARP|BP-30M31T": "震旦行股 1110246續2 / 震旦行股 1110247續2",
-  "SHARP|BP-30M35": "震旦行股 1110248續2 / 震旦行股 1110178續2",
-  "SHARP|BP-30M35T": "震旦行股 1110248續2 / 震旦行股 1110178續2",
-  "SHARP|BP-50C26": "震旦行股 1130675續1 / 震旦行股 1130674續1",
-  "SHARP|BP-50C26T": "震旦行股 1130675續1 / 震旦行股 1130674續1",
-  "SHARP|BP-50C31": "震旦行股 1130302續1",
-  "SHARP|BP-50M31": "震旦行股 1130300續1",
-  "SHARP|BP-70C45": "震旦行股 1130037續1 / 震旦行股 1130554續1",
-  "SHARP|BP-70C45T": "震旦行股 1130037續1 / 震旦行股 1130554續1",
-  "SHARP|BP-70C55": "震旦行股 1130301續1 / 震旦行股 1130888續1",
-  "SHARP|BP-70C55T": "震旦行股 1130301續1 / 震旦行股 1130888續1",
-  "SHARP|BP-70C65": "震旦行股 1130036續1 / 震旦行股 1130553續1",
-  "SHARP|BP-70C65T": "震旦行股 1130036續1 / 震旦行股 1130553續1",
-  "SHARP|BP-70M45": "震旦行股 1130677續1 / 震旦行股 1130676續1",
-  "SHARP|BP-70M45T": "震旦行股 1130677續1 / 震旦行股 1130676續1",
-  "SHARP|BP-70M55": "震旦行股 1130299續1",
-  "SHARP|BP-70M65": "震旦行股 1130035續1 / 震旦行股 1130552續1",
-  "SHARP|BP-70M65T": "震旦行股 1130035續1 / 震旦行股 1130552續1",
-  "SHARP|BP-70M75": "震旦行股 1130034續1 / 震旦行股 1130551續1",
-  "SHARP|BP-70M75T": "震旦行股 1130034續1 / 震旦行股 1130551續1",
-  "TOSHIBA|e-STUDIO2520AC(FC-2520AC)": "台芝 1110638續2",
-  "TOSHIBA|e-STUDIO2829A(DP-2829A)": "台芝 1150034",
-  "TOSHIBA|e-STUDIO3028A(DP-3028A)": "台芝 1110638續2",
-  "TOSHIBA|e-STUDIO3525AC(FC-3525AC)": "台芝 1110639續2",
-  "TOSHIBA|e-STUDIO3528A(DP-3528A)": "台芝 1110639續2",
-  "TOSHIBA|e-STUDIO4525AC(FC-4525AC)": "台芝 1110639續2",
-  "TOSHIBA|e-STUDIO4528A(DP-4528A)": "台芝 1110639續2",
-  "TOSHIBA|e-STUDIO5528A(DP-5528A)": "台芝 1110639續2",
-  "TOSHIBA|e-STUDIO6528A(DP-6528A)": "台芝 1110639續2",
-  "TOSHIBA|e-STUDIO7529A(DP-7529A)": "台芝 1120282續1"
-};
-
-function getModelSourceInfo(m) {
-  const model = (m && m.model) ? m.model : '';
-  const brand = (m && m.brand) ? m.brand : '';
-  const u = brand.toUpperCase();
-  const cleanModel = model.replace(/\(.*?\)/g, '').trim();
-  
-  // 方案一：直通 ENERGY STAR 國際能源之星官方產品資料庫（直接呈現該機型官方實測 TEC 數值）
-  const esUrl = 'https://www.energystar.gov/productfinder/product/certified-imaging-equipment/results?search_api_fulltext=' + encodeURIComponent(cleanModel);
-
-  // 台灣經濟部能源署節能標章真實核定案號
-  const key = `${u}|${model}`;
-  const keyClean = `${u}|${cleanModel}`;
-  const twCert = GOV_CERTS[key] || GOV_CERTS[keyClean] || (m && m.twCert) || '';
-  const hasTwLabel = Boolean(twCert || (m && m.std === '節能標章') || (m && m.src && m.src.includes('節能標章')));
-
-  return {
-    url: esUrl,
-    label: '⭐ ENERGY STAR 實測 TEC ↗',
-    esUrl: esUrl,
-    twCert: twCert,
-    hasTwLabel: hasTwLabel,
-    twUrl: 'https://ea03.moeaea.gov.tw/e0410/01/purchasing/compare/Copymachines.aspx'
-  };
-}
-
-function getBaseModelSourceInfo(baseName, brand) {
-  const b = (brand || '').toUpperCase();
-  const name = (baseName || '').toUpperCase();
-  const esUrl = 'https://www.energystar.gov/productfinder/product/certified-imaging-equipment/results?search_api_fulltext=' + encodeURIComponent(baseName || brand || '');
-
-  if (b === 'RICOH' || name.includes('RICOH') || name.includes('MP C')) {
-    return { url: 'https://www.ricoh.com.tw/products/office-solutions', label: 'Ricoh 歷史型錄規格 ↗', esUrl: esUrl };
-  }
-  if (b === 'FUJIFILM' || name.includes('DOCUCENTRE') || name.includes('FUJI')) {
-    return { url: 'https://www.fujifilm.com/fbtw/zh-tw/products/multifunction-printers', label: 'Fuji Xerox 歷史型錄規格 ↗', esUrl: esUrl };
-  }
-  if (b === 'CANON' || name.includes('IR-ADV') || name.includes('CANON')) {
-    return { url: 'https://tw.canon/zh_TW/business', label: 'Canon 歷史型錄規格 ↗', esUrl: esUrl };
-  }
-  if (b === 'SHARP' || name.includes('MX-')) {
-    return { url: 'https://tw.sharp/products/multifunction-printers', label: 'Sharp 歷史型錄規格 ↗', esUrl: esUrl };
-  }
-  if (b === 'KYOCERA' || name.includes('TASKALFA')) {
-    return { url: 'https://www.kyoceradocumentsolutions.com/tw/zh/', label: 'KYOCERA 歷史型錄規格 ↗', esUrl: esUrl };
-  }
-  if (b === 'KONICA MINOLTA' || name.includes('BIZHUB') || b === 'DEVELOP') {
-    return { url: 'https://www.oa-world.com.tw/', label: 'Konica Minolta 歷史型錄規格 ↗', esUrl: esUrl };
-  }
-  if (b === 'HP' || name.includes('LASERJET')) {
-    return { url: 'https://www.hp.com/tw-zh/printers/work-printers.html', label: 'HP 歷史規格 ↗', esUrl: esUrl };
-  }
-  if (b === 'EPSON' || name.includes('WORKFORCE')) {
-    return { url: 'https://www.epson.com.tw/heat-free', label: 'Epson 官方規格 ↗', esUrl: esUrl };
-  }
-  return {
-    url: esUrl,
-    label: 'ENERGY STAR 歷史規格庫 ↗',
-    esUrl: esUrl
-  };
-}
-
-
-// 核心母資料庫（MASTER_MAP）：完整儲存快照、官網撈取與 API 查詢之所有機型，永不遺失
-const MASTER_MAP = new Map();
-function rowToModel(r){
-  if (Array.isArray(r)){
-    return { brand: r[0], model: r[1], color: r[2], speed: +r[3], tech: r[4], tec: +r[5], src: r[6], std: '節能標章', isLegacy: false };
-  }
-  if (r && !r.std) r.std = r.src && r.src.includes('節能標章') ? '節能標章' : (r.src && r.src.includes('v3') ? 'ES v3.0' : 'ES v2.0');
-  return r;
-}
-function upsertModel(item){
-  const m = rowToModel(item);
-  if (!m || !m.brand || !m.model) return;
-  const k = keyOf(m);
-  if (!MASTER_MAP.has(k)) MASTER_MAP.set(k, m);
-  else {
-    const ex = MASTER_MAP.get(k);
-    if (m.src && m.src.includes('官網')) MASTER_MAP.set(k, m);
-  }
-}
-SNAP.forEach(upsertModel);
-
-/* 純函數：單機換機效益 */
-function calc(st){
-  const W = 52;
-  const baseKwh = st.baseTec * W * st.units;
-  const targetKwh = st.targetTec * W * st.units;
-  const kwhYr = Math.max(0, baseKwh - targetKwh);
-  const rate = baseKwh > 0 ? kwhYr / baseKwh * 100 : 0;
-  const costYr = kwhYr * st.price;
-  const cum = []; let acc = 0;
-  for (let y = 0; y < st.years; y++){ acc += costYr; cum.push(acc); }
-  return {
-    baseKwh, targetKwh, kwhYr, rate,
-    baseCost: baseKwh * st.price, targetCost: targetKwh * st.price,
-    costYr, costUnit: costYr / (st.units || 1), kwhUnit: kwhYr / (st.units || 1),
-    totalCost: acc, cum, kwhTotal: kwhYr * st.years,
-    co2Yr: kwhYr * st.cf, co2Total: kwhYr * st.cf * st.years,
-    ratio: st.baseTec > 0 ? st.targetTec / st.baseTec : 0,
-    totalUnitsOld: st.units, totalUnitsNew: st.units,
-    avgBaseTec: st.baseTec, avgTargetTec: st.targetTec
-  };
-}
-
-/* 純函數：多台換機（多機種組合）效益 */
-function calcFleet(st){
-  const W = 52;
-  let baseKwh = 0, totalUnitsOld = 0;
-  fleetOld.forEach(x => {
-    const u = parseInt(x.units, 10) || 1;
-    baseKwh += (x.tec || 0) * W * u;
-    totalUnitsOld += u;
-  });
-
-  let targetKwh = 0, totalUnitsNew = 0;
-  fleetNew.forEach(x => {
-    const u = parseInt(x.units, 10) || 1;
-    targetKwh += (x.tec || 0) * W * u;
-    totalUnitsNew += u;
-  });
-
-  const kwhYr = Math.max(0, baseKwh - targetKwh);
-  const rate = baseKwh > 0 ? (kwhYr / baseKwh) * 100 : 0;
-  const costYr = kwhYr * st.price;
-  const cum = []; let acc = 0;
-  for (let y = 0; y < st.years; y++){ acc += costYr; cum.push(acc); }
-
-  const totalUnits = Math.max(totalUnitsOld, totalUnitsNew) || 1;
-  const avgBaseTec = totalUnitsOld > 0 ? (baseKwh / (W * totalUnitsOld)) : 0;
-  const avgTargetTec = totalUnitsNew > 0 ? (targetKwh / (W * totalUnitsNew)) : 0;
-
-  return {
-    baseKwh, targetKwh, kwhYr, rate,
-    baseCost: baseKwh * st.price, targetCost: targetKwh * st.price,
-    costYr, costUnit: costYr / totalUnits, kwhUnit: kwhYr / totalUnits,
-    totalCost: acc, cum, kwhTotal: kwhYr * st.years,
-    co2Yr: kwhYr * st.cf, co2Total: kwhYr * st.cf * st.years,
-    ratio: baseKwh > 0 ? targetKwh / baseKwh : 0,
-    totalUnitsOld, totalUnitsNew,
-    avgBaseTec, avgTargetTec
-  };
-}
-
-/* 純函數：TEC 教學版計算 */
-function calcLab(st){
-  const s = st.s;
-  const jobs = s <= 8 ? 8 : (s < 32 ? s : 32);
-  const img = s < 4 ? 1 : Math.floor(0.5 * s * s / jobs);
-  const eJobs = (2*st.ej1 + (jobs-2)*st.ej) / 1000;       // kWh
-  const eFinal = 2*st.ef / 1000;
-  const tJobs = jobs * 0.25, tFinal = 2 * 0.25;
-  const tSleep = Math.max(0, 24 - tJobs - tFinal);
-  const eSleep = tSleep * st.ps / 1000;
-  const eDay = eJobs + eFinal + eSleep;
-  const eWeekend = 48 * st.ps / 1000;
-  const tec = 5*eDay + eWeekend;
-  return {jobs, img, daily:jobs*img, eJobs, eFinal, eSleep, eDay, eWeekend, tec, tJobs, tFinal, tSleep};
-}
-
-/* =========================================================
-   3. 格式化
-   ========================================================= */
-const fmt = (n, d=0) => (isFinite(n)?n:0).toLocaleString('zh-TW',{minimumFractionDigits:d, maximumFractionDigits:d});
-const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-
-/* =========================================================
-   4. 滑桿定義（全部數值皆可滑動）
-   ========================================================= */
-const SIM_SLIDERS = [
-  {k:'units', label:'事務機台數', unit:'台', min:1, max:200, step:1, d:0, c:'var(--ink)', ticks:['1','50','100','150','200']},
-  {k:'baseTec', label:'舊機 TEC', unit:'kWh/週', min:0.2, max:4, step:0.01, d:2, c:'var(--rose)', ticks:['0.2','1.0','2.0','3.0','4.0']},
-  {k:'targetTec', label:'新機 TEC', unit:'kWh/週', min:0.05, max:2, step:0.01, d:2, c:'var(--blue)', ticks:['0.05','0.5','1.0','1.5','2.0']},
-  {k:'price', label:'每度電價', unit:'NT$/度', min:2, max:8, step:0.1, d:1, c:'var(--sand)', ticks:['2','4','6','8']},
-  {k:'years', label:'評估年限（租期）', unit:'年', min:1, max:10, step:1, d:0, c:'var(--ink)', ticks:['1','5','10']},
-  {k:'cf', label:'電力排碳係數', unit:'kg/度', min:0.3, max:0.6, step:0.001, d:3, c:'var(--teal)', ticks:['0.300','0.466','0.600']}
-];
-const LAB_SLIDERS = [
-  {k:'s', label:'列印速度 s', unit:'ipm', min:5, max:60, step:1, d:0, c:'var(--ink)', ticks:['5','20','32','60']},
-  {k:'ej1', label:'首件喚醒用電（每次）', unit:'Wh', min:0.5, max:30, step:0.1, d:1, c:'var(--rose)', ticks:['0.5','15','30']},
-  {k:'ej', label:'一般批次用電（含 15 分鐘間隔）', unit:'Wh', min:0.2, max:10, step:0.1, d:1, c:'var(--sand)', ticks:['0.2','5','10']},
-  {k:'ef', label:'收尾待機→睡眠（每次）', unit:'Wh', min:0, max:15, step:0.1, d:1, c:'var(--blue)', ticks:['0','7.5','15']},
-  {k:'ps', label:'睡眠功率', unit:'W', min:0.1, max:10, step:0.1, d:1, c:'var(--sage)', ticks:['0.1','5','10']}
-];
-const LAB_PRESETS = {
-  new:{ej1:4.0, ej:1.2, ef:1.0, ps:0.5},
-  old:{ej1:25, ej:6.0, ef:8.0, ps:5.0},
-  ij:{ej1:1.5, ej:0.9, ef:0.5, ps:0.4}
-};
-
-function sliderHTML(o){
-  return `<div class="slider">
-    <div class="top"><label for="r_${o.k}"><span class="dot" style="background:${o.c}"></span>${o.label}</label>
-      <div class="valbox"><input type="number" data-k="${o.k}" min="${o.min}" max="${o.max}" step="${o.step}" aria-label="${o.label}"> ${o.unit}</div></div>
-    <input type="range" id="r_${o.k}" data-k="${o.k}" min="${o.min}" max="${o.max}" step="${o.step}" style="--c:${o.c}">
-    <div class="ticks">${o.ticks.map(t=>`<span>${t}</span>`).join('')}</div>
-  </div>`;
-}
-document.getElementById('simSliders').innerHTML = SIM_SLIDERS.map(sliderHTML).join('');
-// labSliders removed
-
-const DECIMALS = {}; [...SIM_SLIDERS, ...LAB_SLIDERS].forEach(o => DECIMALS[o.k] = o.d);
-DECIMALS.goal = 0;
-
-/* 滑桿／數字框雙向綁定 */
-document.addEventListener('input', e => {
-  const k = e.target.dataset && e.target.dataset.k;
-  if (!k) return;
-  let v = parseFloat(e.target.value);
-  if (!isFinite(v)) return;
-  const min = parseFloat(e.target.min), max = parseFloat(e.target.max);
-  if (e.target.type === 'range' || e.type === 'change') v = Math.min(max, Math.max(min, v));
-  S[k] = v;
-  if (k === 'targetTec') markTargetAdjusted();
-  if (k === 'baseTec' && !/已手動調整|已微調|假設值/.test(S.baseName)) S.baseName += '（已手動調整）';
-  syncABPickerUI();
-  render(e.target);
-});
-document.addEventListener('change', e => {
-  const k = e.target.dataset && e.target.dataset.k;
-  if (!k || e.target.type !== 'number') return;
-  const min = parseFloat(e.target.min), max = parseFloat(e.target.max);
-  S[k] = Math.min(max, Math.max(min, parseFloat(e.target.value) || min));
-  syncABPickerUI();
-  render();
-});
-function markTargetAdjusted(){
-  const p = compare.find(m => keyOf(m) === primaryKey);
-  const baseLabel = p ? `${p.brand} ${p.model}` : S.targetName.replace('（已手動調整）','');
-  S.targetName = (p && Math.abs(p.tec - S.targetTec) < 1e-9) ? baseLabel : baseLabel.replace('（已手動調整）','') + '（已手動調整）';
-}
-
-/* =========================================================
-   歷史主流舊機庫（五年內及租賃常見舊代機種）
-   ========================================================= */
-const LEGACY_MODELS = {
-  PRESET: [
-    { model: '7 年傳統彩色雷射事務機', color: 'Color', speed: 25, tec: 2.20, era: '約 7 年前（早期高溫彩色機）', src: '早期定影高溫雷射（對照 ES v2.0）', std: 'ES v2.0' },
-    { model: '5 年傳統彩色雷射事務機', color: 'Color', speed: 25, tec: 1.60, era: '約 5 年前（租賃滿期彩色主力）', src: '租賃市場傳統雷射基準（對照 ES v2.0）', std: 'ES v2.0' },
-    { model: '3 年傳統彩色雷射事務機', color: 'Color', speed: 25, tec: 0.80, era: '約 3 年前（近期過渡彩色機）', src: '近代雷射事務機（對照 ES v3.0）', std: 'ES v3.0' },
-    { model: '7 年傳統黑白雷射事務機', color: 'Monochrome', speed: 25, tec: 1.80, era: '約 7 年前（早期高耗能黑白機）', src: '早期黑白雷射（對照 ES v2.0）', std: 'ES v2.0' },
-    { model: '5 年傳統黑白雷射事務機', color: 'Monochrome', speed: 25, tec: 1.10, era: '約 5 年前（租賃滿期黑白主力）', src: '傳統黑白雷射基準（對照 ES v2.0）', std: 'ES v2.0' }
-  ],
-  Ricoh: [
-    { model: 'IM C2000', color: 'Color', speed: 20, tec: 0.55, era: '約 4~5 年前（初代 IM 系列）', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' },
-    { model: 'IM C2500', color: 'Color', speed: 25, tec: 0.65, era: '約 4~5 年前（初代 IM 系列）', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' },
-    { model: 'IM C3000', color: 'Color', speed: 30, tec: 0.70, era: '約 4~5 年前（初代 IM 系列）', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' },
-    { model: 'MP C2004ex', speed: 20, tec: 0.90, era: '約 6~7 年前（2017~2018）', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' },
-    { model: 'MP C2504ex', speed: 25, tec: 1.10, era: '約 6~7 年前（2017~2018）', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' },
-    { model: 'MP C3004ex', speed: 30, tec: 1.25, era: '約 6~7 年前（2017~2018）', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' },
-    { model: 'MP C3504ex', speed: 35, tec: 1.40, era: '約 6~7 年前（2017~2018）', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' },
-    { model: 'MP C2503', speed: 25, tec: 1.60, era: '約 8~10 年前（早期租賃機）', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' },
-    { model: 'Aficio MP C2551', color: 'Color', speed: 25, tec: 2.20, era: '早期傳統雷射經典機', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' },
-    { model: 'MP 2501', color: 'Monochrome', speed: 25, tec: 1.40, era: '早期傳統黑白經典款', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' },
-    { model: 'MP 2554', color: 'Monochrome', speed: 25, tec: 0.90, era: '約 6~7 年前（黑白租賃主力）', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' },
-    { model: 'MP 3054', color: 'Monochrome', speed: 30, tec: 1.10, era: '約 6~7 年前（黑白中速主力）', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' }
-  ],
-  FUJIFILM: [
-    { model: 'DocuCentre-V C2263', speed: 20, tec: 1.15, era: '約 5~7 年前（市場普遍租賃機種）', src: 'Fuji Xerox 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
-    { model: 'DocuCentre-V C2265', speed: 25, tec: 1.25, era: '約 5~7 年前（租賃主力款）', src: 'Fuji Xerox 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
-    { model: 'DocuCentre-VI C2271', speed: 25, tec: 1.00, era: '約 5~6 年前（高階機種）', src: 'Fuji Xerox 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
-    { model: 'DocuCentre-VI C3371', speed: 35, tec: 1.18, era: '約 5~6 年前（高速彩色）', src: 'Fuji Xerox 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
-    { model: 'ApeosPort-VI C2271', speed: 25, tec: 0.98, era: '約 5~6 年前（高階商務機種）', src: 'Fuji Xerox 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
-    { model: 'ApeosPort-V C3375', speed: 35, tec: 1.40, era: '約 6~8 年前（主流商用）', src: 'Fuji Xerox 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
-    { model: 'DocuCentre-IV C2260', speed: 20, tec: 2.15, era: '約 8~10 年前（早期高耗電款）', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' },
-    { model: 'Apeos C2060', color: 'Color', speed: 20, tec: 0.23, era: '約 3~4 年前（近代雷射現役款）', src: 'FUJIFILM 官方規格 / ENERGY STAR v3.0 實測', std: 'ES v3.0' },
-    { model: 'DocuCentre-SC2020', color: 'Color', speed: 20, tec: 1.20, era: '約 6~8 年前（普及入門彩機）', src: 'Fuji Xerox 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
-    { model: 'DocuCentre-IV 2060', color: 'Monochrome', speed: 20, tec: 1.70, era: '早期黑白雷射長青款', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' },
-    { model: 'DocuCentre-V 2060', color: 'Monochrome', speed: 25, tec: 1.10, era: '約 6~7 年前（黑白租賃主力）', src: 'Fuji Xerox 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
-    { model: 'DocuCentre-V 3060', color: 'Monochrome', speed: 30, tec: 1.30, era: '約 6~7 年前（黑白中速主力）', src: 'Fuji Xerox 官方規格 / 能源之星 v2.0', std: 'ES v2.0' }
-  ],
-  Canon: [
-    { model: 'iR-ADV C3520i III', color: 'Color', speed: 20, tec: 0.82, era: '約 4~5 年前（三代彩色主力）', src: 'Canon 官方規格（ENERGY STAR v2.0 實測）', std: 'ES v2.0' },
-    { model: 'iR-ADV C3525i III', color: 'Color', speed: 25, tec: 0.95, era: '約 4~5 年前（三代中速彩色）', src: 'Canon 官方規格（ENERGY STAR v2.0 實測）', std: 'ES v2.0' },
-    { model: 'iR-ADV C3320', speed: 20, tec: 0.85, era: '約 6~7 年前（二代常見主力機種）', src: 'Canon 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
-    { model: 'iR-ADV C3325', speed: 25, tec: 1.05, era: '約 6~7 年前（二代主力）', src: 'Canon 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
-    { model: 'imageRUNNER C3020', speed: 20, tec: 1.20, era: '約 5 年前（經濟入門款）', src: 'Canon 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
-    { model: 'iR-ADV C2220', color: 'Color', speed: 20, tec: 1.90, era: '約 8~10 年前（舊代高耗能）', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' },
-    { model: 'imageRUNNER 2520', color: 'Monochrome', speed: 20, tec: 1.50, era: '早期黑白雷射經濟款', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' },
-    { model: 'iR-ADV 4225', color: 'Monochrome', speed: 25, tec: 1.20, era: '約 7~8 年前（黑白租賃主力）', src: 'Canon 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
-    { model: 'iR-ADV 4525', color: 'Monochrome', speed: 25, tec: 0.95, era: '約 5~6 年前（三代黑白主力）', src: 'Canon 官方規格 / 能源之星 v2.0', std: 'ES v2.0' }
-  ],
-  'Konica Minolta': [
-    { model: 'bizhub C227', speed: 22, tec: 1.00, era: '約 5~7 年前（中小企租賃主力）', src: 'Konica Minolta 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
-    { model: 'bizhub C287', speed: 28, tec: 1.20, era: '約 5~7 年前（中速主力）', src: 'Konica Minolta 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
-    { model: 'bizhub C258', speed: 25, tec: 1.10, era: '約 5~7 年前（主流商用）', src: 'Konica Minolta 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
-    { model: 'bizhub C224e', speed: 22, tec: 1.05, era: '約 7~8 年前（長青普及機）', src: 'Konica Minolta 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
-    { model: 'bizhub C284e', speed: 28, tec: 1.22, era: '約 7~8 年前（長青中速）', src: 'Konica Minolta 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
-    { model: 'bizhub C220', color: 'Color', speed: 22, tec: 2.25, era: '早期傳統雷射事務機', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' },
-    { model: 'bizhub 224e', color: 'Monochrome', speed: 22, tec: 1.00, era: '約 7~8 年前（長青黑白機）', src: 'Konica Minolta 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
-    { model: 'bizhub 227', color: 'Monochrome', speed: 22, tec: 0.95, era: '約 5~7 年前（黑白租賃主力）', src: 'Konica Minolta 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
-    { model: 'bizhub 287', color: 'Monochrome', speed: 28, tec: 1.15, era: '約 5~7 年前（黑白中速主力）', src: 'Konica Minolta 官方規格 / 能源之星 v2.0', std: 'ES v2.0' }
-  ],
-  HP: [
-    { model: 'Color LaserJet Managed E77822', speed: 22, tec: 1.05, era: '約 5 年前（A3 Managed 租賃機）', src: 'HP 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
-    { model: 'Color LaserJet Managed E77825', speed: 25, tec: 1.18, era: '約 5 年前（中速 A3）', src: 'HP 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
-    { model: 'Color LaserJet Managed E77830', speed: 30, tec: 1.35, era: '約 5 年前（30 ppm 款）', src: 'HP 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
-    { model: 'LaserJet Enterprise 700 M775', speed: 30, tec: 2.10, era: '經典高耗能 A3 雷射', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' },
-    { model: 'PageWide Managed P77740', speed: 40, tec: 0.65, era: '約 5 年前（早期商用頁寬）', src: 'HP 官方規格 / 能源之星 v2.0', std: 'ES v2.0' }
-  ],
-  Sharp: [
-    { model: 'MX-2651', color: 'Color', speed: 26, tec: 0.85, era: '約 4~5 年前（辦公室租賃主力）', src: 'Sharp 官方規格（ENERGY STAR v2.0 實測）', std: 'ES v2.0' },
-    { model: 'MX-3051', color: 'Color', speed: 30, tec: 1.05, era: '約 4~5 年前（30 ppm 彩色）', src: 'Sharp 官方規格（ENERGY STAR v2.0 實測）', std: 'ES v2.0' },
-    { model: 'MX-2640N', speed: 26, tec: 1.25, era: '約 6~8 年前（長青舊代機）', src: 'Sharp 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
-    { model: 'MX-3140N', speed: 31, tec: 1.45, era: '約 6~8 年前（中速舊代機）', src: 'Sharp 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
-    { model: 'MX-2310F', speed: 23, tec: 2.10, era: '早期高耗能雷射事務機', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' }
-  ],
-  KYOCERA: [
-    { model: 'TASKalfa 2552ci', speed: 25, tec: 0.95, era: '約 5~6 年前（彩色租賃主力）', src: 'KYOCERA 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
-    { model: 'TASKalfa 3252ci', speed: 32, tec: 1.30, era: '約 5~6 年前（中速彩色）', src: 'KYOCERA 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
-    { model: 'TASKalfa 2553ci', color: 'Color', speed: 25, tec: 0.85, era: '約 4~5 年前（彩色租賃主力）', src: 'KYOCERA 官方規格（ENERGY STAR v2.0 實測）', std: 'ES v2.0' },
-    { model: 'TASKalfa 2551ci', speed: 25, tec: 1.80, era: '約 7~9 年前（老一代主力）', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' },
-    { model: 'TASKalfa 205c', speed: 20, tec: 2.30, era: '早期傳統雷射舊機', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' }
-  ],
-  Epson: [
-    { model: 'WorkForce Pro WF-C869R', speed: 24, tec: 0.35, era: '約 5~6 年前（第一代省墨包 A3）', src: 'Epson 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
-    { model: 'WorkForce Pro WF-R8591', speed: 24, tec: 0.55, era: '約 7~8 年前（早期微噴微壓電）', src: 'Epson 官方規格 / 能源之星 v2.0', std: 'ES v2.0' },
-    { model: 'AcuLaser CX37DN', speed: 24, tec: 1.75, era: '早期傳統彩色雷射事務機', src: 'ENERGY STAR v2.0 歷史認證', std: 'ES v2.0' }
-  ]
-};
-
-// 註冊歷史舊機種至母資料庫，供查詢表格檢索與設定基準（標記明確版本標籤）
-for (const b in LEGACY_MODELS){
-  if (b === 'PRESET') continue;
-  LEGACY_MODELS[b].forEach(item => {
-    upsertModel({
-      brand: b,
-      model: item.model,
-      color: item.color || (item.model.includes('C') || item.model.includes('ci') ? 'Color' : 'Monochrome'),
-      speed: item.speed,
-      tech: 'EP',
-      tec: item.tec,
-      src: item.src,
-      std: item.std || 'ES v2.0',
-      isLegacy: true,
-      era: item.era
-    });
-  });
-}
-
-
-/* =========================================================
-   選單排序核心邏輯（符合商務直覺：彩機到黑白機、由舊到新）
-   ========================================================= */
-function isExtModel(m){
-  const src = (m && m.src) || '';
-  const twCert = (typeof GOV_CERTS !== 'undefined' && m ? (GOV_CERTS[`${(m.brand||'').toUpperCase()}|${m.model}`] || '') : '');
-  return Boolean(src.includes('展期') || /續[345]|10[5-8]\d{3}/.test(src + ' ' + twCert));
-}
-
-function getModelColorScore(m){
-  const c = (m.color || '').toUpperCase();
-  if (c === 'C' || c === 'COLOR' || c.startsWith('彩')) return 0; // 彩色機種排前面 (0)
-  return 1; // 黑白機種排後面 (1)
-}
-
-function getModelVintageScore(m){
-  // 1. 若有官方節能標章證書字號（民國 105 ~ 115 年），依獲證年份由舊到新
-  if (m.src){
-    const certMatch = m.src.match(/證書(\d{3})/);
-    if (certMatch) return parseInt(certMatch[1], 10) * 10;
-  }
-  // 2. 若為歷史舊機種（文字年代標註）
-  const era = m.era || '';
-  if (era.includes('早期') || era.includes('8~10') || era.includes('7~9')) return 100;
-  if (era.includes('7~8') || era.includes('7 年')) return 102;
-  if (era.includes('6~8') || era.includes('6~7')) return 104;
-  if (era.includes('5~7') || era.includes('5~6') || era.includes('5 年')) return 106;
-  if (era.includes('4~5')) return 108;
-  if (era.includes('3~4') || era.includes('3 年')) return 110;
-  if (m.std === 'ES v2.0') return 104;
-  if (m.std === 'ES v3.0') return 109;
-  return 1130; // 預設現役
-}
-
-function compareModelsUserConcept(a, b){
-  // 優先 1：彩機到黑白機（彩色機 Color=0 在前，黑白機 Mono=1 在後）
-  const cA = getModelColorScore(a), cB = getModelColorScore(b);
-  if (cA !== cB) return cA - cB;
-
-  // 優先 2：舊到新（年代久遠/早期獲證 在前，近代/最新 在後）
-  const vA = getModelVintageScore(a), vB = getModelVintageScore(b);
-  if (vA !== vB) return vA - vB;
-
-  // 優先 3：列印速度由低到高（ipm 升序）
-  const sA = a.speed || 0, sB = b.speed || 0;
-  if (sA !== sB) return sA - sB;
-
-  // 優先 4：TEC 典型用電量升序
-  return (a.tec || 0) - (b.tec || 0);
-}
-
-/* =========================================================
-   5. 方案 A：A/B 直覺選拔卡邏輯
-   ========================================================= */
-function initABPicker(){
-  // 目標新機 (B)
-  const brandSel = document.getElementById('abBrandSel');
-  const modelSel = document.getElementById('abModelSel');
-  const targetSlider = document.getElementById('abTargetSlider');
-
-  // 基準舊機 (A)
-  const baseBrandSel = document.getElementById('abBaseBrandSel');
-  const baseModelSel = document.getElementById('abBaseModelSel');
-  const baseName = document.getElementById('abBaseName');
-  const baseSlider = document.getElementById('abBaseSlider');
-  const baseCustomRow = document.getElementById('abBaseCustomRow');
-
-  // ---------- 目標新機 (B) 品牌下拉 ----------
-  const brands = ['Epson', 'Ricoh', 'FUJIFILM', 'Canon', 'KYOCERA', 'Sharp', 'Konica Minolta', 'Toshiba', 'HP', 'DEVELOP'];
-  brandSel.innerHTML = brands.map(b => `<option value="${b}">${b==='Ricoh'?'★ Ricoh 理光（優先推薦）':b==='Epson'?'★ Epson 愛普生（免加熱微壓電首選）':b}</option>`).join('');
-
-  function updateModels(brand, selectModelName){
-    const all = Array.from(MASTER_MAP.values());
-    const list = all.filter(m => m.brand.toUpperCase() === brand.toUpperCase());
-    // 排序概念：彩機到黑白機、由舊到新
-    list.sort(compareModelsUserConcept);
-    
-    modelSel.innerHTML = list.map(m => {
-      const srcTag = m.std === '節能標章' || m.src.includes('節能標章') ? ' [🏅節能標章]' : m.std === 'ES v3.0' ? ' [ES v3.0]' : ' [ES v2.0]';
-      const extTag = isExtModel(m) ? ' [展期長青款]' : '';
-      const clrTag = getModelColorScore(m) === 0 ? '彩色' : '黑白';
-      return `<option value="${keyOf(m)}">${esc(m.model)} (${clrTag} · ${m.speed} ipm · TEC ${fmt(m.tec,2)})${srcTag}${extTag}</option>`;
-    }).join('');
-
-    if (selectModelName){
-      const found = list.find(m => m.model === selectModelName || m.model.includes(selectModelName));
-      if (found) modelSel.value = keyOf(found);
-    }
-    onModelChange();
-  }
-
-  function onModelChange(){
-    const k = modelSel.value;
-    const m = MASTER_MAP.get(k);
-    if (!m) return;
-    primaryKey = k;
-    S.targetTec = m.tec;
-    S.targetName = `${m.brand} ${m.model}`;
-    
-    document.getElementById('abTargetTecOut').textContent = fmt(m.tec, 2);
-    document.getElementById('abTargetTecVal').textContent = fmt(m.tec, 2);
-    document.getElementById('abTargetKwhVal').textContent = fmt(m.tec * 52, 1);
-    targetSlider.value = m.tec;
-    
-    const badge = document.getElementById('abSourceBadge');
-    const srcInfo = getModelSourceInfo(m);
-    const twCertLink = srcInfo.hasTwLabel ? `<a href="${srcInfo.twUrl}" target="_blank" rel="noopener" class="src-pill-link" style="font-size:11px;color:#065F46;background:#ECFDF5;border:1px solid #A7F3D0;padding:2px 8px;border-radius:4px;font-weight:700;text-decoration:none" title="前往經濟部能源署節能標章影印機獲證比較專區">🏅 能源署標章查驗 ↗</a>` : '';
-
-    badge.innerHTML = `
-      <div style="display:flex;align-items:center;flex-wrap:wrap;gap:6px">
-        <a href="${srcInfo.esUrl}" target="_blank" rel="noopener" class="src-pill-link" style="font-size:11px;color:#1E40AF;background:#EFF6FF;border:1px solid #BFDBFE;padding:2px 8px;border-radius:4px;font-weight:700;text-decoration:none" title="直達國際能源之星官方資料庫，查驗 ${esc(m.model)} 實測 TEC 值">⭐ 查驗 ENERGY STAR 實測 TEC ↗</a>
-        ${twCertLink}
-      </div>
-      <div class="muted small" style="margin-top:5px;line-height:1.4">
-        ${srcInfo.twCert ? `<span style="color:#065F46;font-weight:600">節能標章核定案號：${esc(srcInfo.twCert)}</span><br>` : ''}
-        <b>數據標準：</b>國際能源之星 ENERGY STAR v3.0 實測（TEC ${fmt(m.tec,2)} kWh/週）· 技術：${esc(TECH_LABEL[m.tech]||m.tech)}
-      </div>`;
-
-    if (!compare.some(x => keyOf(x) === k)){
-      if (compare.length >= 4) compare.shift();
-      compare.push(m);
-    }
-    render();
-    renderTable();
-  }
-
-  brandSel.addEventListener('change', () => updateModels(brandSel.value));
-  modelSel.addEventListener('change', onModelChange);
-
-  targetSlider.addEventListener('input', () => {
-    S.targetTec = parseFloat(targetSlider.value);
-    document.getElementById('abTargetTecOut').textContent = fmt(S.targetTec, 2);
-    document.getElementById('abTargetTecVal').textContent = fmt(S.targetTec, 2);
-    document.getElementById('abTargetKwhVal').textContent = fmt(S.targetTec * 52, 1);
-    markTargetAdjusted();
-    render();
-    renderTable();
-  });
-
-  // ---------- 基準舊機 (A) 品牌與機型選單 ----------
-  function updateBaseModels(brand, selectModelName){
-    if (brand === 'CUSTOM'){
-      baseModelSel.innerHTML = '<option value="custom">自訂舊機（請於下方輸入名稱並微調滑桿）</option>';
-      if (baseCustomRow) baseCustomRow.classList.remove('hide');
-      onBaseModelChange();
-      return;
-    }
-    if (baseCustomRow) baseCustomRow.classList.add('hide');
-
-    const list = (LEGACY_MODELS[brand] || []).slice();
-    list.sort(compareModelsUserConcept);
-    baseModelSel.innerHTML = list.map((m, idx) => {
-      const tag = m.std ? ` [${m.std}]` : ' [ES v2.0]';
-      const clrTag = getModelColorScore(m) === 0 ? '彩色' : '黑白';
-      if (brand === 'PRESET'){
-        return `<option value="${idx}">${esc(m.model)}（${clrTag} · TEC ${fmt(m.tec,2)} · ${m.era}）${tag}</option>`;
-      }
-      return `<option value="${idx}">${esc(m.model)} (${clrTag} · ${m.speed} ipm · TEC ${fmt(m.tec,2)})${tag}</option>`;
-    }).join('');
-
-    if (selectModelName){
-      const foundIdx = list.findIndex(m => m.model === selectModelName || (brand!=='PRESET' && m.model.includes(selectModelName)));
-      if (foundIdx >= 0) baseModelSel.value = String(foundIdx);
-    }
-    onBaseModelChange();
-  }
-
-  function onBaseModelChange(){
-    const brand = baseBrandSel.value;
-    const badge = document.getElementById('abBaseSourceBadge');
-
-    if (brand === 'CUSTOM'){
-      S.baseName = baseName.value.trim() || '自訂舊機';
-      if (badge) {
-        badge.innerHTML = `<span class="pill" style="background:#FFF1EE;color:#9E4A3B;border-color:#E8C5BD;font-weight:600">✏️ 自訂機種模式</span> <div class="muted small" style="margin-top:2px">請於上方輸入型號標示，並拖曳下方滑桿指定基準 TEC 值</div>`;
-      }
-      render();
-      renderTable();
-      return;
-    }
-
-    const list = LEGACY_MODELS[brand] || [];
-    const idx = parseInt(baseModelSel.value, 10);
-    const m = list[idx] || list[0];
-    if (!m) return;
-
-    S.baseTec = m.tec;
-    S.baseName = brand === 'PRESET' ? m.model : `${brand} ${m.model}`;
-    baseName.value = S.baseName;
-    baseSlider.value = m.tec;
-
-    document.getElementById('abBaseTecOut').textContent = fmt(m.tec, 2);
-    document.getElementById('abBaseTecVal').textContent = fmt(m.tec, 2);
-    document.getElementById('abBaseKwhVal').textContent = fmt(m.tec * 52, 1);
-
-    if (badge){
-      const stdBadge = m.std ? `<span class="pill" style="background:#F1F5F9;color:#334155;border:1px solid #CBD5E1;font-weight:700;margin-left:4px">[${esc(m.std)}]</span>` : '';
-      const bInfo = getBaseModelSourceInfo(m.model, brand);
-      if (brand === 'PRESET'){
-        badge.innerHTML = `
-          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px">
-            <div><span class="pill" style="background:#FFF1EE;color:#9E4A3B;border-color:#E8C5BD;font-weight:600">⏱️ 機齡推估：${esc(m.era)}</span>${stdBadge}</div>
-            <a href="${bInfo.esUrl || bInfo.url}" target="_blank" rel="noopener" class="src-pill-link" style="font-size:11px;color:#9E4A3B;font-weight:700;text-decoration:none;background:#FFF1EE;border:1px solid #E8C5BD;padding:2px 8px;border-radius:4px" title="直達國際能源之星官方資料庫查驗歷史規格">⭐ 查驗歷史 TEC ↗</a>
-          </div>
-          <div class="muted small" style="margin-top:3px">${esc(m.src)} · 可直接拖曳下方滑桿微調</div>`;
-      } else {
-        badge.innerHTML = `
-          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px">
-            <div><span class="pill" style="background:#FFF1EE;color:#9E4A3B;border-color:#E8C5BD;font-weight:600">🏷️ 歷史登錄：${esc(m.era)}</span>${stdBadge}</div>
-            <a href="${bInfo.esUrl || bInfo.url}" target="_blank" rel="noopener" class="src-pill-link" style="font-size:11px;color:#9E4A3B;font-weight:700;text-decoration:none;background:#FFF1EE;border:1px solid #E8C5BD;padding:2px 8px;border-radius:4px" title="直達國際能源之星官方資料庫查驗歷史規格">⭐ 查驗歷史 TEC ↗</a>
-          </div>
-          <div class="muted small" style="margin-top:3px">${esc(m.src)} · 速度 ${m.speed} ipm · 典型雷射加熱定影</div>`;
-      }
-    }
-
-    render();
-    renderTable();
-  }
-  baseBrandSel.addEventListener('change', () => updateBaseModels(baseBrandSel.value));
-  baseModelSel.addEventListener('change', onBaseModelChange);
-
-  baseName.addEventListener('input', () => {
-    S.baseName = baseName.value.trim() || '自訂舊機';
-    render();
-  });
-
-  baseSlider.addEventListener('input', () => {
-    S.baseTec = parseFloat(baseSlider.value);
-    document.getElementById('abBaseTecOut').textContent = fmt(S.baseTec, 2);
-    document.getElementById('abBaseTecVal').textContent = fmt(S.baseTec, 2);
-    document.getElementById('abBaseKwhVal').textContent = fmt(S.baseTec * 52, 1);
-    if (!S.baseName.includes('已微調') && !S.baseName.includes('自訂') && !S.baseName.includes('手動調整')) {
-      S.baseName += '（已微調）';
-      baseName.value = S.baseName;
-    }
-    const badge = document.getElementById('abBaseSourceBadge');
-    if (badge) {
-      badge.innerHTML = `<span class="pill" style="background:#FFF1EE;color:#9E4A3B;border-color:#E8C5BD;font-weight:600">⚙️ 手動微調基準：TEC ${fmt(S.baseTec,2)} kWh/週</span> <div class="muted small" style="margin-top:2px">基準機型：${esc(S.baseName)} · 年耗電約 ${fmt(S.baseTec*52,1)} 度/台</div>`;
-    }
-    render();
-    renderTable();
-  });
-
-  // 初始化舊機為 PRESET 5 年傳統雷射事務機
-  baseBrandSel.value = 'PRESET';
-  updateBaseModels('PRESET', '5 年傳統彩色雷射事務機');
-
-  // 初始化新機預設帶入 Ricoh IM C2010
-  brandSel.value = 'Ricoh';
-  updateModels('Ricoh', 'IM C2010');
-}
-
-function syncABPickerUI(){
-  const baseOut = document.getElementById('abBaseTecOut');
-  const baseVal = document.getElementById('abBaseTecVal');
-  const baseKwh = document.getElementById('abBaseKwhVal');
-  const baseSlider = document.getElementById('abBaseSlider');
-  const baseName = document.getElementById('abBaseName');
-  if (baseOut) baseOut.textContent = fmt(S.baseTec, 2);
-  if (baseVal) baseVal.textContent = fmt(S.baseTec, 2);
-  if (baseKwh) baseKwh.textContent = fmt(S.baseTec * 52, 1);
-  if (baseSlider) baseSlider.value = S.baseTec;
-  if (baseName && baseName.value !== S.baseName) baseName.value = S.baseName;
-
-  const baseBadge = document.getElementById('abBaseSourceBadge');
-  if (baseBadge && /已手動調整|已微調/.test(S.baseName)) {
-    baseBadge.innerHTML = `<span class="pill" style="background:#FFF1EE;color:#9E4A3B;border-color:#E8C5BD;font-weight:600">⚙️ 手動微調基準：TEC ${fmt(S.baseTec,2)} kWh/週</span> <div class="muted small" style="margin-top:2px">基準機型：${esc(S.baseName)} · 年耗電約 ${fmt(S.baseTec*52,1)} 度/台</div>`;
-  }
-
-  const targetOut = document.getElementById('abTargetTecOut');
-  const targetVal = document.getElementById('abTargetTecVal');
-  const targetKwh = document.getElementById('abTargetKwhVal');
-  const targetSlider = document.getElementById('abTargetSlider');
-  if (targetOut) targetOut.textContent = fmt(S.targetTec, 2);
-  if (targetVal) targetVal.textContent = fmt(S.targetTec, 2);
-  if (targetKwh) targetKwh.textContent = fmt(S.targetTec * 52, 1);
-  if (targetSlider) targetSlider.value = S.targetTec;
-}
-
-/* =========================================================
-   6. 渲染
-   ========================================================= */
-function render(skip){
-  const isFleet = calcMode === 'fleet';
-  const m = isFleet ? calcFleet(S) : calc(S);
-  const L = calcLab(S);
-
-  // 同步所有輸入元件
-  document.querySelectorAll('[data-k]').forEach(el => {
-    const k = el.dataset.k; if (el === skip) return;
-    const d = DECIMALS[k] ?? 0;
-    el.value = el.type === 'number' ? (+S[k]).toFixed(d) : S[k];
-  });
-  document.querySelectorAll('input[type=range]').forEach(el => {
-    const p = (el.value - el.min) / (el.max - el.min) * 100;
-    el.style.setProperty('--fill', p + '%');
-  });
-
-  // 輸出欄位
-  const out = {
-    units: fmt(isFleet ? m.totalUnitsOld : S.units),
-    years: fmt(S.years), price: fmt(S.price,1), cf: fmt(S.cf,3), goal: fmt(S.goal),
-    rate: fmt(m.rate,1)+'%', remainRate: fmt(Math.max(0, 100-m.rate),1)+'%',
-    totalCost: fmt(m.totalCost), costYr: fmt(m.costYr), costUnit: fmt(m.costUnit),
-    kwhYr: fmt(m.kwhYr), kwhUnit: fmt(m.kwhUnit), kwhTotal: fmt(m.kwhTotal),
-    co2Yr: fmt(m.co2Yr), co2Total: fmt(m.co2Total),
-    baseKwh: fmt(m.baseKwh), targetKwh: fmt(m.targetKwh), baseCost: fmt(m.baseCost), targetCost: fmt(m.targetCost),
-    baseTec: isFleet ? fmt(m.avgBaseTec,2) : fmt(S.baseTec,2),
-    targetTec: isFleet ? fmt(m.avgTargetTec,2) : fmt(S.targetTec,2),
-    ratio: fmt(m.ratio,2),
-    baseName: isFleet ? (fleetOld.length === 1 ? `${fleetOld[0].brand} ${fleetOld[0].model}` : `舊機組合（共 ${m.totalUnitsOld} 台）`) : S.baseName,
-    targetName: isFleet ? (fleetNew.length === 1 ? `${fleetNew[0].brand} ${fleetNew[0].model}` : `新機組合（共 ${m.totalUnitsNew} 台）`) : S.targetName
-  };
-  document.querySelectorAll('[data-o]').forEach(el => { const v = out[el.dataset.o]; if (v !== undefined) el.textContent = v; });
-
-  const r = Math.max(0, Math.min(100, m.rate));
-  document.getElementById('splitSave').style.width = r + '%';
-  document.getElementById('splitRemain').style.width = (100 - r) + '%';
-  document.getElementById('simTargetFill').style.width = (m.baseKwh > 0 ? Math.min(100, Math.max(1, m.targetKwh/m.baseKwh*100)) : 0) + '%';
-
-  renderCum(m);
-  renderTimeline();
-  renderCompare();
-}
-
-function renderCum(m){
-  const max = Math.max(...m.cum, 1);
-  document.getElementById('cumCols').innerHTML = m.cum.map(v =>
-    `<div class="col"><span class="v">${v>=10000? fmt(v/10000,1)+'萬' : fmt(v)}</span><div class="b" style="height:${Math.max(2, v/max*100)}%"></div></div>`).join('');
-  document.getElementById('cumX').innerHTML = m.cum.map((_,i)=>`<span>第${i+1}年</span>`).join('');
-}
-
-function renderTimeline(){
-  const wake = 0.2;
-  const jobsH = 1.8;
-  const finalH = 0.5;
-  const sleepH = 24 - wake - jobsH - finalH;
-  const segs = [
-    ['睡眠', sleepH/2, 'var(--sage)'], ['喚醒', wake/2, 'var(--rose)'], ['列印批次', jobsH/2, 'var(--sand)'], ['收尾', finalH/2, 'var(--blue)'],
-    ['喚醒', wake/2, 'var(--rose)'], ['列印批次', jobsH/2, 'var(--sand)'], ['收尾', finalH/2, 'var(--blue)'], ['睡眠', sleepH/2, 'var(--sage)']
-  ];
-  const tl = document.getElementById('dayTimeline');
-  if (tl) {
-    tl.innerHTML = segs.map(sg =>
-      `<div style="flex:${sg[1]};background:${sg[2]}" title="${sg[0]} ${fmt(sg[1],1)} 小時">${sg[1] >= 1.6 ? sg[0] + ' ' + fmt(sg[1],1)+'h' : ''}</div>`).join('');
-  }
-}
-function renderGauge(m){ /* slide 4 removed */ }
-function renderLab(L){ /* lab simulation removed */ }
-
-/* 比較區 */
-function renderCompare(){
-  const chips = document.getElementById('chips');
-  if (!compare.length){ chips.innerHTML = '<span class="small muted">尚未加入機型。請在上方清單按「加入比較」。</span>'; }
-  else chips.innerHTML = compare.map(m => {
-    const k = keyOf(m), on = k === primaryKey;
-    const isGov = m.src.includes('官網');
-    return `<label class="chip ${on?'primary':''}"><input type="radio" name="prim" value="${esc(k)}" ${on?'checked':''}>
-      <span><b>${esc(m.brand)}</b> ${esc(m.model)} <span class="num muted">${fmt(m.tec,2)}</span>${isGov?' <span style="color:#A85822;font-size:10px">🏢官網</span>':''}</span>
-      <button type="button" data-rm="${esc(k)}" aria-label="移除">×</button></label>`;
-  }).join('');
-
-  const rows = [{name:S.baseName, tec:S.baseTec, color:'var(--rose)', base:true}]
-    .concat(compare.map(m => ({name:`${m.brand} ${m.model}`, tec:m.tec, color: keyOf(m)===primaryKey ? 'var(--blue)' : '#A9B4BE', speed:m.speed, src:m.src})));
-  const max = Math.max(...rows.map(r => r.tec), 0.01);
-  document.getElementById('compareBars').innerHTML = rows.map(r => {
-    const kwh = r.tec*52*S.units, cost = kwh*S.price, co2 = kwh*S.cf;
-    const save = (S.baseTec - r.tec)*52*S.units*S.price;
-    return `<div class="hbar"><div class="meta"><b><span class="dot" style="background:${r.color}"></span> ${esc(r.name)}${r.speed?` <span class="muted small">· ${r.speed} ipm</span>`:''}${r.src&&r.src.includes('官網')?' <span class="pill" style="font-size:10px;padding:0 5px;background:#FFF6EE;color:#A85822">🏢官網規格</span>':''}</b>
-      <span class="num small">${fmt(kwh)} 度 · NT$${fmt(cost)} · ${fmt(co2)} kg${r.base?'':` · <span class="c-sage">省 NT$${fmt(save)}</span>`}</span></div>
-      <div class="track"><div class="fill" style="width:${r.tec/max*100}%;background:${r.color}"></div></div></div>`;
-  }).join('');
-}
-
-document.getElementById('chips').addEventListener('click', e => {
-  const rm = e.target.closest('[data-rm]');
-  if (rm){ e.preventDefault(); removeCompare(rm.dataset.rm); }
-});
-document.getElementById('chips').addEventListener('change', e => {
-  if (e.target.name === 'prim') setPrimary(e.target.value);
-});
-
-function addCompare(m){
-  const k = keyOf(m);
-  if (compare.some(x => keyOf(x) === k)) { removeCompare(k); return; }
-  if (compare.length >= 4){ alert('最多比較 4 款機型，請先移除一款。'); return; }
-  compare.push(m);
-  if (!primaryKey) setPrimary(k); else { render(); renderTable(); }
-}
-function removeCompare(k){
-  compare = compare.filter(x => keyOf(x) !== k);
-  if (primaryKey === k){ primaryKey = null; if (compare[0]) { setPrimary(keyOf(compare[0])); return; } }
-  render(); renderTable();
-}
-function setPrimary(k){
-  const m = MASTER_MAP.get(k) || compare.find(x => keyOf(x) === k);
-  if (!m) return;
-  primaryKey = k; S.targetTec = m.tec; S.targetName = `${m.brand} ${m.model}`;
-  
-  // 連鎖同步回 A/B 選拔卡
-  const brandSel = document.getElementById('abBrandSel');
-  const modelSel = document.getElementById('abModelSel');
-  if (brandSel && modelSel) {
-    brandSel.value = m.brand;
-    const all = Array.from(MASTER_MAP.values());
-    const list = all.filter(x => x.brand.toUpperCase() === m.brand.toUpperCase());
-    list.sort(compareModelsUserConcept);
-    modelSel.innerHTML = list.map(x => {
-      const srcTag = x.std === '節能標章' || x.src.includes('節能標章') ? ' [🏅節能標章]' : x.std === 'ES v3.0' ? ' [ES v3.0]' : ' [ES v2.0]';
-      const extTag = isExtModel(x) ? ' [展期長青款]' : '';
-      const clrTag = getModelColorScore(x) === 0 ? '彩色' : '黑白';
-      return `<option value="${keyOf(x)}">${esc(x.model)} (${clrTag} · ${x.speed} ipm · TEC ${fmt(x.tec,2)})${srcTag}${extTag}</option>`;
-    }).join('');
-    modelSel.value = keyOf(m);
-    
-    document.getElementById('abTargetTecOut').textContent = fmt(m.tec, 2);
-    document.getElementById('abTargetTecVal').textContent = fmt(m.tec, 2);
-    document.getElementById('abTargetKwhVal').textContent = fmt(m.tec * 52, 1);
-    document.getElementById('abTargetSlider').value = m.tec;
-    const badge = document.getElementById('abSourceBadge');
-    const srcInfo = getModelSourceInfo(m);
-    const twCertLink = srcInfo.hasTwLabel ? `<a href="${srcInfo.twUrl}" target="_blank" rel="noopener" class="src-pill-link" style="font-size:11px;color:#065F46;background:#ECFDF5;border:1px solid #A7F3D0;padding:2px 8px;border-radius:4px;font-weight:700;text-decoration:none" title="前往經濟部能源署節能標章影印機獲證比較專區">🏅 能源署標章查驗 ↗</a>` : '';
-
-    badge.innerHTML = `
-      <div style="display:flex;align-items:center;flex-wrap:wrap;gap:6px">
-        <a href="${srcInfo.esUrl}" target="_blank" rel="noopener" class="src-pill-link" style="font-size:11px;color:#1E40AF;background:#EFF6FF;border:1px solid #BFDBFE;padding:2px 8px;border-radius:4px;font-weight:700;text-decoration:none" title="直達國際能源之星官方資料庫，查驗 ${esc(m.model)} 實測 TEC 值">⭐ 查驗 ENERGY STAR 實測 TEC ↗</a>
-        ${twCertLink}
-      </div>
-      <div class="muted small" style="margin-top:5px;line-height:1.4">
-        ${srcInfo.twCert ? `<span style="color:#065F46;font-weight:600">節能標章核定案號：${esc(srcInfo.twCert)}</span><br>` : ''}
-        <b>數據標準：</b>國際能源之星 ENERGY STAR v3.0 實測（TEC ${fmt(m.tec,2)} kWh/週）· 技術：${esc(TECH_LABEL[m.tech]||m.tech)}
-      </div>`;
-  }
-
-  render(); renderTable();
-}
-function setBaseline(m){
-  S.baseTec = m.tec; S.baseName = `${m.brand} ${m.model}`;
-  const baseName = document.getElementById('abBaseName');
-  const baseSlider = document.getElementById('abBaseSlider');
-  const baseBrandSel = document.getElementById('abBaseBrandSel');
-  const baseModelSel = document.getElementById('abBaseModelSel');
-  const badge = document.getElementById('abBaseSourceBadge');
-  const customRow = document.getElementById('abBaseCustomRow');
-
-  if (baseName) baseName.value = S.baseName;
-  if (baseSlider) baseSlider.value = m.tec;
-  document.getElementById('abBaseTecOut').textContent = fmt(m.tec, 2);
-  document.getElementById('abBaseTecVal').textContent = fmt(m.tec, 2);
-  document.getElementById('abBaseKwhVal').textContent = fmt(m.tec * 52, 1);
-
-  if (baseBrandSel && baseModelSel){
-    const brandMatch = Object.keys(LEGACY_MODELS).find(b => b.toUpperCase() === m.brand.toUpperCase());
-    if (brandMatch){
-      baseBrandSel.value = brandMatch;
-      if (customRow) customRow.classList.add('hide');
-      const list = LEGACY_MODELS[brandMatch];
-      const modelIdx = list.findIndex(x => x.model.toUpperCase() === m.model.toUpperCase());
-      if (modelIdx >= 0){
-        baseModelSel.innerHTML = list.map((x, idx) => `<option value="${idx}">${esc(x.model)} (${x.speed} ipm · TEC ${fmt(x.tec,2)})</option>`).join('');
-        baseModelSel.value = String(modelIdx);
-      } else {
-        baseModelSel.innerHTML = `<option value="live_picked" selected>${esc(m.model)} (${m.speed} ipm · TEC ${fmt(m.tec,2)}) [查詢挑選]</option>` +
-          list.map((x, idx) => `<option value="${idx}">${esc(x.model)} (${x.speed} ipm · TEC ${fmt(x.tec,2)})</option>`).join('');
-      }
-    } else {
-      baseBrandSel.value = 'CUSTOM';
-      if (customRow) customRow.classList.remove('hide');
-      baseModelSel.innerHTML = `<option value="live_picked" selected>${esc(m.brand)} ${esc(m.model)} (TEC ${fmt(m.tec,2)})</option>`;
-    }
-  }
-
-  if (badge){
-    const bInfo = getBaseModelSourceInfo(m.model, m.brand);
-    badge.innerHTML = `
-      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px">
-        <span class="pill" style="background:#FFF1EE;color:#9E4A3B;border-color:#E8C5BD;font-weight:600">📋 指定舊機基準</span>
-        <a href="${bInfo.url}" target="_blank" rel="noopener" style="font-size:11px;color:#9E4A3B;font-weight:600;text-decoration:underline">🔗 查驗歷史規格 ↗</a>
-      </div>
-      <div class="muted small" style="margin-top:3px">${esc(m.brand)} ${esc(m.model)} · 速度 ${m.speed} ipm · TEC ${fmt(m.tec,2)} · ${esc(m.src)}</div>`;
-  }
-
-  render(); renderTable();
-}
-
-/* =========================================================
-   7. 經濟部能源署節能標章機型篩選與呈現
-   ========================================================= */
-function setStatus(cls, text){
-  const el = document.getElementById('apiStatus');
-  el.className = 'status ' + cls;
-  document.getElementById('apiStatusText').textContent = text;
-}
-
-function loadBrands(){
-  const sel = document.getElementById('fBrand');
-  const counts = {};
-  MASTER_MAP.forEach(m => {
-    const b = m.brand;
-    counts[b] = (counts[b] || 0) + 1;
-  });
-  const list = Object.keys(counts).map(b => ({ name: b, n: counts[b] }));
-  list.sort((a,b) => brandRank(a.name) - brandRank(b.name) || a.name.localeCompare(b.name));
-  sel.innerHTML = `<option value="">全部品牌（全部顯示）</option>` +
-    list.map(b => `<option value="${esc(b.name)}">${esc(b.name)}（${b.n} 款）</option>`).join('');
-  sel.value = '';
-  setStatus('ok', `已核定 經濟部能源署節能標章（共 ${MASTER_MAP.size} 款 A3 認證機種）`);
-}
-
-function currentFilters(){
-  return {
-    brand: document.getElementById('fBrand').value,
-    color: document.getElementById('fColor').value,
-    kw: document.getElementById('fKw').value.trim(),
-    smin: +document.getElementById('fSpeedMin').value,
-    smax: +document.getElementById('fSpeed').value
-  };
-}
-
-function search(){
-  shown = 60;
-  renderTable();
-}
-
-function renderTable(){
-  const f = currentFilters();
-  const sort = document.getElementById('fSort').value;
-  const all = Array.from(MASTER_MAP.values());
-  
-  // 🌟 關鍵修正：若選了該品牌，底下嚴格只留下該品牌，絕不混入其他品牌！
-  let list = all.filter(m => {
-    if (f.brand && m.brand.toUpperCase() !== f.brand.toUpperCase()) return false;
-    if (f.color && m.color !== f.color) return false;
-    if (f.kw) {
-      const kw = f.kw.toUpperCase();
-      if (!m.model.toUpperCase().includes(kw) && !m.brand.toUpperCase().includes(kw)) return false;
-    }
-    if (m.speed < f.smin || m.speed > f.smax) return false;
-    return true;
-  });
-
-  list.sort((a,b) => {
-    if (!f.brand) {
-      const r = brandRank(a.brand) - brandRank(b.brand);
-      if (r !== 0) return r;
-    }
-    if (sort === 'speed') return a.speed - b.speed || a.tec - b.tec;
-    if (sort === 'brand') return a.brand.localeCompare(b.brand) || a.tec - b.tec;
-    if (sort === 'tec') return a.tec - b.tec || a.speed - b.speed;
-    // 預設商務排序：彩機到黑白機、由舊到新
-    return compareModelsUserConcept(a, b);
-  });
-
-  document.getElementById('resCount').textContent = fmt(list.length);
-  const infoEl = document.getElementById('resFilterInfo');
-  if (infoEl) {
-    if (f.brand) {
-      infoEl.textContent = `僅顯示 ${f.brand} 品牌機型`;
-    } else {
-      infoEl.textContent = `Ricoh、Epson 排在最前面`;
-    }
-  }
-
-  const body = document.getElementById('resBody');
-  if (!list.length){
-    body.innerHTML = `<tr><td colspan="6" style="text-align:center;padding:30px" class="muted">沒有符合條件的機型，請放寬速度範圍或更換品牌。</td></tr>`;
-    document.getElementById('btnMore').classList.add('hide'); return;
-  }
-  const inCmp = new Set(compare.map(keyOf));
-  body.innerHTML = list.slice(0, shown).map((m,i) => {
-    const k = keyOf(m), u = m.brand.toUpperCase();
-    const tagCls = u==='RICOH'?'ricoh':u==='EPSON'?'epson':'';
-    const tecColor = m.tec <= 0.25 ? 'var(--sage)' : m.tec <= 0.4 ? 'var(--ink)' : 'var(--rose)';
-    const isBase = S.baseName === `${m.brand} ${m.model}` && Math.abs(S.baseTec - m.tec) < 1e-9;
-    const isGov = m.src.includes('官網');
-
-    return `<tr>
-      <td class="c-brand"><span class="brandtag ${tagCls}">${esc(m.brand)}</span></td>
-      <td class="c-model">
-        <div style="font-weight:600;display:flex;align-items:center;gap:6px;flex-wrap:wrap">
-          <span style="font-size:13.5px;color:#0F172A">${esc(m.model)}</span>
-          ${m.std === '節能標章' || m.src.includes('節能標章')
-            ? `<span class="pill" style="background:#ECFDF5;color:#065F46;border:1px solid #A7F3D0;font-size:10px;padding:1px 5px;font-weight:700" title="中華民國經濟部能源署節能標章（110V/60Hz 官方核定實測）">[節能標章]</span>`
-            : m.std === 'ES v3.0' || m.src.includes('v3.0')
-              ? `<span class="pill" style="background:#EFF6FF;color:#1E40AF;border:1px solid #BFDBFE;font-size:10px;padding:1px 5px;font-weight:700" title="國際能源之星 ENERGY STAR v3.0+ 實測">[ES v3.0]</span>`
-              : `<span class="pill" style="background:#F1F5F9;color:#475569;border:1px solid #CBD5E1;font-size:10px;padding:1px 5px;font-weight:700" title="早期國際能源之星 ENERGY STAR v2.0 歷史數據">[ES v2.0]</span>`}
-          ${isExtModel(m) ? `<span class="pill" style="background:#FEF3C7;color:#92400E;border:1px solid #FCD34D;font-size:10px;padding:1px 5px;font-weight:700" title="此機種為早期獲證並經原廠持續展期有效之長青款式">[展期長青款]</span>` : ''}
-          <a href="${getModelSourceInfo(m).esUrl}" target="_blank" rel="noopener" class="src-pill-link" title="直達國際能源之星官方資料庫，查驗「${esc(m.brand)} ${esc(m.model)}」實測 TEC 值（另開新分頁）" style="font-size:10.5px;color:#1E40AF;text-decoration:none;display:inline-flex;align-items:center;gap:2px;background:#F0F7FF;border:1px solid #BFDBFE;padding:1px 6px;border-radius:4px;font-weight:700">⭐ 實測 TEC ↗</a>
-          ${getModelSourceInfo(m).hasTwLabel ? `<a href="${getModelSourceInfo(m).twUrl}" target="_blank" rel="noopener" class="src-pill-link" title="${getModelSourceInfo(m).twCert ? '經濟部能源署節能標章核定案號：' + esc(getModelSourceInfo(m).twCert) : '前往經濟部能源署節能標章官網查驗'}" style="font-size:10.5px;color:#065F46;text-decoration:none;display:inline-flex;align-items:center;gap:2px;background:#ECFDF5;border:1px solid #A7F3D0;padding:1px 6px;border-radius:4px;font-weight:700">🏅 標章案號 ↗</a>` : ''}
-          ${m.isLegacy ? `<span class="pill" style="background:#FFF1EE;color:#9E4A3B;border:1px solid #E8C5BD;font-size:10px;padding:0 4px">舊機參考</span>` : ''}
-        </div>
-        <div class="muted small" style="margin-top:2px;font-size:11px;line-height:1.3">${getModelSourceInfo(m).twCert ? `<span style="color:#065F46;font-weight:600">標章案號：${esc(getModelSourceInfo(m).twCert)}</span> · ` : ''}${esc(m.src)}</div>
-      </td>
-      <td class="c-spec small muted">${m.color==='Color'?'彩色':m.color==='Monochrome'?'黑白':esc(m.color)} · <span class="num">${m.speed}</span> ipm · ${esc(TECH_LABEL[m.tech]||m.tech)}</td>
-      <td class="c-tec r"><span class="tecbadge" style="color:${tecColor}">${fmt(m.tec,2)}</span></td>
-      <td class="c-kwh r num">${fmt(m.tec*52,1)}</td>
-      <td class="c-act r"><div class="acts">
-        <button class="btn sm ${inCmp.has(k)?'in':''}" data-add="${i}">${inCmp.has(k)?'✓ 比較中':'加入比較'}</button>
-        <button class="btn sm ${isBase?'base':''}" data-base="${i}">${isBase?'✓ 舊機':'設為舊機'}</button>
-      </div></td></tr>`;
-  }).join('');
-  body._list = list;
-  document.getElementById('btnMore').classList.toggle('hide', list.length <= shown);
-}
-
-document.getElementById('resBody').addEventListener('click', e => {
-  const list = e.currentTarget._list || [];
-  const a = e.target.closest('[data-add]'), b = e.target.closest('[data-base]');
-  if (a) addCompare(list[+a.dataset.add]);
-  if (b) setBaseline(list[+b.dataset.base]);
-});
-document.getElementById('btnMore').addEventListener('click', () => { shown += 60; renderTable(); });
-document.getElementById('btnSearch').addEventListener('click', search);
-document.getElementById('fKw').addEventListener('input', () => { shown = 60; renderTable(); });
-document.getElementById('fKw').addEventListener('keydown', e => { if (e.key === 'Enter') search(); });
-['fBrand','fColor'].forEach(id => document.getElementById(id).addEventListener('change', () => {
-  shown = 60;
-  renderTable();
-}));
-document.getElementById('fSort').addEventListener('change', renderTable);
-['fSpeed','fSpeedMin'].forEach(id => document.getElementById(id).addEventListener('input', () => {
-  const lo = document.getElementById('fSpeedMin'), hi = document.getElementById('fSpeed');
-  if (+lo.value > +hi.value) (id==='fSpeed' ? lo : hi).value = id==='fSpeed' ? hi.value : lo.value;
-  document.getElementById('fSpeedOut').textContent = hi.value;
-  document.getElementById('fSpeedMinOut').textContent = lo.value;
-  [lo,hi].forEach(el => el.style.setProperty('--fill', (el.value-el.min)/(el.max-el.min)*100+'%'));
-  renderTable();
-}));
-
-/* =========================================================
-   7B. 多台試算模式與摘要匯出
-   ========================================================= */
-function switchCalcMode(mode){
-  calcMode = mode;
-  const btnSingle = document.getElementById('btnModeSingle');
-  const btnFleet = document.getElementById('btnModeFleet');
-  const pSingle = document.getElementById('panelSingleMode');
-  const pFleet = document.getElementById('panelFleetMode');
-
-  if (mode === 'single'){
-    btnSingle.classList.add('on');
-    btnFleet.classList.remove('on');
-    pSingle.classList.remove('hide');
-    pFleet.classList.add('hide');
-  } else {
-    btnFleet.classList.add('on');
-    btnSingle.classList.remove('on');
-    pSingle.classList.add('hide');
-    pFleet.classList.remove('hide');
-    renderFleetUI();
-  }
-  render();
-}
-
-function renderFleetUI(){
-  renderFleetOldRows();
-  renderFleetNewRows();
-}
-
-function renderFleetOldRows(){
-  const container = document.getElementById('fleetOldRows');
-  if (!container) return;
-  const W = 52;
-  let totalUnits = 0, totalKwh = 0;
-
-  container.innerHTML = fleetOld.map((row, idx) => {
-    const u = parseInt(row.units, 10) || 1;
-    const kwh = (row.tec || 0) * W * u;
-    totalUnits += u;
-    totalKwh += kwh;
-
-    const brandOptions = Object.keys(LEGACY_MODELS).map(b =>
-      `<option value="${b}" ${b===row.brand?'selected':''}>${b==='PRESET'?'★ 通用機齡假設':b}</option>`
-    ).join('') + `<option value="CUSTOM" ${row.brand==='CUSTOM'?'selected':''}>✎ 自訂舊機型號…</option>`;
-
-    let modelOptions = '';
-    if (row.brand === 'CUSTOM'){
-      modelOptions = `<option value="${esc(row.model)}" selected>${esc(row.model)}</option>`;
-    } else {
-      const list = (LEGACY_MODELS[row.brand] || []).slice();
-      list.sort(compareModelsUserConcept);
-      modelOptions = list.map(m => {
-        const tag = m.std ? ` [${m.std}]` : ' [ES v2.0]';
-        const clrTag = getModelColorScore(m) === 0 ? '彩色' : '黑白';
-        return `<option value="${esc(m.model)}" data-tec="${m.tec}" ${m.model===row.model?'selected':''}>${esc(m.model)} (${clrTag} · TEC ${fmt(m.tec,2)})${tag}</option>`;
-      }).join('');
-    }
-
-    return `<div class="fleet-row" style="background:#fff;border:1px solid #E6D7D2;border-radius:8px;padding:8px 10px;display:flex;flex-direction:column;gap:6px">
-      <div class="row between" style="gap:6px">
-        <div style="display:flex;gap:6px;flex:1;flex-wrap:wrap">
-          <select class="fleet-old-brand" data-idx="${idx}" style="border:1px solid var(--line);border-radius:6px;padding:3px 6px;font-size:12px;background:#FAFAFA">
-            ${brandOptions}
-          </select>
-          <select class="fleet-old-model" data-idx="${idx}" style="border:1px solid var(--line);border-radius:6px;padding:3px 6px;font-size:12px;background:#FAFAFA;flex:1;min-width:140px">
-            ${modelOptions}
-          </select>
-        </div>
-        <button type="button" class="btn-del-old" data-idx="${idx}" style="background:none;border:none;color:#A85822;font-size:15px;cursor:pointer;padding:0 4px" title="刪除此列" ${fleetOld.length<=1?'disabled style="opacity:.3;cursor:not-allowed"':''}>✕</button>
-      </div>
-      <div class="row between" style="font-size:12px;gap:6px;flex-wrap:wrap">
-        <div class="row" style="gap:5px;align-items:center">
-          <span class="muted">單機 TEC:</span>
-          <input type="number" step="0.01" min="0.05" max="10" class="fleet-old-tec" data-idx="${idx}" value="${fmt(row.tec,2)}" style="width:58px;border:1px solid var(--line);border-radius:5px;padding:2px 4px;font-size:12px;font-weight:600;color:var(--rose)">
-          <span class="muted">kWh/週</span>
-        </div>
-        <div class="row" style="gap:6px;align-items:center">
-          <span class="muted">台數:</span>
-          <div style="display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:5px;overflow:hidden">
-            <button type="button" class="fleet-unit-btn" data-old-step="-1" data-idx="${idx}" style="border:none;background:#f0f0f0;padding:2px 6px;cursor:pointer;font-weight:bold">-</button>
-            <input type="number" min="1" max="99" class="fleet-old-units" data-idx="${idx}" value="${u}" style="width:34px;border:none;text-align:center;font-size:12px;font-weight:600">
-            <button type="button" class="fleet-unit-btn" data-old-step="1" data-idx="${idx}" style="border:none;background:#f0f0f0;padding:2px 6px;cursor:pointer;font-weight:bold">+</button>
-          </div>
-          <span class="muted">台</span>
-          <span class="num c-rose" style="margin-left:4px;font-weight:600">${fmt(kwh,1)} 度/年</span>
-        </div>
-      </div>
-    </div>`;
-  }).join('');
-
-  document.getElementById('fleetOldTotalUnits').textContent = fmt(totalUnits);
-  document.getElementById('fleetOldTotalKwh').textContent = fmt(totalKwh, 1);
-}
-
-function renderFleetNewRows(){
-  const container = document.getElementById('fleetNewRows');
-  if (!container) return;
-  const W = 52;
-  let totalUnits = 0, totalKwh = 0;
-
-  const allModels = Array.from(MASTER_MAP.values());
-  const brands = Array.from(new Set(allModels.map(m => m.brand))).sort((a,b) => brandRank(a)-brandRank(b) || a.localeCompare(b));
-
-  container.innerHTML = fleetNew.map((row, idx) => {
-    const u = parseInt(row.units, 10) || 1;
-    const kwh = (row.tec || 0) * W * u;
-    totalUnits += u;
-    totalKwh += kwh;
-
-    const brandOptions = brands.map(b =>
-      `<option value="${esc(b)}" ${b.toUpperCase()===row.brand.toUpperCase()?'selected':''}>${b==='Ricoh'?'★ Ricoh 理光':b==='Epson'?'★ Epson 愛普生':b}</option>`
-    ).join('');
-
-    const modelsInBrand = allModels.filter(m => m.brand.toUpperCase() === row.brand.toUpperCase());
-    modelsInBrand.sort(compareModelsUserConcept);
-
-    const modelOptions = modelsInBrand.map(m => {
-      const clrTag = getModelColorScore(m) === 0 ? '彩色' : '黑白';
-      return `<option value="${keyOf(m)}" data-tec="${m.tec}" ${m.model===row.model?'selected':''}>${esc(m.model)} (${clrTag} · ${m.speed} ipm · TEC ${fmt(m.tec,2)})</option>`;
-    }).join('');
-
-    return `<div class="fleet-row" style="background:#fff;border:1px solid #D5DFE8;border-radius:8px;padding:8px 10px;display:flex;flex-direction:column;gap:6px">
-      <div class="row between" style="gap:6px">
-        <div style="display:flex;gap:6px;flex:1;flex-wrap:wrap">
-          <select class="fleet-new-brand" data-idx="${idx}" style="border:1px solid var(--line);border-radius:6px;padding:3px 6px;font-size:12px;background:#FAFAFA">
-            ${brandOptions}
-          </select>
-          <select class="fleet-new-model" data-idx="${idx}" style="border:1px solid var(--line);border-radius:6px;padding:3px 6px;font-size:12px;background:#FAFAFA;flex:1;min-width:140px">
-            ${modelOptions}
-          </select>
-        </div>
-        <button type="button" class="btn-del-new" data-idx="${idx}" style="background:none;border:none;color:#465D73;font-size:15px;cursor:pointer;padding:0 4px" title="刪除此列" ${fleetNew.length<=1?'disabled style="opacity:.3;cursor:not-allowed"':''}>✕</button>
-      </div>
-      <div class="row between" style="font-size:12px;gap:6px;flex-wrap:wrap">
-        <div class="row" style="gap:5px;align-items:center">
-          <span class="pill" style="background:var(--sage-bg);color:#284B31;border-color:#C2DEC9;font-size:10px;padding:1px 5px">🏅 節能標章</span>
-          <a href="${getModelSourceInfo(row).esUrl}" target="_blank" rel="noopener" style="font-size:10.5px;color:#1E40AF;text-decoration:underline;font-weight:700" title="直達國際能源之星官方資料庫查驗實測 TEC 值">⭐ 實測 TEC ↗</a>${getModelSourceInfo(row).hasTwLabel ? `<a href="${getModelSourceInfo(row).twUrl}" target="_blank" rel="noopener" style="font-size:10.5px;color:#065F46;text-decoration:underline;font-weight:700;margin-left:4px" title="${getModelSourceInfo(row).twCert ? '節能標章案號：' + esc(getModelSourceInfo(row).twCert) : '前往能源署標章查驗'}">🏅 標章 ↗</a>` : ''}
-          <span class="muted">單機 TEC:</span>
-          <span class="num c-blue" style="font-weight:700">${fmt(row.tec,2)}</span>
-          <span class="muted">kWh/週</span>
-        </div>
-        <div class="row" style="gap:6px;align-items:center">
-          <span class="muted">台數:</span>
-          <div style="display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:5px;overflow:hidden">
-            <button type="button" class="fleet-unit-btn" data-new-step="-1" data-idx="${idx}" style="border:none;background:#f0f0f0;padding:2px 6px;cursor:pointer;font-weight:bold">-</button>
-            <input type="number" min="1" max="99" class="fleet-new-units" data-idx="${idx}" value="${u}" style="width:34px;border:none;text-align:center;font-size:12px;font-weight:600">
-            <button type="button" class="fleet-unit-btn" data-new-step="1" data-idx="${idx}" style="border:none;background:#f0f0f0;padding:2px 6px;cursor:pointer;font-weight:bold">+</button>
-          </div>
-          <span class="muted">台</span>
-          <span class="num c-blue" style="margin-left:4px;font-weight:600">${fmt(kwh,1)} 度/年</span>
-        </div>
-      </div>
-    </div>`;
-  }).join('');
-
-  document.getElementById('fleetNewTotalUnits').textContent = fmt(totalUnits);
-  document.getElementById('fleetNewTotalKwh').textContent = fmt(totalKwh, 1);
-}
-
-// 產生節能試算摘要文字（非報價，純客觀節能效益）
-function generateSummaryText(){
-  const isFleet = calcMode === 'fleet';
-  const m = isFleet ? calcFleet(S) : calc(S);
-  const W = 52;
-  const now = new Date();
-  const dateStr = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
-
-  let text = `======================================================
-【事務機 節能效益試算摘要】
-======================================================
-■ 產生日期：${dateStr}
-■ 試算模式：${isFleet ? '多台試算（多機種汰換組合）' : '單機試算（1 對 1 方案比較）'}
-■ 評估年限：${S.years} 年（租期）
-■ 每度電價：NT$ ${fmt(S.price,1)} / 度
-■ 電力排碳係數：${fmt(S.cf,3)} kg CO₂e / 度（經濟部能源署 114 年度最新產業公告值）
-
-------------------------------------------------------
-【現況舊機設備清單（基準 A）】
-------------------------------------------------------\n`;
-
-  if (isFleet){
-    fleetOld.forEach((x, i) => {
-      text += `${i+1}. ${x.brand} ${x.model} × ${x.units} 台 ｜ 單機 TEC: ${fmt(x.tec,2)} kWh/週 ｜ 年用電: ${fmt(x.tec*W*x.units,1)} 度\n`;
-    });
-    text += `------------------------------------------------------
-舊機合計：${m.totalUnitsOld} 台 ｜ 總年用電：${fmt(m.baseKwh,1)} 度 ｜ 每年電費約：NT$ ${fmt(m.baseCost)}\n\n`;
-  } else {
-    text += `• 機型名稱：${S.baseName}
-• 評估台數：${S.units} 台
-• 單機 TEC：${fmt(S.baseTec,2)} kWh/週
-• 全年用電：${fmt(m.baseKwh,1)} 度 / 年
-• 每年電費約：NT$ ${fmt(m.baseCost)}\n\n`;
-  }
-
-  text += `------------------------------------------------------
-【擬換新機設備清單（方案 B）】
-------------------------------------------------------\n`;
-
-  if (isFleet){
-    fleetNew.forEach((x, i) => {
-      text += `${i+1}. ${x.brand} ${x.model} × ${x.units} 台 ｜ 單機 TEC: ${fmt(x.tec,2)} kWh/週 ｜ 年用電: ${fmt(x.tec*W*x.units,1)} 度 (🏅 節能標章)\n`;
-    });
-    text += `------------------------------------------------------
-新機合計：${m.totalUnitsNew} 台 ｜ 總年用電：${fmt(m.targetKwh,1)} 度 ｜ 每年電費約：NT$ ${fmt(m.targetCost)}\n\n`;
-  } else {
-    text += `• 機型名稱：${S.targetName}（🏅 節能標章）
-• 評估台數：${S.units} 台
-• 單機 TEC：${fmt(S.targetTec,2)} kWh/週
-• 全年用電：${fmt(m.targetKwh,1)} 度 / 年
-• 每年電費約：NT$ ${fmt(m.targetCost)}\n\n`;
-  }
-
-  text += `======================================================
-【綜合節能與減碳成效評估】
-======================================================
-★ 全年少用電量：${fmt(m.kwhYr,1)} 度 / 年（節電率 ${fmt(m.rate,1)}%）
-★ 每年節省電費：NT$ ${fmt(m.costYr)} / 年
-★ ${S.years} 年累計節省電費：NT$ ${fmt(m.totalCost)}
-★ 每年減少碳排放：${fmt(m.co2Yr,1)} kg CO₂e / 年
-★ ${S.years} 年累計減碳量：${fmt(m.co2Total,1)} kg CO₂e
-======================================================
-※ 數據來源依據：
-1. 經濟部能源署「節能標章」官方核定之 A3 多功能複合機實測資料庫。
-2. 經濟部能源署 114 年度公用售電業產業電力排碳係數（0.466 kg CO₂e/度）。
-※ 免責聲明：
-本試算結果為依據標準 TEC 作業程序（168 小時週期）之理論推估數據，
-僅供節能選型、辦公設備整合與企業 ESG 永續提案初步評估參考，
-實際節電度數與費用請以原廠合約及台電電費單為準。
-======================================================`;
-
-  return text;
-}
-
-function generateReportSvgCharts(m){
-  // 1. 生成 5 年累計省電費長條柱狀圖 (SVG)
-  const cum = m.cum || [];
-  const max = Math.max(...cum, 1);
-  const width = 340, height = 135, padL = 40, padB = 22, padT = 20, padR = 15;
-  const chartW = width - padL - padR;
-  const chartH = height - padT - padB;
-  const barCount = cum.length || 1;
-  const barW = Math.min(36, (chartW / barCount) * 0.65);
-  const step = chartW / barCount;
-
-  let bars = '';
-  cum.forEach((val, i) => {
-    const barH = Math.max(3, (val / max) * chartH);
-    const x = padL + i * step + (step - barW) / 2;
-    const y = padT + (chartH - barH);
-    const valText = val >= 10000 ? (val/10000).toFixed(1) + '萬' : Math.round(val).toLocaleString();
-
-    bars += `
-      <g>
-        <rect x="${x}" y="${y}" width="${barW}" height="${barH}" rx="4" fill="#059669" />
-        <text x="${x + barW/2}" y="${y - 5}" font-size="10" font-weight="700" fill="#047857" text-anchor="middle">NT$ ${valText}</text>
-        <text x="${x + barW/2}" y="${height - 6}" font-size="10.5" fill="#64748B" text-anchor="middle">第${i+1}年</text>
-      </g>
-    `;
-  });
-
-  const cumSvg = `<svg viewBox="0 0 ${width} ${height}" style="width:100%;height:auto;display:block">
-    <line x1="${padL}" y1="${padT + chartH}" x2="${width - padR}" y2="${padT + chartH}" stroke="#CBD5E1" stroke-width="1.5" />
-    ${bars}
-  </svg>`;
-
-  // 2. 生成新舊方案年用電對照長條圖 (SVG)
-  const baseKwh = m.baseKwh || 0;
-  const targetKwh = m.targetKwh || 0;
-  const maxKwh = Math.max(baseKwh, targetKwh, 1);
-  const baseW = Math.round((baseKwh / maxKwh) * 100);
-  const targetW = Math.max(3, Math.round((targetKwh / maxKwh) * 100));
-
-  const hbarSvg = `<div style="display:flex;flex-direction:column;gap:12px;padding:4px 0">
-    <div>
-      <div style="display:flex;justify-content:space-between;font-size:11.5px;margin-bottom:4px">
-        <span style="font-weight:700;color:#B91C1C">● 現況舊機年用電</span>
-        <span style="font-family:var(--mono);font-weight:700">${fmt(baseKwh,1)} 度 (NT$ ${fmt(m.baseCost)})</span>
-      </div>
-      <div style="background:#FEE2E2;border-radius:6px;height:14px;overflow:hidden">
-        <div style="background:#EF4444;width:${baseW}%;height:100%;border-radius:6px"></div>
-      </div>
-    </div>
-    <div>
-      <div style="display:flex;justify-content:space-between;font-size:11.5px;margin-bottom:4px">
-        <span style="font-weight:700;color:#047857">● 擬換新機年用電（節電率 ${fmt(m.rate,1)}%）</span>
-        <span style="font-family:var(--mono);font-weight:700">${fmt(targetKwh,1)} 度 (NT$ ${fmt(m.targetCost)})</span>
-      </div>
-      <div style="background:#DCFCE7;border-radius:6px;height:14px;overflow:hidden">
-        <div style="background:#10B981;width:${targetW}%;height:100%;border-radius:6px"></div>
-      </div>
-    </div>
-  </div>`;
-
-  return { cumSvg, hbarSvg };
-}
-
-function updatePdfReportDOM(){
-  const isFleet = calcMode === 'fleet';
-  const m = isFleet ? calcFleet(S) : calc(S);
-  const W = 52;
-  const now = new Date();
-  const dateStr = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
-
-  document.getElementById('pdfReportDate').textContent = `報告日期：${dateStr}`;
-  document.getElementById('pdfParamMode').textContent = isFleet ? '多台試算' : '單機試算';
-  document.getElementById('pdfParamYears').textContent = S.years;
-  document.getElementById('pdfParamPrice').textContent = fmt(S.price, 1);
-  document.getElementById('pdfParamCf').textContent = fmt(S.cf, 3);
-
-  // KPIs
-  document.getElementById('pdfKpiKwh').textContent = `${fmt(m.kwhYr,1)} 度`;
-  document.getElementById('pdfKpiRate').textContent = `節電率 ${fmt(m.rate,1)}%`;
-  document.getElementById('pdfKpiCostYr').textContent = `NT$ ${fmt(m.costYr)}`;
-  document.getElementById('pdfKpiCostUnit').textContent = fmt(m.costUnit);
-  document.getElementById('pdfKpiYearsTitle').textContent = S.years;
-  document.getElementById('pdfKpiTotalCost').textContent = `NT$ ${fmt(m.totalCost)}`;
-  document.getElementById('pdfKpiKwhTotal').textContent = fmt(m.kwhTotal, 1);
-  document.getElementById('pdfKpiCo2').textContent = `${fmt(m.co2Yr,1)} kg`;
-  document.getElementById('pdfKpiYearsCo2').textContent = S.years;
-  document.getElementById('pdfKpiCo2Total').textContent = fmt(m.co2Total, 1);
-
-  // Table Body
-  let tbodyHtml = '';
-  if (isFleet){
-    fleetOld.forEach((x, i) => {
-      const u = parseInt(x.units, 10) || 1;
-      const kwh = (x.tec || 0) * W * u;
-      tbodyHtml += `<tr>
-        ${i===0 ? `<td rowspan="${fleetOld.length}" style="background:#FFF5F5;color:#B91C1C;font-weight:700;text-align:center">現況舊機<br>（基準 A）</td>` : ''}
-        <td><b>${esc(x.brand)} ${esc(x.model)}</b><div style="font-size:11px;color:#64748B">${esc(x.era||x.src||'')}</div></td>
-        <td style="text-align:right;font-family:var(--mono);font-weight:700;color:#B91C1C">${fmt(x.tec,2)}</td>
-        <td style="text-align:center;font-weight:700">${u} 台</td>
-        <td style="text-align:right;font-family:var(--mono);font-weight:700">${fmt(kwh,1)} 度</td>
-      </tr>`;
-    });
-    tbodyHtml += `<tr style="background:#FFF9F9;font-weight:700">
-      <td colspan="3" style="text-align:right;color:#B91C1C">舊機合計小計：</td>
-      <td style="text-align:center;color:#B91C1C">${m.totalUnitsOld} 台</td>
-      <td style="text-align:right;font-family:var(--mono);color:#B91C1C">${fmt(m.baseKwh,1)} 度/年</td>
-    </tr>`;
-
-    fleetNew.forEach((x, i) => {
-      const u = parseInt(x.units, 10) || 1;
-      const kwh = (x.tec || 0) * W * u;
-      tbodyHtml += `<tr>
-        ${i===0 ? `<td rowspan="${fleetNew.length}" style="background:#F0FDF4;color:#047857;font-weight:700;text-align:center">擬換新機<br>（方案 B）</td>` : ''}
-        <td><b>${esc(x.brand)} ${esc(x.model)}</b> <span class="pill" style="background:#EBF5EE;color:#284B31;border:1px solid #C2DEC9;font-size:10px;padding:1px 5px;font-weight:600">節能標章認證</span><div style="font-size:11px;color:#64748B">${esc(x.src||'')}</div></td>
-        <td style="text-align:right;font-family:var(--mono);font-weight:700;color:#059669">${fmt(x.tec,2)}</td>
-        <td style="text-align:center;font-weight:700">${u} 台</td>
-        <td style="text-align:right;font-family:var(--mono);font-weight:700">${fmt(kwh,1)} 度</td>
-      </tr>`;
-    });
-    tbodyHtml += `<tr style="background:#F0FDF4;font-weight:700">
-      <td colspan="3" style="text-align:right;color:#047857">新機合計小計：</td>
-      <td style="text-align:center;color:#047857">${m.totalUnitsNew} 台</td>
-      <td style="text-align:right;font-family:var(--mono);color:#047857">${fmt(m.targetKwh,1)} 度/年</td>
-    </tr>`;
-  } else {
-    tbodyHtml += `<tr>
-      <td style="background:#FFF5F5;color:#B91C1C;font-weight:700;text-align:center">現況舊機<br>（基準 A）</td>
-      <td><b>${esc(S.baseName)}</b></td>
-      <td style="text-align:right;font-family:var(--mono);font-weight:700;color:#B91C1C">${fmt(S.baseTec,2)}</td>
-      <td style="text-align:center;font-weight:700">${S.units} 台</td>
-      <td style="text-align:right;font-family:var(--mono);font-weight:700">${fmt(m.baseKwh,1)} 度</td>
-    </tr>
-    <tr>
-      <td style="background:#F0FDF4;color:#047857;font-weight:700;text-align:center">擬換新機<br>（方案 B）</td>
-      <td><b>${esc(S.targetName)}</b> <span class="pill" style="background:#EBF5EE;color:#284B31;border:1px solid #C2DEC9;font-size:10px;padding:1px 5px;font-weight:600">節能標章認證</span></td>
-      <td style="text-align:right;font-family:var(--mono);font-weight:700;color:#059669">${fmt(S.targetTec,2)}</td>
-      <td style="text-align:center;font-weight:700">${S.units} 台</td>
-      <td style="text-align:right;font-family:var(--mono);font-weight:700">${fmt(m.targetKwh,1)} 度</td>
-    </tr>`;
-  }
-
-  document.getElementById('pdfTableBody').innerHTML = tbodyHtml;
-
-  // Charts
-  document.getElementById('pdfChartYears').textContent = S.years;
-  const svgs = generateReportSvgCharts(m);
-  document.getElementById('pdfChartCumSvg').innerHTML = svgs.cumSvg;
-  document.getElementById('pdfChartHbarSvg').innerHTML = svgs.hbarSvg;
-}
-
-function openExportSummary(){
-  updatePdfReportDOM();
-  const modal = document.getElementById('exportModal');
-  if (modal) modal.classList.remove('hide');
-}
-
-function notifyExport(msg){
-  const el = document.getElementById('exportNotify');
-  const txt = document.getElementById('exportNotifyText');
-  if (el && txt){
-    txt.textContent = msg;
-    el.style.display = 'flex';
-    setTimeout(() => { el.style.display = 'none'; }, 3500);
-  }
-}
-
-function downloadPdfReport(){
-  const element = document.getElementById('pdfReportPaper');
-  const now = new Date();
-  const dateStr = `${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}${String(now.getDate()).padStart(2,'0')}`;
-  const filename = `事務機節能效益評估報告_${dateStr}.pdf`;
-
-  if (window.html2pdf){
-    notifyExport('⏳ 正在為您編譯高解析 PDF 報告，請稍候…');
-    const opt = {
-      margin:       [8, 8, 8, 8],
-      filename:     filename,
-      image:        { type: 'jpeg', quality: 0.98 },
-      html2canvas:  { scale: 2, useCORS: true, logging: false },
-      jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-    };
-    html2pdf().set(opt).from(element).save().then(() => {
-      notifyExport('✓ PDF 報告已成功下載！');
-    }).catch(err => {
-      console.warn('html2pdf 失敗，改用原生列印輸出：', err);
-      window.print();
-    });
-  } else {
-    notifyExport('正在開啟列印視窗，請於目的地選擇「另存為 PDF」');
-    setTimeout(() => window.print(), 300);
-  }
-}
-
-
-
-function closeExportSummary(){
-  const modal = document.getElementById('exportModal');
-  if (modal) modal.classList.add('hide');
-}
-
-// 綁定多台試算事件
-function bindFleetEvents(){
-  document.getElementById('btnModeSingle').addEventListener('click', () => switchCalcMode('single'));
-  document.getElementById('btnModeFleet').addEventListener('click', () => switchCalcMode('fleet'));
-
-  document.getElementById('btnExportSummary').addEventListener('click', openExportSummary);
-  document.getElementById('btnCloseExport').addEventListener('click', closeExportSummary);
-  document.getElementById('btnCloseExport2').addEventListener('click', closeExportSummary);
-
-  // 下載 PDF
-  ['btnDownloadPdf', 'btnDownloadPdf2'].forEach(id => {
-    const btn = document.getElementById(id);
-    if (btn) btn.addEventListener('click', downloadPdfReport);
-  });
-
-  // 原生列印為 PDF
-  const btnPrint = document.getElementById('btnPrintPdf');
-  if (btnPrint) btnPrint.addEventListener('click', () => { window.print(); });
-
-  // 複製純文字摘要
-  const btnCopy = document.getElementById('btnCopyText');
-  if (btnCopy) btnCopy.addEventListener('click', () => {
-    const txt = generateSummaryText();
-    navigator.clipboard.writeText(txt).then(() => {
-      notifyExport('✓ 試算摘要純文字已複製至剪貼簿！');
-    });
-  });
-
-  // 新增舊機列
-  document.getElementById('btnAddFleetOld').addEventListener('click', () => {
-    fleetOld.push({
-      brand: 'Ricoh',
-      model: 'MP C2504ex',
-      speed: 25,
-      tec: 1.10,
-      units: 1,
-      era: '約 6~7 年前',
-      src: '原廠歷史規格'
-    });
-    renderFleetOldRows();
-    render();
-  });
-
-  // 新增新機列
-  document.getElementById('btnAddFleetNew').addEventListener('click', () => {
-    fleetNew.push({
-      brand: 'Ricoh',
-      model: 'IM C2010',
-      speed: 20,
-      tec: 0.20,
-      units: 1,
-      src: '經濟部能源署節能標章實測'
-    });
-    renderFleetNewRows();
-    render();
-  });
-
-  // 舊機列互動（品牌更換、型號更換、台數調整、刪除）
-  const oldContainer = document.getElementById('fleetOldRows');
-  oldContainer.addEventListener('change', e => {
-    const bSel = e.target.closest('.fleet-old-brand');
-    const mSel = e.target.closest('.fleet-old-model');
-    const tecInput = e.target.closest('.fleet-old-tec');
-    const uInput = e.target.closest('.fleet-old-units');
-
-    if (bSel){
-      const idx = +bSel.dataset.idx;
-      const b = bSel.value;
-      fleetOld[idx].brand = b;
-      if (b === 'CUSTOM'){
-        fleetOld[idx].model = '自訂舊機';
-      } else {
-        const list = LEGACY_MODELS[b] || [];
-        if (list.length > 0){
-          fleetOld[idx].model = list[0].model;
-          fleetOld[idx].tec = list[0].tec;
-        }
-      }
-      renderFleetOldRows();
-      render();
-    } else if (mSel){
-      const idx = +mSel.dataset.idx;
-      fleetOld[idx].model = mSel.value;
-      const opt = mSel.selectedOptions[0];
-      if (opt && opt.dataset.tec) {
-        fleetOld[idx].tec = parseFloat(opt.dataset.tec);
-      }
-      renderFleetOldRows();
-      render();
-    } else if (tecInput){
-      const idx = +tecInput.dataset.idx;
-      fleetOld[idx].tec = Math.max(0.01, parseFloat(tecInput.value) || 0.1);
-      renderFleetOldRows();
-      render();
-    } else if (uInput){
-      const idx = +uInput.dataset.idx;
-      fleetOld[idx].units = Math.max(1, parseInt(uInput.value, 10) || 1);
-      renderFleetOldRows();
-      render();
-    }
-  });
-
-  oldContainer.addEventListener('click', e => {
-    const delBtn = e.target.closest('.btn-del-old');
-    const stepBtn = e.target.closest('[data-old-step]');
-    if (delBtn && fleetOld.length > 1){
-      const idx = +delBtn.dataset.idx;
-      fleetOld.splice(idx, 1);
-      renderFleetOldRows();
-      render();
-    } else if (stepBtn){
-      const idx = +stepBtn.dataset.idx;
-      const step = +stepBtn.dataset.oldStep;
-      fleetOld[idx].units = Math.max(1, (parseInt(fleetOld[idx].units, 10) || 1) + step);
-      renderFleetOldRows();
-      render();
-    }
-  });
-
-  // 新機列互動（品牌更換、型號更換、台數調整、刪除）
-  const newContainer = document.getElementById('fleetNewRows');
-  newContainer.addEventListener('change', e => {
-    const bSel = e.target.closest('.fleet-new-brand');
-    const mSel = e.target.closest('.fleet-new-model');
-    const uInput = e.target.closest('.fleet-new-units');
-
-    if (bSel){
-      const idx = +bSel.dataset.idx;
-      const b = bSel.value;
-      fleetNew[idx].brand = b;
-      const allModels = Array.from(MASTER_MAP.values());
-      const inBrand = allModels.filter(m => m.brand.toUpperCase() === b.toUpperCase());
-      if (inBrand.length > 0){
-        fleetNew[idx].model = inBrand[0].model;
-        fleetNew[idx].tec = inBrand[0].tec;
-      }
-      renderFleetNewRows();
-      render();
-    } else if (mSel){
-      const idx = +mSel.dataset.idx;
-      const m = MASTER_MAP.get(mSel.value);
-      if (m){
-        fleetNew[idx].model = m.model;
-        fleetNew[idx].tec = m.tec;
-        fleetNew[idx].brand = m.brand;
-      }
-      renderFleetNewRows();
-      render();
-    } else if (uInput){
-      const idx = +uInput.dataset.idx;
-      fleetNew[idx].units = Math.max(1, parseInt(uInput.value, 10) || 1);
-      renderFleetNewRows();
-      render();
-    }
-  });
-
-  newContainer.addEventListener('click', e => {
-    const delBtn = e.target.closest('.btn-del-new');
-    const stepBtn = e.target.closest('[data-new-step]');
-    if (delBtn && fleetNew.length > 1){
-      const idx = +delBtn.dataset.idx;
-      fleetNew.splice(idx, 1);
-      renderFleetNewRows();
-      render();
-    } else if (stepBtn){
-      const idx = +stepBtn.dataset.idx;
-      const step = +stepBtn.dataset.newStep;
-      fleetNew[idx].units = Math.max(1, (parseInt(fleetNew[idx].units, 10) || 1) + step);
-      renderFleetNewRows();
-      render();
-    }
-  });
-}
-
-/* =========================================================
-   8. 審計抽屜
-   ========================================================= */
-function openAudit(type){
-  const m = calc(S);
-  const A = `<h4>共同參數</h4><div class="formula">台數 ${fmt(S.units)} · 電價 NT$${fmt(S.price,1)}/度 · 年限 ${S.years} 年 · 排碳係數 ${fmt(S.cf,3)} kg/度<br>舊機 TEC ${fmt(S.baseTec,2)}（${esc(S.baseName)}）<br>新機 TEC ${fmt(S.targetTec,2)}（${esc(S.targetName)}）</div>`;
-  const K = `<h4>每年少用電量</h4><div class="formula">舊機年用電 = ${fmt(S.baseTec,2)} × 52 × ${fmt(S.units)} = ${fmt(m.baseKwh,1)} 度<br>新機年用電 = ${fmt(S.targetTec,2)} × 52 × ${fmt(S.units)} = ${fmt(m.targetKwh,1)} 度<br>少用 = <span class="hl">${fmt(m.kwhYr,1)} 度</span>（${fmt(m.rate,1)}%）</div>
-    <div class="src">TEC 單位是 kWh/週，一年以 52 週計算。來源：經濟部能源署節能標章官方核定實測資料。</div>`;
-  const C = `<h4>每年省下電費</h4><div class="formula">${fmt(m.kwhYr,1)} 度 × NT$${fmt(S.price,1)} = <span class="hl">NT$${fmt(m.costYr)}</span><br>每台 = NT$${fmt(m.costUnit)}</div>
-    <div class="src">電價是假設值，請依貴公司電費單平均單價（總電費 ÷ 總度數）調整。</div>`;
-  const T = `<h4>${S.years} 年累計</h4><div class="formula">${m.cum.map((v,i)=>`第${i+1}年 NT$${fmt(m.costYr)}　累計 NT$${fmt(v)}`).join('<br>')}<br>合計 = <span class="hl">NT$${fmt(m.totalCost)}</span></div>
-    <div class="src">依目前每度電價 NT$ ${fmt(S.price,1)} 逐年累計計算。</div>`;
-  const O = `<h4>每年減少碳排</h4><div class="formula">${fmt(m.kwhYr,1)} 度 × ${fmt(S.cf,3)} kg CO₂e/度 = <span class="hl">${fmt(m.co2Yr,1)} kg CO₂e</span><br>${S.years} 年累計 = ${fmt(m.co2Total,1)} kg</div>
-    <div class="src">經濟部能源署公告 114 年度產業電力排碳係數 0.466 kg CO₂e/度（公用售電業平均 0.467），屬範疇二（Scope 2）間接排放。</div>`;
-  const E = `<h4>TEC 是什麼與耗電量換算</h4><p class="small">TEC（典型用電量）模擬一週 5 個上班日加 2 天週末的總用電，單位 kWh/週。數值越低越省電。年耗電度數估算公式為 <code>TEC × 52 週</code>。</p>
-    <div class="src" style="margin-bottom:12px">推薦延伸閱讀：<a href="https://www.eosasc.com.tw/mfp-power-consumption-energy-saving" target="_blank" rel="noopener" style="color:var(--blue);font-weight:600;text-decoration:underline">互盛官方專題・影印機耗電多少？TEC 怎麼看 ↗</a></div>
-    <button class="btn sm" onclick="closeAudit();go(3)">前往 03 頁 TEC 測試與標章基準 →</button>`;
-  const map = {kwh:A+K, cost:A+K+C, total:A+K+C+T, co2:A+K+O, tec:A+E};
-  const auditDisclaimer = `<div class="note" style="margin-top:14px;background:#FFF9F5;border-color:#F0DDD2;font-size:12px;line-height:1.6">
-    <b>⚖️ 試算與數據免責聲明：</b><br>
-    本工具之耗電度數、電費金額與碳排放減量推算均基於標準化 TEC 測試程序（TEC × 52 週）與公開參數，主要用於機型間之相對效益評估。實際運作能耗因企業印量、睡眠設定、電價級距等有所差異，試算結果不構成任何效能保證、合約承諾或審計憑證。
-  </div>`;
-  document.getElementById('dBody').innerHTML = (map[type] || A+K+C+T+O) + auditDisclaimer;
-  document.getElementById('drawer').classList.add('on');
-  document.getElementById('drawer').setAttribute('aria-hidden','false');
-  document.getElementById('mask').classList.add('on');
-}
-function closeAudit(){
-  document.getElementById('drawer').classList.remove('on');
-  document.getElementById('drawer').setAttribute('aria-hidden','true');
-  document.getElementById('mask').classList.remove('on');
-}
-document.addEventListener('click', e => {
-  const a = e.target.closest('[data-audit]'); if (a) openAudit(a.dataset.audit);
-  const p = e.target.closest('[data-preset]'); if (p){ Object.assign(S, LAB_PRESETS[p.dataset.preset]); S.s = 20; render(); }
-});
-document.getElementById('mask').addEventListener('click', closeAudit);
-document.getElementById('dClose').addEventListener('click', closeAudit);
-document.getElementById('btnReset').addEventListener('click', () => {
-  ['units','price','years','cf','baseTec','baseName'].forEach(k => S[k] = DEFAULTS[k]);
-  const p = compare.find(x => keyOf(x) === primaryKey);
-  if (p){ S.targetTec = p.tec; S.targetName = `${p.brand} ${p.model}`; } else { S.targetTec = DEFAULTS.targetTec; S.targetName = DEFAULTS.targetName; }
-  
-  const baseBrandSel = document.getElementById('abBaseBrandSel');
-  if (baseBrandSel) {
-    baseBrandSel.value = 'PRESET';
-    const baseModelSel = document.getElementById('abBaseModelSel');
-    if (baseModelSel) {
-      const list = LEGACY_MODELS.PRESET;
-      baseModelSel.innerHTML = list.map((m, idx) => `<option value="${idx}">${esc(m.model)}（TEC ${fmt(m.tec,2)} · ${m.era}）</option>`).join('');
-      baseModelSel.value = '0';
-    }
-    const badge = document.getElementById('abBaseSourceBadge');
-    if (badge) {
-      const bInfo = getBaseModelSourceInfo(S.baseName, 'PRESET');
-      badge.innerHTML = `
-        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px">
-          <span class="pill" style="background:#FFF1EE;color:#9E4A3B;border-color:#E8C5BD;font-weight:600">⏱️ 機齡推估：約 5 年前（租賃滿期主力）</span>
-          <a href="${bInfo.url}" target="_blank" rel="noopener" style="font-size:11px;color:#9E4A3B;font-weight:600;text-decoration:underline">🔗 查驗歷史規格 ↗</a>
-        </div>
-        <div class="muted small" style="margin-top:3px">租賃市場典型傳統雷射事務機耗能基準（可直接以滑桿微調）</div>`;
-    }
-    const customRow = document.getElementById('abBaseCustomRow');
-    if (customRow) customRow.classList.add('hide');
-  }
-  syncABPickerUI();
-  render(); renderTable();
-});
-
-/* =========================================================
-   9. 分頁控制
-   ========================================================= */
-let page = 1;
-function go(n){
-  page = Math.max(1, Math.min(3, n));
-  document.querySelectorAll('.slide').forEach((s,i) => s.classList.toggle('on', i+1 === page));
-  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('on', +t.dataset.go === page));
-  document.getElementById('pageNo').textContent = page;
-  const prevBtn = document.getElementById('prev');
-  const nextBtn = document.getElementById('next');
-  if (prevBtn){
-    prevBtn.disabled = page === 1;
-    prevBtn.style.visibility = page === 1 ? 'hidden' : 'visible';
-  }
-  if (nextBtn){
-    nextBtn.disabled = page === 3;
-    nextBtn.style.visibility = page === 3 ? 'hidden' : 'visible';
-  }
-  const t = document.querySelector(`.tab[data-go="${page}"]`); t && t.scrollIntoView({inline:'center', block:'nearest'});
-  window.scrollTo({top:0, behavior:'smooth'});
-}
-const brandEl = document.getElementById('brandHome') || document.querySelector('.brand');
-if (brandEl) brandEl.addEventListener('click', e => { e.preventDefault(); closeAudit(); go(1); });
-document.getElementById('tabs').addEventListener('click', e => { const t = e.target.closest('[data-go]'); if (t) go(+t.dataset.go); });
-document.getElementById('prev').addEventListener('click', () => go(page-1));
-document.getElementById('next').addEventListener('click', () => go(page+1));
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') closeAudit();
-  if (/INPUT|SELECT|TEXTAREA/.test(document.activeElement.tagName)) return;
-  if (e.key === 'ArrowRight') go(page+1);
-  if (e.key === 'ArrowLeft') go(page-1);
-});
-
-/* =========================================================
-   10. 初始化
-   ========================================================= */
-(function init(){
-  const pick = (b, md) => {
-    for (const m of MASTER_MAP.values()){
-      if (m.brand.toUpperCase() === b.toUpperCase() && m.model === md) return m;
-    }
-    return null;
-  };
-  // 預設比較清單：Ricoh IM C2010、Epson 官網款 EM-C8101、Epson AM-C4000
-  compare = [pick('Ricoh','IM C2010'), pick('Epson','EM-C8101'), pick('Epson','AM-C4000')].filter(Boolean);
-  primaryKey = compare[0] ? keyOf(compare[0]) : null;
-  
-  ['fSpeed','fSpeedMin'].forEach(id => { const el = document.getElementById(id); el.style.setProperty('--fill',(el.value-el.min)/(el.max-el.min)*100+'%'); });
-  initABPicker();
-  bindFleetEvents();
-  go(1);
-  render();
-  renderTable();
-  loadBrands();
-})();
-</script>
+<script src="assets/tec-data.js"></script>
+<script src="assets/calculator.js"></script>
+<script src="assets/app.js"></script>
 </body>
 </html>

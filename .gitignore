@@ -14,3 +14,6 @@ Desktop.ini
 .idea/
 *.swp
 *.swo
+node_modules/
+__pycache__/
+test-results/

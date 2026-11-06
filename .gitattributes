@@ -1,0 +1,3 @@
+# Preserve downloaded source evidence and vendor integrity across platforms.
+data/*-evidence/** -text -whitespace
+assets/vendor/* -text -whitespace

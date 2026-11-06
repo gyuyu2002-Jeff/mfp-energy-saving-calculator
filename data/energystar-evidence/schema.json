@@ -1,0 +1,582 @@
+{
+  "id" : "t2v6-g4nf",
+  "name" : "ENERGY STAR Certified Imaging Equipment",
+  "assetType" : "dataset",
+  "averageRating" : 0,
+  "category" : "Active Specifications",
+  "createdAt" : 1377722879,
+  "description" : "Certified models meet all ENERGY STAR requirements as listed in the Version 3.0 and Version 3.1 ENERGY STAR Program Requirements for Imaging Equipment that are effective as of October 11, 2019 and the V3.2 Program Requirements that are effective as of November 18, 2021. A detailed listing of key efficiency criteria are available at https://www.energystar.gov/products/office_equipment/imaging_equipment/key_product_criteria",
+  "diciBackend" : false,
+  "displayType" : "table",
+  "downloadCount" : 697036,
+  "hideFromCatalog" : false,
+  "hideFromDataJson" : false,
+  "locked" : false,
+  "newBackend" : true,
+  "numberOfComments" : 0,
+  "oid" : 38115273,
+  "provenance" : "official",
+  "publicationAppendEnabled" : false,
+  "publicationDate" : 1642538258,
+  "publicationGroup" : 1094280,
+  "publicationStage" : "published",
+  "resourceName" : "energy-star-certified-imaging-equipment",
+  "rowIdentifierColumnId" : 554483437,
+  "rowsUpdatedAt" : 1793888621,
+  "rowsUpdatedBy" : "guxy-scz5",
+  "tableId" : 18570465,
+  "totalTimesRated" : 0,
+  "viewCount" : 34964,
+  "viewLastModified" : 1739912083,
+  "viewType" : "tabular",
+  "approvals" : [ {
+    "reviewedAt" : 1471627872,
+    "reviewedAutomatically" : true,
+    "state" : "approved",
+    "submissionId" : 4371807,
+    "submissionObject" : "public_audience_request",
+    "submissionOutcome" : "change_audience",
+    "submittedAt" : 1471627872,
+    "targetAudience" : "public",
+    "workflowId" : 2125,
+    "submissionDetails" : {
+      "permissionType" : "READ"
+    },
+    "submissionOutcomeApplication" : {
+      "failureCount" : 0,
+      "status" : "success"
+    },
+    "submitter" : {
+      "id" : "guxy-scz5",
+      "displayName" : "ESddas"
+    }
+  } ],
+  "clientContext" : {
+    "clientContextVariables" : [ ],
+    "inheritedVariables" : { }
+  },
+  "columns" : [ {
+    "id" : 554483437,
+    "name" : "ENERGY STAR Unique ID",
+    "dataTypeName" : "number",
+    "description" : "The ENERGY STAR Unique ID (ESUID) is a string of\nseven numbers EPA assigns to an ENERGY STAR model or set of models with unique\nperformance characteristics. This ESUID is unique to both the model and product\nspecification version and is assigned by EPA upon receipt of certification\ninformation from the certification body. Each row within the product list will\nhave a unique ESUID. Developers may wish to use this ESUID to track information\non certified models in their information systems.\n",
+    "fieldName" : "pd_id",
+    "position" : 1,
+    "renderTypeName" : "number",
+    "tableColumnId" : 13629575,
+    "width" : 70,
+    "format" : {
+      "precisionStyle" : "standard",
+      "noCommas" : "true",
+      "align" : "right"
+    }
+  }, {
+    "id" : 554483438,
+    "name" : "ENERGY STAR Partner",
+    "dataTypeName" : "text",
+    "description" : "An organization that signed a Partnership Agreement with EPA to manufacture or private label ENERGY STAR qualified products.",
+    "fieldName" : "energy_star_partner",
+    "position" : 2,
+    "renderTypeName" : "text",
+    "tableColumnId" : 13629577,
+    "width" : 230,
+    "format" : {
+      "align" : "left"
+    }
+  }, {
+    "id" : 554483439,
+    "name" : "Brand Name",
+    "dataTypeName" : "text",
+    "description" : "An identifier assigned by the manufacturer or private labeler to a product or family/series of products for sales and marketing purposes.",
+    "fieldName" : "brand_name",
+    "position" : 3,
+    "renderTypeName" : "text",
+    "tableColumnId" : 13629579,
+    "width" : 165,
+    "format" : {
+      "align" : "left"
+    }
+  }, {
+    "id" : 554483440,
+    "name" : "Model Name",
+    "dataTypeName" : "text",
+    "description" : "An identifier assigned by the manufacturer or private labeler to a product or family/series of products for sales and marketing purposes.",
+    "fieldName" : "model_name",
+    "position" : 4,
+    "renderTypeName" : "text",
+    "tableColumnId" : 13629580,
+    "width" : 220,
+    "format" : {
+      "align" : "left"
+    }
+  }, {
+    "id" : 554483441,
+    "name" : "Model Number",
+    "dataTypeName" : "text",
+    "description" : "A distinguishing, alphanumeric identifier, assigned to a product by the manufacturer or private labeler. The model number may include a wildcard that can be replaced by any letter or digit and still accurately capture what is covered by the model’s ENERGY STAR certification; an asterisk symbol (*) represents a letter, and a number symbol (#) a digit.",
+    "fieldName" : "model_number",
+    "position" : 5,
+    "renderTypeName" : "text",
+    "tableColumnId" : 13629581,
+    "width" : 244,
+    "format" : {
+      "align" : "left"
+    }
+  }, {
+    "id" : 554483442,
+    "name" : "Additional Model Information",
+    "dataTypeName" : "text",
+    "description" : "This column includes for the qualified model or family, family members, additional model names, model numbers and other identifying information associated with a product or family/series of products for sales and marketing purposes. Other identifying information includes, but is not limited to, SKUs, UPC codes, retail numbers, and/or descriptions of models included/not included in the reported Model Family.",
+    "fieldName" : "additional_model_information",
+    "position" : 6,
+    "renderTypeName" : "text",
+    "tableColumnId" : 13629582,
+    "width" : 284,
+    "format" : {
+      "align" : "left"
+    }
+  }, {
+    "id" : 554483443,
+    "name" : "UPC",
+    "dataTypeName" : "text",
+    "description" : "UPC codes provided by partners for ENERGY STAR certified products. The brand, model name and model number continue to serve as the identifiers used to establish certification. The UPC code data below is intended to aid in identification of ENERGY STAR models. UPC code data is not provided for all certified models.",
+    "fieldName" : "upc",
+    "position" : 7,
+    "renderTypeName" : "text",
+    "tableColumnId" : 139290506,
+    "format" : { }
+  }, {
+    "id" : 554483444,
+    "name" : "Type",
+    "dataTypeName" : "text",
+    "description" : "Eligible product type include: printer, scanner, copier, fax machine, multifunction device (MFD), digital duplicator, or mailing machine.",
+    "fieldName" : "product_type",
+    "position" : 8,
+    "renderTypeName" : "text",
+    "tableColumnId" : 13629583,
+    "width" : 153,
+    "format" : {
+      "align" : "left"
+    }
+  }, {
+    "id" : 554483445,
+    "name" : "Professional Imaging Product",
+    "dataTypeName" : "text",
+    "description" : "Indicates whether the product is a Professional Imaging Product.",
+    "fieldName" : "professional_imaging_product",
+    "position" : 9,
+    "renderTypeName" : "text",
+    "tableColumnId" : 95114346,
+    "format" : { }
+  }, {
+    "id" : 554483446,
+    "name" : "Remanufactured Product",
+    "dataTypeName" : "text",
+    "description" : "Required for all submissions which contain remanufactured products. Indicate if the certified product or product family includes remanufactured products.",
+    "fieldName" : "remanufactured_product",
+    "position" : 10,
+    "renderTypeName" : "text",
+    "tableColumnId" : 138831538,
+    "format" : { }
+  }, {
+    "id" : 554483447,
+    "name" : "Page Format Size",
+    "dataTypeName" : "text",
+    "description" : "1) Large Format: Products designed for A2 media and larger, including those designed to accommodate continuous-form media greater than or equal to 406 mm wide. Large-format products may also be capable of printing on standard-size or small-format media. 2) Standard Format: Products designed for standard-sized media (e.g., Letter, Legal, Ledger, A3, A4, B4), including those designed to accommodate continuous-form media between 210 mm and 406 mm wide. Standard-size products may also be capable of printing on small-format media. 3) Small Format: Products designed for media sizes smaller than those defined as Standard (e.g., A6, 4”x6”, microfilm), including those designed to accommodate continuous-form media less than 210 mm wide.",
+    "fieldName" : "size_format",
+    "position" : 11,
+    "renderTypeName" : "text",
+    "tableColumnId" : 13629584,
+    "width" : 149,
+    "format" : {
+      "align" : "left"
+    }
+  }, {
+    "id" : 554483448,
+    "name" : "Marking Technology",
+    "dataTypeName" : "text",
+    "description" : "The marking technology of the product: direct thermal, dye sublimation, electro-photographic, impact, ink jet, high performance ink jet, solid ink, stencil, thermal transfer.",
+    "fieldName" : "marking_technology",
+    "position" : 12,
+    "renderTypeName" : "text",
+    "tableColumnId" : 13629586,
+    "width" : 198,
+    "format" : {
+      "align" : "left"
+    }
+  }, {
+    "id" : 554483449,
+    "name" : "Color Capability",
+    "dataTypeName" : "text",
+    "description" : "Whether the product's output is monochrome (shades of black and white) or color.",
+    "fieldName" : "color_capability",
+    "position" : 13,
+    "renderTypeName" : "text",
+    "tableColumnId" : 13629588,
+    "width" : 179,
+    "format" : {
+      "align" : "left"
+    }
+  }, {
+    "id" : 554483450,
+    "name" : "Print Speed (ipm or mppm)",
+    "dataTypeName" : "number",
+    "description" : "The maximum claimed monochrome (black and white) speed in ipm (images per minute) and mppm (mail pieces per minute) when processing the given media.",
+    "fieldName" : "monochrome_product_speed_ipm_or_mppm",
+    "position" : 14,
+    "renderTypeName" : "number",
+    "tableColumnId" : 13629590,
+    "width" : 341,
+    "format" : {
+      "precisionStyle" : "standard",
+      "noCommas" : "false",
+      "align" : "right"
+    }
+  }, {
+    "id" : 554483451,
+    "name" : "Automatic Duplex Output Capable",
+    "dataTypeName" : "text",
+    "description" : "Whether or not a copier, fax machine, MFD, or printer has the capability to produce images on both sides of an output sheet, without manual manipulation of output as an intermediate step. \n\nA product is considered to have automatic duplexing capability only if all accessories needed to produce duplex output are included with the product upon shipment. ",
+    "fieldName" : "automatic_duplex_output_capable",
+    "position" : 15,
+    "renderTypeName" : "text",
+    "tableColumnId" : 13629592,
+    "width" : 288,
+    "format" : {
+      "align" : "left"
+    }
+  }, {
+    "id" : 554483452,
+    "name" : "Typical Electricity Consumption (TEC) (kWh/wk)",
+    "dataTypeName" : "number",
+    "description" : "Typical electricity consumption (measured in kilowatt-hours) during normal operation over a specified period of time. Typical Electricity Consumption (TEC) is a method of testing and comparing the energy performance of certain imaging equipment products and focuses on the typical electricity consumed by a product while in normal operation during a representative period of time. The TEC metric is a proxy for a typical weekly electricity consumption. Please note: the TEC value should be used as a way to compare products' energy consumption values under a set duty cycle and operating conditions. Actual energy consumption will differ, based on how the product is used. TEC is not applicable to all imaging equipment products.",
+    "fieldName" : "typical_electricity_consumption_tec_kwh_wk",
+    "position" : 16,
+    "renderTypeName" : "number",
+    "tableColumnId" : 13629594,
+    "width" : 353,
+    "format" : {
+      "precisionStyle" : "standard",
+      "noCommas" : "false",
+      "align" : "right"
+    }
+  }, {
+    "id" : 554483453,
+    "name" : "Typical Electricity Consumption (TEC) (kWh/yr)",
+    "dataTypeName" : "number",
+    "description" : "",
+    "fieldName" : "typical_electricity_consumption_tec_kwh_yr",
+    "position" : 17,
+    "renderTypeName" : "number",
+    "tableColumnId" : 13629595,
+    "width" : 348,
+    "format" : { }
+  }, {
+    "id" : 554483454,
+    "name" : "Power in Sleep (Watts)",
+    "dataTypeName" : "number",
+    "description" : "The power measured when a product enters Sleep Mode, either automatically after a period of inactivity, in response to user manual action, or in response to external electrical stimulus.",
+    "fieldName" : "power_in_sleep_w",
+    "position" : 18,
+    "renderTypeName" : "number",
+    "tableColumnId" : 13629597,
+    "width" : 181,
+    "format" : {
+      "precisionStyle" : "standard",
+      "noCommas" : "false",
+      "align" : "right"
+    }
+  }, {
+    "id" : 554483455,
+    "name" : "Power in Off (Watts)",
+    "dataTypeName" : "number",
+    "description" : "The power measured when the product has been manually or automatically switched off but is still plugged in and connected to the mains. ",
+    "fieldName" : "power_in_standby_w",
+    "position" : 19,
+    "renderTypeName" : "number",
+    "tableColumnId" : 13629599,
+    "width" : 209,
+    "format" : {
+      "precisionStyle" : "standard",
+      "noCommas" : "false",
+      "align" : "right"
+    }
+  }, {
+    "id" : 554483456,
+    "name" : "Default Delay Time to Sleep (minutes)",
+    "dataTypeName" : "number",
+    "description" : "The time set by the manufacturer prior to shipping that determines when the product will enter a lower-power Mode (e.g., Sleep, Auto-off) following completion of its primary function.",
+    "fieldName" : "default_delay_time_to_sleep_minutes",
+    "position" : 20,
+    "renderTypeName" : "number",
+    "tableColumnId" : 13629601,
+    "width" : 279,
+    "format" : {
+      "precisionStyle" : "standard",
+      "noCommas" : "false",
+      "align" : "right"
+    }
+  }, {
+    "id" : 554483457,
+    "name" : "Print/Copy Time from Ready State (s)",
+    "dataTypeName" : "number",
+    "description" : "The time between job initiation and first sheet exiting the Imaging Equipment product, with the measurement taken after the product has been powered on and has indicated it is in Ready State.",
+    "fieldName" : "print_copy_time_from_ready_state_s",
+    "position" : 21,
+    "renderTypeName" : "number",
+    "tableColumnId" : 13629603,
+    "width" : 308,
+    "format" : {
+      "precisionStyle" : "standard",
+      "noCommas" : "false",
+      "align" : "right"
+    }
+  }, {
+    "id" : 554483458,
+    "name" : "Print/Copy Time from Sleep Mode (s)",
+    "dataTypeName" : "number",
+    "description" : "The time between job initiation and first sheet exiting the Imaging Equipment product, with the measurement taken after the product has been in Sleep Mode for 1 hour.",
+    "fieldName" : "print_copy_time_from_sleep_mode_s",
+    "position" : 22,
+    "renderTypeName" : "number",
+    "tableColumnId" : 13629604,
+    "width" : 291,
+    "format" : {
+      "precisionStyle" : "standard",
+      "noCommas" : "false",
+      "align" : "right"
+    }
+  }, {
+    "id" : 554483459,
+    "name" : "Print/Copy Time from Previous Job (s)",
+    "dataTypeName" : "number",
+    "description" : "The time between job initiation and first sheet exiting the Imaging Equipment product with the measurement taken 15 minutes after the start of a previous job.",
+    "fieldName" : "print_copy_time_from_previous_job_s",
+    "position" : 23,
+    "renderTypeName" : "number",
+    "tableColumnId" : 13629606,
+    "width" : 292,
+    "format" : {
+      "precisionStyle" : "standard",
+      "noCommas" : "false",
+      "align" : "right"
+    }
+  }, {
+    "id" : 554483460,
+    "name" : "Digital Front End (DFE) Manufacturer",
+    "dataTypeName" : "text",
+    "description" : "A DFE is functionally-integrated server that hosts other computers and applications and acts as an interface to Imaging Equipment. A DFE provides greater functionality to the Imaging Equipment. A DFE offers three or more of the following advanced features: network connectivity in various environments; mailbox functionality; job queue management; machine management (e.g., waking the Imaging Equipment from a reduced power state); advanced graphic user-interface (UI); ability to initiate communication with other host servers and client computers (e.g., scanning to email, polling remote mailboxes for jobs); or ability to post-process pages (e.g., reformatting pages prior to printing). \n\nThe manufacturer may be the same as or different from that of the Imaging Equipment product.",
+    "fieldName" : "digital_front_end_dfe_manufacturer",
+    "position" : 24,
+    "renderTypeName" : "text",
+    "tableColumnId" : 13629608,
+    "width" : 294,
+    "format" : {
+      "align" : "left"
+    }
+  }, {
+    "id" : 554483461,
+    "name" : "DFE Model Number",
+    "dataTypeName" : "text",
+    "description" : "The model number of the DFE. Again, the model number may be the same as or different from that of the Imaging Equipment product.",
+    "fieldName" : "dfe_model_number",
+    "position" : 25,
+    "renderTypeName" : "text",
+    "tableColumnId" : 13629610,
+    "width" : 196,
+    "format" : {
+      "align" : "left"
+    }
+  }, {
+    "id" : 554483462,
+    "name" : "DFE Typical Electricity Consumption (TEC) (kWh/wk)",
+    "dataTypeName" : "number",
+    "description" : "The DFE Typical Electricity Consumption (TECDFE) metric assumes 9 hours in Ready State five days a week and the remainder in Sleep Mode. DFEs without a Sleep Mode are assumed to be in Ready State 168 hours per week.",
+    "fieldName" : "dfe_typical_electricity_consumption_tec_kwh_wk",
+    "position" : 26,
+    "renderTypeName" : "number",
+    "tableColumnId" : 13629615,
+    "width" : 370,
+    "format" : {
+      "precisionStyle" : "standard",
+      "noCommas" : "false",
+      "align" : "right"
+    }
+  }, {
+    "id" : 554483463,
+    "name" : "DFE Typical Electricity Consumption (TEC) (kWh/yr)",
+    "dataTypeName" : "number",
+    "description" : "Annualized TEC of the DFE.",
+    "fieldName" : "dfe_typical_electricity_consumption_tec_kwh_yr",
+    "position" : 27,
+    "renderTypeName" : "number",
+    "tableColumnId" : 13629619,
+    "width" : 368,
+    "format" : {
+      "precisionStyle" : "standard",
+      "noCommas" : "false",
+      "align" : "right"
+    }
+  }, {
+    "id" : 554483464,
+    "name" : "DFE Ready State Power (Watts)",
+    "dataTypeName" : "number",
+    "description" : "The average power of the DFE recorded while the main Imaging Equipment product is in Ready State.",
+    "fieldName" : "dfe_ready_state_power_w",
+    "position" : 28,
+    "renderTypeName" : "number",
+    "tableColumnId" : 13629621,
+    "width" : 221,
+    "format" : {
+      "precisionStyle" : "standard",
+      "noCommas" : "false",
+      "align" : "right"
+    }
+  }, {
+    "id" : 554483465,
+    "name" : "DFE Sleep Mode Power (Watts)",
+    "dataTypeName" : "number",
+    "description" : "The average power of the DFE recorded while the main Imaging Equipment product is in Sleep Mode, applicable to DFEs with network-capable Sleep Modes.",
+    "fieldName" : "dfe_sleep_mode_power_w",
+    "position" : 29,
+    "renderTypeName" : "number",
+    "tableColumnId" : 13629623,
+    "width" : 212,
+    "format" : {
+      "precisionStyle" : "standard",
+      "noCommas" : "false",
+      "align" : "right"
+    }
+  }, {
+    "id" : 554483472,
+    "name" : "Professional Imaging Product Ready Mode Power (W)",
+    "dataTypeName" : "number",
+    "description" : "The power required by a Professional Imaging Product to maintain its Ready Mode.",
+    "fieldName" : "professional_imaging_product_ready_mode_power_w_",
+    "position" : 30,
+    "renderTypeName" : "number",
+    "tableColumnId" : 140582972,
+    "format" : { }
+  }, {
+    "id" : 554483471,
+    "name" : "Professional Imaging Product Production Energy (Wh/image)",
+    "dataTypeName" : "number",
+    "description" : "A performance metric that indicates the energy required by a  Professional Imaging Product to produce an image once in its Production Mode. A lower number translates to a higher efficiency.",
+    "fieldName" : "professional_imaging_product_production_energy_wh_image_",
+    "position" : 31,
+    "renderTypeName" : "number",
+    "tableColumnId" : 140582971,
+    "format" : { }
+  }, {
+    "id" : 554483466,
+    "name" : "Functional Adders",
+    "dataTypeName" : "text",
+    "description" : "A functional adder is a data and network interface or other feature that adds functionality to the marking engine of an imaging equipment product and provides a power allowance when qualifying products according to the OM method.",
+    "fieldName" : "functional_adders",
+    "position" : 32,
+    "renderTypeName" : "text",
+    "tableColumnId" : 13629625,
+    "width" : 304,
+    "format" : {
+      "align" : "left"
+    }
+  }, {
+    "id" : 554483467,
+    "name" : "Date Available On Market",
+    "dataTypeName" : "calendar_date",
+    "description" : "The date that the model is available for purchase.",
+    "fieldName" : "date_available_on_market",
+    "position" : 33,
+    "renderTypeName" : "calendar_date",
+    "tableColumnId" : 13629627,
+    "width" : 171,
+    "format" : {
+      "view" : "date",
+      "align" : "left"
+    }
+  }, {
+    "id" : 554483468,
+    "name" : "Date Qualified",
+    "dataTypeName" : "calendar_date",
+    "description" : "The date on which the product was confirmed to meet the ENERGY STAR specification.",
+    "fieldName" : "date_qualified",
+    "position" : 34,
+    "renderTypeName" : "calendar_date",
+    "tableColumnId" : 13629629,
+    "width" : 112,
+    "format" : {
+      "view" : "date",
+      "align" : "left"
+    }
+  }, {
+    "id" : 554483469,
+    "name" : "Markets",
+    "dataTypeName" : "text",
+    "description" : "Includes products sold in the U.S. and/or Canada and other ENERGY STAR partner countries.",
+    "fieldName" : "markets",
+    "position" : 35,
+    "renderTypeName" : "text",
+    "tableColumnId" : 13629631,
+    "width" : 184,
+    "format" : {
+      "align" : "left"
+    }
+  }, {
+    "id" : 554483470,
+    "name" : "CB Model Identifier",
+    "dataTypeName" : "text",
+    "description" : "A unique string of characters assigned by certification\nbodies (CBs) to identify a model or set of models with the same performance\ncharacteristics. This identifier should remain the same for a model even if it\nis recertified to a new version of an ENERGY STAR specification. This string of\ncharacters is determined by CBs and is not the ENERGY STAR Unique ID assigned\nby EPA.\n",
+    "fieldName" : "energy_star_model_identifier",
+    "position" : 36,
+    "renderTypeName" : "text",
+    "tableColumnId" : 13629633,
+    "width" : 436,
+    "format" : {
+      "align" : "left"
+    }
+  } ],
+  "grants" : [ {
+    "inherited" : false,
+    "type" : "viewer",
+    "flags" : [ "public" ]
+  } ],
+  "metadata" : {
+    "rdfSubject" : "0",
+    "custom_fields" : {
+      "Common Core" : {
+        "Contact Email" : "certification@energystar.gov",
+        "Contact Name" : "EPA ENERGY STAR program",
+        "License" : "https://edg.epa.gov/EPA_Data_License.html",
+        "Program Code" : "020:033",
+        "Publisher" : "U.S. Environmental Protection Agency",
+        "Bureau Code" : "020:00"
+      }
+    },
+    "rowIdentifier" : 554483437,
+    "rowLabel" : "Row",
+    "availableDisplayTypes" : [ "table", "fatrow", "page" ],
+    "renderTypeConfig" : {
+      "visible" : {
+        "table" : true
+      }
+    }
+  },
+  "owner" : {
+    "id" : "guxy-scz5",
+    "displayName" : "ESddas",
+    "screenName" : "ESddas",
+    "type" : "interactive",
+    "flags" : [ "acceptedEula" ]
+  },
+  "query" : { },
+  "rights" : [ "read" ],
+  "tableAuthor" : {
+    "id" : "guxy-scz5",
+    "displayName" : "ESddas",
+    "screenName" : "ESddas",
+    "type" : "interactive",
+    "flags" : [ "acceptedEula" ]
+  },
+  "tags" : [ "imaging equipment" ],
+  "flags" : [ "default", "ownerMayBeContacted", "restorable", "restorePossibleForType" ]
+}

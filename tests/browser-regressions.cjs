@@ -143,6 +143,47 @@ test('default TEC uses the MOEA record and every catalog value has matching sour
   assert.ok(renderedSources.every(url => models.some(model => model.sourceUrl === url)));
 });
 
+test('TEC sliders use a compact range and preserve high official values across both controls', async t => {
+  const page = await openPage(t);
+  async function assertRange(key, value, max) {
+    const controls = await page.locator(`input[type="range"][data-k="${key}"]`).evaluateAll(elements =>
+      elements.map(el => ({ value: +el.value, max: +el.max })));
+    assert.deepEqual(controls, [{ value, max }, { value, max }]);
+    const ticks = await page.locator(`#r_${key}`).locator('..').locator('.ticks span').allTextContents();
+    assert.deepEqual(ticks.map(Number), Array.from({ length: 6 }, (_, i) => max * i / 5));
+    near((await snapshot(page)).params[key], value);
+  }
+  await assertRange('baseTec', 1.6, 5);
+  await assertRange('targetTec', 0.8, 5);
+  const high = await page.evaluate(() => TEC_DATA.models.find(m => m.model === 'Revoria Press E1136'));
+  assert.equal(high.tec, 20.5);
+  for (const [brand, model, key] of [
+    ['abBaseBrandSel', 'abBaseModelSel', 'baseTec'],
+    ['abBrandSel', 'abModelSel', 'targetTec']
+  ]) {
+    await page.locator(`#${brand}`).selectOption(high.brand);
+    await page.locator(`#${model}`).selectOption(high.id);
+    await assertRange(key, high.tec, 25);
+  }
+  // The scale must stay stable during range input, even when crossing a scale boundary.
+  await page.locator('#abTargetSlider').press('Home');
+  await assertRange('targetTec', 0, 25);
+  await page.locator('#abTargetSlider').press('End');
+  await assertRange('targetTec', 25, 25);
+  await setParameter(page, 'targetTec', 9.2);
+  await assertRange('targetTec', 9.2, 10);
+  await setParameter(page, 'targetTec', 0.8);
+  await assertRange('targetTec', 0.8, 5);
+  await page.locator('#abModelSel').selectOption(high.id);
+  const standard = await page.evaluate(() => TEC_DATA.models.find(m => m.brand === 'Ricoh' && m.model === 'IM C3010'));
+  await page.locator('#abBrandSel').selectOption(standard.brand);
+  await page.locator('#abModelSel').selectOption(standard.id);
+  await assertRange('targetTec', standard.tec, 5);
+  await page.locator('#btnReset').click();
+  await assertRange('baseTec', 1.6, 5);
+  await assertRange('targetTec', 0.8, 5);
+});
+
 test('Ricoh choices prefer Husheng and expose the certificate company in the report', async t => {
   const page = await openPage(t);
   const models = await page.evaluate(() => TEC_DATA.models);

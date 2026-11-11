@@ -492,7 +492,7 @@ ul.clean li{margin:4px 0}
             <span>TEC 微調滑桿</span>
             <span class="num"><b id="abBaseTecVal">1.60</b> kWh/週（年耗電 <span id="abBaseKwhVal">83.2</span> 度/台）</span>
           </div>
-          <input type="range" id="abBaseSlider" min="0.2" max="4.0" step="0.01" value="1.60" style="--c:var(--rose)" aria-label="舊機 TEC 滑桿">
+          <input type="range" id="abBaseSlider" min="0" max="5" step="0.001" value="1.60" style="--c:var(--rose)" aria-label="舊機 TEC 滑桿">
         </div>
       </div>
 
@@ -534,7 +534,7 @@ ul.clean li{margin:4px 0}
             <span>TEC 微調滑桿</span>
             <span class="num"><b id="abTargetTecVal">0.20</b> kWh/週（年耗電 <span id="abTargetKwhVal">10.4</span> 度/台）</span>
           </div>
-          <input type="range" id="abTargetSlider" min="0.05" max="2.0" step="0.01" value="0.20" style="--c:var(--blue)" aria-label="新機 TEC 滑桿">
+          <input type="range" id="abTargetSlider" min="0" max="5" step="0.001" value="0.80" style="--c:var(--blue)" aria-label="新機 TEC 滑桿">
         </div>
       </div>
     </div>
@@ -1146,6 +1146,6 @@ ul.clean li{margin:4px 0}
 
 <script src="assets/tec-data.js?v=20261106-no-greenline"></script>
 <script src="assets/calculator.js"></script>
-<script src="assets/app.js?v=20261106-30ppm"></script>
+<script src="assets/app.js?v=20261111-tec-range"></script>
 </body>
 </html>

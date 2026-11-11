@@ -117,8 +117,8 @@ const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>'
    ========================================================= */
 const SIM_SLIDERS = [
   {k:'units', label:'事務機台數', unit:'台', min:1, max:200, step:1, d:0, c:'var(--ink)', ticks:['1','50','100','150','200']},
-  {k:'baseTec', label:'舊機 TEC', unit:'kWh/週', min:0, max:20, step:0.001, d:3, c:'var(--rose)', ticks:['0','5','10','15','20']},
-  {k:'targetTec', label:'新機 TEC', unit:'kWh/週', min:0, max:20, step:0.001, d:3, c:'var(--blue)', ticks:['0','5','10','15','20']},
+  {k:'baseTec', label:'舊機 TEC', unit:'kWh/週', min:0, max:5, step:0.001, d:3, c:'var(--rose)', ticks:['0','1','2','3','4','5']},
+  {k:'targetTec', label:'新機 TEC', unit:'kWh/週', min:0, max:5, step:0.001, d:3, c:'var(--blue)', ticks:['0','1','2','3','4','5']},
   {k:'price', label:'每度電價', unit:'NT$/度', min:0, max:20, step:0.1, d:1, c:'var(--sand)', ticks:['0','5','10','20']},
   {k:'years', label:'評估年限（租期）', unit:'年', min:1, max:10, step:1, d:0, c:'var(--ink)', ticks:['1','5','10']},
   {k:'cf', label:'電力排碳係數', unit:'kg/度', min:0, max:2, step:0.001, d:3, c:'var(--teal)', ticks:['0','0.466','1','2']}
@@ -150,6 +150,17 @@ document.getElementById('simSliders').innerHTML = SIM_SLIDERS.map(sliderHTML).jo
 const DECIMALS = {}; [...SIM_SLIDERS, ...LAB_SLIDERS].forEach(o => DECIMALS[o.k] = o.d);
 DECIMALS.goal = 0;
 
+function syncTecRange(key, reset=false) {
+  const ranges=[...document.querySelectorAll(`input[type="range"][data-k="${key}"]`)];
+  // Keep the scale stable while dragging; resize on model selection or numeric input.
+  const max=Math.max(5,Math.ceil(S[key]/5)*5,...(reset?[]:ranges.map(el=>+el.max)));
+  for(const range of ranges){
+    range.max=max;
+    const ticks=range.parentElement.querySelector('.ticks');
+    if(ticks)ticks.innerHTML=Array.from({length:6},(_,i)=>`<span>${max*i/5}</span>`).join('');
+  }
+}
+
 /* Normalize before calculations; never render unbounded or fractional year counts. */
 function updateParameter(event) {
   const el = event.target, key = el.dataset?.k;
@@ -162,6 +173,7 @@ function updateParameter(event) {
   }
   el.removeAttribute('aria-invalid');
   S[key] = value;
+  if(key==='baseTec'||key==='targetTec')syncTecRange(key,el.type==='number');
   if (key === 'targetTec') markTargetAdjusted();
   syncABPickerUI();
   render(event.type === 'input' ? el : null);
@@ -212,7 +224,7 @@ function initABPicker(){
   document.getElementById('abBaseModelSel').addEventListener('change',e=>{const m=findModel(e.target.value);if(m)setBaseline(m);});
   document.getElementById('abBaseName').addEventListener('input',e=>{baseKey=null;S.baseName=e.target.value.trim().slice(0,160)||'自訂舊機';render(e.target);});
   for(const [id,key] of [['abBaseSlider','baseTec'],['abTargetSlider','targetTec']]) {
-    const el=document.getElementById(id);el.min=0;el.max=20;el.step=0.001;el.dataset.k=key;
+    const el=document.getElementById(id);el.min=0;el.max=5;el.step=0.001;el.dataset.k=key;
   }
   setBaseline(PRESETS[1]);
   setPrimary(primaryKey);
@@ -221,7 +233,8 @@ function syncABPickerUI(){
   for(const [prefix,key] of [['Base','baseTec'],['Target','targetTec']]){
     for(const suffix of ['TecOut','TecVal']) document.getElementById(`ab${prefix}${suffix}`).textContent=fmt(S[key],3);
     document.getElementById(`ab${prefix}KwhVal`).textContent=fmt(S[key]*52,1);
-    const slider=document.getElementById(`ab${prefix}Slider`);slider.max=Math.max(20,S[key]);slider.value=S[key];
+    syncTecRange(key);
+    document.getElementById(`ab${prefix}Slider`).value=S[key];
   }
   const name=document.getElementById('abBaseName');if(document.activeElement!==name)name.value=S.baseName;
   const rows=currentRows();
@@ -349,6 +362,7 @@ function removeCompare(k){
 function setPrimary(k){
   const model=MASTER_MAP.get(k);if(!model)return;
   primaryKey=k;S.targetTec=model.tec;S.targetName=`${model.brand} ${model.model}`;
+  syncTecRange('targetTec',true);
   if(!compare.some(m=>m.id===k)){if(compare.length>=4)compare.shift();compare.push(model);}
   document.getElementById('abBrandSel').value=model.brand;populateTarget(model.brand,k);
   syncABPickerUI();render();renderTable();
@@ -356,6 +370,7 @@ function setPrimary(k){
 function setBaseline(model){
   if(!model)return;
   baseKey=model.id;S.baseTec=model.tec;S.baseName=model.source==='scenario'?model.model:`${model.brand} ${model.model}`;
+  syncTecRange('baseTec',true);
   document.getElementById('abBaseBrandSel').value=model.brand;populateBase(model.brand,model.id);
   syncABPickerUI();render();renderTable();
 }

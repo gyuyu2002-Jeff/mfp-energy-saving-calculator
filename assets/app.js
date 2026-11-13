@@ -51,6 +51,17 @@ function currentRows() {
     next:[withValue(MASTER_MAP.get(primaryKey), S.targetTec, S.targetName, S.units)]
   };
 }
+function estimateBasis(rows=currentRows()) {
+  const sources=[...rows.old,...rows.next].map(row=>row.source);
+  const assumptions=[];
+  if(sources.includes('scenario'))assumptions.push('含預設假設值');
+  if(sources.includes('custom'))assumptions.push('含使用者自訂 TEC');
+  // Current source records do not establish matching test conditions.
+  return `依輸入 TEC 試算${assumptions.length?'（'+assumptions.join('、')+'）':''}；比較條件待確認。`;
+}
+function valueAssumption(row) {
+  return row.source==='scenario'?'預設假設，可自行調整':row.source==='custom'?'使用者自訂 TEC，非官方實測':'';
+}
 function calc(st) {
   return EnergyCalculator.calculate(st, [{tec:st.baseTec, units:st.units}], [{tec:st.targetTec, units:st.units}]);
 }
@@ -75,15 +86,16 @@ function sourceText(m) {
     if (m.notes) parts.push(Array.isArray(m.notes) ? m.notes.join('；') : m.notes);
     if (m.markets?.length) parts.push(`市場：${Array.isArray(m.markets) ? m.markets.join('、') : m.markets}`);
     parts.push(m.sourceUrl);
-  } else parts.push('此輸入值並非官方認證數值');
+  } else parts.push(valueAssumption(m), '此輸入值並非官方認證數值');
   if (m.reference?.sourceUrl) parts.push(`調整前參考：${companyText(m.reference)} ${m.reference.sourceUrl}（${m.reference.tec} kWh/週）`);
   return parts.filter(Boolean).join(' · ');
 }
 function sourceHTML(m, expanded=false) {
   const url = m.sourceUrl && /^https:\/\//.test(m.sourceUrl) ? m.sourceUrl : null;
   const summary = [companyText(m),m.certificate && `證書 ${m.certificate}`,m.checkedAt && `查核 ${m.checkedAt.slice(0,10)}`].filter(Boolean).join(' · ');
+  const assumption=valueAssumption(m);
   const text = `<div class="small muted" style="overflow-wrap:anywhere;margin-top:4px">${esc(sourceText(m))}</div>`;
-  return `<div class="source-detail"><b>${esc(sourceName(m))}</b>${url ? ` · <a href="${esc(url)}" target="_blank" rel="noopener noreferrer">查驗本筆原始資料 ↗</a>` : ''}${summary?`<div class="small muted">${esc(summary)}</div>`:''}${expanded?text:`<details><summary class="small">${url?'測試條件與查核資訊':'假設說明'}</summary>${text}</details>`}</div>`;
+  return `<div class="source-detail"><b>${esc(sourceName(m))}</b>${url ? ` · <a href="${esc(url)}" target="_blank" rel="noopener noreferrer">查驗本筆原始資料 ↗</a>` : ''}${assumption?`<div class="small">${esc(assumption)}</div>`:''}${summary?`<div class="small muted">${esc(summary)}</div>`:''}${expanded?text:`<details><summary class="small">${url?'測試條件與查核資訊':'假設說明'}</summary>${text}</details>`}</div>`;
 }
 function modelOption(m) {
   const details = [companyText(m),m.variantLabel].filter(Boolean);
@@ -265,23 +277,19 @@ function render(skip){
   const out = {
     units: fmt(isFleet ? m.totalUnitsOld : S.units),
     years: fmt(S.years), price: fmt(S.price,1), cf: fmt(S.cf,3), goal: fmt(S.goal),
-    rate: m.rate===null?'不適用':fmt(m.rate,1)+'%', remainRate: m.ratio===null?'不適用':fmt(m.ratio*100,1)+'%',
+    estimateBasis: estimateBasis(),
     totalCost: fmt(m.totalCost), costYr: fmt(m.costYr), costUnit: fmt(m.costUnit),
     kwhYr: fmt(m.kwhYr), kwhUnit: fmt(m.kwhUnit), kwhTotal: fmt(m.kwhTotal),
     co2Yr: fmt(m.co2Yr), co2Total: fmt(m.co2Total),
     baseKwh: fmt(m.baseKwh), targetKwh: fmt(m.targetKwh), baseCost: fmt(m.baseCost), targetCost: fmt(m.targetCost),
     baseTec: isFleet ? fmt(m.avgBaseTec,3) : fmt(S.baseTec,3),
     targetTec: isFleet ? fmt(m.avgTargetTec,3) : fmt(S.targetTec,3),
-    ratio: m.ratio===null?'不適用':fmt(m.ratio,2),
     baseName: isFleet ? (fleetOld.length === 1 ? `${fleetOld[0].brand} ${fleetOld[0].model}` : `舊機組合（共 ${m.totalUnitsOld} 台）`) : S.baseName,
     targetName: isFleet ? (fleetNew.length === 1 ? `${fleetNew[0].brand} ${fleetNew[0].model}` : `新機組合（共 ${m.totalUnitsNew} 台）`) : S.targetName
   };
   document.querySelectorAll('[data-o]').forEach(el => { const v = out[el.dataset.o]; if (v !== undefined) el.textContent = v; });
   document.querySelectorAll('#s2 [data-o="units"]').forEach(el=>el.textContent=fmt(S.units));
 
-  const r = Math.max(0, Math.min(100, m.rate || 0));
-  document.getElementById('splitSave').style.width = r + '%';
-  document.getElementById('splitRemain').style.width = (100 - r) + '%';
   const maxKwh=Math.max(m.baseKwh,m.targetKwh,1);
   document.querySelector('#simTargetFill').parentElement.parentElement.previousElementSibling.querySelector('.fill').style.width=m.baseKwh/maxKwh*100+'%';
   document.getElementById('simTargetFill').style.width=m.targetKwh/maxKwh*100+'%';
@@ -335,7 +343,7 @@ function renderCompare(){
     const kwh = r.tec*52*S.units, cost = kwh*S.price, co2 = kwh*S.cf;
     const save = (S.baseTec - r.tec)*52*S.units*S.price;
     return `<div class="hbar"><div class="meta"><b><span class="dot" style="background:${r.color}"></span> ${esc(r.name)}${r.speed?` <span class="muted small">· ${r.speed} ipm</span>`:''}${r.src&&r.src.includes('官網')?' <span class="pill" style="font-size:10px;padding:0 5px;background:#FFF6EE;color:#A85822">🏢官網規格</span>':''}</b>
-      <span class="num small">${fmt(kwh)} 度 · NT$${fmt(cost)} · ${fmt(co2)} kg${r.base?'':` · <span class="c-sage">${save<0?'增加':'節省'} NT$${fmt(Math.abs(save))}</span>`}</span></div>
+      <span class="num small">${fmt(kwh)} 度 · NT$${fmt(cost)} · ${fmt(co2)} kg${r.base?'':` · <span class="${save<0?'c-rose':'c-sage'}">試算電費差額 NT$${fmt(save)}</span>`}</span></div>
       <div class="track"><div class="fill" style="width:${r.tec/max*100}%;background:${r.color}"></div></div></div>`;
   }).join('');
 }
@@ -556,12 +564,12 @@ function renderFleetNewRows(){renderFleetRows('new');}
 
 function generateSummaryText(){
   const rows=currentRows(), m=currentCalculation();
-  const lines=['事務機用電差額評估',`產生日期：${new Date().toLocaleDateString('sv-SE')}`,`模式：${calcMode==='fleet'?'多台組合':'單一機型'}`,`年限：${S.years} 年；電價：NT$ ${S.price}/度`, `排碳係數：${S.cf} kg CO₂e/度（${carbonSource()}）`,RICOH_SOURCE_POLICY];
+  const lines=['事務機用電情境試算',`產生日期：${new Date().toLocaleDateString('sv-SE')}`,`模式：${calcMode==='fleet'?'多台組合':'單一機型'}`,estimateBasis(rows),`年限：${S.years} 年；電價：NT$ ${S.price}/度`, `排碳係數：${S.cf} kg CO₂e/度（${carbonSource()}）`,RICOH_SOURCE_POLICY];
   for(const [title,list] of [['現況舊機',rows.old],['擬換新機',rows.next]]){
     lines.push('',title);
     list.forEach(row=>lines.push(`${row.model} × ${row.units} 台；年用電 ${fmt(row.tec*52*row.units,1)} 度`,sourceText(row)));
   }
-  lines.push('',`每年用電差額：${fmt(m.kwhYr,1)} 度；每年電費差額：NT$ ${fmt(m.costYr,1)}`,`${S.years} 年累計電費差額：NT$ ${fmt(m.totalCost,1)}`,`每年碳排差額：${fmt(m.co2Yr,1)} kg CO₂e`,`${S.years} 年累計碳排差額：${fmt(m.co2Total,1)} kg CO₂e`,'正值代表節省，負值代表增加。此為用電費用試算，未包含租金、購機、耗材或維修成本；實際用電依印量與設定而異。','排碳係數官方參考：https://www.moeaea.gov.tw/ECW/PDA.aspx?kind=1&news_id=34473');
+  lines.push('',`每年用電差額：${fmt(m.kwhYr,1)} 度；每年電費差額：NT$ ${fmt(m.costYr,1)}`,`${S.years} 年累計電費差額：NT$ ${fmt(m.totalCost,1)}`,`每年碳排差額：${fmt(m.co2Yr,1)} kg CO₂e`,`${S.years} 年累計碳排差額：${fmt(m.co2Total,1)} kg CO₂e`,'差額＝舊機－新機：正值表示試算減少，負值表示試算增加。實際用電受印量、設定及使用條件影響，未包含租金、購機、耗材或維修成本；結果不代表實測節電效果。','排碳係數官方參考：https://www.moeaea.gov.tw/ECW/PDA.aspx?kind=1&news_id=34473');
   return lines.join('\n');
 }
 
@@ -616,7 +624,7 @@ function generateReportSvgCharts(m){
     </div>
     <div>
       <div style="display:flex;justify-content:space-between;font-size:11.5px;margin-bottom:4px">
-        <span style="font-weight:700;color:#047857">● 擬換新機年用電（用電減幅 ${m.rate===null?'不適用':fmt(m.rate,1)+'%'}）</span>
+        <span style="font-weight:700;color:#047857">● 擬換新機年用電試算</span>
         <span style="font-family:var(--mono);font-weight:700">${fmt(targetKwh,1)} 度 (NT$ ${fmt(m.targetCost)})</span>
       </div>
       <div style="background:#DCFCE7;border-radius:6px;height:14px;overflow:hidden">
@@ -644,7 +652,7 @@ function updatePdfReportDOM(){
 
   // KPIs
   document.getElementById('pdfKpiKwh').textContent = `${fmt(m.kwhYr,1)} 度`;
-  document.getElementById('pdfKpiRate').textContent = `用電減幅 ${m.rate===null?'不適用':fmt(m.rate,1)+'%'}`;
+  document.getElementById('pdfEstimateBasis').textContent = estimateBasis();
   document.getElementById('pdfKpiCostYr').textContent = `NT$ ${fmt(m.costYr)}`;
   document.getElementById('pdfKpiCostUnit').textContent = fmt(m.costUnit);
   document.getElementById('pdfKpiYearsTitle').textContent = S.years;
@@ -766,7 +774,7 @@ function bindFleetEvents(){
 function openAudit(type){
   const m=currentCalculation(), rows=currentRows();
   const detail=(title,list)=>`<h4>${title}</h4>`+list.map(row=>`<div class="formula">${esc(row.model)}：${fmt(row.tec,3)} × 52 × ${row.units} = ${fmt(row.tec*52*row.units,1)} 度/年</div>${sourceHTML(row)}`).join('');
-  document.getElementById('dBody').innerHTML=`<h4>共同參數</h4><p>年限 ${S.years} 年 · 電價 NT$ ${S.price}/度 · 排碳係數 ${S.cf}（${esc(carbonSource())}）</p>${detail('現況舊機',rows.old)}${detail('擬換新機',rows.next)}<h4>年用電差額</h4><div class="formula">${fmt(m.baseKwh,1)} − ${fmt(m.targetKwh,1)} = ${fmt(m.kwhYr,1)} 度</div><h4>年電費差額</h4><div class="formula">${fmt(m.kwhYr,1)} × ${S.price} = NT$ ${fmt(m.costYr,1)}</div><h4>${S.years} 年累計</h4><div class="formula">${fmt(m.costYr,1)} × ${S.years} = NT$ ${fmt(m.totalCost,1)}</div><h4>年碳排差額</h4><div class="formula">${fmt(m.kwhYr,1)} × ${S.cf} = ${fmt(m.co2Yr,1)} kg CO₂e</div><p class="small">正值為節省，負值為增加。此為能源費用推估，並非採購總成本或實際節能保證。</p>`;
+  document.getElementById('dBody').innerHTML=`<p>${esc(estimateBasis(rows))}</p><h4>共同參數</h4><p>年限 ${S.years} 年 · 電價 NT$ ${S.price}/度 · 排碳係數 ${S.cf}（${esc(carbonSource())}）</p>${detail('現況舊機',rows.old)}${detail('擬換新機',rows.next)}<h4>年用電差額</h4><div class="formula">${fmt(m.baseKwh,1)} − ${fmt(m.targetKwh,1)} = ${fmt(m.kwhYr,1)} 度</div><h4>年電費差額</h4><div class="formula">${fmt(m.kwhYr,1)} × ${S.price} = NT$ ${fmt(m.costYr,1)}</div><h4>${S.years} 年累計</h4><div class="formula">${fmt(m.costYr,1)} × ${S.years} = NT$ ${fmt(m.totalCost,1)}</div><h4>年碳排差額</h4><div class="formula">${fmt(m.kwhYr,1)} × ${S.cf} = ${fmt(m.co2Yr,1)} kg CO₂e</div><p class="small">正值表示試算減少，負值表示試算增加。此為能源費用推估，並非採購總成本或實際節能保證。</p>`;
   document.getElementById('mask').classList.add('on');openDialog('drawer');
 }
 function closeAudit(){if(activeDialog?.id==='drawer')closeDialog();}

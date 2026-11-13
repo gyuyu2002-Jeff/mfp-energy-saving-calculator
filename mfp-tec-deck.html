@@ -126,8 +126,6 @@ h3{font-size:16px}
 .hero .big small{font-size:.42em;color:#D9C9A8;margin-right:6px;font-weight:500}
 .hero .sub{color:#C9CDD1;font-size:13.5px}
 .hero .audit{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:#EDEAE4}
-.split{height:12px;border-radius:99px;background:rgba(255,255,255,.1);display:flex;overflow:hidden;margin:10px 0 6px}
-.split div{height:100%;transition:width .4s ease}
 .kpi{cursor:pointer;transition:.15s;display:flex;flex-direction:column;justify-content:space-between}
 .kpi:hover{transform:translateY(-2px);border-color:var(--ink-3)}
 .kpi .k-label{font-size:13px;color:var(--ink-2);display:flex;justify-content:space-between;align-items:center}
@@ -423,8 +421,8 @@ ul.clean li{margin:4px 0}
 <section class="slide on" id="s1">
   <div class="head">
     <span class="kicker">01 · 換機效益試算</span>
-    <h2 class="title">換機情境：<span class="num" data-o="units">1</span> 台舊機，<span data-o="years">5</span> 年電費差額 <span class="c-sage">NT$ <span class="num" data-o="totalCost">—</span></span>（用電減幅 <span class="num" data-o="rate">—</span>）</h2>
-    <p class="lead">差額＝舊機－新機：正值表示節省或減少，負值表示增加。以 TEC（kWh/週）換算，點選指標可查看算式與假設。</p>
+    <h2 class="title">換機情境試算：<span class="num" data-o="units">1</span> 台舊機，<span data-o="years">5</span> 年電費差額 <span class="c-sage">NT$ <span class="num" data-o="totalCost">—</span></span></h2>
+    <p class="lead">依輸入 TEC（kWh/週）換算，差額＝舊機－新機：正值表示試算減少，負值表示試算增加。點選指標可查看算式與假設。</p>
   </div>
 
   <!-- 🌟 案件切換：單機試算 vs 多台試算 🌟 -->
@@ -579,15 +577,14 @@ ul.clean li{margin:4px 0}
   <div class="grid g-hero">
     <div class="card hero">
       <div style="position:relative;z-index:1">
-        <div class="row between"><span class="label"><span data-o="years">5</span> 年累計電費差額</span><span class="pill" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);color:#D7DADD"><span data-o="units">1</span> 台</span></div>
+        <div class="row between"><span class="label"><span data-o="years">5</span> 年累計電費試算差額</span><span class="pill" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);color:#D7DADD"><span data-o="units">1</span> 台</span></div>
         <div class="big"><small>NT$</small><span data-o="totalCost">0</span></div>
         <div class="sub">以 <b data-o="targetName" style="color:#fff">—</b> 取代 <b data-o="baseName" style="color:#fff">—</b></div>
         <button type="button" class="btn sm audit" style="margin-top:14px" data-audit="total" aria-controls="drawer" aria-haspopup="dialog">查看算式與假設 →</button>
       </div>
       <div style="position:relative;z-index:1;margin-top:26px">
-        <div class="row between small" style="color:#C9CDD1"><span>年用電：舊機 <b class="num" data-o="baseKwh">0</b> 度 → 新機 <b class="num" data-o="targetKwh">0</b> 度</span></div>
-        <div class="split"><div id="splitSave" style="background:#8FA593"></div><div id="splitRemain" style="background:#B8877E"></div></div>
-        <div class="row between small" style="color:#AEB3B8"><span><span class="dot" style="background:#8FA593"></span> 用電減幅 <span class="num" data-o="rate">0%</span></span><span><span class="dot" style="background:#B8877E"></span> 換機後消耗佔比 <span class="num" data-o="remainRate">0%</span></span></div>
+        <div class="row between small" style="color:#C9CDD1"><span>年用電試算：舊機 <b class="num" data-o="baseKwh">0</b> 度 → 新機 <b class="num" data-o="targetKwh">0</b> 度</span></div>
+        <p class="small" data-o="estimateBasis" style="color:#D7DADD;margin:10px 0 0;line-height:1.7">依輸入 TEC 試算（含預設假設值）；比較條件待確認。</p>
       </div>
     </div>
 
@@ -613,8 +610,8 @@ ul.clean li{margin:4px 0}
       <div class="card kpi" data-audit="tec" role="button" tabindex="0" aria-label="查看 TEC 說明" aria-controls="drawer" aria-haspopup="dialog">
         <div><div class="k-label">TEC 對照（kWh/週・單台）<span class="dot" style="background:var(--blue)"></span></div>
         <div class="k-val"><span class="c-rose" data-o="baseTec">0</span><span class="k-unit">→</span> <span class="c-blue" data-o="targetTec">0</span></div>
-        <div class="small muted">新機約為舊機的 <span class="num" data-o="ratio">0</span> 倍用電</div></div>
-        <div class="k-foot"><span>同測試條件下比較 TEC</span><span>TEC 是什麼 →</span></div>
+        <div class="small muted">比較條件待確認</div></div>
+        <div class="k-foot"><span>來源與條件請逐筆核對</span><span>TEC 是什麼 →</span></div>
       </div>
     </div>
   </div>
@@ -649,7 +646,7 @@ ul.clean li{margin:4px 0}
         <div class="card flat" style="border:1px solid var(--line);margin-top:14px">
           <div class="row between" style="margin-bottom:10px">
             <h4 style="margin:0">全年用電與電費結構對比</h4>
-            <span class="pill"><span class="dot" style="background:var(--sage)"></span>用電減幅 <span class="num" data-o="rate">0%</span></span>
+            <span class="pill">TEC 年化試算</span>
           </div>
           <div class="hbar">
             <div class="meta"><b><span class="dot" style="background:var(--rose)"></span> 舊機・<span data-o="baseName">—</span></b><span class="num"><span data-o="baseKwh">0</span> 度 · NT$ <span data-o="baseCost">0</span></span></div>
@@ -666,14 +663,13 @@ ul.clean li{margin:4px 0}
 
     <div class="note" style="margin-top:16px;line-height:1.75;background:var(--paper);border:1px solid var(--line)">
     <div style="font-weight:700;margin-bottom:6px;color:var(--ink);display:flex;align-items:center;gap:6px">
-      <span>📌</span> 數據來源依據與推測計算免責聲明
+      <span>📌</span> 資料來源與試算範圍
     </div>
     <ul class="clean small" style="margin:0;padding-left:18px;color:var(--ink-2)">
       <li id="sourcePolicy"><b>資料採用順序</b>：能源署（原能源局）實測 TEC 優先。Ricoh 同型號有互盛有效節能標章時只採互盛，互盛沒有有效標章才採台灣理光；互盛 TEC 缺漏或衝突則列待核實，不改採其他來源。其餘查無可用政府實測值時才採 ENERGY STAR 紀錄。未核實與手動輸入值僅供人工情境。</li>
-      <li><b>比較條件</b>：取得節能標章不代表使用同一測試版本。請核對每筆 TEC 的測試方法、電壓、頻率與列印速度；跨版本或條件未明時，差額僅供情境探索，不宜解讀為實際換機節電率。</li>
-      <li><b>機齡假設</b>：通用機齡預設是人工情境，並非特定機型的實測數據。自行量測時，請以同一期間與使用條件換算週用電量，並保留量測紀錄。</li>
-      <li><b>推測計算僅供參考</b>：TEC（典型用電量，kWh/週）為模擬 168 小時工作與睡眠模式之標準化實驗室測算值。實際年耗電度數與電費差額會因<b>企業實際印量多寡、設備休眠設定、電價計費級距與操作習慣</b>而有所不同。</li>
-      <li><b>免責與法律聲明</b>：本網站所有試算數值、用電減幅、金額與碳排差額<b>均為數據模型推估之理論模擬參考值，僅供設備選型、節能規劃與 ESG 提案初步評估參考</b>。本工具非屬設備原廠效能保證或電費節省承諾，亦不得作為契約驗收、求償、商業合約擔保或法律訴訟之依據。實際採購規格與費用請以原廠合約及台電電費單為準。</li>
+      <li><b>比較條件</b>：目前來源未完整揭露逐筆測試版本、電壓等條件，因此只提供 TEC 年化換算與情境差額，不顯示節電百分比。同為 30 張／分或都有節能標章，也不代表測試條件一致。</li>
+      <li><b>預設假設</b>：通用舊機 TEC 可自行調整，並非特定機型或同機齡設備的實測值。自行量測時，請記錄使用條件與量測期間。</li>
+      <li><b>試算範圍</b>：本工具依輸入 TEC 估算用電、電費與碳排差額；實際結果受印量、設定及使用條件影響。試算不含購機、租賃、耗材或維修費用，也不代表實測節電效果或效能保證。</li>
       <li><b>延伸法規與專業分析</b>：欲深入了解測試流程與節能標章標準，可前往 03 頁或參考 <a href="https://www.eosasc.com.tw/mfp-power-consumption-energy-saving" target="_blank" rel="noopener" style="color:var(--blue);font-weight:600;text-decoration:underline">互盛官方專題・影印機耗電多少？TEC 怎麼看 ↗</a>。</li>
     </ul>
   </div>
@@ -704,7 +700,7 @@ ul.clean li{margin:4px 0}
       <div class="field"><label for="fColor">色彩</label>
         <select id="fColor"><option value="">彩色＋黑白</option><option value="Color">彩色</option><option value="Monochrome">黑白</option></select></div>
       <div class="field"><label for="fSort">排序</label>
-        <select id="fSort"><option value="concept">彩機優先 · 舊到新（預設商務）</option><option value="tec">TEC 低→高（須核對測試條件）</option><option value="speed">速度 低→高</option><option value="brand">品牌</option></select></div>
+        <select id="fSort"><option value="concept">彩機優先 · 舊到新（預設商務）</option><option value="tec">登錄 TEC 數值由低至高</option><option value="speed">速度 低→高</option><option value="brand">品牌</option></select></div>
       <div class="field f-kw"><label for="fKw">型號關鍵字</label><input type="text" id="fKw" placeholder="例如 IM C2010、AM-C4000、Apeos"></div>
       <div class="field"><button class="btn primary" id="btnSearch" style="width:100%">篩選機型</button></div>
     </div>
@@ -722,6 +718,7 @@ ul.clean li{margin:4px 0}
     <div class="small muted">共 <b class="num" id="resCount">0</b> 款 · <span id="resFilterInfo">依目前篩選條件顯示</span> · 採用值與查核狀態請見個別來源</div>
     <div class="small muted">每台年用電 = TEC × 52</div>
   </div>
+  <p class="small muted" style="margin:0 0 12px">TEC 排序僅依登錄數值排列，不代表同等條件下的省電排名。</p>
   <div class="tablewrap">
     <table>
       <thead><tr><th scope="col">品牌</th><th scope="col">型號與資料來源</th><th scope="col">規格</th><th scope="col" class="r">TEC<br>kWh/週</th><th scope="col" class="r">年用電<br>度/台</th><th scope="col" class="r">操作</th></tr></thead>
@@ -732,14 +729,14 @@ ul.clean li{margin:4px 0}
 
   <div class="card" style="margin-top:20px">
     <div class="row between" style="margin-bottom:12px">
-      <h3 style="margin:0">比較：<span class="num" data-o="units">1</span> 台的全年用電、電費、碳排</h3>
+      <h3 style="margin:0">情境試算：<span class="num" data-o="units">1</span> 台的全年用電、電費、碳排</h3>
       <div class="row small muted"><span>台數</span>
         <input type="range" data-k="units" min="1" max="200" step="1" style="width:160px" aria-label="台數">
         <b class="num" data-o="units">1</b> 台</div>
     </div>
     <div class="chips" id="chips" style="margin-bottom:16px"></div>
     <div id="compareBars"></div>
-    <p class="small muted" style="margin:8px 0 0">點選圓鈕可指定「主方案」，第 01 頁的試算結論、多年累計圖與頂部 A/B 選拔卡會同步連動。</p>
+    <p class="small muted" style="margin:8px 0 0">依所選舊機 TEC 試算，差額＝舊機－新機；比較條件待確認。點選圓鈕可指定「主方案」，第 01 頁的試算結果會同步更新。</p>
   </div>
 </section>
 
@@ -931,7 +928,7 @@ ul.clean li{margin:4px 0}
       <h3 style="margin:0">各品牌原廠官方規格與能源認證查驗專區</h3>
       <span class="pill" style="background:var(--sage-bg);color:#284B31;border-color:#C2DEC9;font-weight:700">查核入口</span>
     </div>
-    <p class="small muted" style="margin-bottom:12px">下列入口可用來尋找型錄與認證紀錄。各品牌專區與專題文章不等同於個別機型的實測證據，採用數值時仍應保留產品頁、欄位與查核日期。</p>
+    <p class="small muted" style="margin-bottom:12px">下列入口可用來尋找型錄與認證紀錄。品牌名稱僅供識別機型，外部連結不代表代理、合作或背書關係。品牌專區與專題文章不等同於個別機型的實測證據。</p>
     <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));gap:10px;font-size:12.5px">
       <a href="https://www.eosasc.com.tw/mfp-power-consumption-energy-saving" target="_blank" rel="noopener" style="padding:8px 12px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;color:#0F172A;text-decoration:none;display:flex;justify-content:space-between;align-items:center">
         <span><b>互盛官方</b> · 理光節能實測專題</span><span style="color:#2563EB">↗</span>
@@ -981,7 +978,7 @@ ul.clean li{margin:4px 0}
 <footer>
   <div class="bar" style="line-height:1.6;font-size:11.5px">
     <span><b>事務機 節能計算器</b> · 能源署實測 TEC 優先，Ricoh 同型號優先採互盛有效標章；符合備援條件才採 ENERGY STAR。獲證公司與測試條件請逐筆查核。</span>
-    <span>【免責聲明】本工具所有推算數據均為理論模型推估之參考值，僅供設備選型與節能規劃初步評估，非屬設備效能承諾或電費保證，實際規格與費用請以原廠合約及台電電費單為準。</span>
+    <span>本工具依輸入 TEC 進行情境試算；實際用電受印量、設定及使用條件影響。結果不代表實測節電效果或完整採購成本。</span>
   </div>
 </footer>
 
@@ -1054,12 +1051,14 @@ ul.clean li{margin:4px 0}
           <div><b>電力排碳係數：</b><span id="pdfParamCf">0.466</span> kg CO₂e/度（可調整）</div>
         </div>
 
+        <p id="pdfEstimateBasis" style="font-size:12px;line-height:1.7;color:#334155;margin:0 0 14px">依輸入 TEC 試算；比較條件待確認。</p>
+
         <!-- 核心差額指標卡 (KPIs) -->
         <div class="pdf-kpis">
           <div class="pdf-kpi">
             <div class="k-title">每年用電差額</div>
             <div class="k-num" style="color:#D97706" id="pdfKpiKwh">0 度</div>
-            <div class="k-sub" id="pdfKpiRate">用電減幅 0%</div>
+            <div class="k-sub">依 TEC × 52 週年化試算</div>
           </div>
           <div class="pdf-kpi">
             <div class="k-title">每年電費差額</div>
@@ -1143,6 +1142,6 @@ ul.clean li{margin:4px 0}
 
 <script src="assets/tec-data.js?v=20261106-no-greenline"></script>
 <script src="assets/calculator.js"></script>
-<script src="assets/app.js?v=20261111-tec-range"></script>
+<script src="assets/app.js?v=20261113-estimate-basis"></script>
 </body>
 </html>

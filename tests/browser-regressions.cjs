@@ -99,6 +99,88 @@ async function assertPdfOutputs(page, expected) {
   }
 }
 
+async function assertEstimateDisclosure(page, { preset = false, custom = false } = {}) {
+  const labels = await page.locator('#s1 [data-o="estimateBasis"]').allTextContents();
+  assert.ok(labels.length, 'The main result must disclose its calculation basis');
+  for (const label of labels) {
+    assert.equal(label, labels[0]);
+    assert.match(label, /依輸入 TEC 試算/);
+    assert.match(label, /比較條件待確認/);
+    assert.equal(label.includes('含預設假設值'), preset);
+    assert.equal(label.includes('含使用者自訂 TEC'), custom);
+  }
+  const unsupportedClaim = /用電減幅|換機後消耗佔比|\d[\d,.]*\s*(?:[%％]|倍)/;
+  assert.doesNotMatch(await page.locator('#s1').innerText(), unsupportedClaim);
+  const summary = await page.evaluate(() => generateSummaryText());
+  assert.ok(summary.includes(labels[0]), 'Copied summary must retain the same disclosure');
+  assert.doesNotMatch(summary, unsupportedClaim);
+  const expected = expectedResult(await snapshot(page));
+  await assertMainOutputs(page, expected);
+  await page.locator('#btnExportSummary').click();
+  assert.equal(await page.locator('#pdfEstimateBasis').textContent(), labels[0]);
+  assert.doesNotMatch(await page.locator('#pdfReportPaper').innerText(), unsupportedClaim);
+  assert.doesNotMatch(await page.locator('#pdfChartHbarSvg').innerText(), unsupportedClaim);
+  await assertPdfOutputs(page, expected);
+  await page.keyboard.press('Escape');
+}
+
+test('assumed and custom TEC remain clearly identified in results, summary and PDF', async t => {
+  const page = await openPage(t);
+  const initial = await snapshot(page);
+  near(initial.params.baseTec, 1.6);
+  near(initial.params.targetTec, 0.8);
+  assert.equal(initial.rows.old[0].speed, 30);
+  near(initial.calculation.rate, 50, 1e-7); // Keep arithmetic; suppress unsupported public conclusions.
+  assert.match(await page.locator('#abBaseSourceBadge').innerText(), /預設假設，可自行調整/);
+  await assertEstimateDisclosure(page, { preset: true });
+  await setParameter(page, 'baseTec', 2.3);
+  await assertEstimateDisclosure(page, { custom: true });
+  await page.locator('#btnReset').click();
+  await assertEstimateDisclosure(page, { preset: true });
+  await page.locator('[data-go="2"]').click();
+  assert.equal(await page.locator('#fSort option[value="tec"]').textContent(), '登錄 TEC 數值由低至高');
+});
+
+test('matching speeds and ENERGY STAR version labels do not establish comparable test conditions', async t => {
+  const page = await openPage(t);
+  const models = await page.evaluate(() => TEC_DATA.models);
+  const government = models.filter(m => m.source === 'moea' && m.speed === 30);
+  const historical = models.find(m => m.source === 'energystar' && m.archived);
+  const current = models.filter(m => m.source === 'energystar' && !m.archived);
+  assert.ok(government.length >= 2 && historical && current.length >= 2);
+  assert.equal(government[0].standard, null);
+  assert.match(historical.standard, /v2\.0/);
+  assert.match(current[0].standard, /individual version unpublished/);
+  for (const [old, next] of [[government[0], government[1]], [historical, current[0]], [current[0], current[1]]]) {
+    for (const [brandId, modelId, model] of [
+      ['abBaseBrandSel', 'abBaseModelSel', old], ['abBrandSel', 'abModelSel', next]
+    ]) {
+      await page.locator(`#${brandId}`).selectOption(model.brand);
+      await page.locator(`#${modelId}`).selectOption(model.id);
+    }
+    const state = await snapshot(page);
+    near(state.params.baseTec, old.tec);
+    near(state.params.targetTec, next.tec);
+    await assertEstimateDisclosure(page);
+  }
+});
+
+test('fleet disclosures include every assumed or custom row and clear removed assumptions', async t => {
+  const page = await openPage(t);
+  await page.locator('#btnModeFleet').click();
+  await page.locator('#btnAddFleetOld').click();
+  const customTec = page.locator('input[data-side="old"][data-index="1"][data-field="tec"]');
+  await customTec.fill('0.1');
+  await customTec.press('Tab');
+  const rows = (await snapshot(page)).rows.old;
+  assert.equal(rows[0].source, 'scenario');
+  assert.equal(rows[1].source, 'custom');
+  await assertEstimateDisclosure(page, { preset: true, custom: true });
+  await page.locator('button[data-side="old"][data-index="0"][data-delete]').click();
+  await assertEstimateDisclosure(page, { custom: true });
+  assert.ok((await snapshot(page)).calculation.kwhYr < 0, 'Negative differences must remain visible');
+});
+
 test('default TEC uses the MOEA record and every catalog value has matching source evidence', async t => {
   const page = await openPage(t);
   const state = await snapshot(page);
